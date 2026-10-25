@@ -23,6 +23,9 @@ export const gitConfig = {
 
 export const productRepoUrl = `https://github.com/${productRepo.user}/${productRepo.repo}`;
 
+// Documentation of the We1ssConnect clients (Android, desktop, OpenWrt).
+export const clientDocsUrl = 'https://weibschatten.github.io/We1ssConnect';
+
 // AI-generated interactive wiki of the We1ssBoard codebase.
 export const deepWikiUrl = `https://deepwiki.com/${productRepo.user}/${productRepo.repo}`;
 
