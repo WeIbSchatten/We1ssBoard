@@ -32,6 +32,8 @@ import {
 } from './amneziawgConfig';
 import { tunnelConfigEndpoints, tunnelEndpointLabel } from './tunnelEndpoints';
 import type { HostRecord } from '@/schemas/api/host';
+import type { ActiveConnection } from '@/schemas/client';
+import { ClientActiveConnection } from './RowCells';
 import './ClientInfoModal.css';
 
 const INBOUND_PROTOCOL_COLORS: Record<string, string> = {
@@ -67,6 +69,7 @@ interface ClientInfoModalProps {
   inboundsById: Record<number, InboundOption>;
   tunnelAllowedIPs?: Record<number, string>;
   isOnline: boolean;
+  activeConnections?: ActiveConnection[];
   subSettings?: SubSettings;
   hosts?: HostRecord[];
   onOpenChange: (open: boolean) => void;
@@ -101,6 +104,7 @@ export default function ClientInfoModal({
   inboundsById,
   tunnelAllowedIPs,
   isOnline,
+  activeConnections,
   subSettings = DEFAULT_SUB,
   hosts = NO_HOSTS,
   onOpenChange,
@@ -526,6 +530,19 @@ export default function ClientInfoModal({
                     </td>
                   </tr>
                 )}
+                <tr>
+                  <td>{t('pages.clients.activeConnection')}</td>
+                  <td>
+                    <div className="chips">
+                      <ClientActiveConnection
+                        connections={client.enable && isOnline ? activeConnections : undefined}
+                        inboundsById={inboundsById}
+                        protocolColors={INBOUND_PROTOCOL_COLORS}
+                        chipLimit={INBOUND_CHIP_LIMIT}
+                      />
+                    </div>
+                  </td>
+                </tr>
                 <tr>
                   <td>{t('pages.clients.attachedInbounds')}</td>
                   <td>

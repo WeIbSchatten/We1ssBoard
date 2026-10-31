@@ -1504,6 +1504,15 @@ func (s *InboundService) setRemoteTrafficLocked(nodeID int, snap *runtime.Traffi
 			activeTree = filterGuidTreeKeys(activeTree, activeInboundGuidKeys(snap.Inbounds, tagToCentral, originGuidFor))
 		}
 		process.SetNodeActiveInboundTree(nodeID, activeTree)
+
+		clientTree := normalizeClientInboundTreeTags(snap.ClientInboundTree, tagToCentral)
+		if guidShared {
+			if own, ok := clientTree[nodeRow.Guid]; ok {
+				delete(clientTree, nodeRow.Guid)
+				clientTree[selfKey] = own
+			}
+		}
+		process.SetNodeClientInboundTree(nodeID, clientTree)
 	}
 
 	return structuralChange, nil
@@ -1686,6 +1695,16 @@ func normalizeActiveInboundTreeTags(tree map[string][]string, tagToCentral map[s
 	}
 	if len(out) == 0 {
 		return nil
+	}
+	return out
+}
+
+func normalizeClientInboundTreeTags(tree map[string]map[string][]string, tagToCentral map[string]*model.Inbound) map[string]map[string][]string {
+	out := make(map[string]map[string][]string, len(tree))
+	for guid, byEmail := range tree {
+		if normalized := normalizeActiveInboundTreeTags(byEmail, tagToCentral); len(normalized) > 0 && guid != "" {
+			out[guid] = normalized
+		}
 	}
 	return out
 }

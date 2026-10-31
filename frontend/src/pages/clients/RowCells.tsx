@@ -11,6 +11,7 @@ import {
 
 import { formatInboundLabel } from '@/lib/inbounds/label';
 import type { InboundOption } from '@/hooks/useClients';
+import type { ActiveConnection } from '@/schemas/client';
 
 const ICON_BUTTON_STYLE = { fontSize: 16 } as const;
 
@@ -96,6 +97,8 @@ export const ClientRowActions = memo(function ClientRowActions({
 
 const CHIP_STYLE = { margin: 2 } as const;
 const OVERFLOW_CHIP_STYLE = { margin: 2, cursor: 'pointer' } as const;
+const GUESS_CHIP_STYLE = { margin: 2, borderStyle: 'dashed' } as const;
+const CONNECTION_NAME_STYLE = { marginInlineStart: 6, fontWeight: 400 } as const;
 const OVERFLOW_LIST_STYLE = {
   display: 'flex',
   flexDirection: 'column' as const,
@@ -105,43 +108,50 @@ const OVERFLOW_LIST_STYLE = {
   overflowY: 'auto' as const,
 };
 
-interface ClientInboundChipsProps {
-  ids: number[];
+interface ClientActiveConnectionProps {
+  connections: ActiveConnection[] | undefined;
   inboundsById: Record<number, InboundOption>;
   protocolColors: Record<string, string>;
-  chipLimit: number;
+  chipLimit?: number;
 }
 
-// Attachments never change on a traffic push either, so the same memoisation
-// applies: one Tooltip per visible chip plus a Popover for the overflow.
-export const ClientInboundChips = memo(function ClientInboundChips({
-  ids,
+// A guess (no access-log sighting) gets a dashed chip and says so in its
+// tooltip, so an inferred inbound never reads as a confirmed one.
+export const ClientActiveConnection = memo(function ClientActiveConnection({
+  connections,
   inboundsById,
   protocolColors,
-  chipLimit,
-}: ClientInboundChipsProps) {
-  if (ids.length === 0) return <span className="cell-empty">—</span>;
+  chipLimit = 1,
+}: ClientActiveConnectionProps) {
+  const { t } = useTranslation();
+  if (!connections || connections.length === 0) return <span className="cell-empty">—</span>;
 
-  const label = (id: number) => {
-    const ib = inboundsById[id];
-    return formatInboundLabel(ib?.tag, ib?.remark);
-  };
-  const chip = (id: number) => {
-    const proto = (inboundsById[id]?.protocol || '').toLowerCase();
+  const chip = ({ inboundId, exact }: ActiveConnection) => {
+    const ib = inboundsById[inboundId];
+    const proto = (ib?.protocol || '').toLowerCase();
+    const label = formatInboundLabel(ib?.tag, ib?.remark);
+    const name = ib?.remark || ib?.tag || `#${inboundId}`;
     return (
-      <Tooltip key={id} title={label(id)}>
-        <Tag color={protocolColors[proto] ?? 'default'} style={CHIP_STYLE}>
-          {label(id)}
+      <Tooltip
+        key={inboundId}
+        title={exact ? label : `${label} — ${t('pages.clients.activeConnectionGuess')}`}
+      >
+        <Tag
+          color={protocolColors[proto] ?? 'default'}
+          style={exact ? CHIP_STYLE : GUESS_CHIP_STYLE}
+          data-guess={exact ? undefined : 'true'}
+        >
+          <b>{proto.toUpperCase() || '?'}</b>
+          <span style={CONNECTION_NAME_STYLE}>{name}</span>
         </Tag>
       </Tooltip>
     );
   };
 
-  const visible = ids.slice(0, chipLimit);
-  const overflow = ids.slice(chipLimit);
+  const overflow = connections.slice(chipLimit);
   return (
     <>
-      {visible.map(chip)}
+      {connections.slice(0, chipLimit).map(chip)}
       {overflow.length > 0 && (
         <Popover
           trigger="click"

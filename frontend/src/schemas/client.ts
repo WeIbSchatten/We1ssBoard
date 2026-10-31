@@ -419,3 +419,21 @@ export type ClientBulkAddFormValues = z.infer<typeof ClientBulkAddFormSchema>;
 export type ClientBulkAdjustFormValues = z.infer<typeof ClientBulkAdjustFormSchema>;
 export type ClientFormValues = z.infer<typeof ClientFormSchema>;
 export type GroupSummary = z.infer<typeof GroupSummarySchema>;
+
+export const ActiveConnectionSchema = z.object({
+  inboundId: z.number(),
+  exact: z.boolean(),
+});
+
+export const ActiveConnectionsSchema = z
+  .record(
+    z.string(),
+    z
+      .array(ActiveConnectionSchema)
+      .nullable()
+      .transform((v) => v ?? []),
+  )
+  .nullable()
+  .transform((v) => v ?? {});
+
+export type ActiveConnection = z.infer<typeof ActiveConnectionSchema>;

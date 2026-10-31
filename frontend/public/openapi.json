@@ -12242,6 +12242,93 @@
         }
       }
     },
+    "/panel/api/clients/connectionsByGuid": {
+      "post": {
+        "tags": [
+          "Clients"
+        ],
+        "summary": "Inbound tags each client email was seen on in the Xray access log within the heartbeat window, grouped by the hosting node's panelGuid. Read by a master from its nodes; empty when the access log is off.",
+        "operationId": "post_panel_api_clients_connectionsByGuid",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "msg": {
+                      "type": "string"
+                    },
+                    "obj": {}
+                  }
+                },
+                "example": {
+                  "success": true,
+                  "obj": {
+                    "a1b2-...": {
+                      "user1": [
+                        "in-443-tcp"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/panel/api/clients/activeConnections": {
+      "post": {
+        "tags": [
+          "Clients"
+        ],
+        "summary": "Inbounds each online client is using right now, keyed by email. exact is true when the access log saw the client on that inbound; false when inferred from its attached inbounds that carried traffic.",
+        "operationId": "post_panel_api_clients_activeConnections",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "msg": {
+                      "type": "string"
+                    },
+                    "obj": {}
+                  }
+                },
+                "example": {
+                  "success": true,
+                  "obj": {
+                    "user1": [
+                      {
+                        "inboundId": 1,
+                        "exact": true
+                      }
+                    ],
+                    "user2": [
+                      {
+                        "inboundId": 2,
+                        "exact": false
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/panel/api/clients/lastOnline": {
       "post": {
         "tags": [
@@ -20736,6 +20823,28 @@
                     }
                   }
                 },
+                "activeConnections": {
+                  "type": "object",
+                  "description": "Per online client email, the inbounds it is using now; exact is false when inferred without an access-log sighting.",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "inboundId": {
+                          "type": "integer"
+                        },
+                        "exact": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "inboundId",
+                        "exact"
+                      ]
+                    }
+                  }
+                },
                 "lastOnlineMap": {
                   "type": "object",
                   "additionalProperties": {
@@ -20813,6 +20922,14 @@
                 "activeInbounds": {
                   "panel-guid": [
                     "inbound-443"
+                  ]
+                },
+                "activeConnections": {
+                  "alice@example.com": [
+                    {
+                      "inboundId": 1,
+                      "exact": true
+                    }
                   ]
                 },
                 "lastOnlineMap": {

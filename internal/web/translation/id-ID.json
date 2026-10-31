@@ -940,6 +940,8 @@
       "remaining": "Sisa",
       "duration": "Durasi",
       "attachedInbounds": "Inbound terlampir",
+      "activeConnection": "Koneksi aktif",
+      "activeConnectionGuess": "Perkiraan dari inbound yang membawa trafik. Aktifkan log akses Xray untuk data yang tepat",
       "selectInbound": "Pilih satu atau lebih inbound",
       "selectAllInbounds": "Pilih semua",
       "clearAllInbounds": "Hapus semua",

@@ -147,6 +147,7 @@ func (j *XrayTrafficJob) Run() {
 		}
 	}
 	j.inboundService.RefreshLocalOnlineClients(activeEmails, activeInboundTags)
+	j.inboundService.RefreshLocalClientInbounds()
 
 	if !websocket.HasClients() {
 		return
@@ -195,14 +196,20 @@ func (j *XrayTrafficJob) Run() {
 	if onlineClients == nil {
 		onlineClients = []string{}
 	}
-	websocket.BroadcastTraffic(map[string]any{
+	trafficPayload := map[string]any{
 		"traffics":       traffics,
 		"clientTraffics": movedTraffics,
 		"onlineClients":  onlineClients,
 		"onlineByGuid":   j.inboundService.GetOnlineClientsByGuid(),
 		"activeInbounds": j.inboundService.GetActiveInboundsByGuid(),
 		"lastOnlineMap":  lastOnlineMap,
-	})
+	}
+	if connections, err := j.inboundService.GetActiveConnections(); err != nil {
+		logger.Warning("get active connections failed:", err)
+	} else {
+		trafficPayload["activeConnections"] = connections
+	}
+	websocket.BroadcastTraffic(trafficPayload)
 
 	clientStatsPayload := map[string]any{"snapshot": snapshot}
 	if len(stats) > 0 {

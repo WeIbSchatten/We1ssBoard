@@ -1666,6 +1666,22 @@ export const sections: readonly Section[] = [
       },
       {
         method: 'POST',
+        path: '/panel/api/clients/connectionsByGuid',
+        summary:
+          "Inbound tags each client email was seen on in the Xray access log within the heartbeat window, grouped by the hosting node's panelGuid. Read by a master from its nodes; empty when the access log is off.",
+        response:
+          '{\n  "success": true,\n  "obj": {\n    "a1b2-...": { "user1": ["in-443-tcp"] }\n  }\n}',
+      },
+      {
+        method: 'POST',
+        path: '/panel/api/clients/activeConnections',
+        summary:
+          'Inbounds each online client is using right now, keyed by email. exact is true when the access log saw the client on that inbound; false when inferred from its attached inbounds that carried traffic.',
+        response:
+          '{\n  "success": true,\n  "obj": {\n    "user1": [{ "inboundId": 1, "exact": true }],\n    "user2": [{ "inboundId": 2, "exact": false }]\n  }\n}',
+      },
+      {
+        method: 'POST',
         path: '/panel/api/clients/lastOnline',
         summary: 'Map of client email → last-seen unix timestamp.',
         response:

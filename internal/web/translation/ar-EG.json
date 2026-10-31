@@ -940,6 +940,8 @@
       "remaining": "المتبقي",
       "duration": "المدة",
       "attachedInbounds": "الاتصالات الواردة المرتبطة",
+      "activeConnection": "الاتصال النشط",
+      "activeConnectionGuess": "تقدير: من الاتصالات الواردة التي نقلت بيانات. فعّل سجل الوصول في Xray للحصول على بيانات دقيقة",
       "selectInbound": "حدد اتصالاً واردًا واحدًا أو أكثر",
       "selectAllInbounds": "تحديد الكل",
       "clearAllInbounds": "مسح الكل",

@@ -940,6 +940,8 @@
       "remaining": "Kalan",
       "duration": "Süre",
       "attachedInbounds": "Bağlı Gelen Bağlantılar",
+      "activeConnection": "Etkin bağlantı",
+      "activeConnectionGuess": "Trafik taşıyan gelen bağlantılardan tahmin edildi. Kesin veri için Xray erişim günlüğünü açın",
       "selectInbound": "Bir veya Daha Fazla Gelen Bağlantı Seçin",
       "selectAllInbounds": "Tümünü Seç",
       "clearAllInbounds": "Tümünü Temizle",
