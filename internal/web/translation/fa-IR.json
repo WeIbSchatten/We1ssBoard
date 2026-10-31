@@ -154,11 +154,46 @@
         "ocean": "اقیانوس",
         "oceanHint": "رنگ تأکید آبی روی گرافیت سرد",
         "emerald": "زمرد",
-        "emeraldHint": "رنگ تأکید سبز روی گرافیت تیره"
+        "emeraldHint": "رنگ تأکید سبز روی گرافیت تیره",
+        "obsidian": "ابسیدین",
+        "obsidianHint": "شیشهٔ سیاه و عنوان‌های کرومی",
+        "energy": "انرژی",
+        "energyHint": "با الهام از قوطی‌های Red Bull: کلاسیک و نسخه‌های ویژه"
       },
       "size": "اندازه رابط",
       "sizeAuto": "خودکار",
-      "sizeAutoHint": "خودکار برای این صفحه {percent}٪ را انتخاب می‌کند"
+      "sizeAutoHint": "خودکار برای این صفحه {percent}٪ را انتخاب می‌کند",
+      "series": "سری",
+      "edition": {
+        "classic": "کلاسیک",
+        "classicHint": "آبی و نقره‌ای، قرمز و زرد",
+        "sugarfree": "بدون قند",
+        "sugarfreeHint": "آبی روشن و نقره‌ای",
+        "winter": "Winter Edition",
+        "winterHint": "یخ‌زدگی، یخ و نقره",
+        "coconut": "Coconut Edition",
+        "coconutHint": "سفید، نارگیلی و لاجوردی",
+        "tropical": "Tropical Edition",
+        "tropicalHint": "زرد آفتابی و انبه",
+        "red": "Red Edition",
+        "redHint": "قرمز هندوانه‌ای و سبز"
+      },
+      "background": "پس‌زمینه",
+      "backdrop": {
+        "plain": "ساده",
+        "topo": "پستی و بلندی",
+        "waves": "موج‌ها",
+        "mountains": "کوه‌ها",
+        "sakura": "ساکورا",
+        "stars": "ستاره‌ها",
+        "ribbons": "نوارها",
+        "network": "شبکه",
+        "track": "پیست",
+        "can": "قوطی"
+      },
+      "backgroundOpacity": "شفافیت پس‌زمینه",
+      "backgroundOpacityHint": "۰٪ طرح را همان‌طور که هست نشان می‌دهد و ۹۰٪ فقط ردی از آن می‌گذارد. هر سبک مقدار خودش را دارد.",
+      "backgroundOpacityPlain": "برای تنظیم شفافیت یک طرح انتخاب کنید."
     },
     "subscriptions": "اشتراک‌ها",
     "notifications": "اعلان‌ها",

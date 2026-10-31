@@ -154,11 +154,46 @@
         "ocean": "海洋",
         "oceanHint": "冷灰底色搭配蓝色强调色",
         "emerald": "翡翠",
-        "emeraldHint": "深灰底色搭配绿色强调色"
+        "emeraldHint": "深灰底色搭配绿色强调色",
+        "obsidian": "黑曜石",
+        "obsidianHint": "黑色玻璃与镀铬标题",
+        "energy": "能量",
+        "energyHint": "灵感来自 Red Bull 罐：经典款与特别版"
       },
       "size": "界面大小",
       "sizeAuto": "自动",
-      "sizeAutoHint": "自动为此屏幕选择 {percent}%"
+      "sizeAutoHint": "自动为此屏幕选择 {percent}%",
+      "series": "系列",
+      "edition": {
+        "classic": "经典",
+        "classicHint": "蓝与银，红与黄",
+        "sugarfree": "无糖",
+        "sugarfreeHint": "浅蓝与银",
+        "winter": "Winter Edition",
+        "winterHint": "霜、冰与银",
+        "coconut": "Coconut Edition",
+        "coconutHint": "白、椰子与天蓝",
+        "tropical": "Tropical Edition",
+        "tropicalHint": "阳光黄与芒果",
+        "red": "Red Edition",
+        "redHint": "西瓜红与绿"
+      },
+      "background": "背景",
+      "backdrop": {
+        "plain": "纯色",
+        "topo": "等高线",
+        "waves": "波浪",
+        "mountains": "山峦",
+        "sakura": "樱花",
+        "stars": "星星",
+        "ribbons": "丝带",
+        "network": "网络",
+        "track": "赛道",
+        "can": "易拉罐"
+      },
+      "backgroundOpacity": "背景透明度",
+      "backgroundOpacityHint": "0% 按原样显示图案，90% 只留下淡淡痕迹。每种风格单独保存。",
+      "backgroundOpacityPlain": "选择图案后即可调整透明度。"
     },
     "subscriptions": "订阅",
     "notifications": "通知",

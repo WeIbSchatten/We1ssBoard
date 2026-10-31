@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
 import {
-  BgColorsOutlined,
   KeyOutlined,
   LogoutOutlined,
   MenuOutlined,
@@ -18,7 +17,6 @@ import { useCommandPalette } from '@/components/command-palette/useCommandPalett
 import { useMobileNav } from '@/layouts/MobileNavContext';
 import { routeForPath } from '@/layouts/navModel';
 import { SHORTCUTS_EVENT } from '@/layouts/KeyboardShortcuts';
-import { APPEARANCE_EVENT } from '@/components/ui/AppearancePanel';
 import './PanelTopBar.css';
 
 const SHORTCUT_MODIFIER = /Mac|iPhone|iPad|iPod/.test(navigator.userAgent) ? '⌘' : 'Ctrl';
@@ -35,7 +33,6 @@ export default function PanelTopBar() {
   const accountItems = useMemo<MenuProps['items']>(
     () => [
       { key: 'security', icon: <SafetyOutlined />, label: t('pages.settings.securitySettings') },
-      { key: 'appearance', icon: <BgColorsOutlined />, label: t('menu.appearance.title') },
       { key: 'shortcuts', icon: <KeyOutlined />, label: t('shortcuts.title') },
       { type: 'divider' },
       { key: 'logout', icon: <LogoutOutlined />, label: t('logout'), danger: true },
@@ -48,8 +45,8 @@ export default function PanelTopBar() {
       navigate('/settings#security');
       return;
     }
-    if (key === 'appearance' || key === 'shortcuts') {
-      window.dispatchEvent(new Event(key === 'appearance' ? APPEARANCE_EVENT : SHORTCUTS_EVENT));
+    if (key === 'shortcuts') {
+      window.dispatchEvent(new Event(SHORTCUTS_EVENT));
       return;
     }
     await HttpUtil.post('/logout');

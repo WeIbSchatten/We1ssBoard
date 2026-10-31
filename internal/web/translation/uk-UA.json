@@ -154,11 +154,46 @@
         "ocean": "Океан",
         "oceanHint": "Синій акцент на холодному графіті",
         "emerald": "Смарагд",
-        "emeraldHint": "Зелений акцент на глибокому графіті"
+        "emeraldHint": "Зелений акцент на глибокому графіті",
+        "obsidian": "Обсидіан",
+        "obsidianHint": "Чорне скло й хромовані заголовки",
+        "energy": "Енергія",
+        "energyHint": "За мотивами банок Red Bull: класика та спецсерії"
       },
       "size": "Розмір інтерфейсу",
       "sizeAuto": "Авто",
-      "sizeAutoHint": "«Авто» обирає {percent}% для цього екрана"
+      "sizeAutoHint": "«Авто» обирає {percent}% для цього екрана",
+      "series": "Серія",
+      "edition": {
+        "classic": "Класика",
+        "classicHint": "Синій і срібло, червоний і жовтий",
+        "sugarfree": "Без цукру",
+        "sugarfreeHint": "Блакитний і срібло",
+        "winter": "Winter Edition",
+        "winterHint": "Іній, лід і срібло",
+        "coconut": "Coconut Edition",
+        "coconutHint": "Білий, кокосовий і лазурний",
+        "tropical": "Tropical Edition",
+        "tropicalHint": "Сонячно-жовтий і манго",
+        "red": "Red Edition",
+        "redHint": "Кавуновий червоний і зелений"
+      },
+      "background": "Фон",
+      "backdrop": {
+        "plain": "Рівний",
+        "topo": "Рельєф",
+        "waves": "Хвилі",
+        "mountains": "Гори",
+        "sakura": "Сакура",
+        "stars": "Зорі",
+        "ribbons": "Стрічки",
+        "network": "Мережа",
+        "track": "Траса",
+        "can": "Банка"
+      },
+      "backgroundOpacity": "Прозорість фону",
+      "backgroundOpacityHint": "0% — малюнок як задумано, 90% — ледь помітний. Свій для кожного стилю.",
+      "backgroundOpacityPlain": "Виберіть малюнок, щоб налаштувати прозорість."
     },
     "subscriptions": "Підписки",
     "notifications": "Сповіщення",

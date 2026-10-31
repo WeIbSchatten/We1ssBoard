@@ -9,6 +9,16 @@ differently now), **Fixed** (bugs), **Removed**, **Breaking** (needs action from
 you or breaks an old setup), **Known issues** (problems found after the release
 and the version that fixes them).
 
+## [Unreleased]
+
+### Added
+- Two new styles in **Appearance**: **Obsidian** (black glass cards, chrome headings, Inter Tight) and **Energy** (after Red Bull cans, Titillium Web, italic headings with a livery stripe). Energy comes in six series: Classic, Sugarfree, Winter Edition, Coconut Edition, Tropical Edition and Red Edition, each with light, dark and AMOLED.
+- Drawn backgrounds behind the panel, painted in the current style's colours: Relief, Waves, Mountains, Sakura, Stars, Ribbons, Network, Track and Can, or Plain. Each style keeps its own background and opacity (0–90%).
+
+### Changed
+- Appearance opens only from the palette button in the sidebar; the account menu no longer has it.
+- The soft glow behind the panel is gone; styles now default to a drawn background (Monochrome: Relief, Pastel: Sakura, Ocean: Waves, Emerald: Network, Obsidian: Stars, Energy: Can). Pick Plain to get the old flat look.
+
 ## [1.9.1] - 2026-10-23
 
 ### Breaking

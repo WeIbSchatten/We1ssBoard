@@ -154,11 +154,46 @@
         "ocean": "Samudra",
         "oceanHint": "Aksen biru di atas grafit dingin",
         "emerald": "Zamrud",
-        "emeraldHint": "Aksen hijau di atas grafit gelap"
+        "emeraldHint": "Aksen hijau di atas grafit gelap",
+        "obsidian": "Obsidian",
+        "obsidianHint": "Kaca hitam dan judul krom",
+        "energy": "Energi",
+        "energyHint": "Terinspirasi kaleng Red Bull: klasik dan edisi khusus"
       },
       "size": "Ukuran antarmuka",
       "sizeAuto": "Otomatis",
-      "sizeAutoHint": "Otomatis memilih {percent}% untuk layar ini"
+      "sizeAutoHint": "Otomatis memilih {percent}% untuk layar ini",
+      "series": "Seri",
+      "edition": {
+        "classic": "Klasik",
+        "classicHint": "Biru dan perak, merah dan kuning",
+        "sugarfree": "Tanpa gula",
+        "sugarfreeHint": "Biru muda dan perak",
+        "winter": "Winter Edition",
+        "winterHint": "Embun beku, es dan perak",
+        "coconut": "Coconut Edition",
+        "coconutHint": "Putih, kelapa dan biru langit",
+        "tropical": "Tropical Edition",
+        "tropicalHint": "Kuning cerah dan mangga",
+        "red": "Red Edition",
+        "redHint": "Merah semangka dan hijau"
+      },
+      "background": "Latar belakang",
+      "backdrop": {
+        "plain": "Polos",
+        "topo": "Relief",
+        "waves": "Gelombang",
+        "mountains": "Pegunungan",
+        "sakura": "Sakura",
+        "stars": "Bintang",
+        "ribbons": "Pita",
+        "network": "Jaringan",
+        "track": "Sirkuit",
+        "can": "Kaleng"
+      },
+      "backgroundOpacity": "Transparansi latar",
+      "backgroundOpacityHint": "0% menampilkan gambar apa adanya, 90% hanya menyisakan jejak. Setiap gaya menyimpan miliknya sendiri.",
+      "backgroundOpacityPlain": "Pilih gambar untuk mengatur transparansinya."
     },
     "subscriptions": "Langganan",
     "notifications": "Notifikasi",

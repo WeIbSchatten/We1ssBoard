@@ -6,9 +6,9 @@ import { usePageTitle } from '@/hooks/usePageTitle';
 import { useTheme } from '@/hooks/useTheme';
 import CommandPalette from '@/components/command-palette/CommandPalette';
 import AppSidebar from '@/layouts/AppSidebar';
+import PanelBackdrop from '@/layouts/PanelBackdrop';
 import PanelTopBar from '@/layouts/PanelTopBar';
 import KeyboardShortcuts from '@/layouts/KeyboardShortcuts';
-import { AppearanceDialog } from '@/components/ui/AppearancePanel';
 import { NavLayoutProvider, useNavLayout } from '@/layouts/NavLayoutContext';
 import { MobileNavProvider } from '@/layouts/MobileNavContext';
 import './PanelChrome.css';
@@ -20,6 +20,7 @@ function PanelChrome() {
       className={`panel-chrome panel-chrome--${navPosition}`}
       hasSider={navPosition === 'side'}
     >
+      <PanelBackdrop />
       <AppSidebar />
       <Layout className="content-shell">
         <PanelTopBar />
@@ -43,7 +44,6 @@ export default function PanelLayout() {
           <PanelChrome />
           <CommandPalette />
           <KeyboardShortcuts navigate={navigate} />
-          <AppearanceDialog />
         </MobileNavProvider>
       </NavLayoutProvider>
     </ConfigProvider>

@@ -154,11 +154,46 @@
         "ocean": "Đại dương",
         "oceanHint": "Điểm nhấn xanh dương trên nền graphite lạnh",
         "emerald": "Ngọc lục bảo",
-        "emeraldHint": "Điểm nhấn xanh lá trên nền graphite đậm"
+        "emeraldHint": "Điểm nhấn xanh lá trên nền graphite đậm",
+        "obsidian": "Hắc diện thạch",
+        "obsidianHint": "Kính đen và tiêu đề crôm",
+        "energy": "Năng lượng",
+        "energyHint": "Lấy cảm hứng từ lon Red Bull: bản cổ điển và các phiên bản đặc biệt"
       },
       "size": "Kích thước giao diện",
       "sizeAuto": "Tự động",
-      "sizeAutoHint": "Tự động chọn {percent}% cho màn hình này"
+      "sizeAutoHint": "Tự động chọn {percent}% cho màn hình này",
+      "series": "Dòng",
+      "edition": {
+        "classic": "Cổ điển",
+        "classicHint": "Xanh lam và bạc, đỏ và vàng",
+        "sugarfree": "Không đường",
+        "sugarfreeHint": "Xanh nhạt và bạc",
+        "winter": "Winter Edition",
+        "winterHint": "Sương giá, băng và bạc",
+        "coconut": "Coconut Edition",
+        "coconutHint": "Trắng, dừa và xanh thiên thanh",
+        "tropical": "Tropical Edition",
+        "tropicalHint": "Vàng nắng và xoài",
+        "red": "Red Edition",
+        "redHint": "Đỏ dưa hấu và xanh lá"
+      },
+      "background": "Hình nền",
+      "backdrop": {
+        "plain": "Trơn",
+        "topo": "Địa hình",
+        "waves": "Sóng",
+        "mountains": "Núi",
+        "sakura": "Hoa anh đào",
+        "stars": "Sao",
+        "ribbons": "Dải lụa",
+        "network": "Mạng lưới",
+        "track": "Đường đua",
+        "can": "Lon"
+      },
+      "backgroundOpacity": "Độ trong suốt của nền",
+      "backgroundOpacityHint": "0% giữ nguyên hình vẽ, 90% chỉ còn thoáng qua. Mỗi kiểu lưu giá trị riêng.",
+      "backgroundOpacityPlain": "Chọn một hình vẽ để chỉnh độ trong suốt."
     },
     "subscriptions": "Đăng ký",
     "notifications": "Thông báo",

@@ -166,3 +166,109 @@
   background: radial-gradient(110% 120% at 0% 0%, #34d399 0%, #090c0b 85%);
   color: #edf5f1;
 }
+
+.appearance-panel {
+  max-height: calc(100vh / var(--fb-zoom, 1) - 120px);
+  overflow-y: auto;
+  padding-inline-end: 4px;
+}
+
+.appearance-preset--obsidian .appearance-preset-art {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px) 0 0 / 10px 10px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px) 0 0 / 10px 10px,
+    #050506;
+  color: #f2f2f2;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.appearance-preset--obsidian .appearance-preset-aa {
+  font-family: 'Inter Tight Variable', sans-serif;
+  background: linear-gradient(180deg, #ffffff, #8f8f8f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.appearance-preset--energy .appearance-preset-art {
+  background: linear-gradient(120deg, #1c2f6e 0 55%, #c7ccd6 55% 70%, #db0a40 70% 85%, #ffc906 85%);
+  color: #ffffff;
+}
+
+.appearance-preset--energy .appearance-preset-aa {
+  font-family: 'Titillium Web', sans-serif;
+  font-style: italic;
+}
+
+.appearance-editions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.appearance-edition {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 8px;
+  border: 1px solid var(--fb-border);
+  border-radius: var(--fb-radius-sm);
+  background: transparent;
+  color: var(--fb-text);
+  text-align: start;
+  cursor: pointer;
+}
+
+.appearance-edition.is-active {
+  border-color: var(--fb-accent);
+  background: var(--fb-accent-soft);
+}
+
+.appearance-edition .appearance-preset-text b {
+  font-size: 12px;
+}
+
+.appearance-edition .appearance-preset-text small {
+  font-size: 11px;
+}
+
+.appearance-edition-cans {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 2px;
+}
+
+.appearance-edition-cans i {
+  width: 9px;
+  height: 22px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(127, 127, 127, 0.3);
+}
+
+.appearance-backdrops {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.appearance-backdrop {
+  position: relative;
+  height: 40px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--fb-border-strong);
+  border-radius: var(--fb-radius-sm);
+  background: var(--fb-bg);
+  cursor: pointer;
+}
+
+.appearance-backdrop.is-active {
+  border: 2px solid var(--fb-accent);
+}
+
+.appearance-backdrop svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}

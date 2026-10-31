@@ -154,11 +154,46 @@
         "ocean": "Океан",
         "oceanHint": "Синий акцент на холодном графите",
         "emerald": "Изумруд",
-        "emeraldHint": "Зелёный акцент на глубоком графите"
+        "emeraldHint": "Зелёный акцент на глубоком графите",
+        "obsidian": "Обсидиан",
+        "obsidianHint": "Чёрное стекло и хромированные заголовки",
+        "energy": "Энергия",
+        "energyHint": "По мотивам банок Red Bull: классика и спецсерии"
       },
       "size": "Размер интерфейса",
       "sizeAuto": "Авто",
-      "sizeAutoHint": "«Авто» выбирает {percent}% для этого экрана"
+      "sizeAutoHint": "«Авто» выбирает {percent}% для этого экрана",
+      "series": "Серия",
+      "edition": {
+        "classic": "Классика",
+        "classicHint": "Синий и серебро, красный и жёлтый",
+        "sugarfree": "Без сахара",
+        "sugarfreeHint": "Светло-голубой и серебро",
+        "winter": "Winter Edition",
+        "winterHint": "Иней, лёд и серебро",
+        "coconut": "Coconut Edition",
+        "coconutHint": "Белый, кокосовый и лазурный",
+        "tropical": "Tropical Edition",
+        "tropicalHint": "Солнечно-жёлтый и манго",
+        "red": "Red Edition",
+        "redHint": "Арбузный красный и зелёный"
+      },
+      "background": "Фон",
+      "backdrop": {
+        "plain": "Ровный",
+        "topo": "Рельеф",
+        "waves": "Волны",
+        "mountains": "Горы",
+        "sakura": "Сакура",
+        "stars": "Звёзды",
+        "ribbons": "Ленты",
+        "network": "Сеть",
+        "track": "Трасса",
+        "can": "Банка"
+      },
+      "backgroundOpacity": "Прозрачность фона",
+      "backgroundOpacityHint": "0% — рисунок как задуман, 90% — едва заметен. Свой у каждого стиля.",
+      "backgroundOpacityPlain": "Выберите рисунок, чтобы настроить прозрачность."
     },
     "subscriptions": "Подписки",
     "notifications": "Уведомления",

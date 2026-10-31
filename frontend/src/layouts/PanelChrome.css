@@ -1,8 +1,8 @@
 .panel-chrome {
   min-height: calc(100vh / var(--fb-zoom, 1));
   font-family: var(--fb-font);
-  background:
-    radial-gradient(1100px 520px at 70% -220px, var(--fb-bg-glow), transparent 70%), var(--fb-bg) !important;
+  position: relative;
+  background: var(--fb-bg) !important;
   color: var(--fb-text);
 }
 
@@ -16,6 +16,8 @@
 }
 
 .panel-chrome > .content-shell {
+  position: relative;
+  z-index: 1;
   flex: 1 1 auto;
   min-width: 0;
   min-height: calc(100vh / var(--fb-zoom, 1));
@@ -37,4 +39,14 @@
   .panel-chrome--top {
     flex-direction: column;
   }
+}
+
+/* Drawn backdrop of the current preset; fixed so it stays put while pages scroll. */
+.panel-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
