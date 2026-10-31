@@ -14,6 +14,8 @@ and the version that fixes them).
 ### Added
 - Two new styles in **Appearance**: **Obsidian** (black glass cards, chrome headings, Inter Tight) and **Energy** (after Red Bull cans, Titillium Web, italic headings with a livery stripe). Energy comes in six series: Classic, Sugarfree, Winter Edition, Coconut Edition, Tropical Edition and Red Edition, each with light, dark and AMOLED.
 - Drawn backgrounds behind the panel, painted in the current style's colours: Relief, Waves, Mountains, Sakura, Stars, Ribbons, Network, Track and Can, or Plain. Each style keeps its own background and opacity (0–90%).
+- A new **Overview** dashboard. Below the Xray status bar: key figures (online now, traffic today, inbounds, nodes, what needs attention), a traffic chart for 24 hours, 7 days or 30 days, a **Needs attention** list with a link to where each problem is fixed, the busiest inbounds, who is connected now and through which inbound, nodes, outbound health, top clients for the current limit period, and a feed of recent events (outbounds and nodes going down or up, Xray crashes, CPU and memory alarms, logins). The resource tiles, live speed and connection stats stay.
+- Traffic history: the panel now records the traffic of every inbound, its own and its nodes', per hour and keeps 32 days of it (`GET /panel/api/server/trafficHistory/{24h,7d,30d}`). Recording starts after the update, so the chart begins empty. Recent events are available at `GET /panel/api/server/events`.
 
 ### Changed
 - Appearance opens only from the palette button in the sidebar; the account menu no longer has it.

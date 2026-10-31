@@ -4337,6 +4337,40 @@ export const SCHEMAS: Record<string, unknown> = {
     ],
     "type": "object"
   },
+  "PanelEvent": {
+    "description": "PanelEvent is one line of the dashboard event feed. Level is error, warning,\nsuccess or info; Time is unix milliseconds.",
+    "properties": {
+      "detail": {
+        "example": "i/o timeout",
+        "type": "string"
+      },
+      "level": {
+        "example": "error",
+        "type": "string"
+      },
+      "source": {
+        "example": "de-1",
+        "type": "string"
+      },
+      "time": {
+        "example": 1793437200000,
+        "format": "int64",
+        "type": "integer"
+      },
+      "type": {
+        "example": "node.down",
+        "type": "string"
+      }
+    },
+    "required": [
+      "detail",
+      "level",
+      "source",
+      "time",
+      "type"
+    ],
+    "type": "object"
+  },
   "PanelUpdateStatus": {
     "description": "PanelUpdateStatus reports the outcome of the most recently launched panel\nself-update. RunID lets the caller confirm this status belongs to the\nupdate it started rather than a stale result left over from an earlier\nrun; State is one of \"pending\", \"success\", or \"failed\". RunID is a decimal\nstring, not a JSON number: it's a formatted UnixNano timestamp, and\nJavaScript's number type can't represent that precisely (it exceeds\nNumber.MAX_SAFE_INTEGER), which would let two different runs round to the\nsame value on the wire and defeat the whole point of this field.",
     "properties": {
@@ -5970,6 +6004,32 @@ export const SCHEMAS: Record<string, unknown> = {
       "IsOutbound",
       "Tag",
       "Up"
+    ],
+    "type": "object"
+  },
+  "TrafficPoint": {
+    "description": "TrafficPoint is one slot of the dashboard traffic chart: an hour for the 24h\nrange, a local day for 7d and 30d. Time is the slot's start in unix seconds.",
+    "properties": {
+      "down": {
+        "example": 8388608,
+        "format": "int64",
+        "type": "integer"
+      },
+      "time": {
+        "example": 1793430000,
+        "format": "int64",
+        "type": "integer"
+      },
+      "up": {
+        "example": 1048576,
+        "format": "int64",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "down",
+      "time",
+      "up"
     ],
     "type": "object"
   },

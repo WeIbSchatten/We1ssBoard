@@ -295,21 +295,22 @@ func (s *Server) initRouter() (*gin.Engine, error) {
 // node/xray state is unchanged, and export per-job duration/skipped/error
 // counters.
 const (
-	cadenceXrayRunning   = "@every 1s"
-	cadenceXrayRestart   = "@every 30s"
-	cadenceXrayTraffic   = "@every 5s"
-	cadenceMtproto       = "@every 10s"
-	cadenceAmneziaWG     = "@every 10s"
-	cadenceTuic          = "@every 10s"
-	cadenceTgWebProxy    = "@every 1m"
-	cadenceClientIPScan  = "@every 10s"
-	cadenceNodeHeartbeat = "@every 5s"
-	cadenceNodeTraffic   = "@every 5s"
-	cadenceOutboundSub   = "@every 5m"
-	cadenceReapOrphans   = "@every 5m"
-	cadenceRemoteRouting = "@every 5m"
-	cadenceXrayLogPrune  = "@every 10m"
-	cadenceCheckHash     = "@every 2m"
+	cadenceXrayRunning    = "@every 1s"
+	cadenceXrayRestart    = "@every 30s"
+	cadenceXrayTraffic    = "@every 5s"
+	cadenceMtproto        = "@every 10s"
+	cadenceAmneziaWG      = "@every 10s"
+	cadenceTuic           = "@every 10s"
+	cadenceTgWebProxy     = "@every 1m"
+	cadenceClientIPScan   = "@every 10s"
+	cadenceNodeHeartbeat  = "@every 5s"
+	cadenceNodeTraffic    = "@every 5s"
+	cadenceOutboundSub    = "@every 5m"
+	cadenceReapOrphans    = "@every 5m"
+	cadenceRemoteRouting  = "@every 5m"
+	cadenceXrayLogPrune   = "@every 10m"
+	cadenceCheckHash      = "@every 2m"
+	cadenceTrafficHistory = "@every 1m"
 	// cpu.Percent samples over a full minute (blocking), so a finer cadence just
 	// stacks overlapping samplers; subscribers rate-limit alerts to 1/min anyway.
 	cadenceCPUAlarm    = "@every 1m"
@@ -371,6 +372,7 @@ func (s *Server) startTask(restartXray bool, loc *time.Location) {
 	_, _ = s.cron.AddJob(cadenceOutboundSub, job.NewOutboundSubscriptionJob())
 
 	_, _ = s.cron.AddJob(cadenceReapOrphans, job.NewReapSyncOrphansJob())
+	_, _ = s.cron.AddJob(cadenceTrafficHistory, job.NewTrafficHistoryJob())
 
 	// Warm permanent routing URLs immediately and refresh them outside the
 	// latency-sensitive subscription request path.
@@ -678,6 +680,7 @@ func (s *Server) start(restartXray bool, startTgBot bool) (err error) {
 	s.discordService = discord.NewDiscordService(s.settingService)
 	discordSub := discord.NewSubscriber(s.settingService, s.discordService)
 	s.bus.Subscribe("discord-notifier", discordSub.HandleEvent)
+	s.bus.Subscribe("dashboard-events", service.GetEventFeed().HandleEvent)
 
 	// Wire discord service to controller for test endpoint
 	controller.SetDiscordService(s.discordService)

@@ -23,6 +23,13 @@ import ThroughputCard from './ThroughputCard';
 import ConnectionsCard from './ConnectionsCard';
 import SystemStrip from './SystemStrip';
 import TgWebProxyCard from './TgWebProxyCard';
+import KpiTiles from './dashboard/KpiTiles';
+import TrafficHistoryCard from './dashboard/TrafficHistoryCard';
+import InboundsCard from './dashboard/InboundsCard';
+import { ConnectedNowCard, TopClientsCard } from './dashboard/LiveCards';
+import { NodesCard, OutboundsCard } from './dashboard/HealthCards';
+import { AttentionCard, EventsCard } from './dashboard/FeedCards';
+import { useDashboardModel } from './dashboard/useDashboardModel';
 import { mean, peak, useOverviewHistory } from './useOverviewHistory';
 import type { PanelUpdateInfo } from './PanelUpdateModal';
 const JsonEditor = lazy(() => import('@/components/form/JsonEditor'));
@@ -35,6 +42,7 @@ const XrayLogModal = lazy(() => import('./XrayLogModal'));
 const AmneziaWGLogModal = lazy(() => import('./AmneziaWGLogModal'));
 const VersionModal = lazy(() => import('./VersionModal'));
 import './IndexPage.css';
+import './dashboard/Dashboard.css';
 
 export default function IndexPage() {
   const { t } = useTranslation();
@@ -71,6 +79,7 @@ export default function IndexPage() {
   const [loadingTip, setLoadingTip] = useState(t('loading'));
 
   const history = useOverviewHistory(status, fetched && !fetchError);
+  const dash = useDashboardModel(status);
 
   useEffect(() => {
     HttpUtil.post<{ accessLogEnable?: boolean; devChannelEnable?: boolean }>(
@@ -217,6 +226,13 @@ export default function IndexPage() {
                   </div>
                 )}
 
+                <KpiTiles {...dash.kpis} />
+
+                <div className="dash-row dash-row--2-1">
+                  <TrafficHistoryCard />
+                  <AttentionCard items={dash.attention} />
+                </div>
+
                 <div className="ov-vitals">
                   <VitalTile
                     icon={<DashboardOutlined />}
@@ -283,6 +299,27 @@ export default function IndexPage() {
                     isMobile={isMobile}
                   />
                 </div>
+
+                <div className="dash-row dash-row--2-1">
+                  <InboundsCard
+                    inbounds={dash.inbounds}
+                    onlineByInbound={dash.onlineByInbound}
+                    nodeNames={dash.nodeNames}
+                  />
+                  <ConnectedNowCard
+                    online={dash.online}
+                    connections={dash.activeConnections}
+                    inboundsById={dash.inboundsById}
+                  />
+                </div>
+
+                <div className="dash-row dash-row--3">
+                  <NodesCard nodes={dash.nodes} />
+                  <OutboundsCard outbounds={dash.outbounds} />
+                  <TopClientsCard clients={dash.topClients} />
+                </div>
+
+                <EventsCard events={dash.events} />
 
                 <TgWebProxyCard />
 

@@ -1069,6 +1069,15 @@ export const PanelChangelogSchema = z.object({
 });
 export type PanelChangelog = z.infer<typeof PanelChangelogSchema>;
 
+export const PanelEventSchema = z.object({
+  detail: z.string(),
+  level: z.string(),
+  source: z.string(),
+  time: z.number().int(),
+  type: z.string(),
+});
+export type PanelEvent = z.infer<typeof PanelEventSchema>;
+
 export const PanelUpdateStatusSchema = z.object({
   exitCode: z.number().int(),
   finishedAt: z.number().int(),
@@ -1491,6 +1500,13 @@ export const TrafficSchema = z.object({
   Up: z.number().int(),
 });
 export type Traffic = z.infer<typeof TrafficSchema>;
+
+export const TrafficPointSchema = z.object({
+  down: z.number().int(),
+  time: z.number().int(),
+  up: z.number().int(),
+});
+export type TrafficPoint = z.infer<typeof TrafficPointSchema>;
 
 export const TuicClientSettingsSchema = z.object({
   email: z.string(),

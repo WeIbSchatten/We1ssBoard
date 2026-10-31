@@ -109,6 +109,8 @@ func run(root, outDir string) error {
 				"GeodataTokenIssue",
 				"AmneziaWGLogs",
 				"PeerActivity",
+				"TrafficPoint",
+				"PanelEvent",
 				"HwidSlotStatus",
 				"RemoteLiveInbound",
 				"RemoteLoginURL",

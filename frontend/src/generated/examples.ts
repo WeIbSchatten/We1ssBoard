@@ -1114,6 +1114,13 @@ export const EXAMPLES: Record<string, unknown> = {
     ],
     "url": "https://github.com/WeIbSchatten/We1ssBoard/blob/v1.8.4/CHANGELOG.md"
   },
+  "PanelEvent": {
+    "detail": "i/o timeout",
+    "level": "error",
+    "source": "de-1",
+    "time": 1793437200000,
+    "type": "node.down"
+  },
   "PanelUpdateStatus": {
     "exitCode": 0,
     "finishedAt": 1735689612,
@@ -1678,6 +1685,11 @@ export const EXAMPLES: Record<string, unknown> = {
     "IsOutbound": false,
     "Tag": "inbound-443",
     "Up": 1048576
+  },
+  "TrafficPoint": {
+    "down": 8388608,
+    "time": 1793430000,
+    "up": 1048576
   },
   "TuicClientSettings": {
     "email": "",
