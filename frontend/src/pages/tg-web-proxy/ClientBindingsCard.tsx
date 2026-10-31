@@ -11,7 +11,14 @@ function maskSecret(secret: string): string {
   return secret.length > 8 ? `${secret.slice(0, 4)}…${secret.slice(-4)}` : '••••';
 }
 
-export default function ClientBindingsCard({ modal }: { modal: ModalApi }) {
+// nodeId narrows the table to one relay (0 = this panel); omitted, it lists every binding.
+export default function ClientBindingsCard({
+  modal,
+  nodeId,
+}: {
+  modal: ModalApi;
+  nodeId?: number;
+}) {
   const { t } = useTranslation();
   const { data, isLoading } = useTgWebProxyBindings();
   const { unbindClient, pending } = useTgWebProxyBindingMutations();
@@ -125,7 +132,9 @@ export default function ClientBindingsCard({ modal }: { modal: ModalApi }) {
         rowKey="clientId"
         size="small"
         loading={isLoading}
-        dataSource={data?.bindings ?? []}
+        dataSource={(data?.bindings ?? []).filter(
+          (b) => nodeId == null || (b.nodeId ?? 0) === nodeId,
+        )}
         columns={columns}
         pagination={false}
         scroll={{ x: true }}

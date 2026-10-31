@@ -2703,7 +2703,8 @@
         "profiles": "Profiles",
         "config": "Relay config",
         "logs": "Logs",
-        "publicSite": "Public site"
+        "publicSite": "Public site",
+        "users": "用户"
       },
       "yes": "Yes",
       "no": "No",
@@ -2887,6 +2888,17 @@
         "running": "运行中",
         "external": "其他进程",
         "stopped": "未运行"
+      },
+      "users": {
+        "hint": "选择一个中继，然后在两个列表之间移动客户端。绑定位于其他中继的客户端会把它移到这里。",
+        "notBound": "未绑定",
+        "bound": "已绑定",
+        "bind": "绑定",
+        "unbind": "解绑",
+        "elsewhere": "当前在 {name}",
+        "pickProfile": "请先选择要绑定的配置",
+        "noProfiles": "此中继还没有配置",
+        "noRelays": "本面板及其节点上还没有安装中继"
       }
     }
   },

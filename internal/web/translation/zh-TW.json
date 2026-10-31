@@ -2703,7 +2703,8 @@
         "profiles": "Profiles",
         "config": "Relay config",
         "logs": "Logs",
-        "publicSite": "Public site"
+        "publicSite": "Public site",
+        "users": "使用者"
       },
       "yes": "Yes",
       "no": "No",
@@ -2887,6 +2888,17 @@
         "running": "執行中",
         "external": "其他程序",
         "stopped": "未執行"
+      },
+      "users": {
+        "hint": "選擇一個中繼，然後在兩個清單之間移動用戶端。綁定位於其他中繼的用戶端會把它移到這裡。",
+        "notBound": "未綁定",
+        "bound": "已綁定",
+        "bind": "綁定",
+        "unbind": "解除綁定",
+        "elsewhere": "目前在 {name}",
+        "pickProfile": "請先選擇要綁定的設定檔",
+        "noProfiles": "此中繼還沒有設定檔",
+        "noRelays": "本面板及其節點上還沒有安裝中繼"
       }
     }
   },

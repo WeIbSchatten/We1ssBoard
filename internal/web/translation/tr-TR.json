@@ -2703,7 +2703,8 @@
         "profiles": "Profiles",
         "config": "Relay config",
         "logs": "Logs",
-        "publicSite": "Public site"
+        "publicSite": "Public site",
+        "users": "Kullanıcılar"
       },
       "yes": "Yes",
       "no": "No",
@@ -2887,6 +2888,17 @@
         "running": "Çalışıyor",
         "external": "Başka bir süreç",
         "stopped": "Çalışmıyor"
+      },
+      "users": {
+        "hint": "Bir röle seçin ve istemcileri listeler arasında taşıyın. Başka bir rölede olan istemciyi bağlamak onu buraya taşır.",
+        "notBound": "Bağlı değil",
+        "bound": "Bağlı",
+        "bind": "Bağla",
+        "unbind": "Bağı kaldır",
+        "elsewhere": "şu an {name} üzerinde",
+        "pickProfile": "Önce bağlanacak profili seçin",
+        "noProfiles": "Bu rölede henüz profil yok",
+        "noRelays": "Bu panelde veya düğümlerinde henüz röle kurulu değil"
       }
     }
   },

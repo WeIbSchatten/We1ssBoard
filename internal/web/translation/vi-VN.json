@@ -2703,7 +2703,8 @@
         "profiles": "Profiles",
         "config": "Relay config",
         "logs": "Logs",
-        "publicSite": "Public site"
+        "publicSite": "Public site",
+        "users": "Người dùng"
       },
       "yes": "Yes",
       "no": "No",
@@ -2887,6 +2888,17 @@
         "running": "Đang chạy",
         "external": "Tiến trình khác",
         "stopped": "Không chạy"
+      },
+      "users": {
+        "hint": "Chọn relay rồi chuyển khách hàng giữa hai danh sách. Gắn một khách hàng đang ở relay khác sẽ chuyển họ sang đây.",
+        "notBound": "Chưa gắn",
+        "bound": "Đã gắn",
+        "bind": "Gắn",
+        "unbind": "Gỡ",
+        "elsewhere": "đang ở {name}",
+        "pickProfile": "Hãy chọn hồ sơ để gắn trước",
+        "noProfiles": "Relay này chưa có hồ sơ",
+        "noRelays": "Chưa có relay nào được cài trên bảng điều khiển này hoặc các node"
       }
     }
   },

@@ -8,6 +8,7 @@ import { setMessageInstance } from '@/utils/messageBus';
 import { useTgWebProxySnapshot, useTgWebProxyStatus } from '@/api/queries/useTgWebProxy';
 import OverviewTab from './OverviewTab';
 import ProfilesTab from './ProfilesTab';
+import RelayUsersTab from './RelayUsersTab';
 import ConfigTab from './ConfigTab';
 import PublicSiteTab from './PublicSiteTab';
 import LogsTab from './LogsTab';
@@ -73,6 +74,11 @@ export default function TgWebProxyPage() {
                       key: 'overview',
                       label: t('pages.tgWebProxy.tabs.overview'),
                       children: <OverviewTab status={status} modal={modal} />,
+                    },
+                    {
+                      key: 'users',
+                      label: t('pages.tgWebProxy.tabs.users'),
+                      children: <RelayUsersTab />,
                     },
                     {
                       key: 'profiles',
