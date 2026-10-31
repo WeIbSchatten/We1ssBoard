@@ -539,8 +539,8 @@ html[data-style='energy'][data-edition='classic'] .light {
   --fb-surface-3: #eef1f6;
   --fb-surface-hover: rgba(15, 29, 74, 0.05);
   --fb-elevated: #ffffff;
-  --fb-border: rgba(20, 35, 90, 0.10);
-  --fb-border-strong: rgba(20, 35, 90, 0.20);
+  --fb-border: rgba(20, 35, 90, 0.1);
+  --fb-border-strong: rgba(20, 35, 90, 0.2);
   --fb-text: #0f1d4a;
   --fb-text-2: #38446e;
   --fb-text-3: #56618a;
@@ -561,7 +561,7 @@ html[data-style='energy'][data-edition='classic'] .light {
   --fb-chart-1: #c8093a;
   --fb-chart-2: #1c2f9e;
   --fb-chart-fill: rgba(200, 9, 58, 0.12);
-  --fb-grid: rgba(20, 35, 90, 0.10);
+  --fb-grid: rgba(20, 35, 90, 0.1);
   --fb-code-bg: #e6e9f0;
   --fb-accent-2: #d9a300;
   --fb-title-gradient: linear-gradient(120deg, #1c2f6e 0%, #3a4f9a 100%);
@@ -624,8 +624,8 @@ html[data-style='energy'][data-edition='sugarfree'] .light {
   --fb-surface-3: #e8f2f8;
   --fb-surface-hover: rgba(11, 42, 61, 0.05);
   --fb-elevated: #ffffff;
-  --fb-border: rgba(10, 70, 110, 0.10);
-  --fb-border-strong: rgba(10, 70, 110, 0.20);
+  --fb-border: rgba(10, 70, 110, 0.1);
+  --fb-border-strong: rgba(10, 70, 110, 0.2);
   --fb-text: #0b2a3d;
   --fb-text-2: #33536a;
   --fb-text-3: #4f6c80;
@@ -646,7 +646,7 @@ html[data-style='energy'][data-edition='sugarfree'] .light {
   --fb-chart-1: #0b74ad;
   --fb-chart-2: #c8093a;
   --fb-chart-fill: rgba(11, 116, 173, 0.12);
-  --fb-grid: rgba(10, 70, 110, 0.10);
+  --fb-grid: rgba(10, 70, 110, 0.1);
   --fb-code-bg: #eaf4fa;
   --fb-accent-2: #c8093a;
   --fb-title-gradient: linear-gradient(120deg, #0b5d8f 0%, #4fb6ec 100%);
@@ -709,8 +709,8 @@ html[data-style='energy'][data-edition='winter'] .light {
   --fb-surface-3: #ebf3fa;
   --fb-surface-hover: rgba(19, 37, 61, 0.05);
   --fb-elevated: #ffffff;
-  --fb-border: rgba(30, 70, 120, 0.10);
-  --fb-border-strong: rgba(30, 70, 120, 0.20);
+  --fb-border: rgba(30, 70, 120, 0.1);
+  --fb-border-strong: rgba(30, 70, 120, 0.2);
   --fb-text: #13253d;
   --fb-text-2: #3b5170;
   --fb-text-3: #566c88;
@@ -731,7 +731,7 @@ html[data-style='energy'][data-edition='winter'] .light {
   --fb-chart-1: #2a6fb5;
   --fb-chart-2: #7fb8e8;
   --fb-chart-fill: rgba(42, 111, 181, 0.12);
-  --fb-grid: rgba(30, 70, 120, 0.10);
+  --fb-grid: rgba(30, 70, 120, 0.1);
   --fb-code-bg: #eef5fb;
   --fb-accent-2: #7fb8e8;
   --fb-title-gradient: linear-gradient(120deg, #1b2f4a 0%, #2a6fb5 100%);
@@ -746,8 +746,8 @@ html[data-style='energy'][data-edition='coconut'] .dark {
   --fb-surface-3: #322b21;
   --fb-surface-hover: rgba(255, 255, 255, 0.06);
   --fb-elevated: #241e17;
-  --fb-border: rgba(245, 230, 205, 0.10);
-  --fb-border-strong: rgba(245, 230, 205, 0.20);
+  --fb-border: rgba(245, 230, 205, 0.1);
+  --fb-border-strong: rgba(245, 230, 205, 0.2);
   --fb-text: #f7f2e8;
   --fb-text-2: #d2c6b2;
   --fb-text-3: #a3967f;
@@ -768,7 +768,7 @@ html[data-style='energy'][data-edition='coconut'] .dark {
   --fb-chart-1: #3cc6d6;
   --fb-chart-2: #e3c9a0;
   --fb-chart-fill: rgba(60, 198, 214, 0.12);
-  --fb-grid: rgba(245, 230, 205, 0.10);
+  --fb-grid: rgba(245, 230, 205, 0.1);
   --fb-code-bg: #100e0a;
   --fb-accent-2: #e3c9a0;
   --fb-title-gradient: linear-gradient(180deg, #ffffff 0%, #e3c9a0 100%);
@@ -794,8 +794,8 @@ html[data-style='energy'][data-edition='coconut'] .light {
   --fb-surface-3: #f1ebe0;
   --fb-surface-hover: rgba(29, 42, 68, 0.05);
   --fb-elevated: #ffffff;
-  --fb-border: rgba(70, 50, 25, 0.10);
-  --fb-border-strong: rgba(70, 50, 25, 0.20);
+  --fb-border: rgba(70, 50, 25, 0.1);
+  --fb-border-strong: rgba(70, 50, 25, 0.2);
   --fb-text: #1d2a44;
   --fb-text-2: #44506b;
   --fb-text-3: #606a82;
@@ -816,7 +816,7 @@ html[data-style='energy'][data-edition='coconut'] .light {
   --fb-chart-1: #0f8ea3;
   --fb-chart-2: #a07850;
   --fb-chart-fill: rgba(15, 142, 163, 0.12);
-  --fb-grid: rgba(70, 50, 25, 0.10);
+  --fb-grid: rgba(70, 50, 25, 0.1);
   --fb-code-bg: #f6f2ea;
   --fb-accent-2: #a07850;
   --fb-title-gradient: linear-gradient(120deg, #1d2a44 0%, #0f8ea3 100%);
@@ -887,7 +887,7 @@ html[data-style='energy'][data-edition='tropical'] .light {
   --fb-accent: #8a6a00;
   --fb-accent-hover: #9e7a00;
   --fb-on-accent: #ffffff;
-  --fb-accent-soft: rgba(138, 106, 0, 0.10);
+  --fb-accent-soft: rgba(138, 106, 0, 0.1);
   --fb-accent-soft-2: rgba(138, 106, 0, 0.14);
   --fb-focus: rgba(138, 106, 0, 0.45);
   --fb-success: #2f7a3a;
@@ -964,8 +964,8 @@ html[data-style='energy'][data-edition='red'] .light {
   --fb-surface-3: #fdeaed;
   --fb-surface-hover: rgba(43, 13, 20, 0.05);
   --fb-elevated: #ffffff;
-  --fb-border: rgba(120, 20, 40, 0.10);
-  --fb-border-strong: rgba(120, 20, 40, 0.20);
+  --fb-border: rgba(120, 20, 40, 0.1);
+  --fb-border-strong: rgba(120, 20, 40, 0.2);
   --fb-text: #2b0d14;
   --fb-text-2: #5b2f38;
   --fb-text-3: #7a4f58;
@@ -986,14 +986,15 @@ html[data-style='energy'][data-edition='red'] .light {
   --fb-chart-1: #c81d3a;
   --fb-chart-2: #2f8a55;
   --fb-chart-fill: rgba(200, 29, 58, 0.12);
-  --fb-grid: rgba(120, 20, 40, 0.10);
+  --fb-grid: rgba(120, 20, 40, 0.1);
   --fb-code-bg: #fff3f4;
   --fb-accent-2: #2f8a55;
   --fb-title-gradient: linear-gradient(120deg, #c81d3a 0%, #2f8a55 100%);
 }
 
 html[data-style='obsidian'] {
-  --fb-font: 'Inter Tight Variable', ui-sans-serif, system-ui, 'Segoe UI', Roboto, Arial, sans-serif;
+  --fb-font:
+    'Inter Tight Variable', ui-sans-serif, system-ui, 'Segoe UI', Roboto, Arial, sans-serif;
   --fb-font-display: var(--fb-font);
   --fb-display-weight: 500;
   --fb-display-tracking: -0.035em;
@@ -1032,7 +1033,12 @@ html[data-style='energy'] .panel-topbar-title::after {
   margin-inline-start: 14px;
   vertical-align: middle;
   transform: skewX(-24deg);
-  background: linear-gradient(90deg, var(--fb-accent) 0 62%, transparent 62% 70%, var(--fb-accent-2) 70% 100%);
+  background: linear-gradient(
+    90deg,
+    var(--fb-accent) 0 62%,
+    transparent 62% 70%,
+    var(--fb-accent-2) 70% 100%
+  );
 }
 
 /* Obsidian cards are glass over the backdrop. */
@@ -1042,7 +1048,9 @@ html[data-style='obsidian'] body.dark .ant-card {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-html:is([data-style='obsidian'], [data-style='energy']) .sider-nav.ant-menu .ant-menu-item-selected {
+html:is([data-style='obsidian'], [data-style='energy'])
+  .sider-nav.ant-menu
+  .ant-menu-item-selected {
   background: var(--fb-accent-soft-2) !important;
   color: var(--fb-text) !important;
 }
