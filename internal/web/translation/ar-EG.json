@@ -2703,7 +2703,8 @@
         "profiles": "Profiles",
         "config": "Relay config",
         "logs": "Logs",
-        "publicSite": "Public site"
+        "publicSite": "Public site",
+        "users": "المستخدمون"
       },
       "yes": "Yes",
       "no": "No",
@@ -2887,6 +2888,17 @@
         "running": "يعمل",
         "external": "عملية أخرى",
         "stopped": "متوقف"
+      },
+      "users": {
+        "hint": "اختر مُرحِّلًا ثم انقل العملاء بين القائمتين. ربط عميل موجود على مُرحِّل آخر ينقله إلى هنا.",
+        "notBound": "غير مربوطين",
+        "bound": "مربوطون",
+        "bind": "ربط",
+        "unbind": "فك الربط",
+        "elsewhere": "الآن على {name}",
+        "pickProfile": "اختر أولًا الملف الشخصي للربط",
+        "noProfiles": "لا توجد ملفات شخصية على هذا المُرحِّل بعد",
+        "noRelays": "لم يُثبَّت أي مُرحِّل على هذه اللوحة أو عُقدها بعد"
       }
     }
   },

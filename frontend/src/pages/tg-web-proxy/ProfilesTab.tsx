@@ -23,7 +23,6 @@ import type { Msg } from '@/utils';
 import { getMessage } from '@/utils/messageBus';
 import { isManagedProfile } from '@/lib/tgWebProxy';
 import BindClientsModal from './BindClientsModal';
-import ClientBindingsCard from './ClientBindingsCard';
 import ProfileEgressCheck from './ProfileEgressCheck';
 import ProfileFormModal from './ProfileFormModal';
 import RouteViaOutboundModal from './RouteViaOutboundModal';
@@ -273,7 +272,6 @@ export default function ProfilesTab({
           }}
         />
       </Card>
-      <ClientBindingsCard modal={modal} />
     </>
   );
 }

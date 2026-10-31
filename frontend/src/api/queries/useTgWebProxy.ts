@@ -77,6 +77,25 @@ export function useTgWebProxySnapshot() {
   });
 }
 
+async function fetchRemoteSnapshot(nodeId: number): Promise<RelaySnapshot> {
+  const msg = await HttpUtil.get(`/panel/api/nodes/remote/${nodeId}/tgWebProxy/config`, undefined, {
+    silent: true,
+  });
+  if (!msg?.success) throw new Error(msg?.msg || 'Failed to fetch remote tg-web-proxy config');
+  const validated = parseMsg(msg, RelaySnapshotSchema, 'nodes/remote/tgWebProxy/config');
+  if (!validated.obj) throw new Error('Empty remote tg-web-proxy config');
+  return validated.obj;
+}
+
+// A node's relay config, proxied by the master's node API.
+export function useRemoteTgWebProxySnapshot(nodeId: number) {
+  return useQuery({
+    queryKey: [...keys.tgWebProxy.config(), 'remote', nodeId],
+    queryFn: () => fetchRemoteSnapshot(nodeId),
+    enabled: nodeId > 0,
+  });
+}
+
 async function fetchBindings(): Promise<TgWebProxyBindingList> {
   const msg = await HttpUtil.get(`${BASE}/bindings`, undefined, {
     silent: true,

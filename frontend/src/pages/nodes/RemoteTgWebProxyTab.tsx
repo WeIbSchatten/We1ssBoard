@@ -11,13 +11,15 @@ import {
 } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 
-import { keys } from '@/api/queryKeys';
 import { HttpUtil } from '@/utils';
 import { parseMsg } from '@/utils/zodValidate';
-import { RelaySnapshotSchema, RelayStatusSchema } from '@/generated/zod';
-import type { RelayProfile, RelaySnapshot, RelayStatus } from '@/generated/types';
+import { RelayStatusSchema } from '@/generated/zod';
+import type { RelayProfile, RelayStatus } from '@/generated/types';
 import { isManagedProfile } from '@/lib/tgWebProxy';
-import { useRemoteTgWebProxyProfileMutations } from '@/api/queries/useTgWebProxy';
+import {
+  useRemoteTgWebProxyProfileMutations,
+  useRemoteTgWebProxySnapshot,
+} from '@/api/queries/useTgWebProxy';
 import BindClientsModal from '@/pages/tg-web-proxy/BindClientsModal';
 import ProfileFormModal from '@/pages/tg-web-proxy/ProfileFormModal';
 import { reportApply } from '@/pages/tg-web-proxy/ProfilesTab';
@@ -32,16 +34,6 @@ async function fetchRemoteStatus(nodeId: number): Promise<RelayStatus> {
   return validated.obj;
 }
 
-async function fetchRemoteSnapshot(nodeId: number): Promise<RelaySnapshot> {
-  const msg = await HttpUtil.get(`/panel/api/nodes/remote/${nodeId}/tgWebProxy/config`, undefined, {
-    silent: true,
-  });
-  if (!msg?.success) throw new Error(msg?.msg || 'Failed to fetch remote tg-web-proxy config');
-  const validated = parseMsg(msg, RelaySnapshotSchema, 'nodes/remote/tgWebProxy/config');
-  if (!validated.obj) throw new Error('Empty remote tg-web-proxy config');
-  return validated.obj;
-}
-
 export default function RemoteTgWebProxyTab({ nodeId }: { nodeId: number }) {
   const { t } = useTranslation();
   const statusQuery = useQuery({
@@ -49,11 +41,7 @@ export default function RemoteTgWebProxyTab({ nodeId }: { nodeId: number }) {
     queryFn: () => fetchRemoteStatus(nodeId),
     enabled: nodeId > 0,
   });
-  const configQuery = useQuery({
-    queryKey: [...keys.tgWebProxy.config(), 'remote', nodeId],
-    queryFn: () => fetchRemoteSnapshot(nodeId),
-    enabled: nodeId > 0,
-  });
+  const configQuery = useRemoteTgWebProxySnapshot(nodeId);
 
   const [modal, modalContextHolder] = Modal.useModal();
   const { addProfile, updateProfile, deleteProfile, pending } =

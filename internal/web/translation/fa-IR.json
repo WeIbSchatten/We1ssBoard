@@ -2703,7 +2703,8 @@
         "profiles": "Profiles",
         "config": "Relay config",
         "logs": "Logs",
-        "publicSite": "Public site"
+        "publicSite": "Public site",
+        "users": "کاربران"
       },
       "yes": "Yes",
       "no": "No",
@@ -2887,6 +2888,17 @@
         "running": "در حال اجرا",
         "external": "فرایند دیگر",
         "stopped": "اجرا نمی‌شود"
+      },
+      "users": {
+        "hint": "یک رله انتخاب کنید و کاربران را بین دو فهرست جابه‌جا کنید. اتصال کاربری که روی رله دیگری است، آن را به اینجا منتقل می‌کند.",
+        "notBound": "متصل نشده",
+        "bound": "متصل",
+        "bind": "اتصال",
+        "unbind": "قطع اتصال",
+        "elsewhere": "اکنون روی {name}",
+        "pickProfile": "ابتدا پروفایل مقصد را انتخاب کنید",
+        "noProfiles": "این رله هنوز پروفایلی ندارد",
+        "noRelays": "هنوز روی این پنل یا نودهای آن رله‌ای نصب نشده"
       }
     }
   },

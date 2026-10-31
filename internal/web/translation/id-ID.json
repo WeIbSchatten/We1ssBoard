@@ -2703,7 +2703,8 @@
         "profiles": "Profiles",
         "config": "Relay config",
         "logs": "Logs",
-        "publicSite": "Public site"
+        "publicSite": "Public site",
+        "users": "Pengguna"
       },
       "yes": "Yes",
       "no": "No",
@@ -2887,6 +2888,17 @@
         "running": "Berjalan",
         "external": "Proses lain",
         "stopped": "Tidak berjalan"
+      },
+      "users": {
+        "hint": "Pilih relay, lalu pindahkan klien di antara daftar. Mengikat klien yang ada di relay lain akan memindahkannya ke sini.",
+        "notBound": "Belum terikat",
+        "bound": "Terikat",
+        "bind": "Ikat",
+        "unbind": "Lepas",
+        "elsewhere": "sekarang di {name}",
+        "pickProfile": "Pilih profil tujuan terlebih dahulu",
+        "noProfiles": "Relay ini belum punya profil",
+        "noRelays": "Belum ada relay yang terpasang di panel ini atau node-nya"
       }
     }
   },

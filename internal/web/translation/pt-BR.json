@@ -2703,7 +2703,8 @@
         "profiles": "Profiles",
         "config": "Relay config",
         "logs": "Logs",
-        "publicSite": "Public site"
+        "publicSite": "Public site",
+        "users": "Usuários"
       },
       "yes": "Yes",
       "no": "No",
@@ -2887,6 +2888,17 @@
         "running": "Em execução",
         "external": "Outro processo",
         "stopped": "Parado"
+      },
+      "users": {
+        "hint": "Escolha um relay e mova clientes entre as listas. Vincular um cliente que está em outro relay o move para cá.",
+        "notBound": "Não vinculados",
+        "bound": "Vinculados",
+        "bind": "Vincular",
+        "unbind": "Desvincular",
+        "elsewhere": "agora em {name}",
+        "pickProfile": "Escolha primeiro um perfil para vincular",
+        "noProfiles": "Este relay ainda não tem perfis",
+        "noRelays": "Nenhum relay está instalado neste painel ou em seus nós ainda"
       }
     }
   },

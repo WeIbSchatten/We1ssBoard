@@ -2703,7 +2703,8 @@
         "profiles": "Profiles",
         "config": "Relay config",
         "logs": "Logs",
-        "publicSite": "Public site"
+        "publicSite": "Public site",
+        "users": "ユーザー"
       },
       "yes": "Yes",
       "no": "No",
@@ -2887,6 +2888,17 @@
         "running": "実行中",
         "external": "別のプロセス",
         "stopped": "停止中"
+      },
+      "users": {
+        "hint": "リレーを選び、リスト間でクライアントを移動します。別のリレーにいるクライアントを紐付けると、こちらへ移動します。",
+        "notBound": "未紐付け",
+        "bound": "紐付け済み",
+        "bind": "紐付ける",
+        "unbind": "解除",
+        "elsewhere": "現在 {name}",
+        "pickProfile": "先に紐付け先のプロファイルを選んでください",
+        "noProfiles": "このリレーにはまだプロファイルがありません",
+        "noRelays": "このパネルにもノードにもまだリレーがインストールされていません"
       }
     }
   },
