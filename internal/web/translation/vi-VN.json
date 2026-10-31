@@ -940,6 +940,8 @@
       "remaining": "Còn lại",
       "duration": "Thời hạn",
       "attachedInbounds": "Inbound đã gắn",
+      "activeConnection": "Kết nối đang hoạt động",
+      "activeConnectionGuess": "Ước tính từ các inbound có lưu lượng. Bật nhật ký truy cập Xray để có dữ liệu chính xác",
       "selectInbound": "Chọn một hoặc nhiều inbound",
       "selectAllInbounds": "Chọn tất cả",
       "clearAllInbounds": "Xóa tất cả",

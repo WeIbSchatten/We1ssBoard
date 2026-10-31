@@ -96,7 +96,7 @@ const BulkAttachInboundsModal = lazy(() => import('./BulkAttachInboundsModal'));
 const BulkDetachInboundsModal = lazy(() => import('./BulkDetachInboundsModal'));
 const TextModal = lazy(() => import('@/components/feedback/TextModal'));
 const PromptModal = lazy(() => import('@/components/feedback/PromptModal'));
-import { ClientInboundChips, ClientRowActions } from './RowCells';
+import { ClientActiveConnection, ClientRowActions } from './RowCells';
 import { emptyFilters, activeFilterCount } from './filters';
 import type { ClientFilters } from './filters';
 import './ClientsPage.css';
@@ -111,7 +111,7 @@ const CLIENT_COLUMN_COLLAPSE_ORDER = [
   'drag',
   'remaining',
   'group',
-  'inboundIds',
+  'activeConnection',
   'enable',
   'expiryTime',
   'online',
@@ -231,10 +231,6 @@ const INBOUND_PROTOCOL_COLORS: Record<string, string> = {
   tunnel: 'orange',
   tuic: 'orange',
 };
-const INBOUND_CHIP_LIMIT = 1;
-// A shared empty array keeps the memoised chip cell from seeing a fresh prop for
-// every unattached client on every render.
-const EMPTY_INBOUND_IDS: number[] = [];
 
 function readFilterState(): PersistedFilterState {
   try {
@@ -358,6 +354,7 @@ export default function ClientsPage() {
     setQuery,
     inbounds,
     onlines,
+    activeConnections,
     transitioning,
     fetched,
     fetchError,
@@ -1278,19 +1275,16 @@ export default function ClientsPage() {
         },
       },
       {
-        title: t('pages.clients.attachedInbounds'),
-        key: 'inboundIds',
-        width: 150,
-        render: (_v, record) => {
-          return (
-            <ClientInboundChips
-              ids={record.inboundIds || EMPTY_INBOUND_IDS}
-              inboundsById={inboundsById}
-              protocolColors={INBOUND_PROTOCOL_COLORS}
-              chipLimit={INBOUND_CHIP_LIMIT}
-            />
-          );
-        },
+        title: t('pages.clients.activeConnection'),
+        key: 'activeConnection',
+        width: 170,
+        render: (_v, record) => (
+          <ClientActiveConnection
+            connections={record.enable ? activeConnections[record.email] : undefined}
+            inboundsById={inboundsById}
+            protocolColors={INBOUND_PROTOCOL_COLORS}
+          />
+        ),
       },
       {
         title: t('pages.clients.traffic'),
@@ -1349,6 +1343,7 @@ export default function ClientsPage() {
       clientBucket,
       isOnline,
       inboundsById,
+      activeConnections,
       filters,
       allGroups,
       datepicker,
@@ -2081,6 +2076,7 @@ export default function ClientsPage() {
             inboundsById={inboundsById}
             tunnelAllowedIPs={viewingTunnelAllowedIPs}
             isOnline={infoClient ? isOnline(infoClient.email) : false}
+            activeConnections={infoClient ? activeConnections[infoClient.email] : undefined}
             subSettings={subSettings}
             hosts={hosts}
             onOpenChange={setInfoOpen}

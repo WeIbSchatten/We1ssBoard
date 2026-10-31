@@ -10,6 +10,7 @@ import {
   ClientPageResponseSchema,
   InboundOptionsSchema,
   OnlinesSchema,
+  ActiveConnectionsSchema,
   BulkAdjustResultSchema,
   BulkAttachResultSchema,
   BulkCreateResultSchema,
@@ -30,6 +31,7 @@ import {
   type BulkDeleteResult,
   type BulkSetEnableResult,
   type BulkDetachResult,
+  type ActiveConnection,
 } from '@/schemas/client';
 import { DefaultsPayloadSchema } from '@/schemas/defaults';
 import { TRAFFIC_POLL_INTERVAL_S } from '@/lib/traffic/poll-interval';
@@ -47,6 +49,7 @@ export type ExternalLinkInput = {
 export type { ClientRecord, ClientTraffic, ClientsSummary, InboundOption, ExternalLink };
 
 const JSON_HEADERS = { headers: { 'Content-Type': 'application/json' } } as const;
+const EMPTY_ACTIVE_CONNECTIONS: Record<string, ActiveConnection[]> = {};
 
 interface SubSettings {
   enable: boolean;
@@ -250,6 +253,19 @@ export function useClients(options: UseClientsOptions = {}) {
     staleTime: Infinity,
   });
 
+  const activeConnectionsQuery = useQuery({
+    queryKey: keys.clients.activeConnections(),
+    queryFn: async () => {
+      const msg = await HttpUtil.post('/panel/api/clients/activeConnections', undefined, {
+        silent: true,
+      });
+      if (!msg?.success) throw new Error(msg?.msg || 'Failed to fetch activeConnections');
+      return parseMsg(msg, ActiveConnectionsSchema, 'clients/activeConnections').obj ?? {};
+    },
+    enabled: withList,
+    staleTime: Infinity,
+  });
+
   const clients = listQuery.data?.items ?? [];
   const total = listQuery.data?.total ?? 0;
   const filtered = listQuery.data?.filtered ?? 0;
@@ -267,6 +283,7 @@ export function useClients(options: UseClientsOptions = {}) {
 
   const inbounds = inboundOptionsQuery.data ?? [];
   const onlines = useMemo(() => onlinesQuery.data ?? [], [onlinesQuery.data]);
+  const activeConnections = activeConnectionsQuery.data ?? EMPTY_ACTIVE_CONNECTIONS;
 
   const defaults = defaultsQuery.data ?? {};
   const subSettings: SubSettings = useMemo(
@@ -765,12 +782,19 @@ export function useClients(options: UseClientsOptions = {}) {
       if (!payload || typeof payload !== 'object') return;
       const p = payload as {
         onlineClients?: string[];
+        activeConnections?: unknown;
         clientTraffics?: { email: string; up: number; down: number }[];
         clientTrafficSource?: 'xray' | 'tuic';
         clientTrafficIntervalMs?: number;
       };
       if (Array.isArray(p.onlineClients)) {
         queryClient.setQueryData(keys.clients.onlines(), p.onlineClients);
+      }
+      if (p.activeConnections && typeof p.activeConnections === 'object') {
+        const parsed = ActiveConnectionsSchema.safeParse(p.activeConnections);
+        if (parsed.success) {
+          queryClient.setQueryData(keys.clients.activeConnections(), parsed.data);
+        }
       }
       if (Array.isArray(p.clientTraffics)) {
         // Xray reports a row per client whether or not it moved a byte, so most of
@@ -874,6 +898,7 @@ export function useClients(options: UseClientsOptions = {}) {
     setQuery,
     inbounds,
     onlines,
+    activeConnections,
     transitioning,
     fetched,
     fetchError,

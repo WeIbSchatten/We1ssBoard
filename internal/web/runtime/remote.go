@@ -806,6 +806,9 @@ type TrafficSnapshot struct {
 	// old build without the endpoint; the master then falls back to email-only
 	// online attribution for that node.
 	ActiveInboundTree map[string][]string
+	// ClientInboundTree is the GUID-keyed email -> inbound tags the node saw in its
+	// access logs. Empty on old builds; the master then infers from ActiveInboundTree.
+	ClientInboundTree map[string]map[string][]string
 	LastOnlineMap     map[string]int64
 	// HostGroups carries the node's per-inbound host overrides (TLS/SNI/
 	// fingerprint), fetched only when the snapshot holds a not-yet-adopted tag.
@@ -866,6 +869,13 @@ func (r *Remote) FetchTrafficSnapshot(ctx context.Context) (*TrafficSnapshot, er
 		logger.Debugf("remote %s active inbounds fetch failed: %v", r.node.Name, err)
 	} else if len(envActiveInbounds.Obj) > 0 {
 		_ = json.Unmarshal(envActiveInbounds.Obj, &snap.ActiveInboundTree)
+	}
+
+	envConnections, err := r.do(ctx, http.MethodPost, "panel/api/clients/connectionsByGuid", nil)
+	if err != nil {
+		logger.Debugf("remote %s client connections fetch failed: %v", r.node.Name, err)
+	} else if len(envConnections.Obj) > 0 {
+		_ = json.Unmarshal(envConnections.Obj, &snap.ClientInboundTree)
 	}
 
 	return snap, nil

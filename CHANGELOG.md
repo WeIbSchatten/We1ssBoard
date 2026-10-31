@@ -18,6 +18,7 @@ and the version that fixes them).
 ### Changed
 - Appearance opens only from the palette button in the sidebar; the account menu no longer has it.
 - The soft glow behind the panel is gone; styles now default to a drawn background (Monochrome: Relief, Pastel: Sakura, Ocean: Waves, Emerald: Network, Obsidian: Stars, Energy: Can). Pick Plain to get the old flat look.
+- On the Clients page the **Attached inbounds** column is now **Active connection**: the protocol and inbound each online client is using right now. With the Xray access log on it comes from the log and is exact; without it the panel infers it from the attached inbounds that carried traffic and shows the chip dashed. Nodes report their own data to the main panel; older nodes get the inferred view. The client info window shows both.
 
 ## [1.9.1] - 2026-10-23
 

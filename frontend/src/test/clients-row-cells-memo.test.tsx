@@ -3,7 +3,7 @@ import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 
-import { ClientInboundChips, ClientRowActions } from '@/pages/clients/RowCells';
+import { ClientActiveConnection, ClientRowActions } from '@/pages/clients/RowCells';
 import type { InboundOption } from '@/hooks/useClients';
 
 const PROTOCOL_COLORS = { vless: 'blue', trojan: 'volcano' };
@@ -33,9 +33,12 @@ function Harness({ children }: { children: (bump: () => void) => React.ReactNode
 }
 
 describe('clients table row cells', () => {
-  it('does not re-render the inbound chips when the row re-renders with the same attachments', async () => {
+  it('does not re-render the active connection when the row re-renders with the same connections', async () => {
     const { proxy, reads } = countingInboundMap(INBOUNDS);
-    const ids = [1, 2];
+    const connections = [
+      { inboundId: 1, exact: true },
+      { inboundId: 2, exact: false },
+    ];
     let bump: () => void = () => {};
 
     render(
@@ -43,11 +46,10 @@ describe('clients table row cells', () => {
         {(doBump) => {
           bump = doBump;
           return (
-            <ClientInboundChips
-              ids={ids}
+            <ClientActiveConnection
+              connections={connections}
               inboundsById={proxy}
               protocolColors={PROTOCOL_COLORS}
-              chipLimit={1}
             />
           );
         }}
@@ -65,21 +67,20 @@ describe('clients table row cells', () => {
     expect(reads.count).toBe(afterFirstRender);
   });
 
-  it('re-renders the chips when the attachments actually change', async () => {
+  it('re-renders the cell when the connections actually change', async () => {
     const { proxy, reads } = countingInboundMap(INBOUNDS);
 
     function Swapper() {
-      const [ids, setIds] = useState<number[]>([1]);
+      const [connections, setConnections] = useState([{ inboundId: 1, exact: true }]);
       return (
         <>
-          <button type="button" onClick={() => setIds([1, 2])}>
+          <button type="button" onClick={() => setConnections([{ inboundId: 2, exact: true }])}>
             swap
           </button>
-          <ClientInboundChips
-            ids={ids}
+          <ClientActiveConnection
+            connections={connections}
             inboundsById={proxy}
             protocolColors={PROTOCOL_COLORS}
-            chipLimit={1}
           />
         </>
       );

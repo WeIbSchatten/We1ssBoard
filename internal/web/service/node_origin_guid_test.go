@@ -202,6 +202,44 @@ func TestSetRemoteTraffic_RemapsActiveInboundTreeAndCentralTags(t *testing.T) {
 	}
 }
 
+// The node logs its own tag; the master must store the central one, or the
+// Clients page cannot resolve the sighting to an inbound and shows a guess.
+func TestSetRemoteTraffic_RemapsClientInboundTreeToCentralTags(t *testing.T) {
+	setupConflictDB(t)
+	db := database.GetDB()
+	process := useOnlineTestProcess(t)
+
+	if err := db.Create(&model.Inbound{
+		Tag: "shared-tag", Enable: true, Port: 1000, Protocol: model.VLESS, Settings: `{"clients":[]}`,
+	}).Error; err != nil {
+		t.Fatalf("create local conflicting inbound: %v", err)
+	}
+	for _, n := range []*model.Node{
+		{Id: 1, Name: "a", Address: "10.0.0.1", Port: 2053, ApiToken: "t", Guid: "dup"},
+		{Id: 2, Name: "b", Address: "10.0.0.2", Port: 2053, ApiToken: "t", Guid: "dup"},
+	} {
+		if err := db.Create(n).Error; err != nil {
+			t.Fatalf("create node %s: %v", n.Name, err)
+		}
+	}
+
+	snap := &runtime.TrafficSnapshot{
+		Inbounds: []*model.Inbound{{
+			Tag: "shared-tag", Enable: true, Port: 8443, Protocol: model.VLESS, Settings: `{"clients":[]}`,
+		}},
+		ClientInboundTree: map[string]map[string][]string{"dup": {"user1": {"shared-tag"}}},
+	}
+	if _, err := (&InboundService{}).setRemoteTrafficLocked(1, snap, false, false); err != nil {
+		t.Fatalf("setRemoteTrafficLocked: %v", err)
+	}
+
+	merged := process.GetMergedClientInboundTrees()
+	assertStringSet(t, "node:1 user1", merged["node:1"]["user1"], []string{"n1-shared-tag"})
+	if _, ok := merged["dup"]; ok {
+		t.Fatalf("cloned client-inbound subtree must not stay under shared GUID: %v", merged)
+	}
+}
+
 func TestSetRemoteTraffic_NormalizesForwardedActiveInboundSubtreeTags(t *testing.T) {
 	setupConflictDB(t)
 	db := database.GetDB()

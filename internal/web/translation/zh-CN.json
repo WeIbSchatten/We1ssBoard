@@ -940,6 +940,8 @@
       "remaining": "剩余",
       "duration": "时长",
       "attachedInbounds": "关联入站",
+      "activeConnection": "当前连接",
+      "activeConnectionGuess": "根据有流量的入站推测。开启 Xray 访问日志可获得准确数据",
       "selectInbound": "选择一个或多个入站",
       "selectAllInbounds": "全选",
       "clearAllInbounds": "全部清除",

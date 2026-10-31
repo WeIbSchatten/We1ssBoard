@@ -940,6 +940,8 @@
       "remaining": "باقی‌مانده",
       "duration": "مدت",
       "attachedInbounds": "اینباندهای متصل",
+      "activeConnection": "اتصال فعال",
+      "activeConnectionGuess": "برآورد بر اساس اینباندهای دارای ترافیک. برای داده دقیق، لاگ دسترسی Xray را فعال کنید",
       "selectInbound": "یک یا چند اینباند انتخاب کنید",
       "selectAllInbounds": "انتخاب همه",
       "clearAllInbounds": "پاک کردن همه",

@@ -940,6 +940,8 @@
       "remaining": "Restante",
       "duration": "Duración",
       "attachedInbounds": "Inbounds asociados",
+      "activeConnection": "Conexión activa",
+      "activeConnectionGuess": "Estimado a partir de los inbounds con tráfico. Activa el registro de acceso de Xray para datos exactos",
       "selectInbound": "Selecciona uno o más inbounds",
       "selectAllInbounds": "Seleccionar todo",
       "clearAllInbounds": "Limpiar todo",

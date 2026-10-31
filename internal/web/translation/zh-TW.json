@@ -940,6 +940,8 @@
       "remaining": "剩餘",
       "duration": "時長",
       "attachedInbounds": "關聯入站",
+      "activeConnection": "目前連線",
+      "activeConnectionGuess": "依有流量的入站推測。開啟 Xray 存取日誌可取得準確資料",
       "selectInbound": "選擇一個或多個入站",
       "selectAllInbounds": "全選",
       "clearAllInbounds": "全部清除",

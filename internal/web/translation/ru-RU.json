@@ -940,6 +940,8 @@
       "remaining": "Остаток",
       "duration": "Длительность",
       "attachedInbounds": "Привязанные входящие",
+      "activeConnection": "Активное подключение",
+      "activeConnectionGuess": "Предположительно: по входящим с трафиком. Для точных данных включите access-лог Xray",
       "selectInbound": "Выберите один или несколько входящих",
       "selectAllInbounds": "Выбрать всё",
       "clearAllInbounds": "Очистить всё",

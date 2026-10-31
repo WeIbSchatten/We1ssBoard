@@ -940,6 +940,8 @@
       "remaining": "Remaining",
       "duration": "Duration",
       "attachedInbounds": "Attached inbounds",
+      "activeConnection": "Active connection",
+      "activeConnectionGuess": "Estimated from inbounds that carried traffic. Turn on the Xray access log for exact data",
       "selectInbound": "Select one or more inbounds",
       "selectAllInbounds": "Select all",
       "clearAllInbounds": "Clear all",

@@ -940,6 +940,8 @@
       "remaining": "残量",
       "duration": "期間",
       "attachedInbounds": "関連付けされたインバウンド",
+      "activeConnection": "アクティブな接続",
+      "activeConnectionGuess": "トラフィックのあったインバウンドからの推定です。正確なデータには Xray のアクセスログを有効にしてください",
       "selectInbound": "1 つ以上のインバウンドを選択",
       "selectAllInbounds": "すべて選択",
       "clearAllInbounds": "すべてクリア",

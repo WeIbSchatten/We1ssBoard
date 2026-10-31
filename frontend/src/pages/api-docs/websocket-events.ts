@@ -140,6 +140,19 @@ const trafficPayloadSchema = {
     onlineClients: stringArray,
     onlineByGuid: stringArrayMap,
     activeInbounds: stringArrayMap,
+    activeConnections: {
+      type: 'object',
+      description:
+        'Per online client email, the inbounds it is using now; exact is false when inferred without an access-log sighting.',
+      additionalProperties: {
+        type: 'array',
+        items: {
+          type: 'object',
+          properties: { inboundId: { type: 'integer' }, exact: { type: 'boolean' } },
+          required: ['inboundId', 'exact'],
+        },
+      },
+    },
     lastOnlineMap: timestampMap,
   },
   oneOf: [
@@ -236,6 +249,7 @@ export function buildWebSocketEvents(
           onlineClients: ['alice@example.com'],
           onlineByGuid: { 'panel-guid': ['alice@example.com'] },
           activeInbounds: { 'panel-guid': ['inbound-443'] },
+          activeConnections: { 'alice@example.com': [{ inboundId: 1, exact: true }] },
           lastOnlineMap: { 'alice@example.com': timestamp },
         },
         time: timestamp,

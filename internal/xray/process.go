@@ -10,6 +10,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"slices"
 	"sort"
 	"strings"
 	"sync"
@@ -181,6 +182,10 @@ type process struct {
 	// traffic within its own grace window. The inbounds page combines this with
 	// nodeOnlineTrees so a multi-inbound client is not shown on an idle inbound.
 	nodeActiveInboundTrees map[int]map[string][]string
+	// localClientInboundSeen is email -> inbound tag -> last access-log sighting
+	// (unix ms); nodeClientInboundTrees is the GUID-keyed email -> tags each node reported.
+	localClientInboundSeen map[string]map[string]int64
+	nodeClientInboundTrees map[int]map[string]map[string][]string
 	onlineMu               sync.RWMutex
 
 	// onlineAPISupport caches whether the running core implements the
@@ -552,6 +557,7 @@ func (p *Process) ClearNodeOnlineClients(nodeID int) {
 	defer p.onlineMu.Unlock()
 	delete(p.nodeOnlineTrees, nodeID)
 	delete(p.nodeActiveInboundTrees, nodeID)
+	delete(p.nodeClientInboundTrees, nodeID)
 }
 
 // RetainNodeOnlineClients drops the subtree of every direct node keep rejects: nodes
@@ -569,6 +575,105 @@ func (p *Process) RetainNodeOnlineClients(keep func(nodeID int) bool) {
 			delete(p.nodeActiveInboundTrees, nodeID)
 		}
 	}
+	for nodeID := range p.nodeClientInboundTrees {
+		if !keep(nodeID) {
+			delete(p.nodeClientInboundTrees, nodeID)
+		}
+	}
+}
+
+// RecordLocalClientInbounds folds access-log sightings (email -> tag -> unix ms)
+// into the local set and prunes every sighting older than graceMs. Pass nil to only prune.
+func (p *Process) RecordLocalClientInbounds(seen map[string]map[string]int64, now, graceMs int64) {
+	p.onlineMu.Lock()
+	defer p.onlineMu.Unlock()
+	if p.localClientInboundSeen == nil {
+		p.localClientInboundSeen = make(map[string]map[string]int64, len(seen))
+	}
+	for email, tags := range seen {
+		known := p.localClientInboundSeen[email]
+		if known == nil {
+			known = make(map[string]int64, len(tags))
+			p.localClientInboundSeen[email] = known
+		}
+		for tag, ts := range tags {
+			if ts > known[tag] {
+				known[tag] = ts
+			}
+		}
+	}
+	for email, tags := range p.localClientInboundSeen {
+		for tag, ts := range tags {
+			if now-ts >= graceMs {
+				delete(tags, tag)
+			}
+		}
+		if len(tags) == 0 {
+			delete(p.localClientInboundSeen, email)
+		}
+	}
+}
+
+// GetLocalClientInbounds returns, per email, the inbound tags this panel's
+// access log saw it use within the grace window, sorted.
+func (p *Process) GetLocalClientInbounds() map[string][]string {
+	p.onlineMu.RLock()
+	defer p.onlineMu.RUnlock()
+	out := make(map[string][]string, len(p.localClientInboundSeen))
+	for email, tags := range p.localClientInboundSeen {
+		list := make([]string, 0, len(tags))
+		for tag := range tags {
+			list = append(list, tag)
+		}
+		slices.Sort(list)
+		out[email] = list
+	}
+	return out
+}
+
+// SetNodeClientInboundTree records the GUID-keyed email -> inbound tags subtree
+// one direct node reported. Replaces any previous entry for that node.
+func (p *Process) SetNodeClientInboundTree(nodeID int, tree map[string]map[string][]string) {
+	p.onlineMu.Lock()
+	defer p.onlineMu.Unlock()
+	if len(tree) == 0 {
+		delete(p.nodeClientInboundTrees, nodeID)
+		return
+	}
+	if p.nodeClientInboundTrees == nil {
+		p.nodeClientInboundTrees = map[int]map[string]map[string][]string{}
+	}
+	p.nodeClientInboundTrees[nodeID] = tree
+}
+
+// GetMergedClientInboundTrees unions every direct node's email -> inbound tags
+// subtree, keyed by the GUID of the panel that hosts each inbound.
+func (p *Process) GetMergedClientInboundTrees() map[string]map[string][]string {
+	p.onlineMu.RLock()
+	defer p.onlineMu.RUnlock()
+	out := make(map[string]map[string][]string)
+	for _, tree := range p.nodeClientInboundTrees {
+		for guid, byEmail := range tree {
+			if guid == "" {
+				continue
+			}
+			for email, tags := range byEmail {
+				if email == "" {
+					continue
+				}
+				for _, tag := range tags {
+					if tag == "" || slices.Contains(out[guid][email], tag) {
+						continue
+					}
+					if out[guid] == nil {
+						out[guid] = make(map[string][]string)
+					}
+					out[guid][email] = append(out[guid][email], tag)
+				}
+			}
+		}
+	}
+	return out
 }
 
 // GetUptime returns the uptime of the Xray process in seconds.
