@@ -516,6 +516,30 @@ export const sections: readonly Section[] = [
       },
       {
         method: 'GET',
+        path: '/panel/api/server/trafficHistory/:range',
+        summary:
+          'Proxy traffic carried by every inbound (this panel and its nodes), oldest slot first, with empty slots as zeros. Kept for 32 days.',
+        params: [
+          {
+            name: 'range',
+            in: 'path',
+            type: 'string',
+            desc: '24h (24 hourly slots) | 7d | 30d (local days).',
+          },
+        ],
+        responseSchema: 'TrafficPoint',
+        responseSchemaArray: true,
+      },
+      {
+        method: 'GET',
+        path: '/panel/api/server/events',
+        summary:
+          'The 50 newest panel events, newest first: outbounds and nodes going down or up, Xray crashes, CPU and memory alarms, login attempts. Kept in memory, so a restart empties it.',
+        responseSchema: 'PanelEvent',
+        responseSchemaArray: true,
+      },
+      {
+        method: 'GET',
         path: '/panel/api/server/xrayMetricsState',
         summary:
           'Xray runtime metrics state — whether the xray config has a `metrics` block, which expvar keys are flowing, and the current snapshot values for each. Returns an empty state when metrics are not configured.',

@@ -47,6 +47,8 @@ func (a *ServerController) initRouter(g *gin.RouterGroup) {
 	g.GET("/status", a.status)
 	g.GET("/cpuHistory/:bucket", a.getCpuHistoryBucket)
 	g.GET("/history/:metric/:bucket", a.getMetricHistoryBucket)
+	g.GET("/trafficHistory/:range", a.getTrafficHistory)
+	g.GET("/events", a.getEvents)
 	g.GET("/xrayMetricsState", a.getXrayMetricsState)
 	g.GET("/xrayMetricsHistory/:metric/:bucket", a.getXrayMetricsHistoryBucket)
 	g.GET("/xrayObservatory", a.getXrayObservatory)
@@ -150,6 +152,18 @@ func (a *ServerController) getMetricHistoryBucket(c *gin.Context) {
 		return
 	}
 	jsonObj(c, a.serverService.AggregateSystemMetric(metric, bucket, 60), nil)
+}
+
+// getEvents returns the newest outbound, node, Xray, resource and login events.
+func (a *ServerController) getEvents(c *gin.Context) {
+	jsonObj(c, service.GetEventFeed().Recent(50), nil)
+}
+
+// getTrafficHistory returns the proxy traffic of every inbound per hour (24h) or
+// per local day (7d, 30d) for the dashboard chart.
+func (a *ServerController) getTrafficHistory(c *gin.Context) {
+	points, err := service.GetTrafficHistoryService().History(c.Param("range"), time.Now())
+	jsonObj(c, points, err)
 }
 
 func (a *ServerController) getXrayMetricsState(c *gin.Context) {

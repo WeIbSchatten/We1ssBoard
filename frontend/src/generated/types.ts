@@ -1000,6 +1000,14 @@ export interface PanelChangelog {
   url: string;
 }
 
+export interface PanelEvent {
+  detail: string;
+  level: string;
+  source: string;
+  time: number;
+  type: string;
+}
+
 export interface PanelUpdateStatus {
   exitCode: number;
   finishedAt: number;
@@ -1385,6 +1393,12 @@ export interface Traffic {
   IsOutbound: boolean;
   Tag: string;
   Up: number;
+}
+
+export interface TrafficPoint {
+  down: number;
+  time: number;
+  up: number;
 }
 
 export interface TuicClientSettings {

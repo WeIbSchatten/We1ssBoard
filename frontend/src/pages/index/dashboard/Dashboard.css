@@ -1,0 +1,249 @@
+/* — dashboard rows — */
+.dash-row {
+  display: grid;
+  gap: var(--ov-gap);
+  align-items: stretch;
+}
+
+.dash-row--2-1 {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+}
+
+.dash-row--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .dash-row--2-1,
+  .dash-row--3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.dash-card {
+  height: 100%;
+}
+
+.dash-card .ant-card-body {
+  padding: var(--ov-pad);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+}
+
+.dash-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dash-big {
+  font-family: var(--fb-font-display, inherit);
+  font-weight: var(--fb-display-weight, 600);
+  letter-spacing: var(--fb-display-tracking, -0.01em);
+  font-size: 26px;
+  line-height: 1.2;
+  margin-top: 4px;
+}
+
+.dash-link {
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+
+.dash-muted {
+  color: var(--ov-faint);
+}
+
+.dash-count {
+  font-family: var(--fb-font-mono);
+  font-size: 13px;
+  color: var(--ov-label);
+}
+
+.dash-empty {
+  color: var(--ov-faint);
+  font-size: 13px;
+  padding: 18px 0;
+  text-align: center;
+}
+
+.dash-allgood {
+  color: var(--fb-success);
+}
+
+/* — KPI tiles — */
+.dash-kpis {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--ov-gap);
+}
+
+@media (max-width: 1100px) {
+  .dash-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dash-kpi:last-child {
+    grid-column: span 2;
+  }
+}
+
+.dash-kpi {
+  background: var(--fb-surface);
+  border: 1px solid var(--fb-border);
+  border-radius: var(--fb-radius-lg, 12px);
+  padding: 14px var(--ov-pad);
+  min-width: 0;
+}
+
+.dash-kpi-value {
+  font-family: var(--fb-font-display, inherit);
+  font-weight: var(--fb-display-weight, 600);
+  letter-spacing: var(--fb-display-tracking, -0.01em);
+  font-size: 24px;
+  line-height: 1.25;
+  margin-top: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dash-kpi--ok .dash-kpi-value {
+  color: var(--fb-success);
+}
+
+.dash-kpi--warn .dash-kpi-value {
+  color: var(--fb-warning);
+}
+
+.dash-kpi--bad .dash-kpi-value {
+  color: var(--fb-error);
+}
+
+/* — traffic bars — */
+.dash-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  position: relative;
+}
+
+.dash-bar {
+  flex: 1 1 0;
+  min-width: 2px;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  border-radius: 3px 3px 0 0;
+  overflow: hidden;
+  border-bottom: 2px solid var(--fb-border);
+}
+
+.dash-bar-down {
+  background: var(--fb-chart-2, var(--fb-text-3));
+  opacity: 0.55;
+}
+
+.dash-bar-up {
+  background: var(--fb-accent);
+}
+
+.dash-bars .dash-empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.dash-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--ov-faint);
+}
+
+/* — lists — */
+.dash-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dash-scroll {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.dash-list-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 32px;
+  font-size: 13px;
+  min-width: 0;
+}
+
+.dash-list-col {
+  display: flex;
+  flex-direction: column;
+  padding: 2px 0 4px;
+}
+
+.dash-list-col .ant-progress {
+  margin: 0;
+  line-height: 1;
+}
+
+.dash-list-end {
+  margin-inline-start: auto;
+  flex-shrink: 0;
+  font-size: 12.5px;
+}
+
+.dash-ellipsis {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dash-more {
+  align-self: flex-start;
+}
+
+.dash-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--fb-text-3);
+}
+
+.dash-dot--ok {
+  background: var(--fb-success);
+}
+
+.dash-dot--warn {
+  background: var(--fb-warning);
+}
+
+.dash-dot--bad {
+  background: var(--fb-error);
+}
+
+.dash-cell-stack {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.dash-cell-stack small {
+  color: var(--ov-faint);
+}
