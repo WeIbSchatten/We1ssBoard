@@ -154,11 +154,46 @@
         "ocean": "Ocean",
         "oceanHint": "Clear blue accent on cool graphite",
         "emerald": "Emerald",
-        "emeraldHint": "Fresh green accent on deep graphite"
+        "emeraldHint": "Fresh green accent on deep graphite",
+        "obsidian": "Obsidian",
+        "obsidianHint": "Black glass and chrome headings",
+        "energy": "Energy",
+        "energyHint": "After Red Bull cans: the classic and special editions"
       },
       "size": "Interface size",
       "sizeAuto": "Auto",
-      "sizeAutoHint": "Auto picks {percent}% for this screen"
+      "sizeAutoHint": "Auto picks {percent}% for this screen",
+      "series": "Series",
+      "edition": {
+        "classic": "Classic",
+        "classicHint": "Blue and silver, red and yellow",
+        "sugarfree": "Sugarfree",
+        "sugarfreeHint": "Light blue and silver",
+        "winter": "Winter Edition",
+        "winterHint": "Frost, ice and silver",
+        "coconut": "Coconut Edition",
+        "coconutHint": "White, coconut and azure",
+        "tropical": "Tropical Edition",
+        "tropicalHint": "Sunny yellow and mango",
+        "red": "Red Edition",
+        "redHint": "Watermelon red and green"
+      },
+      "background": "Background",
+      "backdrop": {
+        "plain": "Plain",
+        "topo": "Relief",
+        "waves": "Waves",
+        "mountains": "Mountains",
+        "sakura": "Sakura",
+        "stars": "Stars",
+        "ribbons": "Ribbons",
+        "network": "Network",
+        "track": "Track",
+        "can": "Can"
+      },
+      "backgroundOpacity": "Background opacity",
+      "backgroundOpacityHint": "0% shows the drawing as designed, 90% leaves a hint of it. Each style keeps its own.",
+      "backgroundOpacityPlain": "Pick a drawing to adjust its opacity."
     },
     "subscriptions": "Subscriptions",
     "notifications": "Notifications",

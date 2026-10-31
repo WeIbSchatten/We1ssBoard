@@ -4,14 +4,25 @@ import { theme as antdTheme } from 'antd';
 import type { ThemeConfig } from 'antd';
 import type { MappingAlgorithm } from 'antd/es/theme/interface';
 
-import { PALETTES, STYLE_PRESETS, type Palette, type StylePreset } from '@/theme/palettes';
+import {
+  ENERGY_EDITIONS,
+  ENERGY_PALETTES,
+  PALETTES,
+  STYLE_PRESETS,
+  type EnergyEdition,
+  type Palette,
+  type StylePreset,
+} from '@/theme/palettes';
+import { BACKDROPS, DEFAULT_BACKDROP, type BackdropId } from '@/theme/backdrops';
 
 const STORAGE_DARK = 'dark-mode';
 const STORAGE_ULTRA = 'isUltraDarkThemeEnabled';
 const STORAGE_STYLE = 'fb-style';
 const STORAGE_SCALE = 'fb-ui-scale';
+const STORAGE_EDITION = 'fb-energy-edition';
+const STORAGE_BACKDROPS = 'fb-backgrounds';
 
-export { STYLE_PRESETS, type StylePreset };
+export { ENERGY_EDITIONS, STYLE_PRESETS, type EnergyEdition, type StylePreset };
 export type UiScale = 'auto' | '90' | '100' | '110' | '125' | '150';
 export const UI_SCALES: UiScale[] = ['auto', '90', '100', '110', '125', '150'];
 
@@ -38,9 +49,11 @@ export function uiZoom(): number {
   return parseFloat(document.documentElement.style.zoom) || 1;
 }
 
-function applyAppearance(style: StylePreset, scale: UiScale) {
+function applyAppearance(style: StylePreset, scale: UiScale, edition: EnergyEdition) {
   const root = document.documentElement;
   root.setAttribute('data-style', style);
+  if (style === 'energy') root.setAttribute('data-edition', edition);
+  else root.removeAttribute('data-edition');
   const zoom = resolveUiScale(scale, window.innerWidth);
   root.style.zoom = zoom === 1 ? '' : String(zoom);
   // vh/vw ignore zoom, so viewport-sized rules divide by this (see styles).
@@ -75,8 +88,32 @@ const initialDark = readBool(STORAGE_DARK, true);
 const initialUltra = readBool(STORAGE_ULTRA, false);
 const initialStyle = readChoice(STORAGE_STYLE, STYLE_PRESETS, 'mono');
 const initialScale = readChoice(STORAGE_SCALE, UI_SCALES, 'auto');
+const initialEdition = readChoice(STORAGE_EDITION, ENERGY_EDITIONS, 'classic');
 applyDom(initialDark, initialUltra);
-applyAppearance(initialStyle, initialScale);
+applyAppearance(initialStyle, initialScale, initialEdition);
+
+export interface BackdropChoice {
+  id: BackdropId;
+  opacity: number;
+}
+type BackdropMap = Partial<Record<StylePreset, BackdropChoice>>;
+
+function readBackdrops(): BackdropMap {
+  try {
+    const raw = JSON.parse(localStorage.getItem(STORAGE_BACKDROPS) ?? '{}') as BackdropMap;
+    return raw && typeof raw === 'object' ? raw : {};
+  } catch {
+    return {};
+  }
+}
+
+export function backdropFor(map: BackdropMap, style: StylePreset): BackdropChoice {
+  const saved = map[style];
+  const id = saved && BACKDROPS.includes(saved.id) ? saved.id : DEFAULT_BACKDROP[style];
+  const opacity =
+    saved && Number.isFinite(saved.opacity) ? Math.min(90, Math.max(0, saved.opacity)) : 0;
+  return { id, opacity };
+}
 
 const FONT_FAMILY = `ui-sans-serif, -apple-system, "Segoe UI Variable Text", "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif`;
 const FONT_FAMILY_CODE = `ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Code", Menlo, Consolas, monospace`;
@@ -89,13 +126,22 @@ const SHARED_STYLE_CONFIG = {
   cssVar: { key: 'xui' },
 } as const;
 
-function paletteFor(isDark: boolean, isUltra: boolean, style: StylePreset = 'mono'): Palette {
-  const set = PALETTES[style];
+function paletteFor(
+  isDark: boolean,
+  isUltra: boolean,
+  style: StylePreset = 'mono',
+  edition: EnergyEdition = 'classic',
+): Palette {
+  const set = style === 'energy' ? ENERGY_PALETTES[edition] : PALETTES[style];
   if (!isDark) return set.light;
   return isUltra ? set.ultra : set.dark;
 }
 
-const PASTEL_FONT = `"Manrope Variable", ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif`;
+const PRESET_FONT: Partial<Record<StylePreset, string>> = {
+  pastel: `"Manrope Variable", ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif`,
+  obsidian: `"Inter Tight Variable", ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif`,
+  energy: `"Titillium Web", ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif`,
+};
 
 // The dark algorithm blends the seed toward the background (white → #d3d3d3);
 // pin the primary ramp so the accent stays exactly the palette colour.
@@ -119,9 +165,10 @@ export function buildAntdThemeConfig(
   isDark: boolean,
   isUltra: boolean,
   style: StylePreset = 'mono',
+  edition: EnergyEdition = 'classic',
 ): ThemeConfig {
-  const p = paletteFor(isDark, isUltra, style);
-  const pastel = style === 'pastel';
+  const p = paletteFor(isDark, isUltra, style, edition);
+  const rounded = style === 'pastel' || style === 'obsidian';
   return {
     ...SHARED_STYLE_CONFIG,
     algorithm: [isDark ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm, pinPrimary(p)],
@@ -152,12 +199,12 @@ export function buildAntdThemeConfig(
       controlItemBgActive: p.accentSoft,
       controlItemBgActiveHover: p.accentSoft,
       controlOutline: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.08)',
-      fontFamily: pastel ? PASTEL_FONT : FONT_FAMILY,
+      fontFamily: PRESET_FONT[style] ?? FONT_FAMILY,
       fontFamilyCode: FONT_FAMILY_CODE,
       fontSize: 14,
-      borderRadius: pastel ? 12 : 10,
-      borderRadiusSM: pastel ? 10 : 8,
-      borderRadiusLG: pastel ? 20 : 16,
+      borderRadius: rounded ? 12 : 10,
+      borderRadiusSM: rounded ? 10 : 8,
+      borderRadiusLG: rounded ? 20 : 16,
       borderRadiusXS: 6,
       controlHeight: 36,
       controlHeightSM: 28,
@@ -327,6 +374,12 @@ interface ThemeContextValue {
   setStylePreset: (style: StylePreset) => void;
   uiScale: UiScale;
   setUiScale: (scale: UiScale) => void;
+  energyEdition: EnergyEdition;
+  setEnergyEdition: (edition: EnergyEdition) => void;
+  background: BackdropId;
+  setBackground: (id: BackdropId) => void;
+  backgroundOpacity: number;
+  setBackgroundOpacity: (opacity: number) => void;
   toggleTheme: () => void;
   toggleUltra: () => void;
   antdThemeConfig: ThemeConfig;
@@ -339,6 +392,25 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [isUltra, setIsUltra] = useState<boolean>(initialUltra);
   const [stylePreset, setStylePreset] = useState<StylePreset>(initialStyle);
   const [uiScale, setUiScale] = useState<UiScale>(initialScale);
+  const [energyEdition, setEnergyEdition] = useState<EnergyEdition>(initialEdition);
+  const [backdrops, setBackdrops] = useState<BackdropMap>(readBackdrops);
+  const backdrop = backdropFor(backdrops, stylePreset);
+
+  const updateBackdrop = useCallback(
+    (patch: Partial<BackdropChoice>) =>
+      setBackdrops((prev) => {
+        const next = { ...prev, [stylePreset]: { ...backdropFor(prev, stylePreset), ...patch } };
+        localStorage.setItem(STORAGE_BACKDROPS, JSON.stringify(next));
+        return next;
+      }),
+    [stylePreset],
+  );
+  const setBackground = useCallback((id: BackdropId) => updateBackdrop({ id }), [updateBackdrop]);
+  const setBackgroundOpacity = useCallback(
+    (opacity: number) =>
+      updateBackdrop({ opacity: Math.min(90, Math.max(0, Math.round(opacity))) }),
+    [updateBackdrop],
+  );
 
   useLayoutEffect(() => {
     applyDom(isDark, isUltra);
@@ -347,14 +419,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [isDark, isUltra]);
 
   useLayoutEffect(() => {
-    applyAppearance(stylePreset, uiScale);
+    applyAppearance(stylePreset, uiScale, energyEdition);
     localStorage.setItem(STORAGE_STYLE, stylePreset);
     localStorage.setItem(STORAGE_SCALE, uiScale);
+    localStorage.setItem(STORAGE_EDITION, energyEdition);
     if (uiScale !== 'auto') return;
-    const onResize = () => applyAppearance(stylePreset, uiScale);
+    const onResize = () => applyAppearance(stylePreset, uiScale, energyEdition);
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
-  }, [stylePreset, uiScale]);
+  }, [stylePreset, uiScale, energyEdition]);
 
   const toggleTheme = useCallback(() => setIsDark((v) => !v), []);
   const toggleUltra = useCallback(() => setIsUltra((v) => !v), []);
@@ -365,8 +438,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const mode: ThemeMode = !isDark ? 'light' : isUltra ? 'amoled' : 'dark';
 
   const antdThemeConfig = useMemo(
-    () => buildAntdThemeConfig(isDark, isUltra, stylePreset),
-    [isDark, isUltra, stylePreset],
+    () => buildAntdThemeConfig(isDark, isUltra, stylePreset, energyEdition),
+    [isDark, isUltra, stylePreset, energyEdition],
   );
 
   const value = useMemo<ThemeContextValue>(
@@ -379,6 +452,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       setStylePreset,
       uiScale,
       setUiScale,
+      energyEdition,
+      setEnergyEdition,
+      background: backdrop.id,
+      setBackground,
+      backgroundOpacity: backdrop.opacity,
+      setBackgroundOpacity,
       toggleTheme,
       toggleUltra,
       antdThemeConfig,
@@ -390,6 +469,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       setMode,
       stylePreset,
       uiScale,
+      energyEdition,
+      backdrop.id,
+      backdrop.opacity,
+      setBackground,
+      setBackgroundOpacity,
       toggleTheme,
       toggleUltra,
       antdThemeConfig,

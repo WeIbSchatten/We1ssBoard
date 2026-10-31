@@ -70,3 +70,50 @@ describe('appearance presets', () => {
     expect(uiZoom()).toBe(1);
   });
 });
+
+describe('reload presets', () => {
+  afterEach(() => document.documentElement.removeAttribute('data-edition'));
+
+  it.each([
+    ['obsidian', '#ececec', '#111111'],
+    ['energy', '#e0174a', '#c8093a'],
+  ] as const)('applies the %s preset with its own accent', (preset, darkAccent, lightAccent) => {
+    const api = mount();
+    act(() => api().setStylePreset(preset));
+    expect(document.documentElement.getAttribute('data-style')).toBe(preset);
+    act(() => api().setMode('dark'));
+    expect(api().antdThemeConfig.token?.colorPrimary).toBe(darkAccent);
+    act(() => api().setMode('light'));
+    expect(api().antdThemeConfig.token?.colorPrimary).toBe(lightAccent);
+  });
+
+  // A series only means something for Энергия; other presets must not inherit its attribute.
+  it('switches the Энергия series and drops it for other presets', () => {
+    const api = mount();
+    act(() => api().setStylePreset('energy'));
+    act(() => api().setEnergyEdition('winter'));
+    act(() => api().setMode('light'));
+    expect(document.documentElement.getAttribute('data-edition')).toBe('winter');
+    expect(localStorage.getItem('fb-energy-edition')).toBe('winter');
+    expect(api().antdThemeConfig.token?.colorPrimary).toBe('#2a6fb5');
+    act(() => api().setStylePreset('mono'));
+    expect(document.documentElement.hasAttribute('data-edition')).toBe(false);
+  });
+
+  it('keeps a background and its opacity per preset', () => {
+    const api = mount();
+    expect(api().background).toBe('topo');
+    act(() => api().setBackground('waves'));
+    act(() => api().setBackgroundOpacity(40));
+    act(() => api().setStylePreset('obsidian'));
+    expect(api().background).toBe('stars');
+    expect(api().backgroundOpacity).toBe(0);
+    act(() => api().setStylePreset('mono'));
+    expect(api().background).toBe('waves');
+    expect(api().backgroundOpacity).toBe(40);
+    expect(JSON.parse(localStorage.getItem('fb-backgrounds') ?? '{}').mono).toEqual({
+      id: 'waves',
+      opacity: 40,
+    });
+  });
+});

@@ -154,11 +154,46 @@
         "ocean": "المحيط",
         "oceanHint": "لون تمييز أزرق على خلفية جرافيت باردة",
         "emerald": "الزمرد",
-        "emeraldHint": "لون تمييز أخضر على خلفية جرافيت داكنة"
+        "emeraldHint": "لون تمييز أخضر على خلفية جرافيت داكنة",
+        "obsidian": "أوبسيديان",
+        "obsidianHint": "زجاج أسود وعناوين كرومية",
+        "energy": "طاقة",
+        "energyHint": "مستوحى من علب Red Bull: الكلاسيكية والإصدارات الخاصة"
       },
       "size": "حجم الواجهة",
       "sizeAuto": "تلقائي",
-      "sizeAutoHint": "التلقائي يختار {percent}% لهذه الشاشة"
+      "sizeAutoHint": "التلقائي يختار {percent}% لهذه الشاشة",
+      "series": "السلسلة",
+      "edition": {
+        "classic": "كلاسيكي",
+        "classicHint": "أزرق وفضي، أحمر وأصفر",
+        "sugarfree": "بدون سكر",
+        "sugarfreeHint": "أزرق فاتح وفضي",
+        "winter": "Winter Edition",
+        "winterHint": "صقيع وجليد وفضة",
+        "coconut": "Coconut Edition",
+        "coconutHint": "أبيض وجوز هند وأزرق سماوي",
+        "tropical": "Tropical Edition",
+        "tropicalHint": "أصفر مشمس ومانجو",
+        "red": "Red Edition",
+        "redHint": "أحمر بطيخي وأخضر"
+      },
+      "background": "الخلفية",
+      "backdrop": {
+        "plain": "سادة",
+        "topo": "تضاريس",
+        "waves": "أمواج",
+        "mountains": "جبال",
+        "sakura": "ساكورا",
+        "stars": "نجوم",
+        "ribbons": "أشرطة",
+        "network": "شبكة",
+        "track": "حلبة",
+        "can": "علبة"
+      },
+      "backgroundOpacity": "شفافية الخلفية",
+      "backgroundOpacityHint": "0% تعرض الرسم كما صُمم، و90% تترك أثرًا خفيفًا. لكل نمط إعداده.",
+      "backgroundOpacityPlain": "اختر رسمًا لضبط شفافيته."
     },
     "subscriptions": "الاشتراكات",
     "notifications": "الإشعارات",

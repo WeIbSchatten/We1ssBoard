@@ -154,11 +154,46 @@
         "ocean": "Océano",
         "oceanHint": "Acento azul sobre grafito frío",
         "emerald": "Esmeralda",
-        "emeraldHint": "Acento verde sobre grafito profundo"
+        "emeraldHint": "Acento verde sobre grafito profundo",
+        "obsidian": "Obsidiana",
+        "obsidianHint": "Cristal negro y títulos cromados",
+        "energy": "Energía",
+        "energyHint": "Inspirado en las latas de Red Bull: la clásica y las ediciones especiales"
       },
       "size": "Tamaño de la interfaz",
       "sizeAuto": "Auto",
-      "sizeAutoHint": "Auto elige {percent}% para esta pantalla"
+      "sizeAutoHint": "Auto elige {percent}% para esta pantalla",
+      "series": "Serie",
+      "edition": {
+        "classic": "Clásica",
+        "classicHint": "Azul y plata, rojo y amarillo",
+        "sugarfree": "Sin azúcar",
+        "sugarfreeHint": "Celeste y plata",
+        "winter": "Winter Edition",
+        "winterHint": "Escarcha, hielo y plata",
+        "coconut": "Coconut Edition",
+        "coconutHint": "Blanco, coco y azur",
+        "tropical": "Tropical Edition",
+        "tropicalHint": "Amarillo sol y mango",
+        "red": "Red Edition",
+        "redHint": "Rojo sandía y verde"
+      },
+      "background": "Fondo",
+      "backdrop": {
+        "plain": "Liso",
+        "topo": "Relieve",
+        "waves": "Olas",
+        "mountains": "Montañas",
+        "sakura": "Sakura",
+        "stars": "Estrellas",
+        "ribbons": "Cintas",
+        "network": "Red",
+        "track": "Circuito",
+        "can": "Lata"
+      },
+      "backgroundOpacity": "Opacidad del fondo",
+      "backgroundOpacityHint": "0% muestra el dibujo tal cual, 90% lo deja apenas visible. Cada estilo guarda el suyo.",
+      "backgroundOpacityPlain": "Elige un dibujo para ajustar su opacidad."
     },
     "subscriptions": "Suscripciones",
     "notifications": "Notificaciones",

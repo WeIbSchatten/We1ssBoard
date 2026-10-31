@@ -2,6 +2,11 @@
    monochrome is the default and needs no overrides beyond the display font. */
 @import '@fontsource-variable/manrope/wght.css';
 @import '@fontsource-variable/unbounded/wght.css';
+@import '@fontsource-variable/inter-tight/wght.css';
+@import '@fontsource/titillium-web/400.css';
+@import '@fontsource/titillium-web/600.css';
+@import '@fontsource/titillium-web/700.css';
+@import '@fontsource/titillium-web/700-italic.css';
 
 :root {
   --fb-font-display: var(--fb-font);
@@ -386,4 +391,666 @@ html:is([data-style='ocean'], [data-style='emerald'])
   .ant-menu-item-selected
   .anticon {
   color: var(--fb-accent);
+}
+
+/* ---------- Obsidian: black glass, chrome headings ---------- */
+
+html[data-style='obsidian'] body.dark,
+html[data-style='obsidian'] .dark {
+  --fb-bg: #050506;
+  --fb-sider: #08080a;
+  --fb-surface: #0f0f10;
+  --fb-surface-2: #18181a;
+  --fb-surface-3: #222225;
+  --fb-surface-hover: rgba(255, 255, 255, 0.06);
+  --fb-elevated: #141416;
+  --fb-border: rgba(255, 255, 255, 0.08);
+  --fb-border-strong: rgba(255, 255, 255, 0.17);
+  --fb-text: #f2f2f2;
+  --fb-text-2: #b5b5b5;
+  --fb-text-3: #8c8c8c;
+  --fb-accent: #ececec;
+  --fb-accent-hover: #ffffff;
+  --fb-on-accent: #0a0a0a;
+  --fb-accent-soft: rgba(255, 255, 255, 0.07);
+  --fb-accent-soft-2: rgba(236, 236, 236, 0.22);
+  --fb-focus: rgba(236, 236, 236, 0.45);
+  --fb-success: #8fe3b0;
+  --fb-success-bg: rgba(143, 227, 176, 0.12);
+  --fb-warning: #e9c46a;
+  --fb-warning-bg: rgba(233, 196, 106, 0.12);
+  --fb-error: #ff8f8f;
+  --fb-error-bg: rgba(255, 143, 143, 0.12);
+  --fb-info: #a9c7ff;
+  --fb-info-bg: rgba(169, 199, 255, 0.12);
+  --fb-chart-1: #ececec;
+  --fb-chart-2: #a9c7ff;
+  --fb-chart-fill: rgba(236, 236, 236, 0.12);
+  --fb-grid: rgba(255, 255, 255, 0.08);
+  --fb-code-bg: #0a0a0b;
+  --fb-title-gradient: linear-gradient(180deg, #ffffff 0%, #8f8f8f 100%);
+  --fb-backdrop-grid: rgba(255, 255, 255, 0.035);
+}
+
+html[data-theme='ultra-dark'][data-style='obsidian'] body.dark,
+html[data-theme='ultra-dark'][data-style='obsidian'] .dark {
+  --fb-bg: #000000;
+  --fb-sider: #000000;
+  --fb-surface: #0a0a0a;
+  --fb-surface-2: #111112;
+  --fb-surface-3: #19191b;
+  --fb-elevated: #0e0e0f;
+  --fb-code-bg: #050505;
+}
+
+html[data-style='obsidian'] body.light,
+html[data-style='obsidian'] .light {
+  --fb-bg: #e9e9e9;
+  --fb-sider: #f2f2f2;
+  --fb-surface: #f7f7f7;
+  --fb-surface-2: #f0f0f0;
+  --fb-surface-3: #e2e2e2;
+  --fb-surface-hover: rgba(0, 0, 0, 0.05);
+  --fb-elevated: #ffffff;
+  --fb-border: rgba(0, 0, 0, 0.08);
+  --fb-border-strong: rgba(0, 0, 0, 0.17);
+  --fb-text: #0d0d0d;
+  --fb-text-2: #424242;
+  --fb-text-3: #626262;
+  --fb-accent: #111111;
+  --fb-accent-hover: #000000;
+  --fb-on-accent: #ffffff;
+  --fb-accent-soft: rgba(0, 0, 0, 0.05);
+  --fb-accent-soft-2: rgba(17, 17, 17, 0.14);
+  --fb-focus: rgba(17, 17, 17, 0.45);
+  --fb-success: #1f7a45;
+  --fb-success-bg: rgba(31, 122, 69, 0.12);
+  --fb-warning: #8a5a10;
+  --fb-warning-bg: rgba(138, 90, 16, 0.12);
+  --fb-error: #b3362f;
+  --fb-error-bg: rgba(179, 54, 47, 0.12);
+  --fb-info: #33608f;
+  --fb-info-bg: rgba(51, 96, 143, 0.12);
+  --fb-chart-1: #111111;
+  --fb-chart-2: #33608f;
+  --fb-chart-fill: rgba(17, 17, 17, 0.12);
+  --fb-grid: rgba(0, 0, 0, 0.08);
+  --fb-code-bg: #f4f4f4;
+  --fb-title-gradient: linear-gradient(180deg, #1a1a1a 0%, #7c7c7c 100%);
+  --fb-backdrop-grid: rgba(0, 0, 0, 0.04);
+}
+
+/* ---------- Энергия: Red Bull can colours, one block per series ---------- */
+
+html[data-style='energy'][data-edition='classic'] body.dark,
+html[data-style='energy'][data-edition='classic'] .dark {
+  --fb-bg: #0b1330;
+  --fb-sider: #0d1637;
+  --fb-surface: #121e48;
+  --fb-surface-2: #192858;
+  --fb-surface-3: #1f326e;
+  --fb-surface-hover: rgba(255, 255, 255, 0.06);
+  --fb-elevated: #16224f;
+  --fb-border: rgba(200, 210, 235, 0.12);
+  --fb-border-strong: rgba(200, 210, 235, 0.24);
+  --fb-text: #eef1f8;
+  --fb-text-2: #b8c0d8;
+  --fb-text-3: #8d97b6;
+  --fb-accent: #e0174a;
+  --fb-accent-hover: #f0315f;
+  --fb-on-accent: #ffffff;
+  --fb-accent-soft: rgba(224, 23, 74, 0.15);
+  --fb-accent-soft-2: rgba(224, 23, 74, 0.22);
+  --fb-focus: rgba(224, 23, 74, 0.45);
+  --fb-success: #4fd18b;
+  --fb-success-bg: rgba(79, 209, 139, 0.12);
+  --fb-warning: #ffc906;
+  --fb-warning-bg: rgba(255, 201, 6, 0.12);
+  --fb-error: #ff6b81;
+  --fb-error-bg: rgba(255, 107, 129, 0.12);
+  --fb-info: #7aa2ff;
+  --fb-info-bg: rgba(122, 162, 255, 0.12);
+  --fb-chart-1: #e0174a;
+  --fb-chart-2: #ffc906;
+  --fb-chart-fill: rgba(224, 23, 74, 0.12);
+  --fb-grid: rgba(200, 210, 235, 0.12);
+  --fb-code-bg: #090f26;
+  --fb-accent-2: #ffc906;
+  --fb-title-gradient: linear-gradient(180deg, #ffffff 0%, #aeb6c8 100%);
+}
+
+html[data-theme='ultra-dark'][data-style='energy'][data-edition='classic'] body.dark,
+html[data-theme='ultra-dark'][data-style='energy'][data-edition='classic'] .dark {
+  --fb-bg: #000000;
+  --fb-sider: #040711;
+  --fb-surface: #080e20;
+  --fb-surface-2: #0d142c;
+  --fb-surface-3: #101a39;
+  --fb-elevated: #0a0f24;
+  --fb-code-bg: #050505;
+}
+
+html[data-style='energy'][data-edition='classic'] body.light,
+html[data-style='energy'][data-edition='classic'] .light {
+  --fb-bg: #e6e9f0;
+  --fb-sider: #ffffff;
+  --fb-surface: #ffffff;
+  --fb-surface-2: #eef1f6;
+  --fb-surface-3: #eef1f6;
+  --fb-surface-hover: rgba(15, 29, 74, 0.05);
+  --fb-elevated: #ffffff;
+  --fb-border: rgba(20, 35, 90, 0.1);
+  --fb-border-strong: rgba(20, 35, 90, 0.2);
+  --fb-text: #0f1d4a;
+  --fb-text-2: #38446e;
+  --fb-text-3: #56618a;
+  --fb-accent: #c8093a;
+  --fb-accent-hover: #de1a4b;
+  --fb-on-accent: #ffffff;
+  --fb-accent-soft: rgba(200, 9, 58, 0.08);
+  --fb-accent-soft-2: rgba(200, 9, 58, 0.14);
+  --fb-focus: rgba(200, 9, 58, 0.45);
+  --fb-success: #1f7a45;
+  --fb-success-bg: rgba(31, 122, 69, 0.12);
+  --fb-warning: #8a6200;
+  --fb-warning-bg: rgba(138, 98, 0, 0.12);
+  --fb-error: #b3243a;
+  --fb-error-bg: rgba(179, 36, 58, 0.12);
+  --fb-info: #1c2f9e;
+  --fb-info-bg: rgba(28, 47, 158, 0.12);
+  --fb-chart-1: #c8093a;
+  --fb-chart-2: #1c2f9e;
+  --fb-chart-fill: rgba(200, 9, 58, 0.12);
+  --fb-grid: rgba(20, 35, 90, 0.1);
+  --fb-code-bg: #e6e9f0;
+  --fb-accent-2: #d9a300;
+  --fb-title-gradient: linear-gradient(120deg, #1c2f6e 0%, #3a4f9a 100%);
+}
+
+html[data-style='energy'][data-edition='sugarfree'] body.dark,
+html[data-style='energy'][data-edition='sugarfree'] .dark {
+  --fb-bg: #08161f;
+  --fb-sider: #091924;
+  --fb-surface: #0f2331;
+  --fb-surface-2: #152d3f;
+  --fb-surface-3: #1a384f;
+  --fb-surface-hover: rgba(255, 255, 255, 0.06);
+  --fb-elevated: #122838;
+  --fb-border: rgba(160, 215, 240, 0.12);
+  --fb-border-strong: rgba(160, 215, 240, 0.24);
+  --fb-text: #eaf5fb;
+  --fb-text-2: #b0cbdb;
+  --fb-text-3: #86a3b5;
+  --fb-accent: #4fb6ec;
+  --fb-accent-hover: #6cc4f1;
+  --fb-on-accent: #05202f;
+  --fb-accent-soft: rgba(79, 182, 236, 0.15);
+  --fb-accent-soft-2: rgba(79, 182, 236, 0.22);
+  --fb-focus: rgba(79, 182, 236, 0.45);
+  --fb-success: #5fd39b;
+  --fb-success-bg: rgba(95, 211, 155, 0.12);
+  --fb-warning: #f2c25b;
+  --fb-warning-bg: rgba(242, 194, 91, 0.12);
+  --fb-error: #ff6b81;
+  --fb-error-bg: rgba(255, 107, 129, 0.12);
+  --fb-info: #8fd0f5;
+  --fb-info-bg: rgba(143, 208, 245, 0.12);
+  --fb-chart-1: #4fb6ec;
+  --fb-chart-2: #e0174a;
+  --fb-chart-fill: rgba(79, 182, 236, 0.12);
+  --fb-grid: rgba(160, 215, 240, 0.12);
+  --fb-code-bg: #061219;
+  --fb-accent-2: #e0174a;
+  --fb-title-gradient: linear-gradient(180deg, #ffffff 0%, #9fd2ef 100%);
+}
+
+html[data-theme='ultra-dark'][data-style='energy'][data-edition='sugarfree'] body.dark,
+html[data-theme='ultra-dark'][data-style='energy'][data-edition='sugarfree'] .dark {
+  --fb-bg: #000000;
+  --fb-sider: #03080b;
+  --fb-surface: #071016;
+  --fb-surface-2: #0b1720;
+  --fb-surface-3: #0e1d29;
+  --fb-elevated: #081219;
+  --fb-code-bg: #050505;
+}
+
+html[data-style='energy'][data-edition='sugarfree'] body.light,
+html[data-style='energy'][data-edition='sugarfree'] .light {
+  --fb-bg: #eaf4fa;
+  --fb-sider: #ffffff;
+  --fb-surface: #ffffff;
+  --fb-surface-2: #e8f2f8;
+  --fb-surface-3: #e8f2f8;
+  --fb-surface-hover: rgba(11, 42, 61, 0.05);
+  --fb-elevated: #ffffff;
+  --fb-border: rgba(10, 70, 110, 0.1);
+  --fb-border-strong: rgba(10, 70, 110, 0.2);
+  --fb-text: #0b2a3d;
+  --fb-text-2: #33536a;
+  --fb-text-3: #4f6c80;
+  --fb-accent: #0b74ad;
+  --fb-accent-hover: #1185c4;
+  --fb-on-accent: #ffffff;
+  --fb-accent-soft: rgba(11, 116, 173, 0.09);
+  --fb-accent-soft-2: rgba(11, 116, 173, 0.14);
+  --fb-focus: rgba(11, 116, 173, 0.45);
+  --fb-success: #1f7a45;
+  --fb-success-bg: rgba(31, 122, 69, 0.12);
+  --fb-warning: #8a5a10;
+  --fb-warning-bg: rgba(138, 90, 16, 0.12);
+  --fb-error: #b3243a;
+  --fb-error-bg: rgba(179, 36, 58, 0.12);
+  --fb-info: #0b74ad;
+  --fb-info-bg: rgba(11, 116, 173, 0.12);
+  --fb-chart-1: #0b74ad;
+  --fb-chart-2: #c8093a;
+  --fb-chart-fill: rgba(11, 116, 173, 0.12);
+  --fb-grid: rgba(10, 70, 110, 0.1);
+  --fb-code-bg: #eaf4fa;
+  --fb-accent-2: #c8093a;
+  --fb-title-gradient: linear-gradient(120deg, #0b5d8f 0%, #4fb6ec 100%);
+}
+
+html[data-style='energy'][data-edition='winter'] body.dark,
+html[data-style='energy'][data-edition='winter'] .dark {
+  --fb-bg: #0b1220;
+  --fb-sider: #0d1525;
+  --fb-surface: #121d31;
+  --fb-surface-2: #18263e;
+  --fb-surface-3: #1e304e;
+  --fb-surface-hover: rgba(255, 255, 255, 0.06);
+  --fb-elevated: #152238;
+  --fb-border: rgba(190, 225, 255, 0.12);
+  --fb-border-strong: rgba(190, 225, 255, 0.24);
+  --fb-text: #eef6fd;
+  --fb-text-2: #bcd0e2;
+  --fb-text-3: #90a6bb;
+  --fb-accent: #9fd4ff;
+  --fb-accent-hover: #b8e0ff;
+  --fb-on-accent: #0b1a2e;
+  --fb-accent-soft: rgba(159, 212, 255, 0.14);
+  --fb-accent-soft-2: rgba(159, 212, 255, 0.22);
+  --fb-focus: rgba(159, 212, 255, 0.45);
+  --fb-success: #7fe0c0;
+  --fb-success-bg: rgba(127, 224, 192, 0.12);
+  --fb-warning: #f2d07a;
+  --fb-warning-bg: rgba(242, 208, 122, 0.12);
+  --fb-error: #ff8a9a;
+  --fb-error-bg: rgba(255, 138, 154, 0.12);
+  --fb-info: #b9dcff;
+  --fb-info-bg: rgba(185, 220, 255, 0.12);
+  --fb-chart-1: #9fd4ff;
+  --fb-chart-2: #ffffff;
+  --fb-chart-fill: rgba(159, 212, 255, 0.12);
+  --fb-grid: rgba(190, 225, 255, 0.12);
+  --fb-code-bg: #090e1a;
+  --fb-accent-2: #ffffff;
+  --fb-title-gradient: linear-gradient(180deg, #ffffff 0%, #9fd4ff 100%);
+}
+
+html[data-theme='ultra-dark'][data-style='energy'][data-edition='winter'] body.dark,
+html[data-theme='ultra-dark'][data-style='energy'][data-edition='winter'] .dark {
+  --fb-bg: #000000;
+  --fb-sider: #04060b;
+  --fb-surface: #080d16;
+  --fb-surface-2: #0c131f;
+  --fb-surface-3: #101928;
+  --fb-elevated: #090f19;
+  --fb-code-bg: #050505;
+}
+
+html[data-style='energy'][data-edition='winter'] body.light,
+html[data-style='energy'][data-edition='winter'] .light {
+  --fb-bg: #eef5fb;
+  --fb-sider: #ffffff;
+  --fb-surface: #ffffff;
+  --fb-surface-2: #ebf3fa;
+  --fb-surface-3: #ebf3fa;
+  --fb-surface-hover: rgba(19, 37, 61, 0.05);
+  --fb-elevated: #ffffff;
+  --fb-border: rgba(30, 70, 120, 0.1);
+  --fb-border-strong: rgba(30, 70, 120, 0.2);
+  --fb-text: #13253d;
+  --fb-text-2: #3b5170;
+  --fb-text-3: #566c88;
+  --fb-accent: #2a6fb5;
+  --fb-accent-hover: #3a80c7;
+  --fb-on-accent: #ffffff;
+  --fb-accent-soft: rgba(42, 111, 181, 0.09);
+  --fb-accent-soft-2: rgba(42, 111, 181, 0.14);
+  --fb-focus: rgba(42, 111, 181, 0.45);
+  --fb-success: #1f7a5e;
+  --fb-success-bg: rgba(31, 122, 94, 0.12);
+  --fb-warning: #8a5a10;
+  --fb-warning-bg: rgba(138, 90, 16, 0.12);
+  --fb-error: #b0384a;
+  --fb-error-bg: rgba(176, 56, 74, 0.12);
+  --fb-info: #2a6fb5;
+  --fb-info-bg: rgba(42, 111, 181, 0.12);
+  --fb-chart-1: #2a6fb5;
+  --fb-chart-2: #7fb8e8;
+  --fb-chart-fill: rgba(42, 111, 181, 0.12);
+  --fb-grid: rgba(30, 70, 120, 0.1);
+  --fb-code-bg: #eef5fb;
+  --fb-accent-2: #7fb8e8;
+  --fb-title-gradient: linear-gradient(120deg, #1b2f4a 0%, #2a6fb5 100%);
+}
+
+html[data-style='energy'][data-edition='coconut'] body.dark,
+html[data-style='energy'][data-edition='coconut'] .dark {
+  --fb-bg: #14110d;
+  --fb-sider: #17140f;
+  --fb-surface: #1f1a14;
+  --fb-surface-2: #28221a;
+  --fb-surface-3: #322b21;
+  --fb-surface-hover: rgba(255, 255, 255, 0.06);
+  --fb-elevated: #241e17;
+  --fb-border: rgba(245, 230, 205, 0.1);
+  --fb-border-strong: rgba(245, 230, 205, 0.2);
+  --fb-text: #f7f2e8;
+  --fb-text-2: #d2c6b2;
+  --fb-text-3: #a3967f;
+  --fb-accent: #3cc6d6;
+  --fb-accent-hover: #5ad2df;
+  --fb-on-accent: #052126;
+  --fb-accent-soft: rgba(60, 198, 214, 0.14);
+  --fb-accent-soft-2: rgba(60, 198, 214, 0.22);
+  --fb-focus: rgba(60, 198, 214, 0.45);
+  --fb-success: #7fd6a0;
+  --fb-success-bg: rgba(127, 214, 160, 0.12);
+  --fb-warning: #f0c36b;
+  --fb-warning-bg: rgba(240, 195, 107, 0.12);
+  --fb-error: #ff8a8a;
+  --fb-error-bg: rgba(255, 138, 138, 0.12);
+  --fb-info: #7fd3e0;
+  --fb-info-bg: rgba(127, 211, 224, 0.12);
+  --fb-chart-1: #3cc6d6;
+  --fb-chart-2: #e3c9a0;
+  --fb-chart-fill: rgba(60, 198, 214, 0.12);
+  --fb-grid: rgba(245, 230, 205, 0.1);
+  --fb-code-bg: #100e0a;
+  --fb-accent-2: #e3c9a0;
+  --fb-title-gradient: linear-gradient(180deg, #ffffff 0%, #e3c9a0 100%);
+}
+
+html[data-theme='ultra-dark'][data-style='energy'][data-edition='coconut'] body.dark,
+html[data-theme='ultra-dark'][data-style='energy'][data-edition='coconut'] .dark {
+  --fb-bg: #000000;
+  --fb-sider: #070605;
+  --fb-surface: #0e0c09;
+  --fb-surface-2: #14110d;
+  --fb-surface-3: #1a1611;
+  --fb-elevated: #100e0a;
+  --fb-code-bg: #050505;
+}
+
+html[data-style='energy'][data-edition='coconut'] body.light,
+html[data-style='energy'][data-edition='coconut'] .light {
+  --fb-bg: #f6f2ea;
+  --fb-sider: #fffdf9;
+  --fb-surface: #fffdf9;
+  --fb-surface-2: #f1ebe0;
+  --fb-surface-3: #f1ebe0;
+  --fb-surface-hover: rgba(29, 42, 68, 0.05);
+  --fb-elevated: #ffffff;
+  --fb-border: rgba(70, 50, 25, 0.1);
+  --fb-border-strong: rgba(70, 50, 25, 0.2);
+  --fb-text: #1d2a44;
+  --fb-text-2: #44506b;
+  --fb-text-3: #606a82;
+  --fb-accent: #0f8ea3;
+  --fb-accent-hover: #14a0b7;
+  --fb-on-accent: #ffffff;
+  --fb-accent-soft: rgba(15, 142, 163, 0.09);
+  --fb-accent-soft-2: rgba(15, 142, 163, 0.14);
+  --fb-focus: rgba(15, 142, 163, 0.45);
+  --fb-success: #2f7a3a;
+  --fb-success-bg: rgba(47, 122, 58, 0.12);
+  --fb-warning: #8a5a10;
+  --fb-warning-bg: rgba(138, 90, 16, 0.12);
+  --fb-error: #b3362f;
+  --fb-error-bg: rgba(179, 54, 47, 0.12);
+  --fb-info: #0f7f93;
+  --fb-info-bg: rgba(15, 127, 147, 0.12);
+  --fb-chart-1: #0f8ea3;
+  --fb-chart-2: #a07850;
+  --fb-chart-fill: rgba(15, 142, 163, 0.12);
+  --fb-grid: rgba(70, 50, 25, 0.1);
+  --fb-code-bg: #f6f2ea;
+  --fb-accent-2: #a07850;
+  --fb-title-gradient: linear-gradient(120deg, #1d2a44 0%, #0f8ea3 100%);
+}
+
+html[data-style='energy'][data-edition='tropical'] body.dark,
+html[data-style='energy'][data-edition='tropical'] .dark {
+  --fb-bg: #13110a;
+  --fb-sider: #16140c;
+  --fb-surface: #1e1a0f;
+  --fb-surface-2: #272213;
+  --fb-surface-3: #312b18;
+  --fb-surface-hover: rgba(255, 255, 255, 0.06);
+  --fb-elevated: #231e11;
+  --fb-border: rgba(255, 220, 120, 0.11);
+  --fb-border-strong: rgba(255, 220, 120, 0.22);
+  --fb-text: #fbf6e6;
+  --fb-text-2: #d6cba9;
+  --fb-text-3: #a99d7c;
+  --fb-accent: #ffc906;
+  --fb-accent-hover: #ffd43a;
+  --fb-on-accent: #1a1404;
+  --fb-accent-soft: rgba(255, 201, 6, 0.13);
+  --fb-accent-soft-2: rgba(255, 201, 6, 0.22);
+  --fb-focus: rgba(255, 201, 6, 0.45);
+  --fb-success: #6fd39a;
+  --fb-success-bg: rgba(111, 211, 154, 0.12);
+  --fb-warning: #ffb347;
+  --fb-warning-bg: rgba(255, 179, 71, 0.12);
+  --fb-error: #ff7a7a;
+  --fb-error-bg: rgba(255, 122, 122, 0.12);
+  --fb-info: #8fc9ff;
+  --fb-info-bg: rgba(143, 201, 255, 0.12);
+  --fb-chart-1: #ffc906;
+  --fb-chart-2: #ff8a00;
+  --fb-chart-fill: rgba(255, 201, 6, 0.12);
+  --fb-grid: rgba(255, 220, 120, 0.11);
+  --fb-code-bg: #0f0e08;
+  --fb-accent-2: #ff8a00;
+  --fb-title-gradient: linear-gradient(180deg, #fff3b0 0%, #ffc906 100%);
+}
+
+html[data-theme='ultra-dark'][data-style='energy'][data-edition='tropical'] body.dark,
+html[data-theme='ultra-dark'][data-style='energy'][data-edition='tropical'] .dark {
+  --fb-bg: #000000;
+  --fb-sider: #070604;
+  --fb-surface: #0e0c07;
+  --fb-surface-2: #14110a;
+  --fb-surface-3: #19160c;
+  --fb-elevated: #100e08;
+  --fb-code-bg: #050505;
+}
+
+html[data-style='energy'][data-edition='tropical'] body.light,
+html[data-style='energy'][data-edition='tropical'] .light {
+  --fb-bg: #fff9e6;
+  --fb-sider: #ffffff;
+  --fb-surface: #ffffff;
+  --fb-surface-2: #fdf3d4;
+  --fb-surface-3: #fdf3d4;
+  --fb-surface-hover: rgba(35, 28, 5, 0.05);
+  --fb-elevated: #ffffff;
+  --fb-border: rgba(90, 70, 0, 0.11);
+  --fb-border-strong: rgba(90, 70, 0, 0.22);
+  --fb-text: #231c05;
+  --fb-text-2: #4f4420;
+  --fb-text-3: #6b5f38;
+  --fb-accent: #8a6a00;
+  --fb-accent-hover: #9e7a00;
+  --fb-on-accent: #ffffff;
+  --fb-accent-soft: rgba(138, 106, 0, 0.1);
+  --fb-accent-soft-2: rgba(138, 106, 0, 0.14);
+  --fb-focus: rgba(138, 106, 0, 0.45);
+  --fb-success: #2f7a3a;
+  --fb-success-bg: rgba(47, 122, 58, 0.12);
+  --fb-warning: #8a5a10;
+  --fb-warning-bg: rgba(138, 90, 16, 0.12);
+  --fb-error: #b3362f;
+  --fb-error-bg: rgba(179, 54, 47, 0.12);
+  --fb-info: #33608f;
+  --fb-info-bg: rgba(51, 96, 143, 0.12);
+  --fb-chart-1: #8a6a00;
+  --fb-chart-2: #c25e00;
+  --fb-chart-fill: rgba(138, 106, 0, 0.12);
+  --fb-grid: rgba(90, 70, 0, 0.11);
+  --fb-code-bg: #fff9e6;
+  --fb-accent-2: #c25e00;
+  --fb-title-gradient: linear-gradient(120deg, #8a6a00 0%, #c25e00 100%);
+}
+
+html[data-style='energy'][data-edition='red'] body.dark,
+html[data-style='energy'][data-edition='red'] .dark {
+  --fb-bg: #170a0d;
+  --fb-sider: #1a0c0f;
+  --fb-surface: #241115;
+  --fb-surface-2: #2f161c;
+  --fb-surface-3: #3b1c23;
+  --fb-surface-hover: rgba(255, 255, 255, 0.06);
+  --fb-elevated: #2a1419;
+  --fb-border: rgba(255, 190, 200, 0.11);
+  --fb-border-strong: rgba(255, 190, 200, 0.22);
+  --fb-text: #fdf0f2;
+  --fb-text-2: #dcb9bf;
+  --fb-text-3: #ad8b92;
+  --fb-accent: #ff4d64;
+  --fb-accent-hover: #ff6a7e;
+  --fb-on-accent: #ffffff;
+  --fb-accent-soft: rgba(255, 77, 100, 0.15);
+  --fb-accent-soft-2: rgba(255, 77, 100, 0.22);
+  --fb-focus: rgba(255, 77, 100, 0.45);
+  --fb-success: #5fd08a;
+  --fb-success-bg: rgba(95, 208, 138, 0.12);
+  --fb-warning: #f2c25b;
+  --fb-warning-bg: rgba(242, 194, 91, 0.12);
+  --fb-error: #ff8a8a;
+  --fb-error-bg: rgba(255, 138, 138, 0.12);
+  --fb-info: #8fc0ff;
+  --fb-info-bg: rgba(143, 192, 255, 0.12);
+  --fb-chart-1: #ff4d64;
+  --fb-chart-2: #5fd08a;
+  --fb-chart-fill: rgba(255, 77, 100, 0.12);
+  --fb-grid: rgba(255, 190, 200, 0.11);
+  --fb-code-bg: #12080a;
+  --fb-accent-2: #5fd08a;
+  --fb-title-gradient: linear-gradient(180deg, #ffffff 0%, #ffb3be 100%);
+}
+
+html[data-theme='ultra-dark'][data-style='energy'][data-edition='red'] body.dark,
+html[data-theme='ultra-dark'][data-style='energy'][data-edition='red'] .dark {
+  --fb-bg: #000000;
+  --fb-sider: #080405;
+  --fb-surface: #100809;
+  --fb-surface-2: #180b0e;
+  --fb-surface-3: #1f0e12;
+  --fb-elevated: #13090b;
+  --fb-code-bg: #050505;
+}
+
+html[data-style='energy'][data-edition='red'] body.light,
+html[data-style='energy'][data-edition='red'] .light {
+  --fb-bg: #fff3f4;
+  --fb-sider: #ffffff;
+  --fb-surface: #ffffff;
+  --fb-surface-2: #fdeaed;
+  --fb-surface-3: #fdeaed;
+  --fb-surface-hover: rgba(43, 13, 20, 0.05);
+  --fb-elevated: #ffffff;
+  --fb-border: rgba(120, 20, 40, 0.1);
+  --fb-border-strong: rgba(120, 20, 40, 0.2);
+  --fb-text: #2b0d14;
+  --fb-text-2: #5b2f38;
+  --fb-text-3: #7a4f58;
+  --fb-accent: #c81d3a;
+  --fb-accent-hover: #dc2f4c;
+  --fb-on-accent: #ffffff;
+  --fb-accent-soft: rgba(200, 29, 58, 0.08);
+  --fb-accent-soft-2: rgba(200, 29, 58, 0.14);
+  --fb-focus: rgba(200, 29, 58, 0.45);
+  --fb-success: #2f8a55;
+  --fb-success-bg: rgba(47, 138, 85, 0.12);
+  --fb-warning: #8a5a10;
+  --fb-warning-bg: rgba(138, 90, 16, 0.12);
+  --fb-error: #b3243a;
+  --fb-error-bg: rgba(179, 36, 58, 0.12);
+  --fb-info: #33608f;
+  --fb-info-bg: rgba(51, 96, 143, 0.12);
+  --fb-chart-1: #c81d3a;
+  --fb-chart-2: #2f8a55;
+  --fb-chart-fill: rgba(200, 29, 58, 0.12);
+  --fb-grid: rgba(120, 20, 40, 0.1);
+  --fb-code-bg: #fff3f4;
+  --fb-accent-2: #2f8a55;
+  --fb-title-gradient: linear-gradient(120deg, #c81d3a 0%, #2f8a55 100%);
+}
+
+html[data-style='obsidian'] {
+  --fb-font:
+    'Inter Tight Variable', ui-sans-serif, system-ui, 'Segoe UI', Roboto, Arial, sans-serif;
+  --fb-font-display: var(--fb-font);
+  --fb-display-weight: 500;
+  --fb-display-tracking: -0.035em;
+  --fb-radius-lg: 20px;
+  --fb-radius: 14px;
+}
+
+html[data-style='energy'] {
+  --fb-font: 'Titillium Web', ui-sans-serif, system-ui, 'Segoe UI', Roboto, Arial, sans-serif;
+  --fb-font-display: var(--fb-font);
+  --fb-display-weight: 700;
+  --fb-display-tracking: 0.01em;
+  --fb-radius-lg: 14px;
+  --fb-radius: 10px;
+  --fb-radius-sm: 7px;
+}
+
+/* Page titles: chrome on Obsidian, italic livery capitals on Энергия. */
+html:is([data-style='obsidian'], [data-style='energy']) .panel-topbar-title {
+  background: var(--fb-title-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+html[data-style='energy'] .panel-topbar-title {
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+html[data-style='energy'] .panel-topbar-title::after {
+  content: '';
+  display: inline-block;
+  width: 72px;
+  height: 5px;
+  margin-inline-start: 14px;
+  vertical-align: middle;
+  transform: skewX(-24deg);
+  background: linear-gradient(
+    90deg,
+    var(--fb-accent) 0 62%,
+    transparent 62% 70%,
+    var(--fb-accent-2) 70% 100%
+  );
+}
+
+/* Obsidian cards are glass over the backdrop. */
+html[data-style='obsidian'] body.dark .ant-card {
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(18px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+html:is([data-style='obsidian'], [data-style='energy'])
+  .sider-nav.ant-menu
+  .ant-menu-item-selected {
+  background: var(--fb-accent-soft-2) !important;
+  color: var(--fb-text) !important;
 }

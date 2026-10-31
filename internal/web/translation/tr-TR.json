@@ -154,11 +154,46 @@
         "ocean": "Okyanus",
         "oceanHint": "Soğuk grafit üzerinde mavi vurgu",
         "emerald": "Zümrüt",
-        "emeraldHint": "Derin grafit üzerinde yeşil vurgu"
+        "emeraldHint": "Derin grafit üzerinde yeşil vurgu",
+        "obsidian": "Obsidyen",
+        "obsidianHint": "Siyah cam ve krom başlıklar",
+        "energy": "Enerji",
+        "energyHint": "Red Bull kutularından esinlenildi: klasik ve özel seriler"
       },
       "size": "Arayüz boyutu",
       "sizeAuto": "Otomatik",
-      "sizeAutoHint": "Otomatik bu ekran için %{percent} seçer"
+      "sizeAutoHint": "Otomatik bu ekran için %{percent} seçer",
+      "series": "Seri",
+      "edition": {
+        "classic": "Klasik",
+        "classicHint": "Mavi ve gümüş, kırmızı ve sarı",
+        "sugarfree": "Şekersiz",
+        "sugarfreeHint": "Açık mavi ve gümüş",
+        "winter": "Winter Edition",
+        "winterHint": "Kırağı, buz ve gümüş",
+        "coconut": "Coconut Edition",
+        "coconutHint": "Beyaz, hindistan cevizi ve gök mavisi",
+        "tropical": "Tropical Edition",
+        "tropicalHint": "Güneş sarısı ve mango",
+        "red": "Red Edition",
+        "redHint": "Karpuz kırmızısı ve yeşil"
+      },
+      "background": "Arka plan",
+      "backdrop": {
+        "plain": "Düz",
+        "topo": "Kabartma",
+        "waves": "Dalgalar",
+        "mountains": "Dağlar",
+        "sakura": "Sakura",
+        "stars": "Yıldızlar",
+        "ribbons": "Şeritler",
+        "network": "Ağ",
+        "track": "Pist",
+        "can": "Kutu"
+      },
+      "backgroundOpacity": "Arka plan saydamlığı",
+      "backgroundOpacityHint": "%0 çizimi tasarlandığı gibi gösterir, %90 yalnızca iz bırakır. Her stil kendi ayarını tutar.",
+      "backgroundOpacityPlain": "Saydamlığı ayarlamak için bir çizim seçin."
     },
     "subscriptions": "Abonelikler",
     "notifications": "Bildirimler",

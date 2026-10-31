@@ -154,11 +154,46 @@
         "ocean": "海洋",
         "oceanHint": "冷灰底色搭配藍色強調色",
         "emerald": "翡翠",
-        "emeraldHint": "深灰底色搭配綠色強調色"
+        "emeraldHint": "深灰底色搭配綠色強調色",
+        "obsidian": "黑曜石",
+        "obsidianHint": "黑色玻璃與鍍鉻標題",
+        "energy": "能量",
+        "energyHint": "靈感來自 Red Bull 罐：經典款與特別版"
       },
       "size": "介面大小",
       "sizeAuto": "自動",
-      "sizeAutoHint": "自動為此螢幕選擇 {percent}%"
+      "sizeAutoHint": "自動為此螢幕選擇 {percent}%",
+      "series": "系列",
+      "edition": {
+        "classic": "經典",
+        "classicHint": "藍與銀，紅與黃",
+        "sugarfree": "無糖",
+        "sugarfreeHint": "淺藍與銀",
+        "winter": "Winter Edition",
+        "winterHint": "霜、冰與銀",
+        "coconut": "Coconut Edition",
+        "coconutHint": "白、椰子與天藍",
+        "tropical": "Tropical Edition",
+        "tropicalHint": "陽光黃與芒果",
+        "red": "Red Edition",
+        "redHint": "西瓜紅與綠"
+      },
+      "background": "背景",
+      "backdrop": {
+        "plain": "純色",
+        "topo": "等高線",
+        "waves": "波浪",
+        "mountains": "山巒",
+        "sakura": "櫻花",
+        "stars": "星星",
+        "ribbons": "緞帶",
+        "network": "網路",
+        "track": "賽道",
+        "can": "易開罐"
+      },
+      "backgroundOpacity": "背景透明度",
+      "backgroundOpacityHint": "0% 依原樣顯示圖案，90% 只留下淡淡痕跡。每種風格各自保存。",
+      "backgroundOpacityPlain": "選擇圖案後即可調整透明度。"
     },
     "subscriptions": "訂閱",
     "notifications": "通知",

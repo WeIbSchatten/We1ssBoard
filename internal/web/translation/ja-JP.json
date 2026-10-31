@@ -154,11 +154,46 @@
         "ocean": "オーシャン",
         "oceanHint": "クールなグラファイトに青のアクセント",
         "emerald": "エメラルド",
-        "emeraldHint": "深いグラファイトに緑のアクセント"
+        "emeraldHint": "深いグラファイトに緑のアクセント",
+        "obsidian": "オブシディアン",
+        "obsidianHint": "黒いガラスとクロームの見出し",
+        "energy": "エナジー",
+        "energyHint": "Red Bull の缶がモチーフ：クラシックと限定エディション"
       },
       "size": "インターフェースのサイズ",
       "sizeAuto": "自動",
-      "sizeAutoHint": "自動ではこの画面に {percent}% を選びます"
+      "sizeAutoHint": "自動ではこの画面に {percent}% を選びます",
+      "series": "シリーズ",
+      "edition": {
+        "classic": "クラシック",
+        "classicHint": "青とシルバー、赤と黄",
+        "sugarfree": "シュガーフリー",
+        "sugarfreeHint": "水色とシルバー",
+        "winter": "Winter Edition",
+        "winterHint": "霜、氷、シルバー",
+        "coconut": "Coconut Edition",
+        "coconutHint": "白、ココナッツ、紺碧",
+        "tropical": "Tropical Edition",
+        "tropicalHint": "太陽の黄色とマンゴー",
+        "red": "Red Edition",
+        "redHint": "スイカの赤と緑"
+      },
+      "background": "背景",
+      "backdrop": {
+        "plain": "無地",
+        "topo": "等高線",
+        "waves": "波",
+        "mountains": "山並み",
+        "sakura": "桜",
+        "stars": "星",
+        "ribbons": "リボン",
+        "network": "ネットワーク",
+        "track": "サーキット",
+        "can": "缶"
+      },
+      "backgroundOpacity": "背景の透明度",
+      "backgroundOpacityHint": "0% は描いたまま、90% はうっすら残る程度。スタイルごとに保存されます。",
+      "backgroundOpacityPlain": "透明度を調整するには模様を選んでください。"
     },
     "subscriptions": "サブスクリプション",
     "notifications": "通知",
