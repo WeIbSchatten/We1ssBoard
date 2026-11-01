@@ -4,12 +4,13 @@ import type { Status } from '@/models/status';
 import type { InboundOption } from '@/hooks/useClients';
 import { useNodesQuery } from '@/api/queries/useNodesQuery';
 import { buildAttention } from './attention';
+import { visibleDashboardData } from './visibility';
 import {
   useDashboardActiveConnections,
   useDashboardClients,
   useDashboardEvents,
   useDashboardInbounds,
-  useDashboardObservatory,
+  useOutboundHealth,
   useDashboardOnlines,
   useTrafficHistory,
 } from './useDashboardData';
@@ -17,17 +18,26 @@ import {
 const EMPTY: never[] = [];
 
 export function useDashboardModel(status: Status) {
-  const inbounds = useDashboardInbounds().data ?? EMPTY;
+  const allInbounds = useDashboardInbounds().data ?? EMPTY;
   const clientsPage = useDashboardClients().data;
-  const online = useDashboardOnlines().data ?? EMPTY;
+  const allOnline = useDashboardOnlines().data ?? EMPTY;
   const connections = useDashboardActiveConnections().data;
   const events = useDashboardEvents().data ?? EMPTY;
-  const outbounds = useDashboardObservatory().data ?? EMPTY;
+  const outbounds = useOutboundHealth().data ?? EMPTY;
   const week = useTrafficHistory('7d').data ?? EMPTY;
   const { nodes } = useNodesQuery();
 
   return useMemo(() => {
-    const activeConnections = connections ?? {};
+    const {
+      inbounds,
+      connections: activeConnections,
+      online,
+    } = visibleDashboardData({
+      nodes,
+      inbounds: allInbounds,
+      connections: connections ?? {},
+      online: allOnline,
+    });
     const onlineByInbound = new Map<number, number>();
     for (const list of Object.values(activeConnections)) {
       for (const c of list)
@@ -57,7 +67,7 @@ export function useDashboardModel(status: Status) {
         status: n.status ?? '',
         xrayState: n.xrayState ?? '',
       })),
-      outbounds,
+      outbounds: outbounds.filter((o) => o.checked).map((o) => ({ tag: o.tag, alive: o.alive })),
       depletedCount: summary?.depletedCount ?? 0,
       expiringCount: summary?.expiringCount ?? 0,
     });
@@ -76,7 +86,7 @@ export function useDashboardModel(status: Status) {
       topClients: clientsPage?.items ?? EMPTY,
       kpis: {
         online: online.length,
-        clientsTotal: clientsPage?.total ?? 0,
+        clientsTotal: clientsPage?.summary?.total ?? 0,
         todayBytes: today ? today.up + today.down : 0,
         inboundsEnabled: inbounds.filter((ib) => ib.enable).length,
         inboundsTotal: inbounds.length,
@@ -87,5 +97,5 @@ export function useDashboardModel(status: Status) {
         attentionTotal: attention.length,
       },
     };
-  }, [inbounds, clientsPage, online, connections, events, outbounds, week, nodes, status]);
+  }, [allInbounds, clientsPage, allOnline, connections, events, outbounds, week, nodes, status]);
 }

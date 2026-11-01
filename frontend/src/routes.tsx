@@ -7,18 +7,11 @@ import { legacyTarget } from '@/layouts/navModel';
 
 const IndexPage = lazy(() => import('@/pages/index/IndexPage'));
 const hub = (
-  name:
-    | 'ConnectionsHub'
-    | 'ClientsHub'
-    | 'NodesHub'
-    | 'SubscriptionsHub'
-    | 'NotificationsHub'
-    | 'SettingsHub',
+  name: 'ConnectionsHub' | 'ClientsHub' | 'NodesHub' | 'NotificationsHub' | 'SettingsHub',
 ) => lazy(() => import('@/pages/hubs/Hubs').then((m) => ({ default: m[name] })));
 const ConnectionsHub = hub('ConnectionsHub');
 const ClientsHub = hub('ClientsHub');
 const NodesHub = hub('NodesHub');
-const SubscriptionsHub = hub('SubscriptionsHub');
 const NotificationsHub = hub('NotificationsHub');
 const SettingsHub = hub('SettingsHub');
 const ApiDocsPage = lazy(() => import('@/pages/api-docs/ApiDocsPage'));
@@ -57,17 +50,23 @@ const routes: RouteObject[] = [
     children: [
       { index: true, element: withSuspense(<IndexPage />) },
       { path: 'clients', element: withSuspense(<ClientsHub />) },
-      { path: 'subscriptions', element: withSuspense(<SubscriptionsHub />) },
       { path: 'connections', element: withSuspense(<ConnectionsHub />) },
       { path: 'nodes', element: withSuspense(<NodesHub />) },
       { path: 'notifications', element: withSuspense(<NotificationsHub />) },
       { path: 'settings', element: withSuspense(<SettingsHub />) },
-      ...['inbounds', 'outbound', 'tg-web-proxy', 'routing', 'groups', 'hosts', 'xray'].map(
-        (path) => ({
-          path,
-          element: <LegacyRedirect />,
-        }),
-      ),
+      ...[
+        'inbounds',
+        'outbound',
+        'tg-web-proxy',
+        'routing',
+        'groups',
+        'hosts',
+        'xray',
+        'subscriptions',
+      ].map((path) => ({
+        path,
+        element: <LegacyRedirect />,
+      })),
       { path: 'api-docs', element: withSuspense(<ApiDocsPage />) },
     ],
   },

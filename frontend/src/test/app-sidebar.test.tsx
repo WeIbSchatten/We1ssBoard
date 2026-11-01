@@ -58,10 +58,15 @@ test('collapses to the icon rail and restores the choice after a reload', async 
   expect(localStorage.getItem('sidebar-collapsed')).toBe('false');
 });
 
-test('highlights Subscriptions on the subscriptions hub', async () => {
-  const view = await renderSidebar('/subscriptions');
+// Subscriptions moved into Settings, so the sidebar has no entry of its own for them.
+test('shows subscription settings under Settings, not as a sidebar entry', async () => {
+  const view = await renderSidebar('/settings');
   const selected = view.container.querySelector('.sider-nav .ant-menu-item-selected');
-  expect(selected?.textContent).toBe('Subscriptions');
+  expect(selected?.textContent).toBe('Settings');
+  const labels = [...view.container.querySelectorAll('.sider-nav .ant-menu-item')].map(
+    (i) => i.textContent,
+  );
+  expect(labels).not.toContain('Subscriptions');
 });
 
 test('labels the palette shortcut with the modifier the platform actually uses', async () => {

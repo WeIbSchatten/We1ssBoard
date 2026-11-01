@@ -139,7 +139,6 @@
       "clients": "کاربران، گروه‌ها، کلیدها، محدودیت‌ها و اشتراک‌ها",
       "settings": "پنل، امنیت و قالب هسته Xray",
       "apiDocs": "مرجع REST API برای خودکارسازی",
-      "subscriptions": "لینک‌های اشتراک، قالب‌ها و متعادل‌کننده‌ها برای اپ‌های کلاینت",
       "notifications": "هشدارها و ربات‌های تلگرام، دیسکورد و ایمیل",
       "nodesHosts": "سرورهای دیگر We1ssBoard و آدرس‌های لینک‌ها"
     },
@@ -415,7 +414,7 @@
         "nodes": "نودها",
         "nodesEmpty": "هنوز نودی وجود ندارد",
         "outbounds": "سلامت خروجی‌ها",
-        "outboundsEmpty": "Observatory تنظیم نشده",
+        "outboundsEmpty": "خروجی پراکسی برای بررسی وجود ندارد",
         "outboundDown": "از کار افتاده",
         "events": "رویدادها",
         "eventsEmpty": "از زمان شروع پنل اتفاقی نیفتاده",
@@ -443,7 +442,24 @@
           "warn": "آنلاین، اما Xray اجرا نمی‌شود",
           "bad": "آفلاین",
           "off": "غیرفعال"
-        }
+        },
+        "periodCurrent": "این دوره",
+        "periodAll": "همه زمان‌ها",
+        "topClientsAllSub": "مصرف همه زمان‌ها، شامل ترافیک پیش از بازنشانی‌ها",
+        "outboundChecking": "در حال بررسی…",
+        "outboundRetrying": "خطا، بررسی دوباره"
+      },
+      "progress": {
+        "download": "در حال دانلود",
+        "verify": "بررسی چک‌سام",
+        "stop": "توقف پنل",
+        "install": "در حال نصب",
+        "configure": "در حال پیکربندی",
+        "start": "راه‌اندازی پنل",
+        "restartXray": "راه‌اندازی مجدد Xray",
+        "restarting": "پنل در حال راه‌اندازی مجدد است، چند ثانیه طول می‌کشد…",
+        "geofiles": "به‌روزرسانی فایل‌های جغرافیایی",
+        "file": "فایل {step} از {steps}: {name}"
       }
     },
     "inbounds": {
@@ -1361,7 +1377,9 @@
       "inviteNamePlaceholder": "Optional node name",
       "inviteRequired": "Paste an enroll invite",
       "inviteSubmit": "Enroll node",
-      "inviteFailed": "Could not enroll from invite"
+      "inviteFailed": "Could not enroll from invite",
+      "hidden": "پنهان از داشبورد و انتخاب‌ها",
+      "hiddenHint": "اینباندها و کاربران این نود در داشبورد نمایش داده نمی‌شوند و هنگام اتصال اینباند به کاربران پیشنهاد نمی‌شوند. همگام‌سازی، بررسی‌ها و اتصال‌های موجود مثل قبل کار می‌کنند."
     },
     "settings": {
       "defaultTag": "پیش‌فرض",

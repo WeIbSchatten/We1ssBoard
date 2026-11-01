@@ -139,7 +139,6 @@
       "clients": "Usuarios, grupos, claves, límites y suscripciones",
       "settings": "Panel, seguridad y plantilla del núcleo Xray",
       "apiDocs": "Referencia de la API REST para automatizar",
-      "subscriptions": "Enlaces de suscripción, formatos y balanceadores para las apps cliente",
       "notifications": "Alertas y bots de Telegram, Discord y correo",
       "nodesHosts": "Otros servidores We1ssBoard y direcciones usadas en los enlaces"
     },
@@ -415,8 +414,8 @@
         "nodes": "Nodos",
         "nodesEmpty": "Aún no hay nodos",
         "outbounds": "Estado de outbounds",
-        "outboundsEmpty": "Observatory no está configurado",
-        "outboundDown": "caído",
+        "outboundsEmpty": "No hay outbounds proxy que comprobar",
+        "outboundDown": "Caído",
         "events": "Eventos",
         "eventsEmpty": "No ha pasado nada desde que arrancó el panel",
         "eventOutboundDown": "Outbound caído",
@@ -443,7 +442,24 @@
           "warn": "En línea, pero Xray no se ejecuta",
           "bad": "Desconectado",
           "off": "Desactivado"
-        }
+        },
+        "periodCurrent": "Este periodo",
+        "periodAll": "Todo el tiempo",
+        "topClientsAllSub": "Uso total, incluido el tráfico anterior a los reinicios",
+        "outboundChecking": "Comprobando…",
+        "outboundRetrying": "Falló, recomprobando"
+      },
+      "progress": {
+        "download": "Descargando",
+        "verify": "Comprobando la suma de verificación",
+        "stop": "Deteniendo el panel",
+        "install": "Instalando",
+        "configure": "Configurando",
+        "start": "Iniciando el panel",
+        "restartXray": "Reiniciando Xray",
+        "restarting": "El panel se está reiniciando, tardará unos segundos…",
+        "geofiles": "Actualizando geoarchivos",
+        "file": "Archivo {step} de {steps}: {name}"
       }
     },
     "inbounds": {
@@ -1361,7 +1377,9 @@
       "inviteNamePlaceholder": "Optional node name",
       "inviteRequired": "Paste an enroll invite",
       "inviteSubmit": "Enroll node",
-      "inviteFailed": "Could not enroll from invite"
+      "inviteFailed": "Could not enroll from invite",
+      "hidden": "Ocultar del panel y de los selectores",
+      "hiddenHint": "Los inbounds y clientes de este nodo no se muestran en el panel, y sus inbounds no se ofrecen al asociar inbounds a clientes. La sincronización, las comprobaciones y las asociaciones existentes siguen funcionando."
     },
     "settings": {
       "defaultTag": "Predeterminado",

@@ -139,7 +139,6 @@
       "clients": "Користувачі, групи, ключі, ліміти й підписки",
       "settings": "Панель, безпека й шаблон ядра Xray",
       "apiDocs": "Довідник REST API для автоматизації",
-      "subscriptions": "Посилання підписки, формати й балансувальники для клієнтських застосунків",
       "notifications": "Сповіщення й боти Telegram, Discord і пошта",
       "nodesHosts": "Інші сервери We1ssBoard і адреси для посилань"
     },
@@ -415,8 +414,8 @@
         "nodes": "Вузли",
         "nodesEmpty": "Вузлів поки немає",
         "outbounds": "Стан вихідних",
-        "outboundsEmpty": "Observatory не налаштовано",
-        "outboundDown": "не відповідає",
+        "outboundsEmpty": "Немає вихідних для перевірки",
+        "outboundDown": "Не відповідає",
         "events": "Події",
         "eventsEmpty": "Від запуску панелі нічого не сталося",
         "eventOutboundDown": "Вихідне впало",
@@ -443,7 +442,24 @@
           "warn": "У мережі, але Xray не запущено",
           "bad": "Недоступний",
           "off": "Вимкнено"
-        }
+        },
+        "periodCurrent": "За період",
+        "periodAll": "Увесь час",
+        "topClientsAllSub": "Витрата за весь час, включно з трафіком до скидань",
+        "outboundChecking": "Перевіряється…",
+        "outboundRetrying": "Збій, повторна перевірка"
+      },
+      "progress": {
+        "download": "Завантаження",
+        "verify": "Перевірка контрольної суми",
+        "stop": "Зупинка панелі",
+        "install": "Встановлення",
+        "configure": "Налаштування",
+        "start": "Запуск панелі",
+        "restartXray": "Перезапуск Xray",
+        "restarting": "Панель перезапускається, це займе кілька секунд…",
+        "geofiles": "Оновлення геофайлів",
+        "file": "Файл {step} з {steps}: {name}"
       }
     },
     "inbounds": {
@@ -1361,7 +1377,9 @@
       "inviteNamePlaceholder": "Optional node name",
       "inviteRequired": "Paste an enroll invite",
       "inviteSubmit": "Enroll node",
-      "inviteFailed": "Could not enroll from invite"
+      "inviteFailed": "Could not enroll from invite",
+      "hidden": "Приховати з дашборда та з вибору",
+      "hiddenHint": "Вхідні та клієнти цього вузла не показуються на дашборді, а його вхідні не пропонуються під час прив’язки вхідних до клієнтів. Синхронізація, перевірки та наявні прив’язки працюють як раніше."
     },
     "settings": {
       "defaultTag": "Типово",

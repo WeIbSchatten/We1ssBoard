@@ -1568,6 +1568,28 @@ export const SCHEMAS: Record<string, unknown> = {
     ],
     "type": "object"
   },
+  "AllTimeTraffic": {
+    "description": "AllTimeTraffic is what the dashboard shows in its \"all time\" mode.",
+    "properties": {
+      "clients": {
+        "items": {
+          "$ref": "#/components/schemas/ClientAllTime"
+        },
+        "type": "array"
+      },
+      "inbounds": {
+        "additionalProperties": {
+          "$ref": "#/components/schemas/TrafficTotal"
+        },
+        "type": "object"
+      }
+    },
+    "required": [
+      "clients",
+      "inbounds"
+    ],
+    "type": "object"
+  },
   "AmneziaWGLogs": {
     "description": "AmneziaWGLogs is what the overview's AmneziaWG log view renders: the live\nper-peer activity of every running embedded interface, plus the panel's\nown recent AmneziaWG lifecycle log lines that explain a peer being absent\nfrom Peers at all.",
     "properties": {
@@ -1940,6 +1962,31 @@ export const SCHEMAS: Record<string, unknown> = {
       "subId",
       "tgId",
       "totalGB"
+    ],
+    "type": "object"
+  },
+  "ClientAllTime": {
+    "description": "ClientAllTime is one client's all-time traffic.",
+    "properties": {
+      "down": {
+        "example": 8388608,
+        "format": "int64",
+        "type": "integer"
+      },
+      "email": {
+        "example": "alice@example.com",
+        "type": "string"
+      },
+      "up": {
+        "example": 1048576,
+        "format": "int64",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "down",
+      "email",
+      "up"
     ],
     "type": "object"
   },
@@ -3502,6 +3549,11 @@ export const SCHEMAS: Record<string, unknown> = {
         "example": true,
         "type": "boolean"
       },
+      "hidden": {
+        "description": "Hidden is set when the inbound lives on a node marked hidden; pickers leave it out.",
+        "example": false,
+        "type": "boolean"
+      },
       "id": {
         "example": 1,
         "type": "integer"
@@ -3799,6 +3851,10 @@ export const SCHEMAS: Record<string, unknown> = {
         "description": "Guid is the remote panel's stable self-identifier (its panelGuid),\nlearned from each heartbeat. It is the globally stable node identity used\nto attribute online clients/inbounds to the physical node across a chain\nof nodes (#4983); panel-local autoincrement ids don't survive a hop.\nObserved-state only — never user-edited.",
         "type": "string"
       },
+      "hidden": {
+        "description": "Hidden keeps this node's inbounds and clients off the dashboard and out of\nthe client inbound pickers; sync and health checks are unaffected.",
+        "type": "boolean"
+      },
       "id": {
         "example": 1,
         "type": "integer"
@@ -3939,6 +3995,7 @@ export const SCHEMAS: Record<string, unknown> = {
       "disabledCount",
       "enable",
       "guid",
+      "hidden",
       "id",
       "inboundCount",
       "inboundSyncMode",
@@ -3987,6 +4044,9 @@ export const SCHEMAS: Record<string, unknown> = {
         "type": "boolean"
       },
       "enable": {
+        "type": "boolean"
+      },
+      "hidden": {
         "type": "boolean"
       },
       "id": {
@@ -4044,6 +4104,7 @@ export const SCHEMAS: Record<string, unknown> = {
       "allowPrivateAddress",
       "basePath",
       "enable",
+      "hidden",
       "id",
       "inboundSyncMode",
       "inboundTags",
@@ -4116,6 +4177,10 @@ export const SCHEMAS: Record<string, unknown> = {
       },
       "hasApiToken": {
         "example": true,
+        "type": "boolean"
+      },
+      "hidden": {
+        "example": false,
         "type": "boolean"
       },
       "id": {
@@ -4248,6 +4313,7 @@ export const SCHEMAS: Record<string, unknown> = {
       "enable",
       "guid",
       "hasApiToken",
+      "hidden",
       "id",
       "inboundCount",
       "inboundSyncMode",
@@ -4273,6 +4339,54 @@ export const SCHEMAS: Record<string, unknown> = {
       "xrayError",
       "xrayState",
       "xrayVersion"
+    ],
+    "type": "object"
+  },
+  "OutboundHealth": {
+    "description": "OutboundHealth is the dashboard's view of one proxy outbound. Checked is false\nuntil its first probe; Alive turns false only after the configured number of\nfailures in a row.",
+    "properties": {
+      "alive": {
+        "example": true,
+        "type": "boolean"
+      },
+      "checked": {
+        "example": true,
+        "type": "boolean"
+      },
+      "checkedAt": {
+        "example": 1793437200000,
+        "format": "int64",
+        "type": "integer"
+      },
+      "delay": {
+        "example": 120,
+        "format": "int64",
+        "type": "integer"
+      },
+      "error": {
+        "type": "string"
+      },
+      "failures": {
+        "example": 0,
+        "type": "integer"
+      },
+      "protocol": {
+        "example": "wireguard",
+        "type": "string"
+      },
+      "tag": {
+        "example": "warp",
+        "type": "string"
+      }
+    },
+    "required": [
+      "alive",
+      "checked",
+      "checkedAt",
+      "delay",
+      "failures",
+      "protocol",
+      "tag"
     ],
     "type": "object"
   },
@@ -4385,6 +4499,11 @@ export const SCHEMAS: Record<string, unknown> = {
       },
       "runId": {
         "example": "1735689600123456789",
+        "type": "string"
+      },
+      "stage": {
+        "description": "Stage is the step update.sh is on while State is pending (download, verify,\nstop, install, configure, start); older updaters leave it empty.",
+        "example": "install",
         "type": "string"
       },
       "state": {
@@ -5740,6 +5859,64 @@ export const SCHEMAS: Record<string, unknown> = {
     ],
     "type": "object"
   },
+  "TaskProgress": {
+    "description": "TaskProgress is the state of the Xray or geofile update running on this panel,\nwhich the version dialog polls to draw its progress bar.",
+    "properties": {
+      "done": {
+        "description": "Done and Total are bytes of File; Total is 0 when the server sent no length.",
+        "example": 1048576,
+        "format": "int64",
+        "type": "integer"
+      },
+      "error": {
+        "type": "string"
+      },
+      "file": {
+        "example": "geosite.dat",
+        "type": "string"
+      },
+      "kind": {
+        "description": "Kind is \"xray\" or \"geofile\"; empty when nothing has run since start.",
+        "example": "geofile",
+        "type": "string"
+      },
+      "stage": {
+        "description": "Stage is download, verify, install, restart, done or failed.",
+        "example": "download",
+        "type": "string"
+      },
+      "step": {
+        "description": "Step and Steps place File in a batch, counting from 1.",
+        "example": 2,
+        "type": "integer"
+      },
+      "steps": {
+        "example": 6,
+        "type": "integer"
+      },
+      "total": {
+        "example": 4194304,
+        "format": "int64",
+        "type": "integer"
+      },
+      "updatedAt": {
+        "example": 1793437200000,
+        "format": "int64",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "done",
+      "file",
+      "kind",
+      "stage",
+      "step",
+      "steps",
+      "total",
+      "updatedAt"
+    ],
+    "type": "object"
+  },
   "TgWebProxyBindManyRequest": {
     "description": "TgWebProxyBindManyRequest adds one relay profile to several clients' subscriptions at once.",
     "properties": {
@@ -6029,6 +6206,26 @@ export const SCHEMAS: Record<string, unknown> = {
     "required": [
       "down",
       "time",
+      "up"
+    ],
+    "type": "object"
+  },
+  "TrafficTotal": {
+    "description": "TrafficTotal is all-time traffic in bytes.",
+    "properties": {
+      "down": {
+        "example": 8388608,
+        "format": "int64",
+        "type": "integer"
+      },
+      "up": {
+        "example": 1048576,
+        "format": "int64",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "down",
       "up"
     ],
     "type": "object"

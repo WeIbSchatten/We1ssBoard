@@ -65,7 +65,8 @@ type ClientPageParams struct {
 	HasTgID    string `form:"hasTgId"`
 	HasComment string `form:"hasComment"`
 	Group      string `form:"group"`
-	// Node scopes everything, summary included, to one tab: "local" or a node id.
+	// Node scopes everything, summary included: "local", a node id, or "visible"
+	// (clients reachable through this panel or a node not marked hidden).
 	Node string `form:"node"`
 }
 
@@ -227,6 +228,14 @@ func (q clientQuery) withNode(node string) clientQuery {
 	node = strings.TrimSpace(node)
 	switch {
 	case node == "":
+	case strings.EqualFold(node, "visible"):
+		q.scope = &clientQueryJoin{
+			sql: "(NOT EXISTS (SELECT 1 FROM client_inbounds ci WHERE ci.client_id = c.id)" +
+				" OR EXISTS (SELECT 1 FROM client_inbounds ci JOIN inbounds ib ON ib.id = ci.inbound_id" +
+				" LEFT JOIN nodes n ON n.id = ib.node_id" +
+				" WHERE ci.client_id = c.id AND (ib.node_id IS NULL OR n.hidden IS NULL OR n.hidden = ?)))",
+			args: []any{false},
+		}
 	case strings.EqualFold(node, "local"):
 		q.scope = &clientQueryJoin{sql: "(NOT EXISTS (SELECT 1 FROM client_inbounds ci WHERE ci.client_id = c.id)" +
 			" OR EXISTS (SELECT 1 FROM client_inbounds ci JOIN inbounds ib ON ib.id = ci.inbound_id" +

@@ -385,6 +385,11 @@ export interface AllSettingView {
   webPort: number;
 }
 
+export interface AllTimeTraffic {
+  clients: ClientAllTime[];
+  inbounds: Record<number, TrafficTotal>;
+}
+
 export interface AmneziaWGLogs {
   events: string[];
   peers: PeerActivity[];
@@ -468,6 +473,12 @@ export interface Client {
   trafficReset?: string;
   trafficResetDay?: number;
   updated_at?: number;
+}
+
+export interface ClientAllTime {
+  down: number;
+  email: string;
+  up: number;
 }
 
 export interface ClientInbound {
@@ -815,6 +826,7 @@ export interface InboundFallback {
 export interface InboundOption {
   awgServer?: ServerSettings | null;
   enable: boolean;
+  hidden?: boolean;
   id: number;
   listen?: string;
   mtprotoDomain?: string;
@@ -893,6 +905,7 @@ export interface Node {
   disabledCount: number;
   enable: boolean;
   guid: string;
+  hidden: boolean;
   id: number;
   inboundCount: number;
   inboundSyncMode: string;
@@ -929,6 +942,7 @@ export interface NodeMutationRequest {
   basePath: string;
   clearApiToken?: boolean;
   enable: boolean;
+  hidden: boolean;
   id: number;
   inboundSyncMode: string;
   inboundTags: string[];
@@ -956,6 +970,7 @@ export interface NodeView {
   enable: boolean;
   guid: string;
   hasApiToken: boolean;
+  hidden: boolean;
   id: number;
   inboundCount: number;
   inboundSyncMode: string;
@@ -985,6 +1000,17 @@ export interface NodeView {
   xrayVersion: string;
 }
 
+export interface OutboundHealth {
+  alive: boolean;
+  checked: boolean;
+  checkedAt: number;
+  delay: number;
+  error?: string;
+  failures: number;
+  protocol: string;
+  tag: string;
+}
+
 export interface OutboundTraffics {
   down: number;
   id: number;
@@ -1012,6 +1038,7 @@ export interface PanelUpdateStatus {
   exitCode: number;
   finishedAt: number;
   runId: string;
+  stage?: string;
   state: string;
 }
 
@@ -1330,6 +1357,18 @@ export interface SubBalancer {
   updatedAt: number;
 }
 
+export interface TaskProgress {
+  done: number;
+  error?: string;
+  file: string;
+  kind: string;
+  stage: string;
+  step: number;
+  steps: number;
+  total: number;
+  updatedAt: number;
+}
+
 export interface TgWebProxyBindManyRequest {
   dedicated: boolean;
   emails: string[];
@@ -1398,6 +1437,11 @@ export interface Traffic {
 export interface TrafficPoint {
   down: number;
   time: number;
+  up: number;
+}
+
+export interface TrafficTotal {
+  down: number;
   up: number;
 }
 

@@ -48,7 +48,10 @@ func (a *ServerController) initRouter(g *gin.RouterGroup) {
 	g.GET("/cpuHistory/:bucket", a.getCpuHistoryBucket)
 	g.GET("/history/:metric/:bucket", a.getMetricHistoryBucket)
 	g.GET("/trafficHistory/:range", a.getTrafficHistory)
+	g.GET("/allTimeTraffic", a.getAllTimeTraffic)
+	g.GET("/outboundHealth", a.getOutboundHealth)
 	g.GET("/events", a.getEvents)
+	g.GET("/taskProgress", a.getTaskProgress)
 	g.GET("/xrayMetricsState", a.getXrayMetricsState)
 	g.GET("/xrayMetricsHistory/:metric/:bucket", a.getXrayMetricsHistoryBucket)
 	g.GET("/xrayObservatory", a.getXrayObservatory)
@@ -154,9 +157,27 @@ func (a *ServerController) getMetricHistoryBucket(c *gin.Context) {
 	jsonObj(c, a.serverService.AggregateSystemMetric(metric, bucket, 60), nil)
 }
 
+// getTaskProgress reports the Xray or geofile update in progress, for the version dialog's bar.
+func (a *ServerController) getTaskProgress(c *gin.Context) {
+	jsonObj(c, service.CurrentTaskProgress(), nil)
+}
+
 // getEvents returns the newest outbound, node, Xray, resource and login events.
 func (a *ServerController) getEvents(c *gin.Context) {
 	jsonObj(c, service.GetEventFeed().Recent(50), nil)
+}
+
+// getOutboundHealth returns the panel's own health checks of its proxy outbounds.
+func (a *ServerController) getOutboundHealth(c *gin.Context) {
+	jsonObj(c, service.GetOutboundHealthMonitor().Snapshot(), nil)
+}
+
+// getAllTimeTraffic returns the heaviest clients and every inbound by all-time traffic.
+func (a *ServerController) getAllTimeTraffic(c *gin.Context) {
+	limit, _ := strconv.Atoi(c.DefaultQuery("limit", "6"))
+	limit = min(max(limit, 1), 100)
+	data, err := service.GetTrafficHistoryService().AllTimeTraffic(limit)
+	jsonObj(c, data, err)
 }
 
 // getTrafficHistory returns the proxy traffic of every inbound per hour (24h) or

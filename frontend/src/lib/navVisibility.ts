@@ -2,7 +2,6 @@
 export const HIDEABLE_NAV_KEYS = [
   '/',
   '/clients',
-  '/subscriptions',
   '/connections',
   '/nodes',
   '/notifications',

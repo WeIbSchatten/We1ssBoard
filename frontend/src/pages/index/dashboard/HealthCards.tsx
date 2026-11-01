@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { Card, Tooltip } from 'antd';
 
 import type { NodeRecord } from '@/api/queries/useNodesQuery';
-import type { ObservatoryTag } from './useDashboardData';
+import type { OutboundHealth } from '@/generated/zod';
 
 const NODE_STATE_KEYS = {
   ok: 'pages.index.dash.nodeState.ok',
@@ -56,10 +56,25 @@ export function NodesCard({ nodes }: { nodes: NodeRecord[] }) {
   );
 }
 
-export function OutboundsCard({ outbounds }: { outbounds: ObservatoryTag[] }) {
+// Down first, then failing, then not yet checked, then healthy: problems on top.
+function outboundRank(o: OutboundHealth): number {
+  if (!o.alive) return 0;
+  if (o.failures > 0) return 1;
+  if (!o.checked) return 2;
+  return 3;
+}
+
+function outboundState(o: OutboundHealth): { tone: string; textKey?: string } {
+  if (!o.alive) return { tone: 'bad', textKey: 'pages.index.dash.outboundDown' };
+  if (o.failures > 0) return { tone: 'warn', textKey: 'pages.index.dash.outboundRetrying' };
+  if (!o.checked) return { tone: 'off', textKey: 'pages.index.dash.outboundChecking' };
+  return { tone: 'ok' };
+}
+
+export function OutboundsCard({ outbounds }: { outbounds: OutboundHealth[] }) {
   const { t } = useTranslation();
   const sorted = [...outbounds].sort(
-    (a, b) => Number(a.alive) - Number(b.alive) || a.tag.localeCompare(b.tag),
+    (a, b) => outboundRank(a) - outboundRank(b) || a.tag.localeCompare(b.tag),
   );
   return (
     <Card className="dash-card">
@@ -73,15 +88,20 @@ export function OutboundsCard({ outbounds }: { outbounds: ObservatoryTag[] }) {
         <div className="dash-empty">{t('pages.index.dash.outboundsEmpty')}</div>
       ) : (
         <ul className="dash-list">
-          {sorted.map((o) => (
-            <li key={o.tag} className="dash-list-row">
-              <span className={`dash-dot dash-dot--${o.alive ? 'ok' : 'bad'}`} />
-              <span className="dash-ellipsis">{o.tag}</span>
-              <span className="dash-list-end ov-mono dash-muted">
-                {o.alive ? `${o.delay} ms` : t('pages.index.dash.outboundDown')}
-              </span>
-            </li>
-          ))}
+          {sorted.map((o) => {
+            const state = outboundState(o);
+            return (
+              <li key={o.tag} className="dash-list-row">
+                <Tooltip title={o.error || undefined}>
+                  <span className={`dash-dot dash-dot--${state.tone}`} />
+                </Tooltip>
+                <span className="dash-ellipsis">{o.tag}</span>
+                <span className="dash-list-end ov-mono dash-muted">
+                  {state.textKey ? t(state.textKey) : `${o.delay} ms`}
+                </span>
+              </li>
+            );
+          })}
         </ul>
       )}
     </Card>

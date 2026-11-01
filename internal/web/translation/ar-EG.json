@@ -139,7 +139,6 @@
       "clients": "المستخدمون والمجموعات والمفاتيح والحدود والاشتراكات",
       "settings": "اللوحة والأمان وقالب نواة Xray",
       "apiDocs": "مرجع REST API للأتمتة",
-      "subscriptions": "روابط الاشتراك والصيغ والموازِنات لتطبيقات العملاء",
       "notifications": "تنبيهات وبوتات تيليجرام وديسكورد والبريد",
       "nodesHosts": "خوادم We1ssBoard الأخرى والعناوين المستخدمة في الروابط"
     },
@@ -415,7 +414,7 @@
         "nodes": "العُقد",
         "nodesEmpty": "لا توجد عُقد بعد",
         "outbounds": "حالة الاتصالات الصادرة",
-        "outboundsEmpty": "Observatory غير مُعدّ",
+        "outboundsEmpty": "لا توجد اتصالات صادرة وكيلة لفحصها",
         "outboundDown": "متوقف",
         "events": "الأحداث",
         "eventsEmpty": "لم يحدث شيء منذ بدء اللوحة",
@@ -443,7 +442,24 @@
           "warn": "متصلة، لكن Xray لا يعمل",
           "bad": "غير متصلة",
           "off": "معطّلة"
-        }
+        },
+        "periodCurrent": "هذه الفترة",
+        "periodAll": "كل الوقت",
+        "topClientsAllSub": "الاستخدام في كل الوقت، بما في ذلك الحركة قبل إعادة الضبط",
+        "outboundChecking": "جارٍ الفحص…",
+        "outboundRetrying": "فشل، إعادة الفحص"
+      },
+      "progress": {
+        "download": "جارٍ التنزيل",
+        "verify": "جارٍ التحقق من المجموع الاختباري",
+        "stop": "إيقاف اللوحة",
+        "install": "جارٍ التثبيت",
+        "configure": "جارٍ الإعداد",
+        "start": "تشغيل اللوحة",
+        "restartXray": "إعادة تشغيل Xray",
+        "restarting": "اللوحة يُعاد تشغيلها، يستغرق ذلك بضع ثوانٍ…",
+        "geofiles": "تحديث ملفات geo",
+        "file": "الملف {step} من {steps}: {name}"
       }
     },
     "inbounds": {
@@ -1361,7 +1377,9 @@
       "inviteNamePlaceholder": "Optional node name",
       "inviteRequired": "Paste an enroll invite",
       "inviteSubmit": "Enroll node",
-      "inviteFailed": "Could not enroll from invite"
+      "inviteFailed": "Could not enroll from invite",
+      "hidden": "إخفاء من لوحة المعلومات والاختيارات",
+      "hiddenHint": "لا تظهر الاتصالات الواردة لهذه العقدة وعملاؤها في لوحة المعلومات، ولا تُعرض اتصالاتها الواردة عند ربط الاتصالات بالعملاء. تستمر المزامنة والفحوصات والارتباطات الحالية في العمل."
     },
     "settings": {
       "defaultTag": "افتراضي",

@@ -986,6 +986,7 @@ func (s *ServerService) downloadXRay(version string) (string, error) {
 	if reqErr != nil {
 		return "", reqErr
 	}
+	serverTasks.nextFile(fileName)
 	resp, err := client.Do(req)
 	if err != nil {
 		return "", err
@@ -997,6 +998,7 @@ func (s *ServerService) downloadXRay(version string) (string, error) {
 	if resp.ContentLength > maxXrayArchiveBytes {
 		return "", fmt.Errorf("download xray: archive exceeds %d bytes", maxXrayArchiveBytes)
 	}
+	serverTasks.setTotal(resp.ContentLength)
 
 	file, err := os.CreateTemp("", "xray-*.zip")
 	if err != nil {
@@ -1011,7 +1013,7 @@ func (s *ServerService) downloadXRay(version string) (string, error) {
 		}
 	}()
 
-	n, err := io.Copy(file, io.LimitReader(resp.Body, maxXrayArchiveBytes+1))
+	n, err := io.Copy(file, io.LimitReader(serverTasks.count(resp.Body), maxXrayArchiveBytes+1))
 	if err != nil {
 		return "", err
 	}
@@ -1022,6 +1024,7 @@ func (s *ServerService) downloadXRay(version string) (string, error) {
 	// Verify the archive against the SHA2-256 published in the release's .dgst
 	// sidecar before installing it. TLS protects the transport, not the artifact;
 	// a corrupted or tampered asset must not be installed and run as xray.
+	serverTasks.stage("verify")
 	want, err := s.fetchXrayDigestSHA256(client, url+".dgst")
 	if err != nil {
 		return "", err
@@ -1084,7 +1087,7 @@ func parseXrayDigestSHA256(dgst []byte) (string, error) {
 	return "", fmt.Errorf("xray checksum: no SHA2-256 entry in digest")
 }
 
-func (s *ServerService) UpdateXray(version string) error {
+func (s *ServerService) UpdateXray(version string) (err error) {
 	versions, err := s.GetXrayVersions()
 	if err != nil {
 		return err
@@ -1092,6 +1095,8 @@ func (s *ServerService) UpdateXray(version string) error {
 	if !slices.Contains(versions, version) {
 		return fmt.Errorf("xray version %q is not in the fetched release list", version)
 	}
+	serverTasks.begin("xray", 1)
+	defer func() { serverTasks.finish(err) }()
 
 	// 1. Stop xray before doing anything
 	if err := s.StopXrayService(); err != nil {
@@ -1165,6 +1170,7 @@ func (s *ServerService) UpdateXray(version string) error {
 		return nil
 	}
 
+	serverTasks.stage("install")
 	// 4. Extract correct binary
 	if runtime.GOOS == "windows" {
 		targetBinary := filepath.Join(config.GetBinFolderPath(), "xray-windows-amd64.exe")
@@ -1176,6 +1182,7 @@ func (s *ServerService) UpdateXray(version string) error {
 		return err
 	}
 
+	serverTasks.stage("restart")
 	// 5. Restart xray
 	if err := s.xrayService.RestartXray(true); err != nil {
 		logger.Error("start xray failed:", err)
@@ -2305,7 +2312,7 @@ type stagedGeofile struct {
 // installed nothing also restarted nothing.
 var restartXrayAfterGeofileUpdate = (*ServerService).RestartXrayService
 
-func (s *ServerService) UpdateGeofile(fileName string) error {
+func (s *ServerService) UpdateGeofile(fileName string) (err error) {
 	// Strict allowlist check to avoid writing uncontrolled files
 	if fileName != "" {
 		if _, ok := geofileAllowlist[fileName]; !ok {
@@ -2317,6 +2324,8 @@ func (s *ServerService) UpdateGeofile(fileName string) error {
 	if fileName != "" {
 		wanted = map[string]geofileEntry{fileName: geofileAllowlist[fileName]}
 	}
+	serverTasks.begin("geofile", len(wanted))
+	defer func() { serverTasks.finish(err) }()
 
 	// Atomic per upstream, not across all six: one release's databases belong
 	// together, but a failing repo must not discard another repo's good files.
@@ -2358,6 +2367,7 @@ func (s *ServerService) UpdateGeofile(fileName string) error {
 	// Nothing changed, so there is no reason to restart the core and drop every
 	// client connection.
 	if installed > 0 {
+		serverTasks.stage("restart")
 		if err := restartXrayAfterGeofileUpdate(s); err != nil {
 			errorMessages = append(errorMessages, fmt.Sprintf("Updated Geofiles but Failed to start Xray: %v", err))
 		}
@@ -2449,11 +2459,13 @@ func (s *ServerService) stageGeofile(client *http.Client, entry geofileEntry, ta
 		}
 	}
 
+	serverTasks.nextFile(entry.FileName)
 	resp, err := client.Do(req)
 	if err != nil {
 		return false, common.NewErrorf("Failed to download Geofile from %s: %v", assetURL, err)
 	}
 	defer resp.Body.Close()
+	serverTasks.setTotal(resp.ContentLength)
 
 	// Parse Last-Modified header from server
 	var serverModTime time.Time
@@ -2490,7 +2502,7 @@ func (s *ServerService) stageGeofile(client *http.Client, entry geofileEntry, ta
 		return false, common.NewErrorf("Failed to create Geofile %s: %v", stagePath, err)
 	}
 	hasher := sha256.New()
-	if _, err := io.Copy(io.MultiWriter(file, hasher), resp.Body); err != nil {
+	if _, err := io.Copy(io.MultiWriter(file, hasher), serverTasks.count(resp.Body)); err != nil {
 		file.Close()
 		return false, common.NewErrorf("Failed to save Geofile %s: %v", stagePath, err)
 	}

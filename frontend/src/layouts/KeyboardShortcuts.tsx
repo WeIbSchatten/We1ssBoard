@@ -8,7 +8,7 @@ import './KeyboardShortcuts.css';
 const GO_TARGETS: { key: string; path: string; titleKey: string }[] = [
   { key: 'd', path: '/', titleKey: 'menu.dashboard' },
   { key: 'u', path: '/clients', titleKey: 'menu.clients' },
-  { key: 'b', path: '/subscriptions', titleKey: 'menu.subscriptions' },
+  { key: 'b', path: '/settings#subscription', titleKey: 'menu.subscriptions' },
   { key: 'c', path: '/connections', titleKey: 'menu.connections' },
   { key: 'n', path: '/nodes', titleKey: 'menu.nodesHosts' },
   { key: 'a', path: '/notifications', titleKey: 'menu.notifications' },

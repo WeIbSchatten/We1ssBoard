@@ -139,7 +139,6 @@
       "clients": "Users, groups, keys, limits and subscriptions",
       "settings": "Panel, security and the Xray core template",
       "apiDocs": "REST API reference for automation",
-      "subscriptions": "Subscription links, formats and balancers for client apps",
       "notifications": "Telegram, Discord and email alerts and bots",
       "nodesHosts": "Other We1ssBoard servers and the addresses used in links"
     },
@@ -415,8 +414,8 @@
         "nodes": "Nodes",
         "nodesEmpty": "No nodes yet",
         "outbounds": "Outbound health",
-        "outboundsEmpty": "Observatory is not set up",
-        "outboundDown": "down",
+        "outboundsEmpty": "No proxy outbounds to check",
+        "outboundDown": "Down",
         "events": "Events",
         "eventsEmpty": "Nothing has happened since the panel started",
         "eventOutboundDown": "Outbound down",
@@ -443,7 +442,24 @@
           "warn": "Online, but Xray is not running",
           "bad": "Offline",
           "off": "Disabled"
-        }
+        },
+        "periodCurrent": "This period",
+        "periodAll": "All time",
+        "topClientsAllSub": "All-time usage, including traffic before resets",
+        "outboundChecking": "Checking…",
+        "outboundRetrying": "Failed, rechecking"
+      },
+      "progress": {
+        "download": "Downloading",
+        "verify": "Checking the checksum",
+        "stop": "Stopping the panel",
+        "install": "Installing",
+        "configure": "Configuring",
+        "start": "Starting the panel",
+        "restartXray": "Restarting Xray",
+        "restarting": "The panel is restarting, this takes a few seconds…",
+        "geofiles": "Updating geofiles",
+        "file": "File {step} of {steps}: {name}"
       }
     },
     "inbounds": {
@@ -1684,7 +1700,9 @@
       "inviteNamePlaceholder": "Optional node name",
       "inviteRequired": "Paste an enroll invite",
       "inviteSubmit": "Enroll node",
-      "inviteFailed": "Could not enroll from invite"
+      "inviteFailed": "Could not enroll from invite",
+      "hidden": "Hide from dashboard and pickers",
+      "hiddenHint": "This node's inbounds and clients are not shown on the dashboard, and its inbounds are not offered when you attach inbounds to clients. Sync, health checks and existing attachments keep working."
     },
     "settings": {
       "defaultTag": "Default",

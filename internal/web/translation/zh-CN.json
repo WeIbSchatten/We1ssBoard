@@ -139,7 +139,6 @@
       "clients": "用户、分组、密钥、限额与订阅",
       "settings": "面板、安全与 Xray 核心模板",
       "apiDocs": "用于自动化的 REST API 参考",
-      "subscriptions": "面向客户端应用的订阅链接、格式与负载均衡",
       "notifications": "Telegram、Discord 与邮件通知和机器人",
       "nodesHosts": "其他 We1ssBoard 服务器及链接中使用的地址"
     },
@@ -415,7 +414,7 @@
         "nodes": "节点",
         "nodesEmpty": "还没有节点",
         "outbounds": "出站健康",
-        "outboundsEmpty": "未配置 Observatory",
+        "outboundsEmpty": "没有可检查的代理出站",
         "outboundDown": "不可用",
         "events": "事件",
         "eventsEmpty": "面板启动以来没有事件",
@@ -443,7 +442,24 @@
           "warn": "在线，但 Xray 未运行",
           "bad": "离线",
           "off": "已禁用"
-        }
+        },
+        "periodCurrent": "本周期",
+        "periodAll": "全部时间",
+        "topClientsAllSub": "全部时间的用量，包括重置前的流量",
+        "outboundChecking": "检查中…",
+        "outboundRetrying": "失败，正在重试"
+      },
+      "progress": {
+        "download": "下载中",
+        "verify": "校验校验和",
+        "stop": "停止面板",
+        "install": "安装中",
+        "configure": "配置中",
+        "start": "启动面板",
+        "restartXray": "重启 Xray",
+        "restarting": "面板正在重启，需要几秒钟…",
+        "geofiles": "更新地理文件",
+        "file": "文件 {step}/{steps}：{name}"
       }
     },
     "inbounds": {
@@ -1361,7 +1377,9 @@
       "inviteNamePlaceholder": "Optional node name",
       "inviteRequired": "Paste an enroll invite",
       "inviteSubmit": "Enroll node",
-      "inviteFailed": "Could not enroll from invite"
+      "inviteFailed": "Could not enroll from invite",
+      "hidden": "在仪表盘和选择器中隐藏",
+      "hiddenHint": "此节点的入站和客户端不会显示在仪表盘上，为客户端关联入站时也不会提供它的入站。同步、检查和已有的关联照常工作。"
     },
     "settings": {
       "defaultTag": "默认",

@@ -405,6 +405,12 @@ export const AllSettingViewSchema = z.object({
 });
 export type AllSettingView = z.infer<typeof AllSettingViewSchema>;
 
+export const AllTimeTrafficSchema = z.object({
+  clients: z.array(z.lazy(() => ClientAllTimeSchema)),
+  inbounds: z.record(z.number().int(), z.lazy(() => TrafficTotalSchema)),
+});
+export type AllTimeTraffic = z.infer<typeof AllTimeTrafficSchema>;
+
 export const AmneziaWGLogsSchema = z.object({
   events: z.array(z.string()),
   peers: z.array(z.lazy(() => PeerActivitySchema)),
@@ -497,6 +503,13 @@ export const ClientSchema = z.object({
   updated_at: z.number().int().optional(),
 });
 export type Client = z.infer<typeof ClientSchema>;
+
+export const ClientAllTimeSchema = z.object({
+  down: z.number().int(),
+  email: z.string(),
+  up: z.number().int(),
+});
+export type ClientAllTime = z.infer<typeof ClientAllTimeSchema>;
 
 export const ClientInboundSchema = z.object({
   clientId: z.number().int(),
@@ -871,6 +884,7 @@ export type InboundFallback = z.infer<typeof InboundFallbackSchema>;
 export const InboundOptionSchema = z.object({
   awgServer: z.lazy(() => ServerSettingsSchema).nullable().optional(),
   enable: z.boolean(),
+  hidden: z.boolean().optional(),
   id: z.number().int(),
   listen: z.string().optional(),
   mtprotoDomain: z.string().optional(),
@@ -957,6 +971,7 @@ export const NodeSchema = z.object({
   disabledCount: z.number().int(),
   enable: z.boolean(),
   guid: z.string(),
+  hidden: z.boolean(),
   id: z.number().int(),
   inboundCount: z.number().int(),
   inboundSyncMode: z.enum(['all', 'selected']),
@@ -994,6 +1009,7 @@ export const NodeMutationRequestSchema = z.object({
   basePath: z.string(),
   clearApiToken: z.boolean().optional(),
   enable: z.boolean(),
+  hidden: z.boolean(),
   id: z.number().int(),
   inboundSyncMode: z.enum(['all', 'selected']),
   inboundTags: z.array(z.string()),
@@ -1022,6 +1038,7 @@ export const NodeViewSchema = z.object({
   enable: z.boolean(),
   guid: z.string(),
   hasApiToken: z.boolean(),
+  hidden: z.boolean(),
   id: z.number().int(),
   inboundCount: z.number().int(),
   inboundSyncMode: z.string(),
@@ -1051,6 +1068,18 @@ export const NodeViewSchema = z.object({
   xrayVersion: z.string(),
 });
 export type NodeView = z.infer<typeof NodeViewSchema>;
+
+export const OutboundHealthSchema = z.object({
+  alive: z.boolean(),
+  checked: z.boolean(),
+  checkedAt: z.number().int(),
+  delay: z.number().int(),
+  error: z.string().optional(),
+  failures: z.number().int(),
+  protocol: z.string(),
+  tag: z.string(),
+});
+export type OutboundHealth = z.infer<typeof OutboundHealthSchema>;
 
 export const OutboundTrafficsSchema = z.object({
   down: z.number().int(),
@@ -1082,6 +1111,7 @@ export const PanelUpdateStatusSchema = z.object({
   exitCode: z.number().int(),
   finishedAt: z.number().int(),
   runId: z.string(),
+  stage: z.string().optional(),
   state: z.string(),
 });
 export type PanelUpdateStatus = z.infer<typeof PanelUpdateStatusSchema>;
@@ -1427,6 +1457,19 @@ export const SubBalancerSchema = z.object({
 });
 export type SubBalancer = z.infer<typeof SubBalancerSchema>;
 
+export const TaskProgressSchema = z.object({
+  done: z.number().int(),
+  error: z.string().optional(),
+  file: z.string(),
+  kind: z.string(),
+  stage: z.string(),
+  step: z.number().int(),
+  steps: z.number().int(),
+  total: z.number().int(),
+  updatedAt: z.number().int(),
+});
+export type TaskProgress = z.infer<typeof TaskProgressSchema>;
+
 export const TgWebProxyBindManyRequestSchema = z.object({
   dedicated: z.boolean(),
   emails: z.array(z.string()),
@@ -1507,6 +1550,12 @@ export const TrafficPointSchema = z.object({
   up: z.number().int(),
 });
 export type TrafficPoint = z.infer<typeof TrafficPointSchema>;
+
+export const TrafficTotalSchema = z.object({
+  down: z.number().int(),
+  up: z.number().int(),
+});
+export type TrafficTotal = z.infer<typeof TrafficTotalSchema>;
 
 export const TuicClientSettingsSchema = z.object({
   email: z.string(),

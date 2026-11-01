@@ -9,6 +9,18 @@ differently now), **Fixed** (bugs), **Removed**, **Breaking** (needs action from
 you or breaks an old setup), **Known issues** (problems found after the release
 and the version that fixes them).
 
+## [Unreleased]
+
+### Added
+- **Outbound health** on the dashboard no longer needs Xray's observatory. The panel checks every proxy outbound itself every 10 minutes with the same test as the Outbounds tab, and rechecks a failing one every minute. An outbound counts as down after the configured number of failures in a row (3 by default), which shows in Needs attention, the event feed and notifications. Outbounds the observatory already watches send no duplicate notifications (`GET /panel/api/server/outboundHealth`).
+- **All time** on the dashboard. The traffic chart has an All time range by month, and Top clients and Inbounds can switch between the current limit period and all-time usage. All-time totals are not cleared by traffic resets; they start from the counters found after the update. Monthly traffic is kept forever (`GET /panel/api/server/trafficHistory/all`, `GET /panel/api/server/allTimeTraffic`).
+- Nodes get a **Hide from dashboard and pickers** switch, for example for a linked panel that only runs a web proxy. Its inbounds and clients disappear from the dashboard (key figures, traffic, inbounds, who is connected, top clients, needs-attention counts) and its inbounds are no longer offered when attaching inbounds to clients. Clients already attached keep their inbounds, the node still shows in the Nodes card, and sync is unchanged. Traffic counts for the chart start excluding the node from the moment it is hidden.
+- Progress bars for updates. A panel update shows its steps (download, checksum, stop, install, configure, start) with a bar instead of a bare spinner and says when the panel is restarting. Switching the Xray version and updating geofiles show the file being downloaded, how much of it has arrived, and the check, install and restart steps.
+
+### Changed
+- The traffic chart no longer loses the traffic carried while the panel was restarting: the sampler keeps its last counters in the database.
+- **Subscriptions** moved into **Settings** as tabs (Subscriptions, Sub formats, Sub balancers) and left the sidebar. Old links and bookmarks to the Subscriptions page open the new tabs.
+
 ## [1.10.0] - 2026-10-31
 
 **Reload**: a new look and a dashboard that answers "is everything working, and who is using it".

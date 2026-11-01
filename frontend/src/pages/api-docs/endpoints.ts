@@ -524,11 +524,41 @@ export const sections: readonly Section[] = [
             name: 'range',
             in: 'path',
             type: 'string',
-            desc: '24h (24 hourly slots) | 7d | 30d (local days).',
+            desc: '24h (24 hourly slots) | 7d | 30d (local days) | all (local months since recording began, kept forever).',
           },
         ],
         responseSchema: 'TrafficPoint',
         responseSchemaArray: true,
+      },
+      {
+        method: 'GET',
+        path: '/panel/api/server/outboundHealth',
+        summary:
+          "The panel's own health checks of its proxy outbounds, sorted by tag. Every proxy outbound is probed every 10 minutes with the Outbounds tab's test, a failing one every minute; it counts as down after outboundDownThreshold failures in a row. Works without Xray's observatory. checked is false until the first probe.",
+        responseSchema: 'OutboundHealth',
+        responseSchemaArray: true,
+      },
+      {
+        method: 'GET',
+        path: '/panel/api/server/allTimeTraffic',
+        summary:
+          'All-time traffic, which traffic resets do not clear: the heaviest clients (leaving out those reachable only through a hidden node) and every inbound by id. Counted from the counters found when recording began.',
+        params: [
+          {
+            name: 'limit',
+            in: 'query',
+            type: 'number',
+            desc: 'How many clients to return, 1–100. Default 6.',
+          },
+        ],
+        responseSchema: 'AllTimeTraffic',
+      },
+      {
+        method: 'GET',
+        path: '/panel/api/server/taskProgress',
+        summary:
+          'Progress of the Xray core or geofile update running on this panel: the file being downloaded, its place in the batch, bytes so far and the stage (download, verify, install, restart, done, failed). Polled while installXray or updateGeofile is in flight.',
+        responseSchema: 'TaskProgress',
       },
       {
         method: 'GET',

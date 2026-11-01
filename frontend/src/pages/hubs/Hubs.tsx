@@ -129,36 +129,6 @@ export function NodesHub() {
   );
 }
 
-export function SubscriptionsHub() {
-  const { t } = useTranslation();
-  const available = new Set(useSettingsSections().map((s) => s.key));
-  const tabs = [
-    {
-      key: 'general',
-      icon: <CloudServerOutlined />,
-      label: t('pages.settings.subSettings'),
-      render: () => <SettingsPage section="subscription" />,
-    },
-  ];
-  if (available.has('subscription-formats')) {
-    tabs.push({
-      key: 'formats',
-      icon: <CodeOutlined />,
-      label: t('menu.subFormats'),
-      render: () => <SettingsPage section="subscription-formats" />,
-    });
-  }
-  if (available.has('subscription-balancers')) {
-    tabs.push({
-      key: 'balancers',
-      icon: <ApartmentOutlined />,
-      label: t('pages.settings.subBalancers.menu'),
-      render: () => <SettingsPage section="subscription-balancers" />,
-    });
-  }
-  return <HubPage path="/subscriptions" tabs={tabs} />;
-}
-
 export function NotificationsHub() {
   const { t } = useTranslation();
   return (
@@ -190,35 +160,56 @@ export function NotificationsHub() {
 
 export function SettingsHub() {
   const { t } = useTranslation();
-  return (
-    <HubPage
-      path="/settings"
-      tabs={[
-        {
-          key: 'panel',
-          icon: <SettingOutlined />,
-          label: t('pages.settings.panelSettings'),
-          render: () => <SettingsPage section="general" />,
-        },
-        {
-          key: 'security',
-          icon: <SafetyOutlined />,
-          label: t('pages.settings.securitySettings'),
-          render: () => <SettingsPage section="security" />,
-        },
-        {
-          key: 'xray',
-          icon: <ThunderboltOutlined />,
-          label: t('menu.xrayCore'),
-          render: () => <XrayPage forceSection="basic" />,
-        },
-        {
-          key: 'xray-advanced',
-          icon: <CodeOutlined />,
-          label: t('menu.xrayJson'),
-          render: () => <XrayPage forceSection="advanced" />,
-        },
-      ]}
-    />
+  const available = new Set(useSettingsSections().map((s) => s.key));
+  const tabs = [
+    {
+      key: 'panel',
+      icon: <SettingOutlined />,
+      label: t('pages.settings.panelSettings'),
+      render: () => <SettingsPage section="general" />,
+    },
+    {
+      key: 'security',
+      icon: <SafetyOutlined />,
+      label: t('pages.settings.securitySettings'),
+      render: () => <SettingsPage section="security" />,
+    },
+    {
+      key: 'subscription',
+      icon: <CloudServerOutlined />,
+      label: t('pages.settings.subSettings'),
+      render: () => <SettingsPage section="subscription" />,
+    },
+  ];
+  if (available.has('subscription-formats')) {
+    tabs.push({
+      key: 'subscription-formats',
+      icon: <CodeOutlined />,
+      label: t('menu.subFormats'),
+      render: () => <SettingsPage section="subscription-formats" />,
+    });
+  }
+  if (available.has('subscription-balancers')) {
+    tabs.push({
+      key: 'subscription-balancers',
+      icon: <ApartmentOutlined />,
+      label: t('pages.settings.subBalancers.menu'),
+      render: () => <SettingsPage section="subscription-balancers" />,
+    });
+  }
+  tabs.push(
+    {
+      key: 'xray',
+      icon: <ThunderboltOutlined />,
+      label: t('menu.xrayCore'),
+      render: () => <XrayPage forceSection="basic" />,
+    },
+    {
+      key: 'xray-advanced',
+      icon: <CodeOutlined />,
+      label: t('menu.xrayJson'),
+      render: () => <XrayPage forceSection="advanced" />,
+    },
   );
+  return <HubPage path="/settings" tabs={tabs} />;
 }

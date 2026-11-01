@@ -3,22 +3,34 @@ import { useTranslation } from 'react-i18next';
 import { Alert, Button, Collapse, Modal, Radio, Spin, Tag, Tooltip } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
 
-import { HttpUtil } from '@/utils';
+import { HttpUtil, PromiseUtil } from '@/utils';
 import { activateOnKey } from '@/utils/a11y';
+import { TASK_STAGES, taskProgressView, type TaskKind } from '@/lib/updateProgress';
+import { TaskProgressSchema } from '@/generated/zod';
 import type { Status } from '@/models/status';
 import GeodataSection from './GeodataSection';
+import type { UpdateProgressState } from './UpdateProgressDialog';
 import './VersionModal.css';
-
-interface BusyEvent {
-  busy: boolean;
-  tip?: string;
-}
 
 interface VersionModalProps {
   open: boolean;
   status: Status;
   onClose: () => void;
-  onBusy: (e: BusyEvent) => void;
+  onBusy: (e: { busy: boolean; tip?: string }) => void;
+  onProgress: (state: UpdateProgressState | null) => void;
+}
+
+const TASK_STAGE_KEYS: Record<string, string> = {
+  download: 'pages.index.progress.download',
+  verify: 'pages.index.progress.verify',
+  install: 'pages.index.progress.install',
+  restart: 'pages.index.progress.restartXray',
+};
+
+async function fetchTaskProgress() {
+  const msg = await HttpUtil.get('/panel/api/server/taskProgress', undefined, { silent: true });
+  const parsed = TaskProgressSchema.safeParse(msg?.obj);
+  return parsed.success ? parsed.data : null;
 }
 
 const GEOFILES = [
@@ -30,8 +42,53 @@ const GEOFILES = [
   'geoip_RU.dat',
 ];
 
-export default function VersionModal({ open, status, onClose, onBusy }: VersionModalProps) {
+export default function VersionModal({
+  open,
+  status,
+  onClose,
+  onBusy,
+  onProgress,
+}: VersionModalProps) {
   const { t } = useTranslation();
+
+  // Polls the server's task snapshot while the install request is in flight. The
+  // baseline's own timestamp marks stale snapshots, so browser and server clocks never meet.
+  async function runWithProgress(kind: TaskKind, title: string, request: () => Promise<unknown>) {
+    onClose();
+    const steps = TASK_STAGES[kind].map((s) => t(TASK_STAGE_KEYS[s]));
+    onProgress({ title, steps, current: 0, percent: 0 });
+    const baseline = (await fetchTaskProgress())?.updatedAt ?? 0;
+    let running = true;
+    const poll = (async () => {
+      while (running) {
+        await PromiseUtil.sleep(500);
+        const p = running ? await fetchTaskProgress() : null;
+        if (!running || !p || p.updatedAt <= baseline || p.kind !== kind) continue;
+        const view = taskProgressView(p);
+        onProgress({
+          title,
+          steps,
+          current: view.current,
+          percent: view.percent,
+          failed: view.failed,
+          detail: view.file
+            ? t('pages.index.progress.file', {
+                step: view.file.step,
+                steps: view.file.steps,
+                name: view.file.name,
+              })
+            : undefined,
+        });
+      }
+    })();
+    try {
+      await request();
+    } finally {
+      running = false;
+      await poll;
+      onProgress(null);
+    }
+  }
   const [modal, modalContextHolder] = Modal.useModal();
   const [activeKey, setActiveKey] = useState<string | string[]>('1');
   const [versions, setVersions] = useState<string[]>([]);
@@ -73,15 +130,10 @@ export default function VersionModal({ open, status, onClose, onBusy }: VersionM
       content: t('pages.index.xraySwitchVersionDialogDesc').replace('#version#', version),
       okText: t('confirm'),
       cancelText: t('cancel'),
-      onOk: async () => {
-        onClose();
-        onBusy({ busy: true, tip: t('pages.index.dontRefresh') });
-        try {
-          await HttpUtil.post(`/panel/api/server/installXray/${version}`);
-        } finally {
-          onBusy({ busy: false });
-        }
-      },
+      onOk: () =>
+        runWithProgress('xray', `Xray ${version}`, () =>
+          HttpUtil.post(`/panel/api/server/installXray/${version}`),
+        ),
     });
   }
 
@@ -99,18 +151,14 @@ export default function VersionModal({ open, status, onClose, onBusy }: VersionM
         : t('pages.index.geofilesUpdateDialogDesc'),
       okText: t('confirm'),
       cancelText: t('cancel'),
-      onOk: async () => {
-        onClose();
-        onBusy({ busy: true, tip: t('pages.index.dontRefresh') });
-        const url = isSingle
-          ? `/panel/api/server/updateGeofile/${fileName}`
-          : '/panel/api/server/updateGeofile';
-        try {
-          await HttpUtil.post(url);
-        } finally {
-          onBusy({ busy: false });
-        }
-      },
+      onOk: () =>
+        runWithProgress('geofile', t('pages.index.progress.geofiles'), () =>
+          HttpUtil.post(
+            isSingle
+              ? `/panel/api/server/updateGeofile/${fileName}`
+              : '/panel/api/server/updateGeofile',
+          ),
+        ),
     });
   }
 

@@ -139,7 +139,6 @@
       "clients": "ユーザー、グループ、キー、制限、サブスクリプション",
       "settings": "パネル、セキュリティ、Xray コアテンプレート",
       "apiDocs": "自動化のための REST API リファレンス",
-      "subscriptions": "クライアントアプリ向けのサブスクリプションリンク、形式、バランサー",
       "notifications": "Telegram・Discord・メールの通知とボット",
       "nodesHosts": "他の We1ssBoard サーバーとリンクで使うアドレス"
     },
@@ -415,7 +414,7 @@
         "nodes": "ノード",
         "nodesEmpty": "ノードはまだありません",
         "outbounds": "アウトバウンドの状態",
-        "outboundsEmpty": "Observatory が設定されていません",
+        "outboundsEmpty": "確認するプロキシのアウトバウンドがありません",
         "outboundDown": "停止",
         "events": "イベント",
         "eventsEmpty": "パネル起動以降、何も起きていません",
@@ -443,7 +442,24 @@
           "warn": "オンライン、ただし Xray は停止中",
           "bad": "オフライン",
           "off": "無効"
-        }
+        },
+        "periodCurrent": "今期間",
+        "periodAll": "全期間",
+        "topClientsAllSub": "リセット前のトラフィックを含む全期間の使用量",
+        "outboundChecking": "確認中…",
+        "outboundRetrying": "失敗、再確認中"
+      },
+      "progress": {
+        "download": "ダウンロード中",
+        "verify": "チェックサムを確認中",
+        "stop": "パネルを停止中",
+        "install": "インストール中",
+        "configure": "設定中",
+        "start": "パネルを起動中",
+        "restartXray": "Xray を再起動中",
+        "restarting": "パネルを再起動しています。数秒かかります…",
+        "geofiles": "ジオファイルを更新中",
+        "file": "ファイル {step}/{steps}: {name}"
       }
     },
     "inbounds": {
@@ -1361,7 +1377,9 @@
       "inviteNamePlaceholder": "Optional node name",
       "inviteRequired": "Paste an enroll invite",
       "inviteSubmit": "Enroll node",
-      "inviteFailed": "Could not enroll from invite"
+      "inviteFailed": "Could not enroll from invite",
+      "hidden": "ダッシュボードと選択肢から隠す",
+      "hiddenHint": "このノードのインバウンドとクライアントはダッシュボードに表示されず、クライアントにインバウンドを紐付けるときも候補に出ません。同期、チェック、既存の紐付けはそのまま動作します。"
     },
     "settings": {
       "defaultTag": "デフォルト",

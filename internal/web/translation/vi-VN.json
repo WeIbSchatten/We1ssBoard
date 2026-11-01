@@ -139,7 +139,6 @@
       "clients": "Người dùng, nhóm, khóa, giới hạn và đăng ký",
       "settings": "Bảng điều khiển, bảo mật và mẫu lõi Xray",
       "apiDocs": "Tài liệu REST API để tự động hóa",
-      "subscriptions": "Liên kết đăng ký, định dạng và bộ cân bằng cho ứng dụng",
       "notifications": "Cảnh báo và bot Telegram, Discord, email",
       "nodesHosts": "Các máy chủ We1ssBoard khác và địa chỉ dùng trong liên kết"
     },
@@ -415,8 +414,8 @@
         "nodes": "Node",
         "nodesEmpty": "Chưa có node",
         "outbounds": "Tình trạng outbound",
-        "outboundsEmpty": "Observatory chưa được thiết lập",
-        "outboundDown": "ngừng",
+        "outboundsEmpty": "Không có outbound proxy để kiểm tra",
+        "outboundDown": "Ngừng",
         "events": "Sự kiện",
         "eventsEmpty": "Chưa có gì xảy ra từ khi bảng điều khiển khởi động",
         "eventOutboundDown": "Outbound ngừng",
@@ -443,7 +442,24 @@
           "warn": "Trực tuyến, nhưng Xray không chạy",
           "bad": "Ngoại tuyến",
           "off": "Đã tắt"
-        }
+        },
+        "periodCurrent": "Kỳ này",
+        "periodAll": "Toàn thời gian",
+        "topClientsAllSub": "Mức dùng toàn thời gian, gồm cả lưu lượng trước khi đặt lại",
+        "outboundChecking": "Đang kiểm tra…",
+        "outboundRetrying": "Lỗi, đang kiểm tra lại"
+      },
+      "progress": {
+        "download": "Đang tải xuống",
+        "verify": "Đang kiểm tra checksum",
+        "stop": "Đang dừng bảng điều khiển",
+        "install": "Đang cài đặt",
+        "configure": "Đang cấu hình",
+        "start": "Đang khởi động bảng điều khiển",
+        "restartXray": "Đang khởi động lại Xray",
+        "restarting": "Bảng điều khiển đang khởi động lại, mất vài giây…",
+        "geofiles": "Đang cập nhật geofile",
+        "file": "Tệp {step}/{steps}: {name}"
       }
     },
     "inbounds": {
@@ -1361,7 +1377,9 @@
       "inviteNamePlaceholder": "Optional node name",
       "inviteRequired": "Paste an enroll invite",
       "inviteSubmit": "Enroll node",
-      "inviteFailed": "Could not enroll from invite"
+      "inviteFailed": "Could not enroll from invite",
+      "hidden": "Ẩn khỏi bảng tổng quan và bộ chọn",
+      "hiddenHint": "Inbound và khách hàng của node này không hiển thị trên bảng tổng quan, và inbound của nó không được đề xuất khi gắn inbound cho khách hàng. Đồng bộ, kiểm tra và các liên kết hiện có vẫn hoạt động."
     },
     "settings": {
       "defaultTag": "Mặc định",

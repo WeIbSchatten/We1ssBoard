@@ -1,15 +1,17 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { Card, Table, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 
 import { SizeFormatter } from '@/utils';
-import type { DashboardInbound } from './useDashboardData';
+import PeriodToggle, { type TrafficPeriod } from './PeriodToggle';
+import { useAllTimeTraffic, type DashboardInbound } from './useDashboardData';
 
 export interface InboundRow extends DashboardInbound {
   online: number;
   nodeName: string;
+  traffic: number;
 }
 
 interface InboundsCardProps {
@@ -26,17 +28,23 @@ export default function InboundsCard({
   limit = 8,
 }: InboundsCardProps) {
   const { t } = useTranslation();
+  const [period, setPeriod] = useState<TrafficPeriod>('period');
+  const allTime = useAllTimeTraffic(period === 'all').data;
   const rows = useMemo<InboundRow[]>(
     () =>
       inbounds
-        .map((ib) => ({
-          ...ib,
-          online: onlineByInbound.get(ib.id) ?? 0,
-          nodeName: ib.nodeId ? (nodeNames.get(ib.nodeId) ?? `#${ib.nodeId}`) : '',
-        }))
-        .sort((a, b) => b.online - a.online || b.up + b.down - (a.up + a.down))
+        .map((ib) => {
+          const total = allTime?.inbounds?.[ib.id];
+          return {
+            ...ib,
+            online: onlineByInbound.get(ib.id) ?? 0,
+            nodeName: ib.nodeId ? (nodeNames.get(ib.nodeId) ?? `#${ib.nodeId}`) : '',
+            traffic: period === 'all' ? (total ? total.up + total.down : 0) : ib.up + ib.down,
+          };
+        })
+        .sort((a, b) => b.online - a.online || b.traffic - a.traffic)
         .slice(0, limit),
-    [inbounds, onlineByInbound, nodeNames, limit],
+    [inbounds, onlineByInbound, nodeNames, limit, period, allTime],
   );
 
   const columns: ColumnsType<InboundRow> = [
@@ -75,7 +83,7 @@ export default function InboundsCard({
       title: t('pages.index.dash.colTraffic'),
       key: 'traffic',
       align: 'right',
-      render: (_v, r) => <span className="ov-mono">{SizeFormatter.sizeFormat(r.up + r.down)}</span>,
+      render: (_v, r) => <span className="ov-mono">{SizeFormatter.sizeFormat(r.traffic)}</span>,
     },
   ];
 
@@ -83,9 +91,12 @@ export default function InboundsCard({
     <Card className="dash-card">
       <div className="dash-card-head">
         <div className="ov-kicker">{t('pages.index.dash.inbounds')}</div>
-        <Link to="/connections" className="dash-link">
-          {t('pages.index.dash.openAll')}
-        </Link>
+        <span className="dash-head-actions">
+          <PeriodToggle value={period} onChange={setPeriod} />
+          <Link to="/connections" className="dash-link">
+            {t('pages.index.dash.openAll')}
+          </Link>
+        </span>
       </div>
       <Table<InboundRow>
         size="small"

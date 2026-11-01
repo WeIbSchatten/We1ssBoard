@@ -247,3 +247,10 @@
 .dash-cell-stack small {
   color: var(--ov-faint);
 }
+
+.dash-head-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}

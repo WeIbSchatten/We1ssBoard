@@ -139,7 +139,6 @@
       "clients": "Kullanıcılar, gruplar, anahtarlar, limitler ve abonelikler",
       "settings": "Panel, güvenlik ve Xray çekirdek şablonu",
       "apiDocs": "Otomasyon için REST API başvurusu",
-      "subscriptions": "İstemci uygulamaları için abonelik bağlantıları, biçimler ve dengeleyiciler",
       "notifications": "Telegram, Discord ve e-posta uyarıları ile botlar",
       "nodesHosts": "Diğer We1ssBoard sunucuları ve bağlantılarda kullanılan adresler"
     },
@@ -415,8 +414,8 @@
         "nodes": "Düğümler",
         "nodesEmpty": "Henüz düğüm yok",
         "outbounds": "Giden bağlantı durumu",
-        "outboundsEmpty": "Observatory ayarlanmamış",
-        "outboundDown": "çalışmıyor",
+        "outboundsEmpty": "Denetlenecek proxy giden bağlantısı yok",
+        "outboundDown": "Çalışmıyor",
         "events": "Olaylar",
         "eventsEmpty": "Panel başladığından beri bir şey olmadı",
         "eventOutboundDown": "Giden bağlantı düştü",
@@ -443,7 +442,24 @@
           "warn": "Çevrimiçi, ama Xray çalışmıyor",
           "bad": "Çevrimdışı",
           "off": "Devre dışı"
-        }
+        },
+        "periodCurrent": "Bu dönem",
+        "periodAll": "Tüm zamanlar",
+        "topClientsAllSub": "Sıfırlamalardan önceki trafik dahil tüm zamanların kullanımı",
+        "outboundChecking": "Denetleniyor…",
+        "outboundRetrying": "Başarısız, yeniden denetleniyor"
+      },
+      "progress": {
+        "download": "İndiriliyor",
+        "verify": "Sağlama toplamı denetleniyor",
+        "stop": "Panel durduruluyor",
+        "install": "Kuruluyor",
+        "configure": "Yapılandırılıyor",
+        "start": "Panel başlatılıyor",
+        "restartXray": "Xray yeniden başlatılıyor",
+        "restarting": "Panel yeniden başlıyor, birkaç saniye sürer…",
+        "geofiles": "Geo dosyaları güncelleniyor",
+        "file": "Dosya {step}/{steps}: {name}"
       }
     },
     "inbounds": {
@@ -1361,7 +1377,9 @@
       "inviteNamePlaceholder": "Optional node name",
       "inviteRequired": "Paste an enroll invite",
       "inviteSubmit": "Enroll node",
-      "inviteFailed": "Could not enroll from invite"
+      "inviteFailed": "Could not enroll from invite",
+      "hidden": "Panodan ve seçicilerden gizle",
+      "hiddenHint": "Bu düğümün gelen bağlantıları ve istemcileri panoda gösterilmez, gelen bağlantıları istemcilere bağlarken sunulmaz. Eşitleme, denetimler ve mevcut bağlantılar çalışmaya devam eder."
     },
     "settings": {
       "defaultTag": "Varsayılan",

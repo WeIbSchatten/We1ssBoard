@@ -90,6 +90,9 @@ func allModels() []any {
 		&model.SubBalancer{},
 		&model.TuicTrafficReceipt{},
 		&model.TrafficHour{},
+		&model.TrafficMonth{},
+		&model.InboundTrafficTotal{},
+		&model.ClientTrafficTotal{},
 	}
 }
 

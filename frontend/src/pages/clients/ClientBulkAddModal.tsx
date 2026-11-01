@@ -20,6 +20,7 @@ import { FormProvider, useForm, useWatch } from 'react-hook-form';
 
 import { RandomUtil, SizeFormatter } from '@/utils';
 import { formatInboundLabel } from '@/lib/inbounds/label';
+import { pickableInbounds } from '@/lib/inbounds/pickable';
 import { TLS_FLOW_CONTROL, TRAFFIC_RESETS } from '@/schemas/primitives';
 import { DateTimePicker, SelectAllClearButtons } from '@/components/form';
 import { FormField } from '@/components/form/rhf';
@@ -139,7 +140,7 @@ export default function ClientBulkAddModal({
 
   const inboundOptions = useMemo(
     () =>
-      (inbounds || [])
+      pickableInbounds(inbounds || [], [])
         .filter((ib) => MULTI_CLIENT_PROTOCOLS.has(ib.protocol || ''))
         .map((ib) => ({
           label: formatInboundLabel(ib.tag, ib.remark),

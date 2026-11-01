@@ -374,6 +374,16 @@ export const EXAMPLES: Record<string, unknown> = {
     "webListen": "",
     "webPort": 1
   },
+  "AllTimeTraffic": {
+    "clients": [
+      {
+        "down": 8388608,
+        "email": "alice@example.com",
+        "up": 1048576
+      }
+    ],
+    "inbounds": {}
+  },
   "AmneziaWGLogs": {
     "events": [
       "2025/01/01 12:00:00 amneziawg: started interface awg1 for inbound 1"
@@ -488,6 +498,11 @@ export const EXAMPLES: Record<string, unknown> = {
     "trafficReset": "never",
     "trafficResetDay": 1,
     "updated_at": 0
+  },
+  "ClientAllTime": {
+    "down": 8388608,
+    "email": "alice@example.com",
+    "up": 1048576
   },
   "ClientInbound": {
     "clientId": 0,
@@ -917,6 +932,7 @@ export const EXAMPLES: Record<string, unknown> = {
   "InboundOption": {
     "awgServer": null,
     "enable": true,
+    "hidden": false,
     "id": 1,
     "listen": "",
     "mtprotoDomain": "",
@@ -987,6 +1003,7 @@ export const EXAMPLES: Record<string, unknown> = {
     "disabledCount": 3,
     "enable": true,
     "guid": "",
+    "hidden": false,
     "id": 1,
     "inboundCount": 5,
     "inboundSyncMode": "all",
@@ -1024,6 +1041,7 @@ export const EXAMPLES: Record<string, unknown> = {
     "basePath": "",
     "clearApiToken": false,
     "enable": false,
+    "hidden": false,
     "id": 0,
     "inboundSyncMode": "all",
     "inboundTags": [
@@ -1052,6 +1070,7 @@ export const EXAMPLES: Record<string, unknown> = {
     "enable": true,
     "guid": "node-guid",
     "hasApiToken": true,
+    "hidden": false,
     "id": 1,
     "inboundCount": 3,
     "inboundSyncMode": "all",
@@ -1081,6 +1100,16 @@ export const EXAMPLES: Record<string, unknown> = {
     "xrayError": "",
     "xrayState": "running",
     "xrayVersion": "25.10.31"
+  },
+  "OutboundHealth": {
+    "alive": true,
+    "checked": true,
+    "checkedAt": 1793437200000,
+    "delay": 120,
+    "error": "",
+    "failures": 0,
+    "protocol": "wireguard",
+    "tag": "warp"
   },
   "OutboundTraffics": {
     "down": 0,
@@ -1125,6 +1154,7 @@ export const EXAMPLES: Record<string, unknown> = {
     "exitCode": 0,
     "finishedAt": 1735689612,
     "runId": "1735689600123456789",
+    "stage": "install",
     "state": "success"
   },
   "PeerActivity": {
@@ -1563,6 +1593,17 @@ export const EXAMPLES: Record<string, unknown> = {
     "strategy": "random",
     "updatedAt": 1710000000000
   },
+  "TaskProgress": {
+    "done": 1048576,
+    "error": "",
+    "file": "geosite.dat",
+    "kind": "geofile",
+    "stage": "download",
+    "step": 2,
+    "steps": 6,
+    "total": 4194304,
+    "updatedAt": 1793437200000
+  },
   "TgWebProxyBindManyRequest": {
     "dedicated": true,
     "emails": [
@@ -1689,6 +1730,10 @@ export const EXAMPLES: Record<string, unknown> = {
   "TrafficPoint": {
     "down": 8388608,
     "time": 1793430000,
+    "up": 1048576
+  },
+  "TrafficTotal": {
+    "down": 8388608,
     "up": 1048576
   },
   "TuicClientSettings": {
