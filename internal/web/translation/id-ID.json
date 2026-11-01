@@ -1017,7 +1017,7 @@
       "duration": "Durasi",
       "attachedInbounds": "Inbound terlampir",
       "activeConnection": "Koneksi aktif",
-      "activeConnectionGuess": "Perkiraan dari inbound yang membawa trafik. Aktifkan log akses Xray untuk data yang tepat",
+      "activeConnectionGuess": "Perkiraan dari inbound yang membawa trafik. Aktifkan Koneksi aktif yang tepat di Pengaturan untuk data yang tepat",
       "selectInbound": "Pilih satu atau lebih inbound",
       "selectAllInbounds": "Pilih semua",
       "clearAllInbounds": "Hapus semua",
@@ -2047,7 +2047,9 @@
         "expiresIn": "Expires in about {minutes} minutes"
       },
       "unsavedChanges": "Ada perubahan belum disimpan",
-      "allSaved": "Semua perubahan tersimpan"
+      "allSaved": "Semua perubahan tersimpan",
+      "exactActiveConnection": "Koneksi aktif yang tepat",
+      "exactActiveConnectionDesc": "Menjaga log akses Xray tetap aktif agar halaman Klien menunjukkan dengan tepat inbound yang dipakai tiap klien. Xray mencatat setiap koneksi di sana, termasuk alamat yang dikunjungi. Log disimpan di folder log panel, dipotong pada 64 MB dan dibersihkan setiap hari. Mengubahnya akan memulai ulang Xray."
     },
     "xray": {
       "save": "Simpan",

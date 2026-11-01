@@ -74,6 +74,10 @@
           "discordRunTime": {
             "type": "string"
           },
+          "exactActiveConnection": {
+            "description": "ExactActiveConnection points Xray's access log at the panel so the Clients\npage knows which inbound each client uses; on by default.",
+            "type": "boolean"
+          },
           "expireDiff": {
             "minimum": 0,
             "type": "integer"
@@ -624,6 +628,7 @@
           "discordLang",
           "discordMemory",
           "discordRunTime",
+          "exactActiveConnection",
           "expireDiff",
           "externalSubUserAgent",
           "externalTrafficInformEnable",
@@ -841,6 +846,10 @@
           },
           "discordRunTime": {
             "type": "string"
+          },
+          "exactActiveConnection": {
+            "description": "ExactActiveConnection points Xray's access log at the panel so the Clients\npage knows which inbound each client uses; on by default.",
+            "type": "boolean"
           },
           "expireDiff": {
             "minimum": 0,
@@ -1416,6 +1425,7 @@
           "discordLang",
           "discordMemory",
           "discordRunTime",
+          "exactActiveConnection",
           "expireDiff",
           "externalSubUserAgent",
           "externalTrafficInformEnable",

@@ -1017,7 +1017,7 @@
       "duration": "Duration",
       "attachedInbounds": "Attached inbounds",
       "activeConnection": "Active connection",
-      "activeConnectionGuess": "Estimated from inbounds that carried traffic. Turn on the Xray access log for exact data",
+      "activeConnectionGuess": "Estimated from inbounds that carried traffic. Turn on Exact active connection in Settings for exact data",
       "selectInbound": "Select one or more inbounds",
       "selectAllInbounds": "Select all",
       "clearAllInbounds": "Clear all",
@@ -2370,7 +2370,9 @@
         "expiresIn": "Expires in about {minutes} minutes"
       },
       "unsavedChanges": "Unsaved changes",
-      "allSaved": "All changes saved"
+      "allSaved": "All changes saved",
+      "exactActiveConnection": "Exact active connection",
+      "exactActiveConnectionDesc": "Keeps Xray's access log on so the Clients page shows exactly which inbound each client uses. Xray writes every connection there, including the address visited. The log stays in the panel's log folder, is cut at 64 MB and cleared daily. Changing this restarts Xray."
     },
     "xray": {
       "save": "Save",

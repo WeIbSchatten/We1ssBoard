@@ -20,6 +20,7 @@ export const AllSettingSchema = z
     realityScanCandidates: z.string().optional(),
     ipLimitAllowlist: z.string().optional(),
     panelOutbound: z.string().optional(),
+    exactActiveConnection: z.boolean().optional(),
     customCss: z.string().max(65536).optional(),
     customLoginCss: z.string().max(65536).optional(),
     customCssBundle: z.string().optional(),

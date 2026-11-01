@@ -1017,7 +1017,7 @@
       "duration": "Süre",
       "attachedInbounds": "Bağlı Gelen Bağlantılar",
       "activeConnection": "Etkin bağlantı",
-      "activeConnectionGuess": "Trafik taşıyan gelen bağlantılardan tahmin edildi. Kesin veri için Xray erişim günlüğünü açın",
+      "activeConnectionGuess": "Trafik taşıyan gelen bağlantılardan tahmin edildi. Kesin veri için Ayarlar'da Kesin etkin bağlantı'yı açın",
       "selectInbound": "Bir veya Daha Fazla Gelen Bağlantı Seçin",
       "selectAllInbounds": "Tümünü Seç",
       "clearAllInbounds": "Tümünü Temizle",
@@ -2047,7 +2047,9 @@
         "expiresIn": "Expires in about {minutes} minutes"
       },
       "unsavedChanges": "Kaydedilmemiş değişiklikler",
-      "allSaved": "Tüm değişiklikler kaydedildi"
+      "allSaved": "Tüm değişiklikler kaydedildi",
+      "exactActiveConnection": "Kesin etkin bağlantı",
+      "exactActiveConnectionDesc": "İstemciler sayfasının her istemcinin hangi gelen bağlantıyı kullandığını kesin göstermesi için Xray erişim günlüğünü açık tutar. Xray her bağlantıyı, ziyaret edilen adres dahil oraya yazar. Günlük panelin günlük klasöründe tutulur, 64 MB'ta kesilir ve günlük temizlenir. Değiştirmek Xray'i yeniden başlatır."
     },
     "xray": {
       "save": "Kaydet",

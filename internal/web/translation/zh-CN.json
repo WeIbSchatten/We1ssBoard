@@ -1017,7 +1017,7 @@
       "duration": "时长",
       "attachedInbounds": "关联入站",
       "activeConnection": "当前连接",
-      "activeConnectionGuess": "根据有流量的入站推测。开启 Xray 访问日志可获得准确数据",
+      "activeConnectionGuess": "根据有流量的入站推测。在设置中开启“精确的当前连接”可获得准确数据",
       "selectInbound": "选择一个或多个入站",
       "selectAllInbounds": "全选",
       "clearAllInbounds": "全部清除",
@@ -2047,7 +2047,9 @@
         "expiresIn": "Expires in about {minutes} minutes"
       },
       "unsavedChanges": "有未保存的更改",
-      "allSaved": "所有更改已保存"
+      "allSaved": "所有更改已保存",
+      "exactActiveConnection": "精确的当前连接",
+      "exactActiveConnectionDesc": "保持 Xray 访问日志开启，使“客户端”页面准确显示每个客户端使用的入站。Xray 会把每个连接写入日志，包括访问的地址。日志保存在面板日志目录中，超过 64 MB 时截断，并每天清空。更改此项会重启 Xray。"
     },
     "xray": {
       "importRules": "导入规则",

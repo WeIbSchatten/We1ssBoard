@@ -31,6 +31,9 @@ type AllSetting struct {
 	RealityScanCandidates string `json:"realityScanCandidates" form:"realityScanCandidates"`
 	IpLimitAllowlist      string `json:"ipLimitAllowlist" form:"ipLimitAllowlist"`
 	PanelOutbound         string `json:"panelOutbound" form:"panelOutbound"`
+	// ExactActiveConnection points Xray's access log at the panel so the Clients
+	// page knows which inbound each client uses; on by default.
+	ExactActiveConnection bool   `json:"exactActiveConnection" form:"exactActiveConnection"`
 	CustomCss             string `json:"customCss" form:"customCss"`
 	CustomLoginCss        string `json:"customLoginCss" form:"customLoginCss"`
 	CustomCssBundle       string `json:"customCssBundle" form:"customCssBundle"`

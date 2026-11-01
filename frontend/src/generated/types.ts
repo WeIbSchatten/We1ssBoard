@@ -24,6 +24,7 @@ export interface AllSetting {
   discordLang: string;
   discordMemory: number;
   discordRunTime: string;
+  exactActiveConnection: boolean;
   expireDiff: number;
   externalSubUserAgent: string;
   externalTrafficInformEnable: boolean;
@@ -208,6 +209,7 @@ export interface AllSettingView {
   discordLang: string;
   discordMemory: number;
   discordRunTime: string;
+  exactActiveConnection: boolean;
   expireDiff: number;
   externalSubUserAgent: string;
   externalTrafficInformEnable: boolean;

@@ -48,6 +48,10 @@ export const SCHEMAS: Record<string, unknown> = {
       "discordRunTime": {
         "type": "string"
       },
+      "exactActiveConnection": {
+        "description": "ExactActiveConnection points Xray's access log at the panel so the Clients\npage knows which inbound each client uses; on by default.",
+        "type": "boolean"
+      },
       "expireDiff": {
         "minimum": 0,
         "type": "integer"
@@ -598,6 +602,7 @@ export const SCHEMAS: Record<string, unknown> = {
       "discordLang",
       "discordMemory",
       "discordRunTime",
+      "exactActiveConnection",
       "expireDiff",
       "externalSubUserAgent",
       "externalTrafficInformEnable",
@@ -815,6 +820,10 @@ export const SCHEMAS: Record<string, unknown> = {
       },
       "discordRunTime": {
         "type": "string"
+      },
+      "exactActiveConnection": {
+        "description": "ExactActiveConnection points Xray's access log at the panel so the Clients\npage knows which inbound each client uses; on by default.",
+        "type": "boolean"
       },
       "expireDiff": {
         "minimum": 0,
@@ -1390,6 +1399,7 @@ export const SCHEMAS: Record<string, unknown> = {
       "discordLang",
       "discordMemory",
       "discordRunTime",
+      "exactActiveConnection",
       "expireDiff",
       "externalSubUserAgent",
       "externalTrafficInformEnable",
