@@ -139,7 +139,6 @@
       "clients": "Usuários, grupos, chaves, limites e assinaturas",
       "settings": "Painel, segurança e modelo do núcleo Xray",
       "apiDocs": "Referência da API REST para automação",
-      "subscriptions": "Links de assinatura, formatos e balanceadores para apps cliente",
       "notifications": "Alertas e bots de Telegram, Discord e e-mail",
       "nodesHosts": "Outros servidores We1ssBoard e endereços usados nos links"
     },

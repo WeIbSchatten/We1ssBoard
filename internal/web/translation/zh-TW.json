@@ -139,7 +139,6 @@
       "clients": "使用者、群組、金鑰、限額與訂閱",
       "settings": "面板、安全與 Xray 核心範本",
       "apiDocs": "用於自動化的 REST API 參考",
-      "subscriptions": "供用戶端應用使用的訂閱連結、格式與負載平衡",
       "notifications": "Telegram、Discord 與郵件通知和機器人",
       "nodesHosts": "其他 We1ssBoard 伺服器及連結中使用的位址"
     },

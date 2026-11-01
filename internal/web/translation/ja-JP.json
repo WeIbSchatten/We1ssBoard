@@ -139,7 +139,6 @@
       "clients": "ユーザー、グループ、キー、制限、サブスクリプション",
       "settings": "パネル、セキュリティ、Xray コアテンプレート",
       "apiDocs": "自動化のための REST API リファレンス",
-      "subscriptions": "クライアントアプリ向けのサブスクリプションリンク、形式、バランサー",
       "notifications": "Telegram・Discord・メールの通知とボット",
       "nodesHosts": "他の We1ssBoard サーバーとリンクで使うアドレス"
     },

@@ -139,7 +139,6 @@
       "clients": "Pengguna, grup, kunci, batas, dan langganan",
       "settings": "Panel, keamanan, dan templat inti Xray",
       "apiDocs": "Referensi REST API untuk otomatisasi",
-      "subscriptions": "Tautan langganan, format, dan penyeimbang untuk aplikasi klien",
       "notifications": "Peringatan dan bot Telegram, Discord, dan email",
       "nodesHosts": "Server We1ssBoard lain dan alamat yang dipakai di tautan"
     },

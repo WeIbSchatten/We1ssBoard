@@ -9,6 +9,11 @@ differently now), **Fixed** (bugs), **Removed**, **Breaking** (needs action from
 you or breaks an old setup), **Known issues** (problems found after the release
 and the version that fixes them).
 
+## [Unreleased]
+
+### Changed
+- **Subscriptions** moved into **Settings** as tabs (Subscriptions, Sub formats, Sub balancers) and left the sidebar. Old links and bookmarks to the Subscriptions page open the new tabs.
+
 ## [1.10.0] - 2026-10-31
 
 **Reload**: a new look and a dashboard that answers "is everything working, and who is using it".

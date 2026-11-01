@@ -403,7 +403,7 @@ export default function CommandPalette() {
         icon: <TagsOutlined />,
       },
       {
-        path: '/subscriptions',
+        path: '/settings#subscription',
         title: t('menu.subscriptions'),
         keywords: ['subscriptions', 'sub', 'clash', 'json', 'links'],
         icon: <LinkOutlined />,
@@ -506,21 +506,21 @@ export default function CommandPalette() {
         icon: <DiscordOutlined />,
       },
       {
-        path: '/subscriptions',
+        path: '/settings#subscription',
         title: `${t('menu.subscriptions')} · ${t('pages.settings.subSettings')}`,
         subtitle: t('pages.settings.subSettings'),
         keywords: ['subscription', 'subPort', 'subURI', 'subDomain', 'reverse proxy'],
         icon: <CloudServerOutlined />,
       },
       {
-        path: '/subscriptions#formats',
+        path: '/settings#subscription-formats',
         title: `${t('menu.subscriptions')} · ${t('menu.subFormats')}`,
         subtitle: t('menu.subFormats'),
         keywords: ['formats', 'clash', 'sing-box', 'v2ray', 'json', 'sub formats'],
         icon: <CodeOutlined />,
       },
       {
-        path: '/subscriptions#balancers',
+        path: '/settings#subscription-balancers',
         title: `${t('menu.subscriptions')} · ${t('pages.settings.subBalancers.menu')}`,
         subtitle: t('pages.settings.subBalancers.menu'),
         keywords: ['balancers', 'sub balancers', 'balancer nodes'],

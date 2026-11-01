@@ -139,7 +139,6 @@
       "clients": "Users, groups, keys, limits and subscriptions",
       "settings": "Panel, security and the Xray core template",
       "apiDocs": "REST API reference for automation",
-      "subscriptions": "Subscription links, formats and balancers for client apps",
       "notifications": "Telegram, Discord and email alerts and bots",
       "nodesHosts": "Other We1ssBoard servers and the addresses used in links"
     },

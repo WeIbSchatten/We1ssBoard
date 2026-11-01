@@ -13,12 +13,6 @@ export const NAV_ROUTES: NavRoute[] = [
   { key: '/', titleKey: 'menu.dashboard', hintKey: 'menu.hint.dashboard', section: 'main' },
   { key: '/clients', titleKey: 'menu.clients', hintKey: 'menu.hint.clients', section: 'users' },
   {
-    key: '/subscriptions',
-    titleKey: 'menu.subscriptions',
-    hintKey: 'menu.hint.subscriptions',
-    section: 'users',
-  },
-  {
     key: '/connections',
     titleKey: 'menu.connections',
     hintKey: 'menu.hint.connections',
@@ -61,9 +55,10 @@ const LEGACY_LOCATIONS: Record<string, string> = {
   '/settings#telegram': '/notifications#telegram',
   '/settings#discord': '/notifications#discord',
   '/settings#email': '/notifications#email',
-  '/settings#subscription': '/subscriptions',
-  '/settings#subscription-formats': '/subscriptions#formats',
-  '/settings#subscription-balancers': '/subscriptions#balancers',
+  '/subscriptions': '/settings#subscription',
+  '/subscriptions#general': '/settings#subscription',
+  '/subscriptions#formats': '/settings#subscription-formats',
+  '/subscriptions#balancers': '/settings#subscription-balancers',
 };
 
 // Maps an old location to its new home, or returns null when it is current.

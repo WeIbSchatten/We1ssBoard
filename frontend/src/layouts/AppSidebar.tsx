@@ -12,7 +12,6 @@ import {
   ClusterOutlined,
   GithubOutlined,
   LayoutOutlined,
-  LinkOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   NodeIndexOutlined,
@@ -41,7 +40,6 @@ const SIDEBAR_COLLAPSED_KEY = 'sidebar-collapsed';
 const ICONS: Record<string, ComponentType> = {
   '/': LayoutOutlined,
   '/clients': TeamOutlined,
-  '/subscriptions': LinkOutlined,
   '/connections': NodeIndexOutlined,
   '/nodes': ClusterOutlined,
   '/notifications': BellOutlined,

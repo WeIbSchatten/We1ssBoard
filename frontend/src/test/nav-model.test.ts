@@ -12,13 +12,16 @@ describe('legacyTarget', () => {
     ['/xray', '#advanced', '/settings#xray-advanced'],
     ['/xray', '', '/settings#xray'],
     ['/settings', '#telegram', '/notifications#telegram'],
-    ['/settings', '#subscription-formats', '/subscriptions#formats'],
+    ['/subscriptions', '', '/settings#subscription'],
+    ['/subscriptions', '#formats', '/settings#subscription-formats'],
+    ['/subscriptions', '#balancers', '/settings#subscription-balancers'],
   ])('%s%s → %s', (path, hash, want) => {
     expect(legacyTarget(path, hash)).toBe(want);
   });
 
   it('leaves current locations alone', () => {
     expect(legacyTarget('/settings', '#security')).toBeNull();
+    expect(legacyTarget('/settings', '#subscription-formats')).toBeNull();
     expect(legacyTarget('/clients', '#groups')).toBeNull();
   });
 });

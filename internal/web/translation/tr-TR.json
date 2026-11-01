@@ -139,7 +139,6 @@
       "clients": "Kullanıcılar, gruplar, anahtarlar, limitler ve abonelikler",
       "settings": "Panel, güvenlik ve Xray çekirdek şablonu",
       "apiDocs": "Otomasyon için REST API başvurusu",
-      "subscriptions": "İstemci uygulamaları için abonelik bağlantıları, biçimler ve dengeleyiciler",
       "notifications": "Telegram, Discord ve e-posta uyarıları ile botlar",
       "nodesHosts": "Diğer We1ssBoard sunucuları ve bağlantılarda kullanılan adresler"
     },

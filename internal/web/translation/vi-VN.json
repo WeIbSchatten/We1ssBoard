@@ -139,7 +139,6 @@
       "clients": "Người dùng, nhóm, khóa, giới hạn và đăng ký",
       "settings": "Bảng điều khiển, bảo mật và mẫu lõi Xray",
       "apiDocs": "Tài liệu REST API để tự động hóa",
-      "subscriptions": "Liên kết đăng ký, định dạng và bộ cân bằng cho ứng dụng",
       "notifications": "Cảnh báo và bot Telegram, Discord, email",
       "nodesHosts": "Các máy chủ We1ssBoard khác và địa chỉ dùng trong liên kết"
     },
