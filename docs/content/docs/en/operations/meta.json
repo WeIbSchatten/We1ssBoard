@@ -2,6 +2,7 @@
   "title": "Operations",
   "icon": "ServerCog",
   "pages": [
+    "dashboard",
     "reverse-proxy",
     "multi-node",
     "outbounds-routing",
@@ -9,6 +10,7 @@
     "telegram-bot",
     "discord-bot",
     "tg-web-proxy",
+    "appearance",
     "custom-css",
     "performance",
     "security"

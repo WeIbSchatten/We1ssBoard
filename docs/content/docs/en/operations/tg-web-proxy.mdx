@@ -119,8 +119,8 @@ expects for path deployments; We1ssBoard handles this for you.
 
 Bind a client to a profile so its **raw** subscription and the client **QR code**
 menu carry a web-proxy link next to inbound links. Open the client's form, go to
-the **Telegram WEB Proxy** tab and pick a profile, or review bindings under
-**Profiles → Client bindings**. JSON and Clash subscriptions never include the
+the **Telegram WEB Proxy** tab and pick a profile, or bind many clients at once
+on the **Users** tab (below). JSON and Clash subscriptions never include the
 link.
 
 - **Shared binding.** The client advertises the chosen profile's own secret.
@@ -139,13 +139,30 @@ link.
 Older releases created `fb-tgwp:<email>` mtg inbounds for dedicated secrets; they
 never worked with the relay and are removed by the next sync.
 
+### Users tab
+
+**Connections → Telegram WEB Proxy → Users** shows who is bound to which relay,
+for this panel and for every node that runs one:
+
+1. Pick the relay at the top. Each one shows how many clients are bound to it.
+2. Pick the **profile** to bind to. On this panel's relay you can also choose
+   between a shared binding and a dedicated secret; a node's relay always binds
+   dedicated.
+3. Move clients between **Not bound** and **Bound**: search, select several and
+   press **Bind** or **Unbind**. A client bound to another relay is marked
+   "now on …"; binding it here moves it.
+
+Under the lists, the bindings table of the selected relay shows each client's
+profile, its secret and its link.
+
 ## Relay on a node
 
 The relay does not have to run on the panel that sells the subscriptions. A
 common setup is a relay on an EU node while clients live on a master panel in
 another country. Install the relay on the node, manage its profiles from the
 master under **Nodes & hosts → node → Telegram WEB Proxy**, and bind master
-clients to a node profile with **Add to subscriptions**.
+clients to it on the **Users** tab by picking the node's relay (or with **Add to
+subscriptions** on one of its profiles).
 
 Both panels then keep dedicated `fb:` profiles in the node's `profiles.json`:
 the node for its own clients, the master for the clients it binds there. Each

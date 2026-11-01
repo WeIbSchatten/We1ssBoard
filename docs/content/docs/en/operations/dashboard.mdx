@@ -1,0 +1,84 @@
+---
+title: Dashboard
+description: Read the We1ssBoard Overview page — key figures, traffic history, what needs attention, connected clients, nodes, outbound health and events.
+icon: LayoutDashboard
+---
+
+**Overview** is the first page after login. It answers three questions at a
+glance: is everything running, who is using the server, and where the traffic
+goes. Every card links to the page where you fix or change what it shows.
+
+## Key figures
+
+The row of tiles at the top shows:
+
+- **Online now** — clients with traffic in the last poll, out of all clients;
+- **Traffic today** — upload plus download across all inbounds since midnight;
+- **Inbounds** — how many inbounds exist and how many carry clients right now;
+- **Nodes** — nodes online out of the enabled ones;
+- **Needs attention** — open problems; the subtitle counts the ones that need
+  fixing now.
+
+## Traffic
+
+The chart stacks upload and download for **24 hours**, **7 days** or **30
+days**. The panel stores hourly totals for 32 days and monthly totals forever
+(see [Database](/docs/reference/database)), so the history survives restarts and
+traffic resets.
+
+## Needs attention
+
+A list of what is wrong, each with a **Fix** button that opens the right page:
+
+- Xray is not running or failed to start;
+- CPU, memory or disk is running high;
+- a node is offline, or Xray is not running on it;
+- an outbound is down (see [Outbound health](#outbound-health));
+- clients ran out of traffic or time, or expire soon.
+
+**All good** means the list is empty.
+
+## Inbounds and top clients
+
+**Inbounds** lists each inbound with its protocol, how many clients are online
+on it and its traffic. **Top clients** ranks clients by usage. Both cards switch
+between:
+
+- **This period** — usage since the last reset, the same counters the traffic
+  limits use;
+- **All time** — usage including traffic before resets.
+
+All-time totals start from the counters found when you update to 1.10.1;
+traffic before that is not known to the panel.
+
+## Connected now
+
+The clients connected right now, with the inbound each one uses. The inbound is
+exact when the access log is on; see
+[Clients → Active connection](/docs/config/clients#active-connection).
+
+## Nodes
+
+Every node with its state: online, online but Xray is not running, offline or
+disabled. A node [hidden from the dashboard](/docs/operations/multi-node#hide-a-node-from-the-dashboard)
+stays in this card, but its clients and inbounds leave the other cards.
+
+## Outbound health
+
+The panel checks its proxy outbounds itself, so the card works without an Xray
+observatory in the config:
+
+- every proxy outbound is probed every **10 minutes**;
+- a failing one is rechecked every minute until it answers again;
+- it is shown as **Down** only after the number of failures in a row set in
+  **Notifications** (3 by default), and the panel sends an outbound-down
+  notification at that moment.
+
+Outbounds an observatory already watches are probed too, but do not send a
+second notification.
+
+## Events
+
+The latest events since the panel started: outbounds going down and back up, Xray
+crashes, nodes going offline and back online, high CPU or memory, logins. They
+are kept in memory, so a panel restart clears the list.

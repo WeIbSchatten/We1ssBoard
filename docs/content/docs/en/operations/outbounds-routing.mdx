@@ -44,7 +44,7 @@ shapes We1ssBoard uses: **VLESS is the flat form** (`address`/`port`/`id`/`flow`
 `settings.servers[]`**. The `streamSettings` must mirror the destination's
 [transport and security](/docs/config/transports).
 
-Assemble any outbound below and paste the JSON into **Xray Settings → Outbounds**:
+Assemble any outbound below and paste the JSON into **Connections → Outbounds**:
 
 <OutboundGenerator />
 
@@ -84,7 +84,7 @@ with a routing rule.
 
 We1ssBoard can fetch NordVPN (NordLynx/WireGuard) credentials from an access token (or
 accept a private key directly) and list countries/servers, so you can build a
-NordVPN outbound. Open **Xray → Outbounds → More → NordVPN**, sign in or save a
+NordVPN outbound. Open **Connections → Outbounds → More → NordVPN**, sign in or save a
 private key, select a server, and add the outbound. You can add several servers;
 each hostname has a unique `nord-<hostname>` tag and cannot be added twice.
 
@@ -97,7 +97,7 @@ their embedded keys; remove unused NordVPN outbounds from the Outbounds list.
 
 We1ssBoard can sign in with a PIA username and password, list countries/regions/servers
 from the signed PIA server list, and build a WireGuard outbound. Open
-**Xray → Outbounds → More → PIA**, sign in, pick a server, and add the outbound.
+**Connections → Outbounds → More → PIA**, sign in, pick a server, and add the outbound.
 You can add several servers (one outbound per hostname). The tag is
 `pia-<region>-<server>` (for example `pia-us-east-useast1`). Adding or using
 **Reset** on a row registers a WireGuard key with PIA `/addKey` for that server.
@@ -153,9 +153,9 @@ put specific rules above general ones.
 
 ### Lua scripts
 
-Xray 26.10.10 can hand routing and DNS to Lua. **Basics → Routing Script** takes the
+Xray 26.10.10 can hand routing and DNS to Lua. **Settings → Xray core → Routing Script** takes the
 path of a `.lua` file that defines `HandleRoute` (absolute, or relative to the Xray
-`bin` folder); **DNS → Lua Script** takes one that defines `HandleDNSQuery`, and a
+`bin` folder); **Connections → DNS → Lua Script** takes one that defines `HandleDNSQuery`, and a
 DNS server's **ID** is the name such a script picks it by.
 
 <Callout type="warn">

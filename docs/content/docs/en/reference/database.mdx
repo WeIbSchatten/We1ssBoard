@@ -58,6 +58,21 @@ systemctl restart we1ssboard
   verified the new backend works.
 </Callout>
 
+## Traffic history
+
+Since 1.10.1 the panel keeps the history behind the [dashboard](/docs/operations/dashboard)
+in four tables:
+
+| Table | Holds | Kept |
+| --- | --- | --- |
+| `traffic_hours` | Upload and download per hour | 32 days |
+| `traffic_months` | Upload and download per month | Forever |
+| `inbound_traffic_totals` | All-time traffic per inbound | Until the inbound is deleted |
+| `client_traffic_totals` | All-time traffic per client, across resets | Until the client is deleted |
+
+They are small (one row per hour, month, inbound or client), and
+`we1ssboard migrate-db` copies them along with everything else.
+
 ## Backups
 
 Whichever backend you use, back it up regularly — see
