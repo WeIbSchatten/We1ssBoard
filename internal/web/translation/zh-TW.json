@@ -1372,7 +1372,9 @@
       "inviteNamePlaceholder": "Optional node name",
       "inviteRequired": "Paste an enroll invite",
       "inviteSubmit": "Enroll node",
-      "inviteFailed": "Could not enroll from invite"
+      "inviteFailed": "Could not enroll from invite",
+      "hidden": "在儀表板與選擇器中隱藏",
+      "hiddenHint": "此節點的入站與用戶端不會顯示在儀表板上，為用戶端關聯入站時也不會提供它的入站。同步、檢查與既有關聯照常運作。"
     },
     "settings": {
       "defaultTag": "預設",

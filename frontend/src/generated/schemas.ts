@@ -3502,6 +3502,11 @@ export const SCHEMAS: Record<string, unknown> = {
         "example": true,
         "type": "boolean"
       },
+      "hidden": {
+        "description": "Hidden is set when the inbound lives on a node marked hidden; pickers leave it out.",
+        "example": false,
+        "type": "boolean"
+      },
       "id": {
         "example": 1,
         "type": "integer"
@@ -3799,6 +3804,10 @@ export const SCHEMAS: Record<string, unknown> = {
         "description": "Guid is the remote panel's stable self-identifier (its panelGuid),\nlearned from each heartbeat. It is the globally stable node identity used\nto attribute online clients/inbounds to the physical node across a chain\nof nodes (#4983); panel-local autoincrement ids don't survive a hop.\nObserved-state only — never user-edited.",
         "type": "string"
       },
+      "hidden": {
+        "description": "Hidden keeps this node's inbounds and clients off the dashboard and out of\nthe client inbound pickers; sync and health checks are unaffected.",
+        "type": "boolean"
+      },
       "id": {
         "example": 1,
         "type": "integer"
@@ -3939,6 +3948,7 @@ export const SCHEMAS: Record<string, unknown> = {
       "disabledCount",
       "enable",
       "guid",
+      "hidden",
       "id",
       "inboundCount",
       "inboundSyncMode",
@@ -3987,6 +3997,9 @@ export const SCHEMAS: Record<string, unknown> = {
         "type": "boolean"
       },
       "enable": {
+        "type": "boolean"
+      },
+      "hidden": {
         "type": "boolean"
       },
       "id": {
@@ -4044,6 +4057,7 @@ export const SCHEMAS: Record<string, unknown> = {
       "allowPrivateAddress",
       "basePath",
       "enable",
+      "hidden",
       "id",
       "inboundSyncMode",
       "inboundTags",
@@ -4116,6 +4130,10 @@ export const SCHEMAS: Record<string, unknown> = {
       },
       "hasApiToken": {
         "example": true,
+        "type": "boolean"
+      },
+      "hidden": {
+        "example": false,
         "type": "boolean"
       },
       "id": {
@@ -4248,6 +4266,7 @@ export const SCHEMAS: Record<string, unknown> = {
       "enable",
       "guid",
       "hasApiToken",
+      "hidden",
       "id",
       "inboundCount",
       "inboundSyncMode",

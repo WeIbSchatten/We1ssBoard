@@ -1372,7 +1372,9 @@
       "inviteNamePlaceholder": "Optional node name",
       "inviteRequired": "Paste an enroll invite",
       "inviteSubmit": "Enroll node",
-      "inviteFailed": "Could not enroll from invite"
+      "inviteFailed": "Could not enroll from invite",
+      "hidden": "Ẩn khỏi bảng tổng quan và bộ chọn",
+      "hiddenHint": "Inbound và khách hàng của node này không hiển thị trên bảng tổng quan, và inbound của nó không được đề xuất khi gắn inbound cho khách hàng. Đồng bộ, kiểm tra và các liên kết hiện có vẫn hoạt động."
     },
     "settings": {
       "defaultTag": "Mặc định",

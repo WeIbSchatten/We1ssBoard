@@ -1372,7 +1372,9 @@
       "inviteNamePlaceholder": "Optional node name",
       "inviteRequired": "Paste an enroll invite",
       "inviteSubmit": "Enroll node",
-      "inviteFailed": "Could not enroll from invite"
+      "inviteFailed": "Could not enroll from invite",
+      "hidden": "Ocultar do painel e dos seletores",
+      "hiddenHint": "Os inbounds e clientes deste nó não aparecem no painel, e seus inbounds não são oferecidos ao associar inbounds a clientes. Sincronização, verificações e associações existentes continuam funcionando."
     },
     "settings": {
       "defaultTag": "Padrão",

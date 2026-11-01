@@ -1695,7 +1695,9 @@
       "inviteNamePlaceholder": "Optional node name",
       "inviteRequired": "Paste an enroll invite",
       "inviteSubmit": "Enroll node",
-      "inviteFailed": "Could not enroll from invite"
+      "inviteFailed": "Could not enroll from invite",
+      "hidden": "Hide from dashboard and pickers",
+      "hiddenHint": "This node's inbounds and clients are not shown on the dashboard, and its inbounds are not offered when you attach inbounds to clients. Sync, health checks and existing attachments keep working."
     },
     "settings": {
       "defaultTag": "Default",

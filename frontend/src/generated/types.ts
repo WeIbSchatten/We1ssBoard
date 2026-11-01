@@ -815,6 +815,7 @@ export interface InboundFallback {
 export interface InboundOption {
   awgServer?: ServerSettings | null;
   enable: boolean;
+  hidden?: boolean;
   id: number;
   listen?: string;
   mtprotoDomain?: string;
@@ -893,6 +894,7 @@ export interface Node {
   disabledCount: number;
   enable: boolean;
   guid: string;
+  hidden: boolean;
   id: number;
   inboundCount: number;
   inboundSyncMode: string;
@@ -929,6 +931,7 @@ export interface NodeMutationRequest {
   basePath: string;
   clearApiToken?: boolean;
   enable: boolean;
+  hidden: boolean;
   id: number;
   inboundSyncMode: string;
   inboundTags: string[];
@@ -956,6 +959,7 @@ export interface NodeView {
   enable: boolean;
   guid: string;
   hasApiToken: boolean;
+  hidden: boolean;
   id: number;
   inboundCount: number;
   inboundSyncMode: string;

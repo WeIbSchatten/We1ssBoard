@@ -51,18 +51,25 @@ func (s *TrafficHistoryService) Sample(now time.Time) error {
 	defer s.mu.Unlock()
 	db := database.GetDB()
 	var rows []struct {
-		Id   int
-		Up   int64
-		Down int64
+		Id     int
+		Up     int64
+		Down   int64
+		Hidden bool
 	}
-	if err := db.Model(&model.Inbound{}).Select("id, up, down").Scan(&rows).Error; err != nil {
+	err := db.Table("inbounds").
+		Select("inbounds.id, inbounds.up, inbounds.down, COALESCE(nodes.hidden, ?) AS hidden", false).
+		Joins("LEFT JOIN nodes ON nodes.id = inbounds.node_id").
+		Scan(&rows).Error
+	if err != nil {
 		return err
 	}
 	current := make(map[int][2]int64, len(rows))
 	var up, down int64
 	for _, r := range rows {
+		// The baseline covers hidden inbounds too, so showing a node again only
+		// counts what it carried from then on, not its lifetime total.
 		current[r.Id] = [2]int64{r.Up, r.Down}
-		if !s.primed {
+		if !s.primed || r.Hidden {
 			continue
 		}
 		prev := s.prev[r.Id]

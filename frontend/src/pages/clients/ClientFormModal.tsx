@@ -32,6 +32,7 @@ import { Controller, FormProvider, useForm, useWatch, useFieldArray } from 'reac
 
 import { HttpUtil, IntlUtil, RandomUtil, Wireguard } from '@/utils';
 import { formatInboundLabel } from '@/lib/inbounds/label';
+import { pickableInbounds } from '@/lib/inbounds/pickable';
 import { generateMtprotoSecret } from '@/lib/xray/inbound-defaults';
 import { normalizeClientIps, type ClientIpInfo } from '@/lib/clients/ip-log';
 import { resolveExternalLinkExpiry } from '@/lib/clients/external-link';
@@ -557,7 +558,7 @@ export default function ClientFormModal({
 
   const inboundOptions = useMemo(
     () =>
-      (inbounds || [])
+      pickableInbounds(inbounds || [], inboundIds || [])
         .filter((ib) => MULTI_CLIENT_PROTOCOLS.has(ib.protocol || ''))
         .filter((ib) => ib.enable || (inboundIds || []).includes(ib.id))
         .map((ib) => ({

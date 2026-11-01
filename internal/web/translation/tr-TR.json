@@ -1372,7 +1372,9 @@
       "inviteNamePlaceholder": "Optional node name",
       "inviteRequired": "Paste an enroll invite",
       "inviteSubmit": "Enroll node",
-      "inviteFailed": "Could not enroll from invite"
+      "inviteFailed": "Could not enroll from invite",
+      "hidden": "Panodan ve seçicilerden gizle",
+      "hiddenHint": "Bu düğümün gelen bağlantıları ve istemcileri panoda gösterilmez, gelen bağlantıları istemcilere bağlarken sunulmaz. Eşitleme, denetimler ve mevcut bağlantılar çalışmaya devam eder."
     },
     "settings": {
       "defaultTag": "Varsayılan",

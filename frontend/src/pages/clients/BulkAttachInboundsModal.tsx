@@ -5,6 +5,7 @@ import { Alert, Modal, Select, Typography, message } from 'antd';
 import { SelectAllClearButtons } from '@/components/form';
 import type { InboundOption } from '@/hooks/useClients';
 import { formatInboundLabel } from '@/lib/inbounds/label';
+import { pickableInbounds } from '@/lib/inbounds/pickable';
 import type { BulkAttachResult } from '@/schemas/client';
 
 const MULTI_USER_PROTOCOLS = new Set([
@@ -49,7 +50,7 @@ export default function BulkAttachInboundsModal({
   }
 
   const targetOptions = useMemo(() => {
-    return (inbounds || [])
+    return pickableInbounds(inbounds || [], [])
       .filter((ib) => MULTI_USER_PROTOCOLS.has((ib.protocol || '').toLowerCase()))
       .map((ib) => ({
         value: ib.id,

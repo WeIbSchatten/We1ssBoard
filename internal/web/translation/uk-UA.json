@@ -1372,7 +1372,9 @@
       "inviteNamePlaceholder": "Optional node name",
       "inviteRequired": "Paste an enroll invite",
       "inviteSubmit": "Enroll node",
-      "inviteFailed": "Could not enroll from invite"
+      "inviteFailed": "Could not enroll from invite",
+      "hidden": "Приховати з дашборда та з вибору",
+      "hiddenHint": "Вхідні та клієнти цього вузла не показуються на дашборді, а його вхідні не пропонуються під час прив’язки вхідних до клієнтів. Синхронізація, перевірки та наявні прив’язки працюють як раніше."
     },
     "settings": {
       "defaultTag": "Типово",

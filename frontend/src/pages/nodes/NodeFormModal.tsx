@@ -53,6 +53,7 @@ function defaultValues(): NodeFormValues {
     inboundSyncMode: 'all',
     inboundTags: [],
     outboundTag: '',
+    hidden: false,
   };
 }
 
@@ -153,6 +154,7 @@ export default function NodeFormModal({
       inboundSyncMode: values.inboundSyncMode,
       inboundTags: values.inboundSyncMode === 'selected' ? values.inboundTags : [],
       outboundTag: values.outboundTag || '',
+      hidden: values.hidden,
     };
     if (token) payload.apiToken = token;
     return payload;
@@ -394,6 +396,15 @@ export default function NodeFormModal({
                     : t('pages.nodes.apiTokenPlaceholder')
                 }
               />
+            </FormField>
+
+            <FormField
+              label={t('pages.nodes.hidden')}
+              name="hidden"
+              valueProp="checked"
+              tooltip={t('pages.nodes.hiddenHint')}
+            >
+              <Switch />
             </FormField>
 
             <FormField

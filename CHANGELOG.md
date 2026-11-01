@@ -12,6 +12,7 @@ and the version that fixes them).
 ## [Unreleased]
 
 ### Added
+- Nodes get a **Hide from dashboard and pickers** switch, for example for a linked panel that only runs a web proxy. Its inbounds and clients disappear from the dashboard (key figures, traffic, inbounds, who is connected, top clients, needs-attention counts) and its inbounds are no longer offered when attaching inbounds to clients. Clients already attached keep their inbounds, the node still shows in the Nodes card, and sync is unchanged. Traffic counts for the chart start excluding the node from the moment it is hidden.
 - Progress bars for updates. A panel update shows its steps (download, checksum, stop, install, configure, start) with a bar instead of a bare spinner and says when the panel is restarting. Switching the Xray version and updating geofiles show the file being downloaded, how much of it has arrived, and the check, install and restart steps.
 
 ### Changed

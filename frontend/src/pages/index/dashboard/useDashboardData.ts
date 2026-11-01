@@ -88,7 +88,7 @@ export function useDashboardClients() {
     queryFn: async (): Promise<ClientPageResponse | undefined> =>
       getObj(
         'get',
-        '/panel/api/clients/list/paged?page=1&pageSize=6&sort=traffic&order=descend',
+        '/panel/api/clients/list/paged?page=1&pageSize=6&sort=traffic&order=descend&node=visible',
         ClientPageResponseSchema,
       ),
     refetchInterval: REFRESH_MS,

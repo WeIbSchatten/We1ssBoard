@@ -917,6 +917,7 @@ export const EXAMPLES: Record<string, unknown> = {
   "InboundOption": {
     "awgServer": null,
     "enable": true,
+    "hidden": false,
     "id": 1,
     "listen": "",
     "mtprotoDomain": "",
@@ -987,6 +988,7 @@ export const EXAMPLES: Record<string, unknown> = {
     "disabledCount": 3,
     "enable": true,
     "guid": "",
+    "hidden": false,
     "id": 1,
     "inboundCount": 5,
     "inboundSyncMode": "all",
@@ -1024,6 +1026,7 @@ export const EXAMPLES: Record<string, unknown> = {
     "basePath": "",
     "clearApiToken": false,
     "enable": false,
+    "hidden": false,
     "id": 0,
     "inboundSyncMode": "all",
     "inboundTags": [
@@ -1052,6 +1055,7 @@ export const EXAMPLES: Record<string, unknown> = {
     "enable": true,
     "guid": "node-guid",
     "hasApiToken": true,
+    "hidden": false,
     "id": 1,
     "inboundCount": 3,
     "inboundSyncMode": "all",
