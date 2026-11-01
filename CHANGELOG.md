@@ -9,7 +9,7 @@ differently now), **Fixed** (bugs), **Removed**, **Breaking** (needs action from
 you or breaks an old setup), **Known issues** (problems found after the release
 and the version that fixes them).
 
-## [Unreleased]
+## [1.10.1] - 2026-11-01
 
 ### Added
 - **Exact active connection** is on out of the box. The panel keeps Xray's access log on (in its own log folder, cut at 64 MB and cleared daily) so the Clients page shows exactly which inbound each client uses instead of a guess. A path set in the Xray template is kept. Turn it off in Settings → General (Exact active connection) if you do not want the log: Xray writes every connection there, including the address visited. Changing it restarts Xray.
