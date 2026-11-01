@@ -4413,6 +4413,11 @@
             "example": "1735689600123456789",
             "type": "string"
           },
+          "stage": {
+            "description": "Stage is the step update.sh is on while State is pending (download, verify,\nstop, install, configure, start); older updaters leave it empty.",
+            "example": "install",
+            "type": "string"
+          },
           "state": {
             "example": "success",
             "type": "string"
@@ -5762,6 +5767,64 @@
           "remark",
           "sortOrder",
           "strategy",
+          "updatedAt"
+        ],
+        "type": "object"
+      },
+      "TaskProgress": {
+        "description": "TaskProgress is the state of the Xray or geofile update running on this panel,\nwhich the version dialog polls to draw its progress bar.",
+        "properties": {
+          "done": {
+            "description": "Done and Total are bytes of File; Total is 0 when the server sent no length.",
+            "example": 1048576,
+            "format": "int64",
+            "type": "integer"
+          },
+          "error": {
+            "type": "string"
+          },
+          "file": {
+            "example": "geosite.dat",
+            "type": "string"
+          },
+          "kind": {
+            "description": "Kind is \"xray\" or \"geofile\"; empty when nothing has run since start.",
+            "example": "geofile",
+            "type": "string"
+          },
+          "stage": {
+            "description": "Stage is download, verify, install, restart, done or failed.",
+            "example": "download",
+            "type": "string"
+          },
+          "step": {
+            "description": "Step and Steps place File in a batch, counting from 1.",
+            "example": 2,
+            "type": "integer"
+          },
+          "steps": {
+            "example": 6,
+            "type": "integer"
+          },
+          "total": {
+            "example": 4194304,
+            "format": "int64",
+            "type": "integer"
+          },
+          "updatedAt": {
+            "example": 1793437200000,
+            "format": "int64",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "done",
+          "file",
+          "kind",
+          "stage",
+          "step",
+          "steps",
+          "total",
           "updatedAt"
         ],
         "type": "object"
@@ -7914,6 +7977,52 @@
         }
       }
     },
+    "/panel/api/server/taskProgress": {
+      "get": {
+        "tags": [
+          "Server"
+        ],
+        "summary": "Progress of the Xray core or geofile update running on this panel: the file being downloaded, its place in the batch, bytes so far and the stage (download, verify, install, restart, done, failed). Polled while installXray or updateGeofile is in flight.",
+        "operationId": "get_panel_api_server_taskProgress",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "msg": {
+                      "type": "string"
+                    },
+                    "obj": {
+                      "$ref": "#/components/schemas/TaskProgress"
+                    }
+                  }
+                },
+                "example": {
+                  "success": true,
+                  "obj": {
+                    "done": 1048576,
+                    "error": "",
+                    "file": "geosite.dat",
+                    "kind": "geofile",
+                    "stage": "download",
+                    "step": 2,
+                    "steps": 6,
+                    "total": 4194304,
+                    "updatedAt": 1793437200000
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/panel/api/server/events": {
       "get": {
         "tags": [
@@ -8221,6 +8330,7 @@
                     "exitCode": 0,
                     "finishedAt": 1735689612,
                     "runId": "1735689600123456789",
+                    "stage": "install",
                     "state": "success"
                   }
                 }

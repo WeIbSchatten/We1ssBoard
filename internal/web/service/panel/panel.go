@@ -61,8 +61,11 @@ const (
 // Number.MAX_SAFE_INTEGER), which would let two different runs round to the
 // same value on the wire and defeat the whole point of this field.
 type PanelUpdateStatus struct {
-	RunID      string `json:"runId" example:"1735689600123456789"`
-	State      string `json:"state" example:"success"`
+	RunID string `json:"runId" example:"1735689600123456789"`
+	State string `json:"state" example:"success"`
+	// Stage is the step update.sh is on while State is pending (download, verify,
+	// stop, install, configure, start); older updaters leave it empty.
+	Stage      string `json:"stage,omitempty" example:"install"`
 	ExitCode   int    `json:"exitCode" example:"0"`
 	FinishedAt int64  `json:"finishedAt" example:"1735689612"`
 }

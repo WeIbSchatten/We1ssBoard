@@ -49,13 +49,19 @@ xui_update_status_file="${XUI_UPDATE_STATUS_FILE:-/etc/we1ssboard/update-status.
 _write_update_status() {
     local state="$1"
     local exit_code="$2"
+    local stage="${3:-}"
     local status_dir
     status_dir="$(dirname "${xui_update_status_file}")"
     mkdir -p "${status_dir}" > /dev/null 2>&1
     local tmp_file="${xui_update_status_file}.tmp.$$"
-    printf '{"runId":"%s","state":"%s","exitCode":%s,"finishedAt":%s}\n' \
-        "${xui_update_run_id}" "${state}" "${exit_code}" "$(date +%s)" > "${tmp_file}" 2> /dev/null
+    printf '{"runId":"%s","state":"%s","stage":"%s","exitCode":%s,"finishedAt":%s}\n' \
+        "${xui_update_run_id}" "${state}" "${stage}" "${exit_code}" "$(date +%s)" > "${tmp_file}" 2> /dev/null
     mv -f "${tmp_file}" "${xui_update_status_file}" > /dev/null 2>&1
+}
+
+# The panel's update dialog draws its progress bar from the step written here.
+_write_update_stage() {
+    _write_update_status "pending" "0" "$1"
 }
 
 _report_update_exit() {
@@ -731,6 +737,7 @@ update_x-ui() {
         _fail "ERROR: Current we1ssboard version: unknown"
     fi
 
+    _write_update_stage download
     echo -e "${green}Downloading new we1ssboard version...${plain}"
 
     # XUI_UPDATE_TAG lets the panel target a specific release tag (e.g. the
@@ -768,6 +775,7 @@ update_x-ui() {
         rm ${xui_folder}-linux-$(arch).tar.gz -f > /dev/null 2>&1
         _fail "ERROR: Downloaded we1ssboard release archive is empty, please be sure that your server can access GitHub"
     fi
+    _write_update_stage verify
     # Releases publish <asset>.sha256 next to each archive. A mismatch or a
     # failed sidecar download aborts the update; only a 404 (releases
     # predating the sidecar) is tolerated with a warning.
@@ -796,6 +804,7 @@ update_x-ui() {
     load_xui_env
 
     if [[ -e ${xui_folder}/ ]]; then
+        _write_update_stage stop
         echo -e "${green}Stopping we1ssboard...${plain}"
         if [[ $release == "alpine" ]]; then
             if [ -f "/etc/init.d/we1ssboard" ]; then
@@ -847,6 +856,7 @@ update_x-ui() {
         _fail "ERROR: we1ssboard not installed."
     fi
 
+    _write_update_stage install
     echo -e "${green}Installing new we1ssboard version...${plain}"
     tar zxvf we1ssboard-linux-$(arch).tar.gz > /dev/null 2>&1
     if [[ $? -ne 0 ]]; then
@@ -904,6 +914,7 @@ update_x-ui() {
     fi
     mkdir -p /var/log/we1ssboard > /dev/null 2>&1
 
+    _write_update_stage configure
     echo -e "${green}Changing owner...${plain}"
     chown -R root:root ${xui_folder} > /dev/null 2>&1
 
@@ -1000,6 +1011,7 @@ update_x-ui() {
         chown root:root ${xui_service}/we1ssboard.service > /dev/null 2>&1
         chmod 644 ${xui_service}/we1ssboard.service > /dev/null 2>&1
         systemctl daemon-reload > /dev/null 2>&1
+        _write_update_stage start
         systemctl enable we1ssboard > /dev/null 2>&1
         systemctl start we1ssboard > /dev/null 2>&1
     fi

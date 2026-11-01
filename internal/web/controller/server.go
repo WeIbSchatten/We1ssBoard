@@ -49,6 +49,7 @@ func (a *ServerController) initRouter(g *gin.RouterGroup) {
 	g.GET("/history/:metric/:bucket", a.getMetricHistoryBucket)
 	g.GET("/trafficHistory/:range", a.getTrafficHistory)
 	g.GET("/events", a.getEvents)
+	g.GET("/taskProgress", a.getTaskProgress)
 	g.GET("/xrayMetricsState", a.getXrayMetricsState)
 	g.GET("/xrayMetricsHistory/:metric/:bucket", a.getXrayMetricsHistoryBucket)
 	g.GET("/xrayObservatory", a.getXrayObservatory)
@@ -152,6 +153,11 @@ func (a *ServerController) getMetricHistoryBucket(c *gin.Context) {
 		return
 	}
 	jsonObj(c, a.serverService.AggregateSystemMetric(metric, bucket, 60), nil)
+}
+
+// getTaskProgress reports the Xray or geofile update in progress, for the version dialog's bar.
+func (a *ServerController) getTaskProgress(c *gin.Context) {
+	jsonObj(c, service.CurrentTaskProgress(), nil)
 }
 
 // getEvents returns the newest outbound, node, Xray, resource and login events.

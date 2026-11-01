@@ -111,6 +111,7 @@ func run(root, outDir string) error {
 				"PeerActivity",
 				"TrafficPoint",
 				"PanelEvent",
+				"TaskProgress",
 				"HwidSlotStatus",
 				"RemoteLiveInbound",
 				"RemoteLoginURL",

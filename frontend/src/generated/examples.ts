@@ -1125,6 +1125,7 @@ export const EXAMPLES: Record<string, unknown> = {
     "exitCode": 0,
     "finishedAt": 1735689612,
     "runId": "1735689600123456789",
+    "stage": "install",
     "state": "success"
   },
   "PeerActivity": {
@@ -1562,6 +1563,17 @@ export const EXAMPLES: Record<string, unknown> = {
     "sortOrder": 1,
     "strategy": "random",
     "updatedAt": 1710000000000
+  },
+  "TaskProgress": {
+    "done": 1048576,
+    "error": "",
+    "file": "geosite.dat",
+    "kind": "geofile",
+    "stage": "download",
+    "step": 2,
+    "steps": 6,
+    "total": 4194304,
+    "updatedAt": 1793437200000
   },
   "TgWebProxyBindManyRequest": {
     "dedicated": true,

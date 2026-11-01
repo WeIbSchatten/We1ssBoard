@@ -443,6 +443,18 @@
           "bad": "Offline",
           "off": "Desativado"
         }
+      },
+      "progress": {
+        "download": "Baixando",
+        "verify": "Verificando o checksum",
+        "stop": "Parando o painel",
+        "install": "Instalando",
+        "configure": "Configurando",
+        "start": "Iniciando o painel",
+        "restartXray": "Reiniciando o Xray",
+        "restarting": "O painel está reiniciando, leva alguns segundos…",
+        "geofiles": "Atualizando geoarquivos",
+        "file": "Arquivo {step} de {steps}: {name}"
       }
     },
     "inbounds": {

@@ -4387,6 +4387,11 @@ export const SCHEMAS: Record<string, unknown> = {
         "example": "1735689600123456789",
         "type": "string"
       },
+      "stage": {
+        "description": "Stage is the step update.sh is on while State is pending (download, verify,\nstop, install, configure, start); older updaters leave it empty.",
+        "example": "install",
+        "type": "string"
+      },
       "state": {
         "example": "success",
         "type": "string"
@@ -5736,6 +5741,64 @@ export const SCHEMAS: Record<string, unknown> = {
       "remark",
       "sortOrder",
       "strategy",
+      "updatedAt"
+    ],
+    "type": "object"
+  },
+  "TaskProgress": {
+    "description": "TaskProgress is the state of the Xray or geofile update running on this panel,\nwhich the version dialog polls to draw its progress bar.",
+    "properties": {
+      "done": {
+        "description": "Done and Total are bytes of File; Total is 0 when the server sent no length.",
+        "example": 1048576,
+        "format": "int64",
+        "type": "integer"
+      },
+      "error": {
+        "type": "string"
+      },
+      "file": {
+        "example": "geosite.dat",
+        "type": "string"
+      },
+      "kind": {
+        "description": "Kind is \"xray\" or \"geofile\"; empty when nothing has run since start.",
+        "example": "geofile",
+        "type": "string"
+      },
+      "stage": {
+        "description": "Stage is download, verify, install, restart, done or failed.",
+        "example": "download",
+        "type": "string"
+      },
+      "step": {
+        "description": "Step and Steps place File in a batch, counting from 1.",
+        "example": 2,
+        "type": "integer"
+      },
+      "steps": {
+        "example": 6,
+        "type": "integer"
+      },
+      "total": {
+        "example": 4194304,
+        "format": "int64",
+        "type": "integer"
+      },
+      "updatedAt": {
+        "example": 1793437200000,
+        "format": "int64",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "done",
+      "file",
+      "kind",
+      "stage",
+      "step",
+      "steps",
+      "total",
       "updatedAt"
     ],
     "type": "object"

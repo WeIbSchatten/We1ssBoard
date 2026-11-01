@@ -443,6 +443,18 @@
           "bad": "離線",
           "off": "已停用"
         }
+      },
+      "progress": {
+        "download": "下載中",
+        "verify": "驗證校驗和",
+        "stop": "停止面板",
+        "install": "安裝中",
+        "configure": "設定中",
+        "start": "啟動面板",
+        "restartXray": "重新啟動 Xray",
+        "restarting": "面板正在重新啟動，需要幾秒鐘…",
+        "geofiles": "更新地理檔案",
+        "file": "檔案 {step}/{steps}：{name}"
       }
     },
     "inbounds": {

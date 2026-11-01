@@ -443,6 +443,18 @@
           "bad": "Offline",
           "off": "Nonaktif"
         }
+      },
+      "progress": {
+        "download": "Mengunduh",
+        "verify": "Memeriksa checksum",
+        "stop": "Menghentikan panel",
+        "install": "Memasang",
+        "configure": "Mengonfigurasi",
+        "start": "Menjalankan panel",
+        "restartXray": "Memulai ulang Xray",
+        "restarting": "Panel sedang dimulai ulang, butuh beberapa detik…",
+        "geofiles": "Memperbarui geofile",
+        "file": "Berkas {step} dari {steps}: {name}"
       }
     },
     "inbounds": {

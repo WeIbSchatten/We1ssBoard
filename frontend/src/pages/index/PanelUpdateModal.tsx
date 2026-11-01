@@ -5,11 +5,22 @@ import { CloudDownloadOutlined } from '@ant-design/icons';
 
 import { HttpUtil, PromiseUtil } from '@/utils';
 import { formatPanelVersion } from '@/lib/panel-version';
+import { PANEL_UPDATE_STAGES, panelUpdateProgress } from '@/lib/updateProgress';
 import type { PanelUpdateStatus } from '@/generated/types';
 import PanelChangelog from './PanelChangelog';
+import type { UpdateProgressState } from './UpdateProgressDialog';
 import './PanelUpdateModal.css';
 
 type UpdateOutcome = 'success' | 'failed' | 'timeout';
+
+const PANEL_STAGE_KEYS: Record<(typeof PANEL_UPDATE_STAGES)[number], string> = {
+  download: 'pages.index.progress.download',
+  verify: 'pages.index.progress.verify',
+  stop: 'pages.index.progress.stop',
+  install: 'pages.index.progress.install',
+  configure: 'pages.index.progress.configure',
+  start: 'pages.index.progress.start',
+};
 
 export interface PanelUpdateInfo {
   channel?: string;
@@ -20,19 +31,17 @@ export interface PanelUpdateInfo {
   updateAvailable: boolean;
 }
 
-interface BusyEvent {
-  busy: boolean;
-  tip?: string;
-}
-
 interface PanelUpdateModalProps {
   open: boolean;
   info: PanelUpdateInfo;
   devChannelEnable?: boolean;
   onChannelChange?: (dev: boolean) => void | Promise<void>;
   onClose: () => void;
-  onBusy: (e: BusyEvent) => void;
+  onProgress: (state: UpdateProgressState | null) => void;
 }
+
+// A run that keeps reporting new steps is alive; only this long without one is a timeout.
+const UPDATE_STALL_MS = 90_000;
 
 export default function PanelUpdateModal({
   open,
@@ -40,7 +49,7 @@ export default function PanelUpdateModal({
   devChannelEnable,
   onChannelChange,
   onClose,
-  onBusy,
+  onProgress,
 }: PanelUpdateModalProps) {
   const { t } = useTranslation();
   const [modal, contextHolder] = Modal.useModal();
@@ -48,10 +57,24 @@ export default function PanelUpdateModal({
 
   const isDev = info.channel === 'dev';
 
+  function showStage(stage: string | undefined, restarting: boolean) {
+    const { current, percent } = panelUpdateProgress(stage);
+    onProgress({
+      title: info.latestVersion
+        ? `${t('pages.index.updatePanel')} · ${info.latestVersion}`
+        : t('pages.index.updatePanel'),
+      steps: PANEL_UPDATE_STAGES.map((s) => t(PANEL_STAGE_KEYS[s])),
+      current,
+      percent,
+      detail: restarting ? t('pages.index.progress.restarting') : undefined,
+    });
+  }
+
   async function pollUpdateStatus(expectedRunId: string): Promise<UpdateOutcome> {
-    await PromiseUtil.sleep(5000);
-    const deadline = Date.now() + 90_000;
-    while (Date.now() < deadline) {
+    let stage: string | undefined;
+    let lastChange = Date.now();
+    while (Date.now() - lastChange < UPDATE_STALL_MS) {
+      await PromiseUtil.sleep(1500);
       try {
         const msg = await HttpUtil.get<PanelUpdateStatus>(
           '/panel/api/server/getUpdateStatus',
@@ -62,11 +85,15 @@ export default function PanelUpdateModal({
         if (status?.runId === expectedRunId) {
           if (status.state === 'success') return 'success';
           if (status.state === 'failed') return 'failed';
+          if (status.stage && status.stage !== stage) {
+            stage = status.stage;
+            lastChange = Date.now();
+          }
         }
+        showStage(stage, false);
       } catch {
-        /* still restarting */
+        showStage(stage, true);
       }
-      await PromiseUtil.sleep(2000);
     }
     return 'timeout';
   }
@@ -82,22 +109,26 @@ export default function PanelUpdateModal({
   }
 
   async function runPanelUpdate() {
-    const baseTip = t('pages.index.dontRefresh');
-    const tip = info.latestVersion ? `${baseTip} (${info.latestVersion})` : baseTip;
     onClose();
-    onBusy({ busy: true, tip });
+    showStage(undefined, false);
     const result = await HttpUtil.post<{ runId: string }>('/panel/api/server/updatePanel');
     if (!result?.success) {
-      onBusy({ busy: false });
+      onProgress(null);
       return;
     }
     const outcome = await pollUpdateStatus(result.obj?.runId ?? '');
-    onBusy({ busy: false });
     if (outcome === 'success') {
+      onProgress({
+        title: t('pages.index.updatePanel'),
+        steps: PANEL_UPDATE_STAGES.map((s) => t(PANEL_STAGE_KEYS[s])),
+        current: PANEL_UPDATE_STAGES.length,
+        percent: 100,
+      });
       await PromiseUtil.sleep(800);
       window.location.reload();
       return;
     }
+    onProgress(null);
     modal[outcome === 'failed' ? 'error' : 'warning']({
       title: t(
         outcome === 'failed'

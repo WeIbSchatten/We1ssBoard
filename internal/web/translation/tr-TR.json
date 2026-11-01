@@ -443,6 +443,18 @@
           "bad": "Çevrimdışı",
           "off": "Devre dışı"
         }
+      },
+      "progress": {
+        "download": "İndiriliyor",
+        "verify": "Sağlama toplamı denetleniyor",
+        "stop": "Panel durduruluyor",
+        "install": "Kuruluyor",
+        "configure": "Yapılandırılıyor",
+        "start": "Panel başlatılıyor",
+        "restartXray": "Xray yeniden başlatılıyor",
+        "restarting": "Panel yeniden başlıyor, birkaç saniye sürer…",
+        "geofiles": "Geo dosyaları güncelleniyor",
+        "file": "Dosya {step}/{steps}: {name}"
       }
     },
     "inbounds": {

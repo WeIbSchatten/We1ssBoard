@@ -532,6 +532,13 @@ export const sections: readonly Section[] = [
       },
       {
         method: 'GET',
+        path: '/panel/api/server/taskProgress',
+        summary:
+          'Progress of the Xray core or geofile update running on this panel: the file being downloaded, its place in the batch, bytes so far and the stage (download, verify, install, restart, done, failed). Polled while installXray or updateGeofile is in flight.',
+        responseSchema: 'TaskProgress',
+      },
+      {
+        method: 'GET',
         path: '/panel/api/server/events',
         summary:
           'The 50 newest panel events, newest first: outbounds and nodes going down or up, Xray crashes, CPU and memory alarms, login attempts. Kept in memory, so a restart empties it.',

@@ -41,6 +41,7 @@ const XrayMetricsModal = lazy(() => import('./XrayMetricsModal'));
 const XrayLogModal = lazy(() => import('./XrayLogModal'));
 const AmneziaWGLogModal = lazy(() => import('./AmneziaWGLogModal'));
 const VersionModal = lazy(() => import('./VersionModal'));
+import UpdateProgressDialog, { type UpdateProgressState } from './UpdateProgressDialog';
 import './IndexPage.css';
 import './dashboard/Dashboard.css';
 
@@ -77,6 +78,7 @@ export default function IndexPage() {
   const [configText, setConfigText] = useState('');
   const [loading, setLoading] = useState(false);
   const [loadingTip, setLoadingTip] = useState(t('loading'));
+  const [updateProgress, setUpdateProgress] = useState<UpdateProgressState | null>(null);
 
   const history = useOverviewHistory(status, fetched && !fetchError);
   const dash = useDashboardModel(status);
@@ -333,6 +335,7 @@ export default function IndexPage() {
           </Spin>
         </Layout.Content>
 
+        <UpdateProgressDialog state={updateProgress} />
         <LazyMount when={panelUpdateOpen}>
           <PanelUpdateModal
             open={panelUpdateOpen}
@@ -340,7 +343,7 @@ export default function IndexPage() {
             devChannelEnable={devChannelEnable}
             onChannelChange={handleChannelChange}
             onClose={() => setPanelUpdateOpen(false)}
-            onBusy={setBusy}
+            onProgress={setUpdateProgress}
           />
         </LazyMount>
         <LazyMount when={logsOpen}>
@@ -372,6 +375,7 @@ export default function IndexPage() {
             status={status}
             onClose={() => setVersionOpen(false)}
             onBusy={setBusy}
+            onProgress={setUpdateProgress}
           />
         </LazyMount>
 

@@ -443,6 +443,18 @@
           "bad": "Ngoại tuyến",
           "off": "Đã tắt"
         }
+      },
+      "progress": {
+        "download": "Đang tải xuống",
+        "verify": "Đang kiểm tra checksum",
+        "stop": "Đang dừng bảng điều khiển",
+        "install": "Đang cài đặt",
+        "configure": "Đang cấu hình",
+        "start": "Đang khởi động bảng điều khiển",
+        "restartXray": "Đang khởi động lại Xray",
+        "restarting": "Bảng điều khiển đang khởi động lại, mất vài giây…",
+        "geofiles": "Đang cập nhật geofile",
+        "file": "Tệp {step}/{steps}: {name}"
       }
     },
     "inbounds": {

@@ -443,6 +443,18 @@
           "bad": "Offline",
           "off": "Disabled"
         }
+      },
+      "progress": {
+        "download": "Downloading",
+        "verify": "Checking the checksum",
+        "stop": "Stopping the panel",
+        "install": "Installing",
+        "configure": "Configuring",
+        "start": "Starting the panel",
+        "restartXray": "Restarting Xray",
+        "restarting": "The panel is restarting, this takes a few seconds…",
+        "geofiles": "Updating geofiles",
+        "file": "File {step} of {steps}: {name}"
       }
     },
     "inbounds": {

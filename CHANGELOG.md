@@ -11,6 +11,9 @@ and the version that fixes them).
 
 ## [Unreleased]
 
+### Added
+- Progress bars for updates. A panel update shows its steps (download, checksum, stop, install, configure, start) with a bar instead of a bare spinner and says when the panel is restarting. Switching the Xray version and updating geofiles show the file being downloaded, how much of it has arrived, and the check, install and restart steps.
+
 ### Changed
 - **Subscriptions** moved into **Settings** as tabs (Subscriptions, Sub formats, Sub balancers) and left the sidebar. Old links and bookmarks to the Subscriptions page open the new tabs.
 

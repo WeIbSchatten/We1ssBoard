@@ -1082,6 +1082,7 @@ export const PanelUpdateStatusSchema = z.object({
   exitCode: z.number().int(),
   finishedAt: z.number().int(),
   runId: z.string(),
+  stage: z.string().optional(),
   state: z.string(),
 });
 export type PanelUpdateStatus = z.infer<typeof PanelUpdateStatusSchema>;
@@ -1426,6 +1427,19 @@ export const SubBalancerSchema = z.object({
   updatedAt: z.number().int(),
 });
 export type SubBalancer = z.infer<typeof SubBalancerSchema>;
+
+export const TaskProgressSchema = z.object({
+  done: z.number().int(),
+  error: z.string().optional(),
+  file: z.string(),
+  kind: z.string(),
+  stage: z.string(),
+  step: z.number().int(),
+  steps: z.number().int(),
+  total: z.number().int(),
+  updatedAt: z.number().int(),
+});
+export type TaskProgress = z.infer<typeof TaskProgressSchema>;
 
 export const TgWebProxyBindManyRequestSchema = z.object({
   dedicated: z.boolean(),

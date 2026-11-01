@@ -1012,6 +1012,7 @@ export interface PanelUpdateStatus {
   exitCode: number;
   finishedAt: number;
   runId: string;
+  stage?: string;
   state: string;
 }
 
@@ -1327,6 +1328,18 @@ export interface SubBalancer {
   remark: string;
   sortOrder: number;
   strategy: string;
+  updatedAt: number;
+}
+
+export interface TaskProgress {
+  done: number;
+  error?: string;
+  file: string;
+  kind: string;
+  stage: string;
+  step: number;
+  steps: number;
+  total: number;
   updatedAt: number;
 }
 

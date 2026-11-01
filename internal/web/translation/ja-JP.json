@@ -443,6 +443,18 @@
           "bad": "オフライン",
           "off": "無効"
         }
+      },
+      "progress": {
+        "download": "ダウンロード中",
+        "verify": "チェックサムを確認中",
+        "stop": "パネルを停止中",
+        "install": "インストール中",
+        "configure": "設定中",
+        "start": "パネルを起動中",
+        "restartXray": "Xray を再起動中",
+        "restarting": "パネルを再起動しています。数秒かかります…",
+        "geofiles": "ジオファイルを更新中",
+        "file": "ファイル {step}/{steps}: {name}"
       }
     },
     "inbounds": {
