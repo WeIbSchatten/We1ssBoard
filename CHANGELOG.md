@@ -9,6 +9,12 @@ differently now), **Fixed** (bugs), **Removed**, **Breaking** (needs action from
 you or breaks an old setup), **Known issues** (problems found after the release
 and the version that fixes them).
 
+## [Unreleased]
+
+### Fixed
+- MTProto, AmneziaWG, TUIC and MASQUE inbounds could not be created on or moved to a node: the panel compared the node's version with 3x-ui release numbers (v3.5.0–v3.9.1), so every We1ssBoard 1.x node was "too old". Any node now takes the first three; MASQUE needs a node on 1.5.0 or newer.
+- Confirming an Xray version switch or a geofile update left the confirmation open on top of the progress until the download finished. It now closes at once.
+
 ## [1.10.1] - 2026-11-01
 
 ### Added
