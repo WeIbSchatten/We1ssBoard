@@ -47,7 +47,7 @@ func TestUpdateInbound_NodeMtprotoShareAddrIsEditable(t *testing.T) {
 func TestUpdateInbound_RejectsProtocolChangeToNodeIneligible(t *testing.T) {
 	setupConflictDB(t)
 	nodeID := 6
-	seedNodeRow(t, database.GetDB(), &model.Node{Id: nodeID, Name: "n6", Address: "127.0.0.1", Port: 2096, ApiToken: "tok", Enable: true, PanelVersion: "v3.4.1"})
+	seedNodeRow(t, database.GetDB(), &model.Node{Id: nodeID, Name: "n6", Address: "127.0.0.1", Port: 2096, ApiToken: "tok", Enable: true, PanelVersion: "v1.4.8"})
 	seedInboundConflictNode(t, "vless-node", "127.0.0.1", 4064, model.VLESS,
 		`{"network":"tcp","security":"none"}`,
 		`{"clients":[{"id":"11111111-2222-4333-8444-555555555555","email":"vn-c","enable":true}],"decryption":"none"}`, &nodeID)
@@ -65,8 +65,8 @@ func TestUpdateInbound_RejectsProtocolChangeToNodeIneligible(t *testing.T) {
 	}{
 		{"panel-local protocol", model.HTTP, `{"accounts":[]}`, "cannot be assigned to a node"},
 		{
-			"protocol newer than the node", model.MTProto,
-			`{"clients":[{"email":"vn-c","enable":true,"secret":"ee0123456789abcdef0123456789abcdef"}]}`, "need v3.5.0 or newer",
+			"protocol newer than the node", model.MASQUE,
+			`{"clients":[{"email":"vn-c","enable":true,"password":"vn-pass"}]}`, "need v1.5.0 or newer",
 		},
 	}
 	for _, tc := range cases {

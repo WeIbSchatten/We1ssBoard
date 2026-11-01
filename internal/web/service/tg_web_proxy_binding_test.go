@@ -366,10 +366,10 @@ func TestRemoteDedicatedSyncAndSubscriptionShareHost(t *testing.T) {
 	t.Cleanup(ts.Close)
 
 	node := reconcileTestNode(t, ts, "eu-relay", "all", nil)
-	if err := database.GetDB().Model(node).Update("panel_version", "v3.9.0").Error; err != nil {
+	if err := database.GetDB().Model(node).Update("panel_version", "v1.10.1").Error; err != nil {
 		t.Fatalf("set panel version: %v", err)
 	}
-	node.PanelVersion = "v3.9.0"
+	node.PanelVersion = "v1.10.1"
 	runtime.SetManager(runtime.NewManager(runtime.LocalDeps{}))
 	t.Cleanup(func() { runtime.SetManager(nil) })
 

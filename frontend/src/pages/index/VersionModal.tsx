@@ -130,10 +130,12 @@ export default function VersionModal({
       content: t('pages.index.xraySwitchVersionDialogDesc').replace('#version#', version),
       okText: t('confirm'),
       cancelText: t('cancel'),
-      onOk: () =>
-        runWithProgress('xray', `Xray ${version}`, () =>
+      // Not returned: a pending onOk keeps the confirm open over the progress overlay.
+      onOk: () => {
+        void runWithProgress('xray', `Xray ${version}`, () =>
           HttpUtil.post(`/panel/api/server/installXray/${version}`),
-        ),
+        );
+      },
     });
   }
 
@@ -151,14 +153,15 @@ export default function VersionModal({
         : t('pages.index.geofilesUpdateDialogDesc'),
       okText: t('confirm'),
       cancelText: t('cancel'),
-      onOk: () =>
-        runWithProgress('geofile', t('pages.index.progress.geofiles'), () =>
+      onOk: () => {
+        void runWithProgress('geofile', t('pages.index.progress.geofiles'), () =>
           HttpUtil.post(
             isSingle
               ? `/panel/api/server/updateGeofile/${fileName}`
               : '/panel/api/server/updateGeofile',
           ),
-        ),
+        );
+      },
     });
   }
 
