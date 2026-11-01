@@ -83,7 +83,12 @@ describe('panel update modal', () => {
       vi.mocked(HttpUtil.get).mockImplementation(async (url: string) =>
         url === '/panel/api/server/getUpdateStatus'
           ? new Msg(true, '', replies.shift())
-          : new Msg(true, '', {}),
+          : new Msg(true, '', {
+              currentVersion: '1.10.0',
+              latestVersion: 'v1.10.1',
+              url: '',
+              releases: [],
+            }),
       );
       const reload = vi.fn();
       vi.stubGlobal('location', { ...window.location, reload });
