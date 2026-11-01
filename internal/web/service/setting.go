@@ -203,6 +203,7 @@ var defaultValueMap = map[string]string{
 	"restartXrayOnClientDisable":  "true",
 	"xrayOutboundTestUrl":         "https://www.google.com/generate_204",
 	"panelOutbound":               "",
+	"exactActiveConnection":       "true",
 	"customCss":                   "",
 	"customLoginCss":              "",
 	"customCssBundle":             `{"active":"default","presets":[]}`,
@@ -2053,4 +2054,10 @@ func (s *SettingService) GetFactoryDefaults() map[string]string {
 		}
 	}
 	return result
+}
+
+// GetExactActiveConnection reports whether the panel keeps Xray's access log on
+// for the exact active-connection view.
+func (s *SettingService) GetExactActiveConnection() (bool, error) {
+	return s.getBool("exactActiveConnection")
 }

@@ -177,6 +177,8 @@ func (s *XrayService) GetXrayConfig() (*xray.Config, error) {
 		return nil, err
 	}
 	xrayConfig.LogConfig = resolveXrayLogPaths(xrayConfig.LogConfig)
+	exact, _ := s.settingService.GetExactActiveConnection()
+	xrayConfig.LogConfig = withPanelAccessLog(xrayConfig.LogConfig, exact)
 	xrayConfig.API = ensureAPIServices(xrayConfig.API)
 	xrayConfig.Policy = ensureStatsPolicy(xrayConfig.Policy)
 	xrayConfig.RouterConfig = stripDisabledRules(xrayConfig.RouterConfig)
@@ -1867,4 +1869,28 @@ func forceUserspaceWireGuardTun(raw json_util.RawMessage) json_util.RawMessage {
 		return raw
 	}
 	return rewritten
+}
+
+// withPanelAccessLog points Xray's access log at the panel's log folder when the
+// exact-active-connection setting is on and the template keeps it off; a path
+// the admin chose is kept. Runs after resolveXrayLogPaths folded the key cases.
+func withPanelAccessLog(logCfg json_util.RawMessage, enabled bool) json_util.RawMessage {
+	if !enabled {
+		return logCfg
+	}
+	parsed := map[string]any{}
+	if len(logCfg) > 0 {
+		if err := json.Unmarshal(logCfg, &parsed); err != nil {
+			return logCfg
+		}
+	}
+	if v, _ := parsed["access"].(string); strings.TrimSpace(v) != "" && !strings.EqualFold(strings.TrimSpace(v), "none") {
+		return logCfg
+	}
+	parsed["access"] = filepath.Join(config.GetLogFolder(), "access.log")
+	out, err := json.Marshal(parsed)
+	if err != nil {
+		return logCfg
+	}
+	return out
 }

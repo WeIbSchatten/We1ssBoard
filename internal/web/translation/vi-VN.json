@@ -1017,7 +1017,7 @@
       "duration": "Thời hạn",
       "attachedInbounds": "Inbound đã gắn",
       "activeConnection": "Kết nối đang hoạt động",
-      "activeConnectionGuess": "Ước tính từ các inbound có lưu lượng. Bật nhật ký truy cập Xray để có dữ liệu chính xác",
+      "activeConnectionGuess": "Ước tính từ các inbound có lưu lượng. Bật Kết nối đang hoạt động chính xác trong Cài đặt để có dữ liệu chính xác",
       "selectInbound": "Chọn một hoặc nhiều inbound",
       "selectAllInbounds": "Chọn tất cả",
       "clearAllInbounds": "Xóa tất cả",
@@ -2047,7 +2047,9 @@
         "expiresIn": "Expires in about {minutes} minutes"
       },
       "unsavedChanges": "Có thay đổi chưa lưu",
-      "allSaved": "Đã lưu mọi thay đổi"
+      "allSaved": "Đã lưu mọi thay đổi",
+      "exactActiveConnection": "Kết nối đang hoạt động chính xác",
+      "exactActiveConnectionDesc": "Giữ nhật ký truy cập của Xray luôn bật để trang Khách hàng hiển thị chính xác inbound mà mỗi khách hàng đang dùng. Xray ghi mọi kết nối vào đó, kể cả địa chỉ được truy cập. Nhật ký nằm trong thư mục log của bảng điều khiển, bị cắt ở 64 MB và xóa mỗi ngày. Thay đổi mục này sẽ khởi động lại Xray."
     },
     "xray": {
       "importRules": "Nhập quy tắc",

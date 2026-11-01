@@ -1017,7 +1017,7 @@
       "duration": "期間",
       "attachedInbounds": "関連付けされたインバウンド",
       "activeConnection": "アクティブな接続",
-      "activeConnectionGuess": "トラフィックのあったインバウンドからの推定です。正確なデータには Xray のアクセスログを有効にしてください",
+      "activeConnectionGuess": "トラフィックのあったインバウンドからの推定です。正確なデータには設定で「正確なアクティブ接続」を有効にしてください",
       "selectInbound": "1 つ以上のインバウンドを選択",
       "selectAllInbounds": "すべて選択",
       "clearAllInbounds": "すべてクリア",
@@ -2047,7 +2047,9 @@
         "expiresIn": "Expires in about {minutes} minutes"
       },
       "unsavedChanges": "未保存の変更があります",
-      "allSaved": "すべての変更を保存済み"
+      "allSaved": "すべての変更を保存済み",
+      "exactActiveConnection": "正確なアクティブ接続",
+      "exactActiveConnectionDesc": "Xray のアクセスログを有効のままにし、「クライアント」ページで各クライアントが使っているインバウンドを正確に表示します。Xray はすべての接続を訪問先アドレスを含めて記録します。ログはパネルのログフォルダーに置かれ、64 MB で切り詰められ、毎日消去されます。変更すると Xray が再起動します。"
     },
     "xray": {
       "importRules": "ルールをインポート",

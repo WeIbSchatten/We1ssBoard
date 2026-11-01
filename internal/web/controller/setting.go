@@ -133,6 +133,7 @@ func (a *SettingController) updateSetting(c *gin.Context) {
 	allSetting := &form.AllSetting
 	oldTwoFactor, twoFactorErr := a.settingService.GetTwoFactorEnable()
 	oldPanelOutbound, _ := a.settingService.GetPanelOutbound()
+	oldExactConnection, _ := a.settingService.GetExactActiveConnection()
 	oldTgEnable, _ := a.settingService.GetTgbotEnabled()
 	oldTgToken, _ := a.settingService.GetTgBotToken()
 	oldTgChatId, _ := a.settingService.GetTgBotChatId()
@@ -162,6 +163,12 @@ func (a *SettingController) updateSetting(c *gin.Context) {
 	if err == nil && twoFactorErr == nil && !oldTwoFactor && allSetting.TwoFactorEnable {
 		if bumpErr := a.userService.BumpLoginEpoch(); bumpErr != nil {
 			err = bumpErr
+		}
+	}
+	if err == nil && form.ExactActiveConnection != oldExactConnection {
+		// The log section only takes effect on a restart, which RestartXray works out itself.
+		if applyErr := a.xrayService.RestartXray(false); applyErr != nil {
+			logger.Warning("apply exact active connection change failed:", applyErr)
 		}
 	}
 	if err == nil && form.PanelOutbound != oldPanelOutbound {

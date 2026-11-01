@@ -1017,7 +1017,7 @@
       "duration": "時長",
       "attachedInbounds": "關聯入站",
       "activeConnection": "目前連線",
-      "activeConnectionGuess": "依有流量的入站推測。開啟 Xray 存取日誌可取得準確資料",
+      "activeConnectionGuess": "依有流量的入站推測。在設定中開啟「精確的目前連線」可取得準確資料",
       "selectInbound": "選擇一個或多個入站",
       "selectAllInbounds": "全選",
       "clearAllInbounds": "全部清除",
@@ -2047,7 +2047,9 @@
         "expiresIn": "Expires in about {minutes} minutes"
       },
       "unsavedChanges": "有未儲存的變更",
-      "allSaved": "所有變更已儲存"
+      "allSaved": "所有變更已儲存",
+      "exactActiveConnection": "精確的目前連線",
+      "exactActiveConnectionDesc": "保持 Xray 存取日誌開啟，讓「用戶端」頁面準確顯示每個用戶端使用的入站。Xray 會把每個連線寫入日誌，包括造訪的位址。日誌保存在面板日誌目錄中，超過 64 MB 時截斷，並每天清除。變更此項會重新啟動 Xray。"
     },
     "xray": {
       "save": "儲存",

@@ -315,6 +315,17 @@ export default function GeneralTab({ allSetting, updateSetting }: GeneralTabProp
 
               <SettingListItem
                 paddings="small"
+                title={t('pages.settings.exactActiveConnection')}
+                description={t('pages.settings.exactActiveConnectionDesc')}
+              >
+                <Switch
+                  checked={allSetting.exactActiveConnection}
+                  onChange={(v) => updateSetting({ exactActiveConnection: v })}
+                />
+              </SettingListItem>
+
+              <SettingListItem
+                paddings="small"
                 title={t('pages.settings.pageSize')}
                 badge={<DefaultSettingTag settingKey="pageSize" value={allSetting.pageSize} />}
                 description={t('pages.settings.pageSizeDesc')}
