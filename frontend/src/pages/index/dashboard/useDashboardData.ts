@@ -14,6 +14,8 @@ import {
 import {
   AllTimeTrafficSchema,
   type AllTimeTraffic,
+  OutboundHealthSchema,
+  type OutboundHealth,
   PanelEventSchema,
   TrafficPointSchema,
   type PanelEvent,
@@ -40,14 +42,6 @@ const DashboardInboundSchema = z
 
 export type DashboardInbound = z.infer<typeof DashboardInboundSchema>;
 
-export interface ObservatoryTag {
-  tag: string;
-  alive: boolean;
-  delay: number;
-  lastSeenTime: number;
-  lastTryTime: number;
-}
-
 const REFRESH_MS = 10_000;
 
 async function getObj<T extends z.ZodType>(
@@ -70,7 +64,7 @@ const dashKeys = {
   topClients: () => ['dashboard', 'topClients'] as const,
   traffic: (range: TrafficRange) => ['dashboard', 'traffic', range] as const,
   events: () => ['dashboard', 'events'] as const,
-  observatory: () => ['dashboard', 'observatory'] as const,
+  outboundHealth: () => ['dashboard', 'outboundHealth'] as const,
   allTime: () => ['dashboard', 'allTime'] as const,
 };
 
@@ -137,22 +131,15 @@ export function useDashboardEvents() {
   });
 }
 
-const ObservatorySchema = z.array(
-  z.object({
-    tag: z.string(),
-    alive: z.boolean(),
-    delay: z.number().optional().default(0),
-    lastSeenTime: z.number().optional().default(0),
-    lastTryTime: z.number().optional().default(0),
-  }),
-);
-
-export function useDashboardObservatory() {
+// The panel's own probes; it rechecks a failing outbound every minute, so a
+// minute's refresh is as fresh as the data gets.
+export function useOutboundHealth() {
   return useQuery({
-    queryKey: dashKeys.observatory(),
-    queryFn: async (): Promise<ObservatoryTag[]> =>
-      (await getObj('get', '/panel/api/server/xrayObservatory', ObservatorySchema)) ?? [],
-    refetchInterval: 30_000,
+    queryKey: dashKeys.outboundHealth(),
+    queryFn: async (): Promise<OutboundHealth[]> =>
+      (await getObj('get', '/panel/api/server/outboundHealth', z.array(OutboundHealthSchema))) ??
+      [],
+    refetchInterval: 60_000,
   });
 }
 

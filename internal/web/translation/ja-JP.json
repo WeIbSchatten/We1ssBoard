@@ -414,7 +414,7 @@
         "nodes": "ノード",
         "nodesEmpty": "ノードはまだありません",
         "outbounds": "アウトバウンドの状態",
-        "outboundsEmpty": "Observatory が設定されていません",
+        "outboundsEmpty": "確認するプロキシのアウトバウンドがありません",
         "outboundDown": "停止",
         "events": "イベント",
         "eventsEmpty": "パネル起動以降、何も起きていません",
@@ -445,7 +445,9 @@
         },
         "periodCurrent": "今期間",
         "periodAll": "全期間",
-        "topClientsAllSub": "リセット前のトラフィックを含む全期間の使用量"
+        "topClientsAllSub": "リセット前のトラフィックを含む全期間の使用量",
+        "outboundChecking": "確認中…",
+        "outboundRetrying": "失敗、再確認中"
       },
       "progress": {
         "download": "ダウンロード中",

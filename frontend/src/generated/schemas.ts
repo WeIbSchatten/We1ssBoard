@@ -4342,6 +4342,54 @@ export const SCHEMAS: Record<string, unknown> = {
     ],
     "type": "object"
   },
+  "OutboundHealth": {
+    "description": "OutboundHealth is the dashboard's view of one proxy outbound. Checked is false\nuntil its first probe; Alive turns false only after the configured number of\nfailures in a row.",
+    "properties": {
+      "alive": {
+        "example": true,
+        "type": "boolean"
+      },
+      "checked": {
+        "example": true,
+        "type": "boolean"
+      },
+      "checkedAt": {
+        "example": 1793437200000,
+        "format": "int64",
+        "type": "integer"
+      },
+      "delay": {
+        "example": 120,
+        "format": "int64",
+        "type": "integer"
+      },
+      "error": {
+        "type": "string"
+      },
+      "failures": {
+        "example": 0,
+        "type": "integer"
+      },
+      "protocol": {
+        "example": "wireguard",
+        "type": "string"
+      },
+      "tag": {
+        "example": "warp",
+        "type": "string"
+      }
+    },
+    "required": [
+      "alive",
+      "checked",
+      "checkedAt",
+      "delay",
+      "failures",
+      "protocol",
+      "tag"
+    ],
+    "type": "object"
+  },
   "OutboundTraffics": {
     "description": "OutboundTraffics tracks traffic statistics for Xray outbound connections.",
     "properties": {

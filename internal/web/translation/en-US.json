@@ -414,8 +414,8 @@
         "nodes": "Nodes",
         "nodesEmpty": "No nodes yet",
         "outbounds": "Outbound health",
-        "outboundsEmpty": "Observatory is not set up",
-        "outboundDown": "down",
+        "outboundsEmpty": "No proxy outbounds to check",
+        "outboundDown": "Down",
         "events": "Events",
         "eventsEmpty": "Nothing has happened since the panel started",
         "eventOutboundDown": "Outbound down",
@@ -445,7 +445,9 @@
         },
         "periodCurrent": "This period",
         "periodAll": "All time",
-        "topClientsAllSub": "All-time usage, including traffic before resets"
+        "topClientsAllSub": "All-time usage, including traffic before resets",
+        "outboundChecking": "Checking…",
+        "outboundRetrying": "Failed, rechecking"
       },
       "progress": {
         "download": "Downloading",

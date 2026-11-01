@@ -414,7 +414,7 @@
         "nodes": "节点",
         "nodesEmpty": "还没有节点",
         "outbounds": "出站健康",
-        "outboundsEmpty": "未配置 Observatory",
+        "outboundsEmpty": "没有可检查的代理出站",
         "outboundDown": "不可用",
         "events": "事件",
         "eventsEmpty": "面板启动以来没有事件",
@@ -445,7 +445,9 @@
         },
         "periodCurrent": "本周期",
         "periodAll": "全部时间",
-        "topClientsAllSub": "全部时间的用量，包括重置前的流量"
+        "topClientsAllSub": "全部时间的用量，包括重置前的流量",
+        "outboundChecking": "检查中…",
+        "outboundRetrying": "失败，正在重试"
       },
       "progress": {
         "download": "下载中",

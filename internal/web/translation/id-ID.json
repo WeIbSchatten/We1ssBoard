@@ -414,8 +414,8 @@
         "nodes": "Node",
         "nodesEmpty": "Belum ada node",
         "outbounds": "Kesehatan outbound",
-        "outboundsEmpty": "Observatory belum diatur",
-        "outboundDown": "mati",
+        "outboundsEmpty": "Tidak ada outbound proxy untuk diperiksa",
+        "outboundDown": "Mati",
         "events": "Peristiwa",
         "eventsEmpty": "Belum ada kejadian sejak panel dimulai",
         "eventOutboundDown": "Outbound mati",
@@ -445,7 +445,9 @@
         },
         "periodCurrent": "Periode ini",
         "periodAll": "Sepanjang waktu",
-        "topClientsAllSub": "Pemakaian sepanjang waktu, termasuk trafik sebelum reset"
+        "topClientsAllSub": "Pemakaian sepanjang waktu, termasuk trafik sebelum reset",
+        "outboundChecking": "Memeriksa…",
+        "outboundRetrying": "Gagal, memeriksa ulang"
       },
       "progress": {
         "download": "Mengunduh",

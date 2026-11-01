@@ -414,7 +414,7 @@
         "nodes": "نودها",
         "nodesEmpty": "هنوز نودی وجود ندارد",
         "outbounds": "سلامت خروجی‌ها",
-        "outboundsEmpty": "Observatory تنظیم نشده",
+        "outboundsEmpty": "خروجی پراکسی برای بررسی وجود ندارد",
         "outboundDown": "از کار افتاده",
         "events": "رویدادها",
         "eventsEmpty": "از زمان شروع پنل اتفاقی نیفتاده",
@@ -445,7 +445,9 @@
         },
         "periodCurrent": "این دوره",
         "periodAll": "همه زمان‌ها",
-        "topClientsAllSub": "مصرف همه زمان‌ها، شامل ترافیک پیش از بازنشانی‌ها"
+        "topClientsAllSub": "مصرف همه زمان‌ها، شامل ترافیک پیش از بازنشانی‌ها",
+        "outboundChecking": "در حال بررسی…",
+        "outboundRetrying": "خطا، بررسی دوباره"
       },
       "progress": {
         "download": "در حال دانلود",

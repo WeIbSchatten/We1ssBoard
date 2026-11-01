@@ -414,8 +414,8 @@
         "nodes": "Вузли",
         "nodesEmpty": "Вузлів поки немає",
         "outbounds": "Стан вихідних",
-        "outboundsEmpty": "Observatory не налаштовано",
-        "outboundDown": "не відповідає",
+        "outboundsEmpty": "Немає вихідних для перевірки",
+        "outboundDown": "Не відповідає",
         "events": "Події",
         "eventsEmpty": "Від запуску панелі нічого не сталося",
         "eventOutboundDown": "Вихідне впало",
@@ -445,7 +445,9 @@
         },
         "periodCurrent": "За період",
         "periodAll": "Увесь час",
-        "topClientsAllSub": "Витрата за весь час, включно з трафіком до скидань"
+        "topClientsAllSub": "Витрата за весь час, включно з трафіком до скидань",
+        "outboundChecking": "Перевіряється…",
+        "outboundRetrying": "Збій, повторна перевірка"
       },
       "progress": {
         "download": "Завантаження",

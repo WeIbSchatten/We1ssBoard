@@ -10,7 +10,7 @@ import {
   useDashboardClients,
   useDashboardEvents,
   useDashboardInbounds,
-  useDashboardObservatory,
+  useOutboundHealth,
   useDashboardOnlines,
   useTrafficHistory,
 } from './useDashboardData';
@@ -23,7 +23,7 @@ export function useDashboardModel(status: Status) {
   const allOnline = useDashboardOnlines().data ?? EMPTY;
   const connections = useDashboardActiveConnections().data;
   const events = useDashboardEvents().data ?? EMPTY;
-  const outbounds = useDashboardObservatory().data ?? EMPTY;
+  const outbounds = useOutboundHealth().data ?? EMPTY;
   const week = useTrafficHistory('7d').data ?? EMPTY;
   const { nodes } = useNodesQuery();
 
@@ -67,7 +67,7 @@ export function useDashboardModel(status: Status) {
         status: n.status ?? '',
         xrayState: n.xrayState ?? '',
       })),
-      outbounds,
+      outbounds: outbounds.filter((o) => o.checked).map((o) => ({ tag: o.tag, alive: o.alive })),
       depletedCount: summary?.depletedCount ?? 0,
       expiringCount: summary?.expiringCount ?? 0,
     });

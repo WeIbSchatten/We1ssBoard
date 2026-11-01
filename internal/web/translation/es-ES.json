@@ -414,8 +414,8 @@
         "nodes": "Nodos",
         "nodesEmpty": "Aún no hay nodos",
         "outbounds": "Estado de outbounds",
-        "outboundsEmpty": "Observatory no está configurado",
-        "outboundDown": "caído",
+        "outboundsEmpty": "No hay outbounds proxy que comprobar",
+        "outboundDown": "Caído",
         "events": "Eventos",
         "eventsEmpty": "No ha pasado nada desde que arrancó el panel",
         "eventOutboundDown": "Outbound caído",
@@ -445,7 +445,9 @@
         },
         "periodCurrent": "Este periodo",
         "periodAll": "Todo el tiempo",
-        "topClientsAllSub": "Uso total, incluido el tráfico anterior a los reinicios"
+        "topClientsAllSub": "Uso total, incluido el tráfico anterior a los reinicios",
+        "outboundChecking": "Comprobando…",
+        "outboundRetrying": "Falló, recomprobando"
       },
       "progress": {
         "download": "Descargando",

@@ -414,8 +414,8 @@
         "nodes": "Узлы",
         "nodesEmpty": "Узлов пока нет",
         "outbounds": "Состояние исходящих",
-        "outboundsEmpty": "Observatory не настроен",
-        "outboundDown": "не отвечает",
+        "outboundsEmpty": "Нет исходящих для проверки",
+        "outboundDown": "Не отвечает",
         "events": "События",
         "eventsEmpty": "С запуска панели ничего не произошло",
         "eventOutboundDown": "Исходящее упало",
@@ -445,7 +445,9 @@
         },
         "periodCurrent": "За период",
         "periodAll": "Всё время",
-        "topClientsAllSub": "Расход за всё время, включая трафик до сбросов"
+        "topClientsAllSub": "Расход за всё время, включая трафик до сбросов",
+        "outboundChecking": "Проверяется…",
+        "outboundRetrying": "Сбой, перепроверка"
       },
       "progress": {
         "download": "Скачивание",

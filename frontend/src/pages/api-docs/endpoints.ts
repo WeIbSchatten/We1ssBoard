@@ -532,6 +532,14 @@ export const sections: readonly Section[] = [
       },
       {
         method: 'GET',
+        path: '/panel/api/server/outboundHealth',
+        summary:
+          "The panel's own health checks of its proxy outbounds, sorted by tag. Every proxy outbound is probed every 10 minutes with the Outbounds tab's test, a failing one every minute; it counts as down after outboundDownThreshold failures in a row. Works without Xray's observatory. checked is false until the first probe.",
+        responseSchema: 'OutboundHealth',
+        responseSchemaArray: true,
+      },
+      {
+        method: 'GET',
         path: '/panel/api/server/allTimeTraffic',
         summary:
           'All-time traffic, which traffic resets do not clear: the heaviest clients (leaving out those reachable only through a hidden node) and every inbound by id. Counted from the counters found when recording began.',

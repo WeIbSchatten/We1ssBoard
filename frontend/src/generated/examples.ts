@@ -1101,6 +1101,16 @@ export const EXAMPLES: Record<string, unknown> = {
     "xrayState": "running",
     "xrayVersion": "25.10.31"
   },
+  "OutboundHealth": {
+    "alive": true,
+    "checked": true,
+    "checkedAt": 1793437200000,
+    "delay": 120,
+    "error": "",
+    "failures": 0,
+    "protocol": "wireguard",
+    "tag": "warp"
+  },
   "OutboundTraffics": {
     "down": 0,
     "id": 0,

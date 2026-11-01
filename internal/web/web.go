@@ -311,6 +311,7 @@ const (
 	cadenceXrayLogPrune   = "@every 10m"
 	cadenceCheckHash      = "@every 2m"
 	cadenceTrafficHistory = "@every 1m"
+	cadenceOutboundHealth = "@every 1m"
 	// cpu.Percent samples over a full minute (blocking), so a finer cadence just
 	// stacks overlapping samplers; subscribers rate-limit alerts to 1/min anyway.
 	cadenceCPUAlarm    = "@every 1m"
@@ -373,6 +374,7 @@ func (s *Server) startTask(restartXray bool, loc *time.Location) {
 
 	_, _ = s.cron.AddJob(cadenceReapOrphans, job.NewReapSyncOrphansJob())
 	_, _ = s.cron.AddJob(cadenceTrafficHistory, job.NewTrafficHistoryJob())
+	_, _ = s.cron.AddJob(cadenceOutboundHealth, job.NewOutboundHealthJob())
 
 	// Warm permanent routing URLs immediately and refresh them outside the
 	// latency-sensitive subscription request path.

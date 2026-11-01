@@ -115,6 +115,7 @@ func run(root, outDir string) error {
 				"AllTimeTraffic",
 				"ClientAllTime",
 				"TrafficTotal",
+				"OutboundHealth",
 				"HwidSlotStatus",
 				"RemoteLiveInbound",
 				"RemoteLoginURL",

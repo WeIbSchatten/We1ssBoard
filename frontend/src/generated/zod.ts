@@ -1069,6 +1069,18 @@ export const NodeViewSchema = z.object({
 });
 export type NodeView = z.infer<typeof NodeViewSchema>;
 
+export const OutboundHealthSchema = z.object({
+  alive: z.boolean(),
+  checked: z.boolean(),
+  checkedAt: z.number().int(),
+  delay: z.number().int(),
+  error: z.string().optional(),
+  failures: z.number().int(),
+  protocol: z.string(),
+  tag: z.string(),
+});
+export type OutboundHealth = z.infer<typeof OutboundHealthSchema>;
+
 export const OutboundTrafficsSchema = z.object({
   down: z.number().int(),
   id: z.number().int(),

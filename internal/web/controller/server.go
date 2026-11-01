@@ -49,6 +49,7 @@ func (a *ServerController) initRouter(g *gin.RouterGroup) {
 	g.GET("/history/:metric/:bucket", a.getMetricHistoryBucket)
 	g.GET("/trafficHistory/:range", a.getTrafficHistory)
 	g.GET("/allTimeTraffic", a.getAllTimeTraffic)
+	g.GET("/outboundHealth", a.getOutboundHealth)
 	g.GET("/events", a.getEvents)
 	g.GET("/taskProgress", a.getTaskProgress)
 	g.GET("/xrayMetricsState", a.getXrayMetricsState)
@@ -164,6 +165,11 @@ func (a *ServerController) getTaskProgress(c *gin.Context) {
 // getEvents returns the newest outbound, node, Xray, resource and login events.
 func (a *ServerController) getEvents(c *gin.Context) {
 	jsonObj(c, service.GetEventFeed().Recent(50), nil)
+}
+
+// getOutboundHealth returns the panel's own health checks of its proxy outbounds.
+func (a *ServerController) getOutboundHealth(c *gin.Context) {
+	jsonObj(c, service.GetOutboundHealthMonitor().Snapshot(), nil)
 }
 
 // getAllTimeTraffic returns the heaviest clients and every inbound by all-time traffic.

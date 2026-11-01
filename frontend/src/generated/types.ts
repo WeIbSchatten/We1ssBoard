@@ -1000,6 +1000,17 @@ export interface NodeView {
   xrayVersion: string;
 }
 
+export interface OutboundHealth {
+  alive: boolean;
+  checked: boolean;
+  checkedAt: number;
+  delay: number;
+  error?: string;
+  failures: number;
+  protocol: string;
+  tag: string;
+}
+
 export interface OutboundTraffics {
   down: number;
   id: number;

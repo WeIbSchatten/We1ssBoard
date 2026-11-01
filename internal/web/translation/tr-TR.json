@@ -414,8 +414,8 @@
         "nodes": "Düğümler",
         "nodesEmpty": "Henüz düğüm yok",
         "outbounds": "Giden bağlantı durumu",
-        "outboundsEmpty": "Observatory ayarlanmamış",
-        "outboundDown": "çalışmıyor",
+        "outboundsEmpty": "Denetlenecek proxy giden bağlantısı yok",
+        "outboundDown": "Çalışmıyor",
         "events": "Olaylar",
         "eventsEmpty": "Panel başladığından beri bir şey olmadı",
         "eventOutboundDown": "Giden bağlantı düştü",
@@ -445,7 +445,9 @@
         },
         "periodCurrent": "Bu dönem",
         "periodAll": "Tüm zamanlar",
-        "topClientsAllSub": "Sıfırlamalardan önceki trafik dahil tüm zamanların kullanımı"
+        "topClientsAllSub": "Sıfırlamalardan önceki trafik dahil tüm zamanların kullanımı",
+        "outboundChecking": "Denetleniyor…",
+        "outboundRetrying": "Başarısız, yeniden denetleniyor"
       },
       "progress": {
         "download": "İndiriliyor",

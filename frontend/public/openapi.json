@@ -4368,6 +4368,54 @@
         ],
         "type": "object"
       },
+      "OutboundHealth": {
+        "description": "OutboundHealth is the dashboard's view of one proxy outbound. Checked is false\nuntil its first probe; Alive turns false only after the configured number of\nfailures in a row.",
+        "properties": {
+          "alive": {
+            "example": true,
+            "type": "boolean"
+          },
+          "checked": {
+            "example": true,
+            "type": "boolean"
+          },
+          "checkedAt": {
+            "example": 1793437200000,
+            "format": "int64",
+            "type": "integer"
+          },
+          "delay": {
+            "example": 120,
+            "format": "int64",
+            "type": "integer"
+          },
+          "error": {
+            "type": "string"
+          },
+          "failures": {
+            "example": 0,
+            "type": "integer"
+          },
+          "protocol": {
+            "example": "wireguard",
+            "type": "string"
+          },
+          "tag": {
+            "example": "warp",
+            "type": "string"
+          }
+        },
+        "required": [
+          "alive",
+          "checked",
+          "checkedAt",
+          "delay",
+          "failures",
+          "protocol",
+          "tag"
+        ],
+        "type": "object"
+      },
       "OutboundTraffics": {
         "description": "OutboundTraffics tracks traffic statistics for Xray outbound connections.",
         "properties": {
@@ -8055,6 +8103,56 @@
                       "down": 8388608,
                       "time": 1793430000,
                       "up": 1048576
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/panel/api/server/outboundHealth": {
+      "get": {
+        "tags": [
+          "Server"
+        ],
+        "summary": "The panel's own health checks of its proxy outbounds, sorted by tag. Every proxy outbound is probed every 10 minutes with the Outbounds tab's test, a failing one every minute; it counts as down after outboundDownThreshold failures in a row. Works without Xray's observatory. checked is false until the first probe.",
+        "operationId": "get_panel_api_server_outboundHealth",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "msg": {
+                      "type": "string"
+                    },
+                    "obj": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/OutboundHealth"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "success": true,
+                  "obj": [
+                    {
+                      "alive": true,
+                      "checked": true,
+                      "checkedAt": 1793437200000,
+                      "delay": 120,
+                      "error": "",
+                      "failures": 0,
+                      "protocol": "wireguard",
+                      "tag": "warp"
                     }
                   ]
                 }

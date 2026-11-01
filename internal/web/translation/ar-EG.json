@@ -414,7 +414,7 @@
         "nodes": "العُقد",
         "nodesEmpty": "لا توجد عُقد بعد",
         "outbounds": "حالة الاتصالات الصادرة",
-        "outboundsEmpty": "Observatory غير مُعدّ",
+        "outboundsEmpty": "لا توجد اتصالات صادرة وكيلة لفحصها",
         "outboundDown": "متوقف",
         "events": "الأحداث",
         "eventsEmpty": "لم يحدث شيء منذ بدء اللوحة",
@@ -445,7 +445,9 @@
         },
         "periodCurrent": "هذه الفترة",
         "periodAll": "كل الوقت",
-        "topClientsAllSub": "الاستخدام في كل الوقت، بما في ذلك الحركة قبل إعادة الضبط"
+        "topClientsAllSub": "الاستخدام في كل الوقت، بما في ذلك الحركة قبل إعادة الضبط",
+        "outboundChecking": "جارٍ الفحص…",
+        "outboundRetrying": "فشل، إعادة الفحص"
       },
       "progress": {
         "download": "جارٍ التنزيل",

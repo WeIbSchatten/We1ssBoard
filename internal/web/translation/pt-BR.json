@@ -414,8 +414,8 @@
         "nodes": "Nós",
         "nodesEmpty": "Nenhum nó ainda",
         "outbounds": "Saúde dos outbounds",
-        "outboundsEmpty": "O Observatory não está configurado",
-        "outboundDown": "fora do ar",
+        "outboundsEmpty": "Nenhum outbound proxy para verificar",
+        "outboundDown": "Fora do ar",
         "events": "Eventos",
         "eventsEmpty": "Nada aconteceu desde que o painel iniciou",
         "eventOutboundDown": "Outbound fora do ar",
@@ -445,7 +445,9 @@
         },
         "periodCurrent": "Este período",
         "periodAll": "Todo o período",
-        "topClientsAllSub": "Uso total, incluindo o tráfego antes das redefinições"
+        "topClientsAllSub": "Uso total, incluindo o tráfego antes das redefinições",
+        "outboundChecking": "Verificando…",
+        "outboundRetrying": "Falhou, verificando de novo"
       },
       "progress": {
         "download": "Baixando",

@@ -414,8 +414,8 @@
         "nodes": "Node",
         "nodesEmpty": "Chưa có node",
         "outbounds": "Tình trạng outbound",
-        "outboundsEmpty": "Observatory chưa được thiết lập",
-        "outboundDown": "ngừng",
+        "outboundsEmpty": "Không có outbound proxy để kiểm tra",
+        "outboundDown": "Ngừng",
         "events": "Sự kiện",
         "eventsEmpty": "Chưa có gì xảy ra từ khi bảng điều khiển khởi động",
         "eventOutboundDown": "Outbound ngừng",
@@ -445,7 +445,9 @@
         },
         "periodCurrent": "Kỳ này",
         "periodAll": "Toàn thời gian",
-        "topClientsAllSub": "Mức dùng toàn thời gian, gồm cả lưu lượng trước khi đặt lại"
+        "topClientsAllSub": "Mức dùng toàn thời gian, gồm cả lưu lượng trước khi đặt lại",
+        "outboundChecking": "Đang kiểm tra…",
+        "outboundRetrying": "Lỗi, đang kiểm tra lại"
       },
       "progress": {
         "download": "Đang tải xuống",

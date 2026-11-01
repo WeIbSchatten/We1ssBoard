@@ -36,6 +36,25 @@ _openapi:
         slot first, with empty slots as zeros. Kept for 32 days.
       url: '#proxy-traffic-carried-by-every-inbound-this-panel-and-its-nodes-oldest-slot-first-with-empty-slots-as-zeros-kept-for-32-days'
     - depth: 2
+      title: The panel's own health checks of its proxy outbounds, sorted by tag.
+        Every proxy outbound is probed every 10 minutes with the Outbounds tab's
+        test, a failing one every minute; it counts as down after
+        outboundDownThreshold failures in a row. Works without Xray's
+        observatory. checked is false until the first probe.
+      url: '#the-panels-own-health-checks-of-its-proxy-outbounds-sorted-by-tag-every-proxy-outbound-is-probed-every-10-minutes-with-the-outbounds-tabs-test-a-failing-one-every-minute-it-counts-as-down-after-outbounddownthreshold-failures-in-a-row-works-without-xrays-observatory-checked-is-false-until-the-first-probe'
+    - depth: 2
+      title: 'All-time traffic, which traffic resets do not clear: the heaviest
+        clients (leaving out those reachable only through a hidden node) and
+        every inbound by id. Counted from the counters found when recording
+        began.'
+      url: '#all-time-traffic-which-traffic-resets-do-not-clear-the-heaviest-clients-leaving-out-those-reachable-only-through-a-hidden-node-and-every-inbound-by-id-counted-from-the-counters-found-when-recording-began'
+    - depth: 2
+      title: 'Progress of the Xray core or geofile update running on this panel: the
+        file being downloaded, its place in the batch, bytes so far and the
+        stage (download, verify, install, restart, done, failed). Polled while
+        installXray or updateGeofile is in flight.'
+      url: '#progress-of-the-xray-core-or-geofile-update-running-on-this-panel-the-file-being-downloaded-its-place-in-the-batch-bytes-so-far-and-the-stage-download-verify-install-restart-done-failed-polled-while-installxray-or-updategeofile-is-in-flight'
+    - depth: 2
       title: 'The 50 newest panel events, newest first: outbounds and nodes going down
         or up, Xray crashes, CPU and memory alarms, login attempts. Kept in
         memory, so a restart empties it.'
@@ -225,6 +244,22 @@ _openapi:
       - content: Proxy traffic carried by every inbound (this panel and its nodes),
           oldest slot first, with empty slots as zeros. Kept for 32 days.
         id: proxy-traffic-carried-by-every-inbound-this-panel-and-its-nodes-oldest-slot-first-with-empty-slots-as-zeros-kept-for-32-days
+      - content: The panel's own health checks of its proxy outbounds, sorted by tag.
+          Every proxy outbound is probed every 10 minutes with the Outbounds
+          tab's test, a failing one every minute; it counts as down after
+          outboundDownThreshold failures in a row. Works without Xray's
+          observatory. checked is false until the first probe.
+        id: the-panels-own-health-checks-of-its-proxy-outbounds-sorted-by-tag-every-proxy-outbound-is-probed-every-10-minutes-with-the-outbounds-tabs-test-a-failing-one-every-minute-it-counts-as-down-after-outbounddownthreshold-failures-in-a-row-works-without-xrays-observatory-checked-is-false-until-the-first-probe
+      - content: 'All-time traffic, which traffic resets do not clear: the heaviest
+          clients (leaving out those reachable only through a hidden node) and
+          every inbound by id. Counted from the counters found when recording
+          began.'
+        id: all-time-traffic-which-traffic-resets-do-not-clear-the-heaviest-clients-leaving-out-those-reachable-only-through-a-hidden-node-and-every-inbound-by-id-counted-from-the-counters-found-when-recording-began
+      - content: 'Progress of the Xray core or geofile update running on this panel: the
+          file being downloaded, its place in the batch, bytes so far and the
+          stage (download, verify, install, restart, done, failed). Polled while
+          installXray or updateGeofile is in flight.'
+        id: progress-of-the-xray-core-or-geofile-update-running-on-this-panel-the-file-being-downloaded-its-place-in-the-batch-bytes-so-far-and-the-stage-download-verify-install-restart-done-failed-polled-while-installxray-or-updategeofile-is-in-flight
       - content: 'The 50 newest panel events, newest first: outbounds and nodes going
           down or up, Xray crashes, CPU and memory alarms, login attempts. Kept
           in memory, so a restart empties it.'
@@ -364,7 +399,7 @@ export default function Layout(props) {
   return (
     <>
       {props.children}
-      <OpenAPIPage document="./public/openapi.json" webhooks={[]} operations={[{"path":"/panel/api/openapi.json","method":"get"},{"path":"/panel/api/server/status","method":"get"},{"path":"/panel/api/server/fail2banStatus","method":"get"},{"path":"/panel/api/server/cpuHistory/{bucket}","method":"get"},{"path":"/panel/api/server/history/{metric}/{bucket}","method":"get"},{"path":"/panel/api/server/trafficHistory/{range}","method":"get"},{"path":"/panel/api/server/events","method":"get"},{"path":"/panel/api/server/xrayMetricsState","method":"get"},{"path":"/panel/api/server/xrayMetricsHistory/{metric}/{bucket}","method":"get"},{"path":"/panel/api/server/xrayObservatory","method":"get"},{"path":"/panel/api/server/xrayObservatoryHistory/{tag}/{bucket}","method":"get"},{"path":"/panel/api/server/getXrayVersion","method":"get"},{"path":"/panel/api/server/getPanelUpdateInfo","method":"get"},{"path":"/panel/api/server/getUpdateStatus","method":"get"},{"path":"/panel/api/server/getChangelog","method":"get"},{"path":"/panel/api/server/getConfigJson","method":"get"},{"path":"/panel/api/server/getDb","method":"get"},{"path":"/panel/api/server/getMigration","method":"get"},{"path":"/panel/api/server/getNewUUID","method":"get"},{"path":"/panel/api/server/getWebCertFiles","method":"get"},{"path":"/panel/api/server/descendants","method":"get"},{"path":"/panel/api/server/getNewX25519Cert","method":"get"},{"path":"/panel/api/server/getNewmldsa65","method":"get"},{"path":"/panel/api/server/getNewmlkem768","method":"get"},{"path":"/panel/api/server/getNewVlessEnc","method":"get"},{"path":"/panel/api/server/stopXrayService","method":"post"},{"path":"/panel/api/server/restartXrayService","method":"post"},{"path":"/panel/api/server/installXray/{version}","method":"post"},{"path":"/panel/api/server/unpinXray","method":"post"},{"path":"/panel/api/server/updatePanel","method":"post"},{"path":"/panel/api/server/setUpdateChannel","method":"post"},{"path":"/panel/api/server/updateGeofile","method":"post"},{"path":"/panel/api/server/updateGeofile/{fileName}","method":"post"},{"path":"/panel/api/server/logs/{count}","method":"post"},{"path":"/panel/api/server/xraylogs/{count}","method":"post"},{"path":"/panel/api/server/amneziawglogs/{count}","method":"post"},{"path":"/panel/api/server/importDB","method":"post"},{"path":"/panel/api/server/getNewEchCert","method":"post"},{"path":"/panel/api/server/getCertHash","method":"post"},{"path":"/panel/api/server/getRemoteCertHash","method":"post"},{"path":"/panel/api/server/scanRealityTarget","method":"post"},{"path":"/panel/api/server/scanRealityTargets","method":"post"},{"path":"/panel/api/server/clientIps","method":"get"},{"path":"/panel/api/server/clientIps","method":"post"}]} showTitle />
+      <OpenAPIPage document="./public/openapi.json" webhooks={[]} operations={[{"path":"/panel/api/openapi.json","method":"get"},{"path":"/panel/api/server/status","method":"get"},{"path":"/panel/api/server/fail2banStatus","method":"get"},{"path":"/panel/api/server/cpuHistory/{bucket}","method":"get"},{"path":"/panel/api/server/history/{metric}/{bucket}","method":"get"},{"path":"/panel/api/server/trafficHistory/{range}","method":"get"},{"path":"/panel/api/server/outboundHealth","method":"get"},{"path":"/panel/api/server/allTimeTraffic","method":"get"},{"path":"/panel/api/server/taskProgress","method":"get"},{"path":"/panel/api/server/events","method":"get"},{"path":"/panel/api/server/xrayMetricsState","method":"get"},{"path":"/panel/api/server/xrayMetricsHistory/{metric}/{bucket}","method":"get"},{"path":"/panel/api/server/xrayObservatory","method":"get"},{"path":"/panel/api/server/xrayObservatoryHistory/{tag}/{bucket}","method":"get"},{"path":"/panel/api/server/getXrayVersion","method":"get"},{"path":"/panel/api/server/getPanelUpdateInfo","method":"get"},{"path":"/panel/api/server/getUpdateStatus","method":"get"},{"path":"/panel/api/server/getChangelog","method":"get"},{"path":"/panel/api/server/getConfigJson","method":"get"},{"path":"/panel/api/server/getDb","method":"get"},{"path":"/panel/api/server/getMigration","method":"get"},{"path":"/panel/api/server/getNewUUID","method":"get"},{"path":"/panel/api/server/getWebCertFiles","method":"get"},{"path":"/panel/api/server/descendants","method":"get"},{"path":"/panel/api/server/getNewX25519Cert","method":"get"},{"path":"/panel/api/server/getNewmldsa65","method":"get"},{"path":"/panel/api/server/getNewmlkem768","method":"get"},{"path":"/panel/api/server/getNewVlessEnc","method":"get"},{"path":"/panel/api/server/stopXrayService","method":"post"},{"path":"/panel/api/server/restartXrayService","method":"post"},{"path":"/panel/api/server/installXray/{version}","method":"post"},{"path":"/panel/api/server/unpinXray","method":"post"},{"path":"/panel/api/server/updatePanel","method":"post"},{"path":"/panel/api/server/setUpdateChannel","method":"post"},{"path":"/panel/api/server/updateGeofile","method":"post"},{"path":"/panel/api/server/updateGeofile/{fileName}","method":"post"},{"path":"/panel/api/server/logs/{count}","method":"post"},{"path":"/panel/api/server/xraylogs/{count}","method":"post"},{"path":"/panel/api/server/amneziawglogs/{count}","method":"post"},{"path":"/panel/api/server/importDB","method":"post"},{"path":"/panel/api/server/getNewEchCert","method":"post"},{"path":"/panel/api/server/getCertHash","method":"post"},{"path":"/panel/api/server/getRemoteCertHash","method":"post"},{"path":"/panel/api/server/scanRealityTarget","method":"post"},{"path":"/panel/api/server/scanRealityTargets","method":"post"},{"path":"/panel/api/server/clientIps","method":"get"},{"path":"/panel/api/server/clientIps","method":"post"}]} showTitle />
     </>
   );
 }
