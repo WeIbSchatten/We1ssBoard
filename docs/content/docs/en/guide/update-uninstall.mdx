@@ -88,6 +88,10 @@ For scripts and quick actions, `we1ssboard` also takes a subcommand directly:
 - **Dev channel:** menu option **3** or `we1ssboard update-dev` — the rolling
   `dev-latest` per-commit build (not a stable release).
 - **A specific older version:** menu option **5** (Legacy Version).
+- **From the panel:** the version chip in the **Overview** status bar opens
+  **Update Panel**. Since 1.10.1 the dialog shows the update's steps with a
+  progress bar (download, checksum, stop, install, configure, start) and says when
+  the panel is restarting; keep the page open until it reloads.
 
 Updating preserves your database and settings. Take a
 [backup](/docs/operations/backup-restore) before a major-version jump.
@@ -96,7 +100,8 @@ An update installs the Xray-core version that ships with the release. If you
 picked another version in **Overview → Xray Updates**, it is pinned and the panel
 reinstalls it right after the update; **Use the bundled version** removes the
 pin. See [REALITY client compatibility](/docs/config/reality#client-compatibility)
-for why you might want an older core.
+for why you might want an older core. Switching the Xray version and updating
+geofiles show the file being downloaded and how much of it has arrived.
 
 <Callout type="info">
   Docker users update differently — pull the new image and recreate the

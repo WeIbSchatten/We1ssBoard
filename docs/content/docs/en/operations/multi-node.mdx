@@ -99,6 +99,22 @@ certificate instead of an API token.
 
 </Steps>
 
+### Hide a node from the dashboard
+
+A node that only serves something else, such as a Telegram web proxy relay, can
+crowd the dashboard with clients and inbounds you do not manage there. Turn on
+**Hide from dashboard and pickers** in the node's settings:
+
+- its inbounds and the clients reachable only through it disappear from the
+  dashboard: key figures, traffic, inbounds, who is connected, top clients and
+  the needs-attention counters;
+- its inbounds are no longer offered when you attach inbounds to clients;
+  clients already attached keep them.
+
+The node itself stays in the dashboard's Nodes card, so an outage still shows,
+and sync works as before. The traffic chart stops counting the node from the
+moment it is hidden.
+
 ## Managed hosts
 
 A **managed host** is an override endpoint attached to an inbound. At

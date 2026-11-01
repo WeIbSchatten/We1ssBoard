@@ -11,8 +11,9 @@ as a **separate** server from the panel.
 
 ## Enable and configure
 
-The subscription server is **on by default** (`subEnable`). Configure it in the
-panel's subscription settings:
+The subscription server is **on by default** (`subEnable`). Configure it under
+**Settings → Subscription** (a sidebar page of its own before 1.10.1); **Sub
+Formats** and **Sub Balancers** are the tabs next to it:
 
 | Setting       | Default | Meaning                                                         |
 | ------------- | ------- | --------------------------------------------------------------- |
@@ -96,7 +97,7 @@ Subscriptions return standard headers that compatible apps read:
 
 ### Profile page links and upgrades
 
-In **Subscription → Profile → Profile page**, choose `subProfileMode` for all
+In **Settings → Subscription → Profile → Profile page**, choose `subProfileMode` for all
 subscription clients:
 
 - **No link** (`none`, default): omit `Profile-Web-Page-Url`.
@@ -115,7 +116,7 @@ access.
 
 ### Optional month-end expiry display
 
-Under **Subscription → Information**, **Month-end subscription expiry display**
+Under **Settings → Subscription → Information**, **Month-end subscription expiry display**
 (`subCalendarExpireInclusive`, default `false`) reports the last valid second
 of the month in `Subscription-Userinfo` instead of the next month's midnight.
 It applies only when every client contributing to the subscription has calendar

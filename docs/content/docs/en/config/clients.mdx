@@ -42,6 +42,31 @@ inbounds** at once, with per-client traffic accounting.
 - **Online status** and **last-online** times are tracked per client (and per
   node in multi-node setups).
 
+## Active connection
+
+The **Active connection** column on the Clients page shows the protocol and the
+inbound each online client is using right now; the client's info window shows it
+next to the list of attached inbounds.
+
+- **Exact.** Xray counts traffic per client, not per inbound, so the panel learns
+  the inbound from Xray's access log, where every new connection names the
+  inbound and the client's email. Nodes send their own data to the main panel.
+- **Estimated** (dashed chip). Without an access-log line the panel shows the
+  client's attached inbounds that carried traffic in the last poll. This is what
+  older nodes and panels with the access log turned off show.
+
+**Settings → General → Exact active connection** (on by default since 1.10.1)
+keeps the access log on: when the Xray template leaves `log.access` at `none`,
+the panel points it at `access.log` in its own log folder. A path you set in the
+template is kept. The file is cut at 64 MB and cleared daily.
+
+<Callout type="warn">
+  Xray writes every connection to the access log, including the address the
+  client visited. If you do not want such a log on the server, turn **Exact
+  active connection** off; the column then shows estimates. Changing it restarts
+  Xray.
+</Callout>
+
 ## Automatic renewal
 
 The individual and bulk-create forms offer one renewal mode at a time:
