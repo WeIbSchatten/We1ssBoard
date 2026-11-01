@@ -10,9 +10,9 @@ const CHART_H = 150;
 
 function slotLabel(time: number, range: TrafficRange): string {
   const d = new Date(time * 1000);
-  return range === '24h'
-    ? d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    : d.toLocaleDateString([], { day: 'numeric', month: 'short' });
+  if (range === '24h') return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  if (range === 'all') return d.toLocaleDateString([], { month: 'short', year: 'numeric' });
+  return d.toLocaleDateString([], { day: 'numeric', month: 'short' });
 }
 
 function TrafficBars({ points, range }: { points: TrafficPoint[]; range: TrafficRange }) {
@@ -86,6 +86,7 @@ export default function TrafficHistoryCard() {
             { value: '24h', label: t('pages.index.dash.range24h') },
             { value: '7d', label: t('pages.index.dash.range7d') },
             { value: '30d', label: t('pages.index.dash.range30d') },
+            { value: 'all', label: t('pages.index.dash.periodAll') },
           ]}
         />
       </div>

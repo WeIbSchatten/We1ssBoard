@@ -442,7 +442,10 @@
           "warn": "Online, tetapi Xray tidak berjalan",
           "bad": "Offline",
           "off": "Nonaktif"
-        }
+        },
+        "periodCurrent": "Periode ini",
+        "periodAll": "Sepanjang waktu",
+        "topClientsAllSub": "Pemakaian sepanjang waktu, termasuk trafik sebelum reset"
       },
       "progress": {
         "download": "Mengunduh",

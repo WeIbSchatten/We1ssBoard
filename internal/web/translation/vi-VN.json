@@ -442,7 +442,10 @@
           "warn": "Trực tuyến, nhưng Xray không chạy",
           "bad": "Ngoại tuyến",
           "off": "Đã tắt"
-        }
+        },
+        "periodCurrent": "Kỳ này",
+        "periodAll": "Toàn thời gian",
+        "topClientsAllSub": "Mức dùng toàn thời gian, gồm cả lưu lượng trước khi đặt lại"
       },
       "progress": {
         "download": "Đang tải xuống",

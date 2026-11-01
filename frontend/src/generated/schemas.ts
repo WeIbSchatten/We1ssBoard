@@ -1568,6 +1568,28 @@ export const SCHEMAS: Record<string, unknown> = {
     ],
     "type": "object"
   },
+  "AllTimeTraffic": {
+    "description": "AllTimeTraffic is what the dashboard shows in its \"all time\" mode.",
+    "properties": {
+      "clients": {
+        "items": {
+          "$ref": "#/components/schemas/ClientAllTime"
+        },
+        "type": "array"
+      },
+      "inbounds": {
+        "additionalProperties": {
+          "$ref": "#/components/schemas/TrafficTotal"
+        },
+        "type": "object"
+      }
+    },
+    "required": [
+      "clients",
+      "inbounds"
+    ],
+    "type": "object"
+  },
   "AmneziaWGLogs": {
     "description": "AmneziaWGLogs is what the overview's AmneziaWG log view renders: the live\nper-peer activity of every running embedded interface, plus the panel's\nown recent AmneziaWG lifecycle log lines that explain a peer being absent\nfrom Peers at all.",
     "properties": {
@@ -1940,6 +1962,31 @@ export const SCHEMAS: Record<string, unknown> = {
       "subId",
       "tgId",
       "totalGB"
+    ],
+    "type": "object"
+  },
+  "ClientAllTime": {
+    "description": "ClientAllTime is one client's all-time traffic.",
+    "properties": {
+      "down": {
+        "example": 8388608,
+        "format": "int64",
+        "type": "integer"
+      },
+      "email": {
+        "example": "alice@example.com",
+        "type": "string"
+      },
+      "up": {
+        "example": 1048576,
+        "format": "int64",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "down",
+      "email",
+      "up"
     ],
     "type": "object"
   },
@@ -6111,6 +6158,26 @@ export const SCHEMAS: Record<string, unknown> = {
     "required": [
       "down",
       "time",
+      "up"
+    ],
+    "type": "object"
+  },
+  "TrafficTotal": {
+    "description": "TrafficTotal is all-time traffic in bytes.",
+    "properties": {
+      "down": {
+        "example": 8388608,
+        "format": "int64",
+        "type": "integer"
+      },
+      "up": {
+        "example": 1048576,
+        "format": "int64",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "down",
       "up"
     ],
     "type": "object"

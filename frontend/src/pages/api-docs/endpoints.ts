@@ -524,11 +524,26 @@ export const sections: readonly Section[] = [
             name: 'range',
             in: 'path',
             type: 'string',
-            desc: '24h (24 hourly slots) | 7d | 30d (local days).',
+            desc: '24h (24 hourly slots) | 7d | 30d (local days) | all (local months since recording began, kept forever).',
           },
         ],
         responseSchema: 'TrafficPoint',
         responseSchemaArray: true,
+      },
+      {
+        method: 'GET',
+        path: '/panel/api/server/allTimeTraffic',
+        summary:
+          'All-time traffic, which traffic resets do not clear: the heaviest clients (leaving out those reachable only through a hidden node) and every inbound by id. Counted from the counters found when recording began.',
+        params: [
+          {
+            name: 'limit',
+            in: 'query',
+            type: 'number',
+            desc: 'How many clients to return, 1–100. Default 6.',
+          },
+        ],
+        responseSchema: 'AllTimeTraffic',
       },
       {
         method: 'GET',

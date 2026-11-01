@@ -12,13 +12,15 @@ import {
   type ClientPageResponse,
 } from '@/schemas/client';
 import {
+  AllTimeTrafficSchema,
+  type AllTimeTraffic,
   PanelEventSchema,
   TrafficPointSchema,
   type PanelEvent,
   type TrafficPoint,
 } from '@/generated/zod';
 
-export type TrafficRange = '24h' | '7d' | '30d';
+export type TrafficRange = '24h' | '7d' | '30d' | 'all';
 
 const DashboardInboundSchema = z
   .object({
@@ -69,6 +71,7 @@ const dashKeys = {
   traffic: (range: TrafficRange) => ['dashboard', 'traffic', range] as const,
   events: () => ['dashboard', 'events'] as const,
   observatory: () => ['dashboard', 'observatory'] as const,
+  allTime: () => ['dashboard', 'allTime'] as const,
 };
 
 export function useDashboardInbounds() {
@@ -150,5 +153,16 @@ export function useDashboardObservatory() {
     queryFn: async (): Promise<ObservatoryTag[]> =>
       (await getObj('get', '/panel/api/server/xrayObservatory', ObservatorySchema)) ?? [],
     refetchInterval: 30_000,
+  });
+}
+
+// Fetched only once a card is switched to "all time".
+export function useAllTimeTraffic(enabled: boolean) {
+  return useQuery({
+    queryKey: dashKeys.allTime(),
+    queryFn: async (): Promise<AllTimeTraffic | undefined> =>
+      getObj('get', '/panel/api/server/allTimeTraffic', AllTimeTrafficSchema),
+    enabled,
+    refetchInterval: 60_000,
   });
 }

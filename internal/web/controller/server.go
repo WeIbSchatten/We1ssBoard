@@ -48,6 +48,7 @@ func (a *ServerController) initRouter(g *gin.RouterGroup) {
 	g.GET("/cpuHistory/:bucket", a.getCpuHistoryBucket)
 	g.GET("/history/:metric/:bucket", a.getMetricHistoryBucket)
 	g.GET("/trafficHistory/:range", a.getTrafficHistory)
+	g.GET("/allTimeTraffic", a.getAllTimeTraffic)
 	g.GET("/events", a.getEvents)
 	g.GET("/taskProgress", a.getTaskProgress)
 	g.GET("/xrayMetricsState", a.getXrayMetricsState)
@@ -163,6 +164,14 @@ func (a *ServerController) getTaskProgress(c *gin.Context) {
 // getEvents returns the newest outbound, node, Xray, resource and login events.
 func (a *ServerController) getEvents(c *gin.Context) {
 	jsonObj(c, service.GetEventFeed().Recent(50), nil)
+}
+
+// getAllTimeTraffic returns the heaviest clients and every inbound by all-time traffic.
+func (a *ServerController) getAllTimeTraffic(c *gin.Context) {
+	limit, _ := strconv.Atoi(c.DefaultQuery("limit", "6"))
+	limit = min(max(limit, 1), 100)
+	data, err := service.GetTrafficHistoryService().AllTimeTraffic(limit)
+	jsonObj(c, data, err)
 }
 
 // getTrafficHistory returns the proxy traffic of every inbound per hour (24h) or

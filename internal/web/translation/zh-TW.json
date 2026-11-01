@@ -442,7 +442,10 @@
           "warn": "在線，但 Xray 未執行",
           "bad": "離線",
           "off": "已停用"
-        }
+        },
+        "periodCurrent": "本週期",
+        "periodAll": "全部時間",
+        "topClientsAllSub": "全部時間的用量，包含重設前的流量"
       },
       "progress": {
         "download": "下載中",

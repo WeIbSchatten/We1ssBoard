@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { Card, Progress } from 'antd';
@@ -6,6 +7,8 @@ import { SizeFormatter } from '@/utils';
 import type { InboundOption } from '@/hooks/useClients';
 import type { ActiveConnection, ClientRecord } from '@/schemas/client';
 import { ClientActiveConnection } from '@/pages/clients/RowCells';
+import PeriodToggle, { type TrafficPeriod } from './PeriodToggle';
+import { useAllTimeTraffic } from './useDashboardData';
 
 const PROTOCOL_COLORS: Record<string, string> = {
   vless: 'blue',
@@ -64,45 +67,62 @@ export function ConnectedNowCard({ online, connections, inboundsById }: Connecte
   );
 }
 
+interface TopRow {
+  email: string;
+  used: number;
+  limit: number;
+}
+
 export function TopClientsCard({ clients }: { clients: ClientRecord[] }) {
   const { t } = useTranslation();
-  const used = (c: ClientRecord) => (c.traffic?.up ?? 0) + (c.traffic?.down ?? 0);
-  const top = clients.filter((c) => used(c) > 0);
-  const max = Math.max(1, ...top.map(used));
+  const [period, setPeriod] = useState<TrafficPeriod>('period');
+  const allTime = useAllTimeTraffic(period === 'all').data;
+  const rows: TopRow[] =
+    period === 'all'
+      ? (allTime?.clients ?? []).map((c) => ({ email: c.email, used: c.up + c.down, limit: 0 }))
+      : clients.map((c) => ({
+          email: c.email,
+          used: (c.traffic?.up ?? 0) + (c.traffic?.down ?? 0),
+          limit: c.totalGB ?? 0,
+        }));
+  const top = rows.filter((r) => r.used > 0);
+  const max = Math.max(1, ...top.map((r) => r.used));
   return (
     <Card className="dash-card">
       <div className="dash-card-head">
         <div>
           <div className="ov-kicker">{t('pages.index.dash.topClients')}</div>
-          <div className="ov-sub">{t('pages.index.dash.topClientsSub')}</div>
+          <div className="ov-sub">
+            {period === 'all'
+              ? t('pages.index.dash.topClientsAllSub')
+              : t('pages.index.dash.topClientsSub')}
+          </div>
         </div>
+        <PeriodToggle value={period} onChange={setPeriod} />
       </div>
       {top.length === 0 ? (
         <div className="dash-empty">{t('pages.index.dash.topClientsEmpty')}</div>
       ) : (
         <ul className="dash-list">
-          {top.map((c) => {
-            const limit = c.totalGB ?? 0;
-            return (
-              <li key={c.email} className="dash-list-col">
-                <div className="dash-list-row">
-                  <span className="dash-ellipsis">{c.email}</span>
-                  <span className="dash-list-end ov-mono">
-                    {SizeFormatter.sizeFormat(used(c))}
-                    {limit > 0 && (
-                      <span className="dash-muted">{` / ${SizeFormatter.sizeFormat(limit)}`}</span>
-                    )}
-                  </span>
-                </div>
-                <Progress
-                  percent={(used(c) / (limit > 0 ? limit : max)) * 100}
-                  showInfo={false}
-                  size="small"
-                  status={limit > 0 && used(c) >= limit ? 'exception' : 'normal'}
-                />
-              </li>
-            );
-          })}
+          {top.map((r) => (
+            <li key={r.email} className="dash-list-col">
+              <div className="dash-list-row">
+                <span className="dash-ellipsis">{r.email}</span>
+                <span className="dash-list-end ov-mono">
+                  {SizeFormatter.sizeFormat(r.used)}
+                  {r.limit > 0 && (
+                    <span className="dash-muted">{` / ${SizeFormatter.sizeFormat(r.limit)}`}</span>
+                  )}
+                </span>
+              </div>
+              <Progress
+                percent={(r.used / (r.limit > 0 ? r.limit : max)) * 100}
+                showInfo={false}
+                size="small"
+                status={r.limit > 0 && r.used >= r.limit ? 'exception' : 'normal'}
+              />
+            </li>
+          ))}
         </ul>
       )}
     </Card>

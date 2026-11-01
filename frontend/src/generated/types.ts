@@ -385,6 +385,11 @@ export interface AllSettingView {
   webPort: number;
 }
 
+export interface AllTimeTraffic {
+  clients: ClientAllTime[];
+  inbounds: Record<number, TrafficTotal>;
+}
+
 export interface AmneziaWGLogs {
   events: string[];
   peers: PeerActivity[];
@@ -468,6 +473,12 @@ export interface Client {
   trafficReset?: string;
   trafficResetDay?: number;
   updated_at?: number;
+}
+
+export interface ClientAllTime {
+  down: number;
+  email: string;
+  up: number;
 }
 
 export interface ClientInbound {
@@ -1415,6 +1426,11 @@ export interface Traffic {
 export interface TrafficPoint {
   down: number;
   time: number;
+  up: number;
+}
+
+export interface TrafficTotal {
+  down: number;
   up: number;
 }
 

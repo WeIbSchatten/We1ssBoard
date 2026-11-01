@@ -374,6 +374,16 @@ export const EXAMPLES: Record<string, unknown> = {
     "webListen": "",
     "webPort": 1
   },
+  "AllTimeTraffic": {
+    "clients": [
+      {
+        "down": 8388608,
+        "email": "alice@example.com",
+        "up": 1048576
+      }
+    ],
+    "inbounds": {}
+  },
   "AmneziaWGLogs": {
     "events": [
       "2025/01/01 12:00:00 amneziawg: started interface awg1 for inbound 1"
@@ -488,6 +498,11 @@ export const EXAMPLES: Record<string, unknown> = {
     "trafficReset": "never",
     "trafficResetDay": 1,
     "updated_at": 0
+  },
+  "ClientAllTime": {
+    "down": 8388608,
+    "email": "alice@example.com",
+    "up": 1048576
   },
   "ClientInbound": {
     "clientId": 0,
@@ -1705,6 +1720,10 @@ export const EXAMPLES: Record<string, unknown> = {
   "TrafficPoint": {
     "down": 8388608,
     "time": 1793430000,
+    "up": 1048576
+  },
+  "TrafficTotal": {
+    "down": 8388608,
     "up": 1048576
   },
   "TuicClientSettings": {

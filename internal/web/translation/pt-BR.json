@@ -442,7 +442,10 @@
           "warn": "Online, mas o Xray não está rodando",
           "bad": "Offline",
           "off": "Desativado"
-        }
+        },
+        "periodCurrent": "Este período",
+        "periodAll": "Todo o período",
+        "topClientsAllSub": "Uso total, incluindo o tráfego antes das redefinições"
       },
       "progress": {
         "download": "Baixando",

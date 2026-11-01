@@ -442,7 +442,10 @@
           "warn": "En línea, pero Xray no se ejecuta",
           "bad": "Desconectado",
           "off": "Desactivado"
-        }
+        },
+        "periodCurrent": "Este periodo",
+        "periodAll": "Todo el tiempo",
+        "topClientsAllSub": "Uso total, incluido el tráfico anterior a los reinicios"
       },
       "progress": {
         "download": "Descargando",

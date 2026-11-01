@@ -442,7 +442,10 @@
           "warn": "Çevrimiçi, ama Xray çalışmıyor",
           "bad": "Çevrimdışı",
           "off": "Devre dışı"
-        }
+        },
+        "periodCurrent": "Bu dönem",
+        "periodAll": "Tüm zamanlar",
+        "topClientsAllSub": "Sıfırlamalardan önceki trafik dahil tüm zamanların kullanımı"
       },
       "progress": {
         "download": "İndiriliyor",

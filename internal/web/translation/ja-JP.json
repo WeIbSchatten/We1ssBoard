@@ -442,7 +442,10 @@
           "warn": "オンライン、ただし Xray は停止中",
           "bad": "オフライン",
           "off": "無効"
-        }
+        },
+        "periodCurrent": "今期間",
+        "periodAll": "全期間",
+        "topClientsAllSub": "リセット前のトラフィックを含む全期間の使用量"
       },
       "progress": {
         "download": "ダウンロード中",

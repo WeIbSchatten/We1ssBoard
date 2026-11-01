@@ -405,6 +405,12 @@ export const AllSettingViewSchema = z.object({
 });
 export type AllSettingView = z.infer<typeof AllSettingViewSchema>;
 
+export const AllTimeTrafficSchema = z.object({
+  clients: z.array(z.lazy(() => ClientAllTimeSchema)),
+  inbounds: z.record(z.number().int(), z.lazy(() => TrafficTotalSchema)),
+});
+export type AllTimeTraffic = z.infer<typeof AllTimeTrafficSchema>;
+
 export const AmneziaWGLogsSchema = z.object({
   events: z.array(z.string()),
   peers: z.array(z.lazy(() => PeerActivitySchema)),
@@ -497,6 +503,13 @@ export const ClientSchema = z.object({
   updated_at: z.number().int().optional(),
 });
 export type Client = z.infer<typeof ClientSchema>;
+
+export const ClientAllTimeSchema = z.object({
+  down: z.number().int(),
+  email: z.string(),
+  up: z.number().int(),
+});
+export type ClientAllTime = z.infer<typeof ClientAllTimeSchema>;
 
 export const ClientInboundSchema = z.object({
   clientId: z.number().int(),
@@ -1525,6 +1538,12 @@ export const TrafficPointSchema = z.object({
   up: z.number().int(),
 });
 export type TrafficPoint = z.infer<typeof TrafficPointSchema>;
+
+export const TrafficTotalSchema = z.object({
+  down: z.number().int(),
+  up: z.number().int(),
+});
+export type TrafficTotal = z.infer<typeof TrafficTotalSchema>;
 
 export const TuicClientSettingsSchema = z.object({
   email: z.string(),
