@@ -108,5 +108,5 @@ tuic://<uuid>:<password>@<host>:<port>?congestion_control=bbr&alpn=h3&sni=vpn.ex
   - **Live speed & traffic totals**: Native TUIC client counters are sampled every 10 seconds and sent to the panel for per-client live speed. Xray meters inbound totals through the loopback relay; TUIC's client-speed event does not add inbound totals again.
   - **UDP resource bounds**: Each QUIC connection can hold up to 256 active UDP associations. Idle associations are closed after five minutes. This is a per-connection limit, not a node-wide association cap. TUIC uses a reserved loopback SOCKS relay port in `64001–65000`; We1ssBoard checks it against managed inbound and relay ports.
   - **Zero-downtime client updates**: Adding, modifying, or disabling clients updates the in-memory user registry instantly without restarting the UDP port or interrupting existing client sessions.
-  - **Deployment**: A TUIC inbound can be created on, or cloned to, a sub-node. The node's own panel runs the TUIC server, so the node must run panel v3.8.0 or newer; the master refuses an older node.
+  - **Deployment**: A TUIC inbound can be created on, or cloned to, a sub-node. The node's own panel runs the TUIC server, which every We1ssBoard release since 1.0.0 can do.
 </Callout>
