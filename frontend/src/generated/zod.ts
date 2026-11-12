@@ -549,6 +549,7 @@ export const ClientRecordSchema = z.object({
   limitHwid: z.number().int(),
   limitIp: z.number().int(),
   password: z.string(),
+  portalMustChange: z.boolean(),
   preSharedKey: z.string(),
   privateKey: z.string(),
   publicKey: z.string(),

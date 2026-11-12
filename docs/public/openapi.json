@@ -2152,6 +2152,9 @@
           "password": {
             "type": "string"
           },
+          "portalMustChange": {
+            "type": "boolean"
+          },
           "preSharedKey": {
             "type": "string"
           },
@@ -2226,6 +2229,7 @@
           "limitHwid",
           "limitIp",
           "password",
+          "portalMustChange",
           "preSharedKey",
           "privateKey",
           "publicKey",

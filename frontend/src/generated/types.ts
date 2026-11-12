@@ -517,6 +517,7 @@ export interface ClientRecord {
   limitHwid: number;
   limitIp: number;
   password: string;
+  portalMustChange: boolean;
   preSharedKey: string;
   privateKey: string;
   publicKey: string;

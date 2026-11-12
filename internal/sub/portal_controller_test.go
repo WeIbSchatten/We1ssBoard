@@ -106,7 +106,9 @@ func (s webSession) req(method, path string, body any) portalReq {
 	return portalReq{method: method, path: path, body: body, cookies: s.cookies, header: map[string]string{"X-CSRF-Token": s.csrf}}
 }
 
-func bearer(token string) map[string]string { return map[string]string{"Authorization": "Bearer " + token} }
+func bearer(token string) map[string]string {
+	return map[string]string{"Authorization": "Bearer " + token}
+}
 
 func errorCode(w *httptest.ResponseRecorder) string {
 	var resp struct{ Error string }

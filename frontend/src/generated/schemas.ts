@@ -2126,6 +2126,9 @@ export const SCHEMAS: Record<string, unknown> = {
       "password": {
         "type": "string"
       },
+      "portalMustChange": {
+        "type": "boolean"
+      },
       "preSharedKey": {
         "type": "string"
       },
@@ -2200,6 +2203,7 @@ export const SCHEMAS: Record<string, unknown> = {
       "limitHwid",
       "limitIp",
       "password",
+      "portalMustChange",
       "preSharedKey",
       "privateKey",
       "publicKey",
