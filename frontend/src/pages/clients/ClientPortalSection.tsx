@@ -62,6 +62,7 @@ function Manage({ email }: { email: string }) {
       )}
       <Space wrap>
         <Popconfirm
+          placement="topLeft"
           title={t('pages.clients.portal.issueConfirm')}
           onConfirm={async () => setIssued(await issuePassword())}
         >
@@ -70,6 +71,7 @@ function Manage({ email }: { email: string }) {
           </Button>
         </Popconfirm>
         <Popconfirm
+          placement="topLeft"
           title={t('pages.clients.portal.revokeConfirm')}
           onConfirm={async () => {
             setIssued(undefined);
