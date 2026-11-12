@@ -4,6 +4,7 @@ package portal
 
 import (
 	"errors"
+	"sync"
 
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/database"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/database/model"
@@ -33,6 +34,16 @@ func New(settings *service.SettingService) *Service {
 	return &Service{Settings: settings, LdapAuth: ldaputil.AuthenticateUser}
 }
 
+var dummyHash = sync.OnceValue(func() string {
+	hash, _ := crypto.HashPasswordAsBcrypt("portal-timing-equalizer")
+	return hash
+})
+
+// burnPasswordCheck spends a bcrypt comparison so a failed lookup costs what a wrong password does.
+func burnPasswordCheck(password string) {
+	crypto.CheckPasswordHash(dummyHash(), password)
+}
+
 // Authenticate checks the client's own portal password, or the directory when the client has none.
 func (s *Service) Authenticate(login, password string) (*model.ClientRecord, Method, error) {
 	var recs []model.ClientRecord
@@ -40,6 +51,7 @@ func (s *Service) Authenticate(login, password string) (*model.ClientRecord, Met
 		return nil, 0, err
 	}
 	if len(recs) != 1 {
+		burnPasswordCheck(password)
 		return nil, 0, ErrInvalidCredentials
 	}
 	rec := &recs[0]
@@ -51,6 +63,7 @@ func (s *Service) Authenticate(login, password string) (*model.ClientRecord, Met
 	}
 	cfg, enabled, err := s.Settings.GetLdapConfig()
 	if err != nil || !enabled {
+		burnPasswordCheck(password)
 		return nil, 0, ErrInvalidCredentials
 	}
 	ok, err := s.LdapAuth(cfg, rec.Email, password)

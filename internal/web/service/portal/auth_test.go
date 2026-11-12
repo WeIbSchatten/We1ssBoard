@@ -4,6 +4,7 @@ import (
 	"errors"
 	"path/filepath"
 	"testing"
+	"time"
 
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/database"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/database/dbtest"
@@ -38,6 +39,23 @@ func setSetting(t *testing.T, key, value string) {
 	t.Helper()
 	if err := database.GetDB().Create(&model.Setting{Key: key, Value: value}).Error; err != nil {
 		t.Fatal(err)
+	}
+}
+
+// An unknown login must cost a bcrypt check too, or response time tells which emails exist.
+func TestAuthenticate_UnknownLoginTakesPasswordCheckTime(t *testing.T) {
+	initPortalDB(t)
+	addClient(t, "a.smirnova", "correct-horse")
+	svc := New(&service.SettingService{})
+	timeOf := func(login string) time.Duration {
+		start := time.Now()
+		_, _, _ = svc.Authenticate(login, "wrong-password")
+		return time.Since(start)
+	}
+	timeOf("a.smirnova")
+	wrong, unknown := timeOf("a.smirnova"), timeOf("ghost")
+	if unknown < wrong/4 {
+		t.Fatalf("unknown login took %v, wrong password %v: the timing reveals existing logins", unknown, wrong)
 	}
 }
 
