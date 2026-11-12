@@ -59,7 +59,7 @@ func (s *SubClashService) getClash(subId string, host string, legacy bool) (stri
 	var hasEnabledClient bool
 
 	seenEmails := make(map[string]struct{})
-	hidden := loadHiddenKeys(subId)
+	hidden := subReq.hiddenForFormat(loadHiddenKeys(subId), inbounds, subId, "clash")
 	for _, inbound := range inbounds {
 		clients := subReq.matchingClients(inbound, subId)
 		if len(clients) == 0 {

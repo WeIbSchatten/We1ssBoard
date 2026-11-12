@@ -135,7 +135,7 @@ func (s *SubJsonService) GetJson(subId string, host string, alwaysReturnArray bo
 	var hasEnabledClient bool
 
 	seenEmails := make(map[string]struct{})
-	hidden := loadHiddenKeys(subId)
+	hidden := subReq.hiddenForFormat(loadHiddenKeys(subId), inbounds, subId, "json")
 	entries := make([]subConfigEntry, 0, len(inbounds))
 	// Prepare Inbounds
 	for _, inbound := range inbounds {

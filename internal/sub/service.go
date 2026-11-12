@@ -485,7 +485,7 @@ func (s *SubService) getSubs(subId string) ([]string, []string, int64, xray.Clie
 	}
 
 	seenEmails := make(map[string]struct{})
-	hidden := loadHiddenKeys(subId)
+	hidden := s.hiddenForFormat(loadHiddenKeys(subId), inbounds, subId, "raw")
 	for _, inbound := range inbounds {
 		clients := s.matchingClients(inbound, subId)
 		if len(clients) == 0 {

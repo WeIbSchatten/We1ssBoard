@@ -160,6 +160,25 @@ func TestSubs_AllRemainingHiddenShowsEverything(t *testing.T) {
 	}
 }
 
+// h2 is excluded from Clash, so hiding h1 leaves Clash with no key of the client's only inbound.
+func TestSubs_FormatWithEveryKeyHiddenStaysWhole(t *testing.T) {
+	f := seedHiddenFixture(t)
+	db := database.GetDB()
+	db.Where("client_id = ? AND inbound_id = ?", f.client.Id, f.trojan.Id).Delete(&model.ClientInbound{})
+	f.h2.ExcludeFromSubTypes = []string{"clash"}
+	if err := db.Save(f.h2).Error; err != nil {
+		t.Fatal(err)
+	}
+	hide(t, f.client.Id, portal.Key{InboundID: f.vless.Id, HostID: f.h1.Id})
+
+	if out := renderSub(t, "clash"); !strings.Contains(out, "h1.cdn.com") {
+		t.Fatalf("clash must ignore the hidden set when it would carry no key of the client:\n%s", out)
+	}
+	if out := renderSub(t, "raw"); strings.Contains(out, "h1.cdn.com") || !strings.Contains(out, "h2.cdn.com") {
+		t.Fatalf("raw still has h2 visible, so h1 must stay hidden there:\n%s", out)
+	}
+}
+
 func TestPanelLinks_IgnoreHidden(t *testing.T) {
 	f := seedHiddenFixture(t)
 	hide(t, f.client.Id, portal.Key{InboundID: f.vless.Id, HostID: f.h1.Id})

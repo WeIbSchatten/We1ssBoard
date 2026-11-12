@@ -1,6 +1,8 @@
 package sub
 
 import (
+	"strings"
+
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/database/model"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/logger"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/service/portal"
@@ -46,4 +48,38 @@ func applyVisibleKeys(inbound *model.Inbound, baseStream string, hostEps []map[s
 	inbound.StreamSettings = baseStream
 	injectExternalProxy(inbound, eps)
 	return true
+}
+
+// hiddenForFormat drops a client's hidden set when it would leave that client no key in
+// this format: hosts excluded per format can make the portal's "one key visible" check pass yet empty one format.
+func (s *SubService) hiddenForFormat(hidden portal.HiddenSet, inbounds []*model.Inbound, subId, format string) portal.HiddenSet {
+	if len(hidden) == 0 {
+		return hidden
+	}
+	visible := map[string]bool{}
+	for _, inbound := range inbounds {
+		if inbound.ExcludeFromSub {
+			continue
+		}
+		clients, err := s.inboundService.GetClientsBySubId(inbound.Id, subId)
+		if err != nil {
+			return nil
+		}
+		eps := s.hostEndpoints(inbound, format)
+		for _, client := range clients {
+			email := strings.ToLower(client.Email)
+			if len(eps) == 0 {
+				visible[email] = visible[email] || !hidden.Has(client.Email, portal.Key{InboundID: inbound.Id})
+				continue
+			}
+			visible[email] = visible[email] || len(visibleHostEps(eps, hidden, client.Email, inbound.Id)) > 0
+		}
+	}
+	out := portal.HiddenSet{}
+	for email, keys := range hidden {
+		if visible[email] {
+			out[email] = keys
+		}
+	}
+	return out
 }
