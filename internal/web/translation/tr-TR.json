@@ -1177,7 +1177,29 @@
       "renewsUsed": "Kullanılan yenileme",
       "bulkAdTagHint": "Aramak için 32 karakterlik onaltılık etiket girin veya MTProto üzerinde temizlemek için 'none' yazın.",
       "renewIntervalDesc": "Süre dolduktan sonra önceki bitiş zamanına belirlenen sayıda 24 saatlik gün ekler ve istemci trafiğini sıfırlar. Ek bir sıfırlama istemiyorsanız bağımsız trafik sıfırlamalarını devre dışı bırakın.",
-      "renewWeeklyDesc": "Takvim yenilemesi panelin saat diliminde gece yarısı gerçekleşir ve istemci trafiğini de sıfırlar. Ek bir sıfırlama istemiyorsanız bağımsız trafik sıfırlamalarını devre dışı bırakın."
+      "renewWeeklyDesc": "Takvim yenilemesi panelin saat diliminde gece yarısı gerçekleşir ve istemci trafiğini de sıfırlar. Ek bir sıfırlama istemiyorsanız bağımsız trafik sıfırlamalarını devre dışı bırakın.",
+      "tabPortal": "Müşteri portalı",
+      "portal": {
+        "statusLabel": "Erişim",
+        "status": {
+          "none": "Erişim yok",
+          "temporary": "Geçici parola",
+          "own": "Kendi parolası",
+          "ldap": "Şirket dizini (LDAP)"
+        },
+        "hiddenKeys": "Gizli anahtarlar",
+        "devices": "Oturum açmış cihazlar",
+        "issuePassword": "Geçici parola ver",
+        "revoke": "Erişimi iptal et",
+        "revokeConfirm": "Müşterinin parolası silinsin ve tüm cihazlarda oturum kapatılsın mı?",
+        "passwordIssued": "Geçici parola verildi",
+        "passwordOnce": "Yalnızca bir kez gösterilir. Müşteri ilk girişte değiştirmek zorundadır.",
+        "sentToTelegram": "Müşteriye Telegram'dan da gönderildi.",
+        "saveFirst": "Portal erişimini yönetmek için önce müşteriyi kaydedin.",
+        "disabled": "Müşteri portalı kapalı. Abonelik ayarlarından açın.",
+        "revoked": "Portal erişimi iptal edildi",
+        "clientNotFound": "Müşteri bulunamadı"
+      }
     },
     "groups": {
       "name": "İsim",
@@ -3062,7 +3084,8 @@
       "webProxyNotInstalled": "Kurulu değil veya henüz yapılandırılmadı. Panelden ayarlayın: Bağlantılar → TG Web Proxy.",
       "webProxyHost": "Sunucu: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}, istemci: {{ .Clients }}",
-      "webProxySyncError": "❗ Son bağlama eşitlemesi başarısız: <code>{{ .Error }}</code>"
+      "webProxySyncError": "❗ Son bağlama eşitlemesi başarısız: <code>{{ .Error }}</code>",
+      "portalTempPassword": "🔑 {{ .Email }} için müşteri portalı parolası: <code>{{ .Password }}</code>\r\nGeçicidir: ilk girişte değiştirin."
     },
     "buttons": {
       "closeKeyboard": "❌ Klavyeyi Kapat",

@@ -50,6 +50,7 @@ import type {
 } from '@/hooks/useClients';
 import { useFail2banStatusQuery, getLimitIpNotice } from '@/api/queries/useFail2banStatusQuery';
 import ClientRenewalFields from './ClientRenewalFields';
+import ClientPortalSection from './ClientPortalSection';
 import ClientTgWebProxySection from './ClientTgWebProxySection';
 import { ClientFormSchema, ClientCreateFormSchema, type ClientFormValues } from '@/schemas/client';
 import './ClientFormModal.css';
@@ -1512,6 +1513,11 @@ export default function ClientFormModal({
                   key: 'tgWebProxy',
                   label: t('pages.clients.tabTgWebProxy'),
                   children: <ClientTgWebProxySection email={isEdit ? client?.email : undefined} />,
+                },
+                {
+                  key: 'portal',
+                  label: t('pages.clients.tabPortal'),
+                  children: <ClientPortalSection email={isEdit ? client?.email : undefined} />,
                 },
               ]}
             />

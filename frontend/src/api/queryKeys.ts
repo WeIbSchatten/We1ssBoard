@@ -10,6 +10,7 @@ export const keys = {
     remoteLive: (nodeId: number) => ['nodes', 'remote', nodeId, 'liveInbounds'] as const,
     remoteXray: (nodeId: number) => ['nodes', 'remote', nodeId, 'xray'] as const,
   },
+  clientPortal: (email: string) => ['clientPortal', email] as const,
   tgWebProxy: {
     root: () => ['tgWebProxy'] as const,
     status: () => ['tgWebProxy', 'status'] as const,

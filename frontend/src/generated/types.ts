@@ -502,6 +502,18 @@ export interface ClientPageResponse {
   total: number;
 }
 
+export interface ClientPortalAccess {
+  devices: number;
+  hiddenKeys: number;
+  portalEnabled: boolean;
+  status: string;
+}
+
+export interface ClientPortalPassword {
+  password: string;
+  sentToTelegram: boolean;
+}
+
 export interface ClientRecord {
   adTag: string;
   allowedIPs: string;

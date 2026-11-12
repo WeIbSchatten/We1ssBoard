@@ -1177,7 +1177,29 @@
       "renewsUsed": "已用续期次数",
       "bulkAdTagHint": "输入 32 位十六进制标签以设置，或输入 'none' 清除 MTProto 赞助频道。",
       "renewIntervalDesc": "到期后从上次截止时间增加指定天数（每天 24 小时），并重置客户端流量。若不需要额外重置，请关闭独立的流量重置。",
-      "renewWeeklyDesc": "日历续期按面板时区的午夜执行，并重置客户端流量。若不需要额外重置，请关闭独立的流量重置。"
+      "renewWeeklyDesc": "日历续期按面板时区的午夜执行，并重置客户端流量。若不需要额外重置，请关闭独立的流量重置。",
+      "tabPortal": "客户门户",
+      "portal": {
+        "statusLabel": "访问",
+        "status": {
+          "none": "无访问权限",
+          "temporary": "临时密码",
+          "own": "自设密码",
+          "ldap": "公司目录（LDAP）"
+        },
+        "hiddenKeys": "隐藏的密钥",
+        "devices": "已登录设备",
+        "issuePassword": "发放临时密码",
+        "revoke": "撤销访问",
+        "revokeConfirm": "删除客户密码并退出所有设备？",
+        "passwordIssued": "已发放临时密码",
+        "passwordOnce": "仅显示一次。客户首次登录时必须修改。",
+        "sentToTelegram": "也已通过 Telegram 发送给客户。",
+        "saveFirst": "请先保存客户，再管理门户访问。",
+        "disabled": "客户门户已关闭。请在订阅设置中开启。",
+        "revoked": "已撤销门户访问",
+        "clientNotFound": "未找到客户"
+      }
     },
     "groups": {
       "name": "名称",
@@ -3062,7 +3084,8 @@
       "webProxyNotInstalled": "尚未安装或配置。请在面板中设置：连接 → TG Web Proxy。",
       "webProxyHost": "主机：<code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}，客户端：{{ .Clients }}",
-      "webProxySyncError": "❗ 上次绑定同步失败：<code>{{ .Error }}</code>"
+      "webProxySyncError": "❗ 上次绑定同步失败：<code>{{ .Error }}</code>",
+      "portalTempPassword": "🔑 {{ .Email }} 的客户门户密码：<code>{{ .Password }}</code>\r\n这是临时密码：首次登录时请修改。"
     },
     "buttons": {
       "closeKeyboard": "❌ 关闭键盘",

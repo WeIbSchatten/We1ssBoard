@@ -123,3 +123,12 @@ func (s *Service) AccessOf(clientID int) (Access, error) {
 	access.Devices = len(devices)
 	return access, nil
 }
+
+// ClientByEmail finds a client by its exact email, as the panel addresses clients.
+func (s *Service) ClientByEmail(email string) (*model.ClientRecord, error) {
+	var rec model.ClientRecord
+	if err := database.GetDB().Where("email = ?", email).First(&rec).Error; err != nil {
+		return nil, err
+	}
+	return &rec, nil
+}

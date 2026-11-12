@@ -1177,7 +1177,29 @@
       "renewsUsed": "Renovaciones usadas",
       "bulkAdTagHint": "Introduce una etiqueta hexadecimal de 32 caracteres para asignar, o 'none' para borrarla en MTProto.",
       "renewIntervalDesc": "Tras expirar, añade el número configurado de días de 24 horas al vencimiento anterior y reinicia el tráfico del cliente. Mantén desactivados los reinicios de tráfico independientes salvo que quieras un reinicio adicional.",
-      "renewWeeklyDesc": "La renovación por calendario se realiza a medianoche en la zona horaria del panel y también reinicia el tráfico del cliente. Mantén desactivados los reinicios de tráfico independientes salvo que quieras un reinicio adicional."
+      "renewWeeklyDesc": "La renovación por calendario se realiza a medianoche en la zona horaria del panel y también reinicia el tráfico del cliente. Mantén desactivados los reinicios de tráfico independientes salvo que quieras un reinicio adicional.",
+      "tabPortal": "Portal del cliente",
+      "portal": {
+        "statusLabel": "Acceso",
+        "status": {
+          "none": "Sin acceso",
+          "temporary": "Contraseña temporal",
+          "own": "Contraseña propia",
+          "ldap": "Directorio de la empresa (LDAP)"
+        },
+        "hiddenKeys": "Claves ocultas",
+        "devices": "Dispositivos con sesión",
+        "issuePassword": "Emitir contraseña temporal",
+        "revoke": "Revocar acceso",
+        "revokeConfirm": "¿Eliminar la contraseña del cliente y cerrar la sesión en todos los dispositivos?",
+        "passwordIssued": "Contraseña temporal emitida",
+        "passwordOnce": "Se muestra solo una vez. El cliente debe cambiarla en el primer inicio de sesión.",
+        "sentToTelegram": "También se envió al cliente por Telegram.",
+        "saveFirst": "Guarda primero el cliente para gestionar el acceso al portal.",
+        "disabled": "El portal de clientes está desactivado. Actívalo en los ajustes de suscripción.",
+        "revoked": "Acceso al portal revocado",
+        "clientNotFound": "Cliente no encontrado"
+      }
     },
     "groups": {
       "name": "Nombre",
@@ -3062,7 +3084,8 @@
       "webProxyNotInstalled": "No instalado o sin configurar. Configúralo en el panel: Conexiones → TG Web Proxy.",
       "webProxyHost": "Host: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}, clientes: {{ .Clients }}",
-      "webProxySyncError": "❗ Falló la última sincronización de vínculos: <code>{{ .Error }}</code>"
+      "webProxySyncError": "❗ Falló la última sincronización de vínculos: <code>{{ .Error }}</code>",
+      "portalTempPassword": "🔑 Contraseña del portal para {{ .Email }}: <code>{{ .Password }}</code>\r\nEs temporal: cámbiala en el primer inicio de sesión."
     },
     "buttons": {
       "closeKeyboard": "❌ Cerrar Teclado",

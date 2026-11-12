@@ -1177,7 +1177,29 @@
       "renewsUsed": "已用續期次數",
       "bulkAdTagHint": "輸入 32 位十六進位標籤以設定，或輸入 'none' 清除 MTProto 贊助頻道。",
       "renewIntervalDesc": "到期後從上次截止時間增加指定天數（每天 24 小時），並重置客戶端流量。若不需要額外重置，請關閉獨立的流量重置。",
-      "renewWeeklyDesc": "日曆續期按面板時區的午夜執行，並重置客戶端流量。若不需要額外重置，請關閉獨立的流量重置。"
+      "renewWeeklyDesc": "日曆續期按面板時區的午夜執行，並重置客戶端流量。若不需要額外重置，請關閉獨立的流量重置。",
+      "tabPortal": "客戶入口",
+      "portal": {
+        "statusLabel": "存取",
+        "status": {
+          "none": "無存取權限",
+          "temporary": "臨時密碼",
+          "own": "自訂密碼",
+          "ldap": "公司目錄（LDAP）"
+        },
+        "hiddenKeys": "隱藏的金鑰",
+        "devices": "已登入裝置",
+        "issuePassword": "發放臨時密碼",
+        "revoke": "撤銷存取",
+        "revokeConfirm": "刪除客戶密碼並登出所有裝置？",
+        "passwordIssued": "已發放臨時密碼",
+        "passwordOnce": "僅顯示一次。客戶首次登入時必須變更。",
+        "sentToTelegram": "也已透過 Telegram 傳送給客戶。",
+        "saveFirst": "請先儲存客戶，再管理入口存取。",
+        "disabled": "客戶入口已關閉。請在訂閱設定中開啟。",
+        "revoked": "已撤銷入口存取",
+        "clientNotFound": "找不到客戶"
+      }
     },
     "groups": {
       "name": "名稱",
@@ -3062,7 +3084,8 @@
       "webProxyNotInstalled": "尚未安裝或設定。請在面板中設定：連線 → TG Web Proxy。",
       "webProxyHost": "主機：<code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}，客戶端：{{ .Clients }}",
-      "webProxySyncError": "❗ 上次綁定同步失敗：<code>{{ .Error }}</code>"
+      "webProxySyncError": "❗ 上次綁定同步失敗：<code>{{ .Error }}</code>",
+      "portalTempPassword": "🔑 {{ .Email }} 的客戶入口密碼：<code>{{ .Password }}</code>\r\n這是臨時密碼：首次登入時請變更。"
     },
     "buttons": {
       "closeKeyboard": "❌ 關閉鍵盤",

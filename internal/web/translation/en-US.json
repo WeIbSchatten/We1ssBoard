@@ -1177,7 +1177,29 @@
       "renewsUsed": "Renewals used",
       "bulkAdTagHint": "Enter a 32-character hex tag to set, or 'none' to clear sponsor channel on MTProto inbounds.",
       "renewIntervalDesc": "Adds the configured number of 24-hour days to the previous cutoff after expiry and resets the client's traffic. Keep independent traffic resets disabled unless an additional reset is intended.",
-      "renewWeeklyDesc": "Calendar renewal uses midnight in the panel timezone and also resets the client's traffic. Keep independent traffic resets disabled unless an additional reset is intended."
+      "renewWeeklyDesc": "Calendar renewal uses midnight in the panel timezone and also resets the client's traffic. Keep independent traffic resets disabled unless an additional reset is intended.",
+      "tabPortal": "Client portal",
+      "portal": {
+        "statusLabel": "Access",
+        "status": {
+          "none": "No access",
+          "temporary": "Temporary password",
+          "own": "Own password",
+          "ldap": "Company directory (LDAP)"
+        },
+        "hiddenKeys": "Hidden keys",
+        "devices": "Signed-in devices",
+        "issuePassword": "Issue temporary password",
+        "revoke": "Revoke access",
+        "revokeConfirm": "Remove the client's password and sign out every device?",
+        "passwordIssued": "Temporary password issued",
+        "passwordOnce": "Shown only once. The client must change it at the first login.",
+        "sentToTelegram": "Also sent to the client in Telegram.",
+        "saveFirst": "Save the client first to manage portal access.",
+        "disabled": "The client portal is off. Turn it on in Subscription settings.",
+        "revoked": "Portal access revoked",
+        "clientNotFound": "Client not found"
+      }
     },
     "groups": {
       "name": "Name",
@@ -3062,7 +3084,8 @@
       "webProxyNotInstalled": "Not installed or not configured yet. Set it up in the panel: Connections → TG Web Proxy.",
       "webProxyHost": "Host: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}, clients: {{ .Clients }}",
-      "webProxySyncError": "❗ Last binding sync failed: <code>{{ .Error }}</code>"
+      "webProxySyncError": "❗ Last binding sync failed: <code>{{ .Error }}</code>",
+      "portalTempPassword": "🔑 Client portal password for {{ .Email }}: <code>{{ .Password }}</code>\r\nIt is temporary: change it at the first login."
     },
     "buttons": {
       "closeKeyboard": "❌ Close Keyboard",

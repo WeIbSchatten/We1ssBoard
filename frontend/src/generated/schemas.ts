@@ -2082,6 +2082,52 @@ export const SCHEMAS: Record<string, unknown> = {
     ],
     "type": "object"
   },
+  "ClientPortalAccess": {
+    "description": "ClientPortalAccess is a client's portal login state as the admin client card shows it.",
+    "properties": {
+      "devices": {
+        "example": 1,
+        "type": "integer"
+      },
+      "hiddenKeys": {
+        "example": 2,
+        "type": "integer"
+      },
+      "portalEnabled": {
+        "example": true,
+        "type": "boolean"
+      },
+      "status": {
+        "example": "temporary",
+        "type": "string"
+      }
+    },
+    "required": [
+      "devices",
+      "hiddenKeys",
+      "portalEnabled",
+      "status"
+    ],
+    "type": "object"
+  },
+  "ClientPortalPassword": {
+    "description": "ClientPortalPassword is a freshly issued temporary portal password, shown to the admin once.",
+    "properties": {
+      "password": {
+        "example": "k7QmN2pXa9Rz",
+        "type": "string"
+      },
+      "sentToTelegram": {
+        "example": true,
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "password",
+      "sentToTelegram"
+    ],
+    "type": "object"
+  },
   "ClientRecord": {
     "properties": {
       "adTag": {

@@ -1177,7 +1177,29 @@
       "renewsUsed": "Perpanjangan terpakai",
       "bulkAdTagHint": "Masukkan tag heksadesimal 32 karakter untuk mengatur, atau 'none' untuk menghapus pada MTProto.",
       "renewIntervalDesc": "Setelah kedaluwarsa, menambahkan jumlah hari yang ditentukan (24 jam per hari) ke batas waktu sebelumnya dan mereset trafik klien. Nonaktifkan reset trafik terpisah kecuali Anda menginginkan reset tambahan.",
-      "renewWeeklyDesc": "Perpanjangan kalender dilakukan pada tengah malam menurut zona waktu panel dan juga mereset trafik klien. Nonaktifkan reset trafik terpisah kecuali Anda menginginkan reset tambahan."
+      "renewWeeklyDesc": "Perpanjangan kalender dilakukan pada tengah malam menurut zona waktu panel dan juga mereset trafik klien. Nonaktifkan reset trafik terpisah kecuali Anda menginginkan reset tambahan.",
+      "tabPortal": "Portal klien",
+      "portal": {
+        "statusLabel": "Akses",
+        "status": {
+          "none": "Tanpa akses",
+          "temporary": "Kata sandi sementara",
+          "own": "Kata sandi sendiri",
+          "ldap": "Direktori perusahaan (LDAP)"
+        },
+        "hiddenKeys": "Kunci tersembunyi",
+        "devices": "Perangkat yang masuk",
+        "issuePassword": "Terbitkan kata sandi sementara",
+        "revoke": "Cabut akses",
+        "revokeConfirm": "Hapus kata sandi klien dan keluarkan semua perangkat?",
+        "passwordIssued": "Kata sandi sementara diterbitkan",
+        "passwordOnce": "Hanya ditampilkan sekali. Klien wajib menggantinya saat pertama masuk.",
+        "sentToTelegram": "Juga dikirim ke klien lewat Telegram.",
+        "saveFirst": "Simpan klien terlebih dahulu untuk mengelola akses portal.",
+        "disabled": "Portal klien nonaktif. Aktifkan di pengaturan langganan.",
+        "revoked": "Akses portal dicabut",
+        "clientNotFound": "Klien tidak ditemukan"
+      }
     },
     "groups": {
       "name": "Nama",
@@ -3062,7 +3084,8 @@
       "webProxyNotInstalled": "Belum terpasang atau belum dikonfigurasi. Atur di panel: Koneksi → TG Web Proxy.",
       "webProxyHost": "Host: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}, klien: {{ .Clients }}",
-      "webProxySyncError": "❗ Sinkronisasi pengikatan terakhir gagal: <code>{{ .Error }}</code>"
+      "webProxySyncError": "❗ Sinkronisasi pengikatan terakhir gagal: <code>{{ .Error }}</code>",
+      "portalTempPassword": "🔑 Kata sandi portal klien untuk {{ .Email }}: <code>{{ .Password }}</code>\r\nIni sementara: ganti saat pertama masuk."
     },
     "buttons": {
       "closeKeyboard": "❌ Tutup Papan Ketik",

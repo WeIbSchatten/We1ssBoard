@@ -534,6 +534,20 @@ export const ClientPageResponseSchema = z.object({
 });
 export type ClientPageResponse = z.infer<typeof ClientPageResponseSchema>;
 
+export const ClientPortalAccessSchema = z.object({
+  devices: z.number().int(),
+  hiddenKeys: z.number().int(),
+  portalEnabled: z.boolean(),
+  status: z.string(),
+});
+export type ClientPortalAccess = z.infer<typeof ClientPortalAccessSchema>;
+
+export const ClientPortalPasswordSchema = z.object({
+  password: z.string(),
+  sentToTelegram: z.boolean(),
+});
+export type ClientPortalPassword = z.infer<typeof ClientPortalPasswordSchema>;
+
 export const ClientRecordSchema = z.object({
   adTag: z.string(),
   allowedIPs: z.string(),
