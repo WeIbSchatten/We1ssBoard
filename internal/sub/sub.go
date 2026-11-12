@@ -20,6 +20,7 @@ import (
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/middleware"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/network"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/service"
+	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/service/portal"
 
 	"github.com/gin-gonic/gin"
 )
@@ -374,6 +375,13 @@ func (s *Server) initRouter() (*gin.Engine, error) {
 		WithSUBIncyEnableRouting(SubIncyEnableRouting),
 		WithSUBIncyRoutingRules(SubIncyRoutingRules),
 	)
+
+	// A subscription path set to /portal/ already owns the prefix; gin would panic on the clash.
+	if owner := s.sub.configuredSubscriptionPathOwner(portalPath); owner != "" {
+		logger.Warningf("Client portal is unavailable because %q is the configured %s path", portalPath, owner)
+	} else {
+		NewPortalController(engine.Group(portalPath), s.sub, portal.New(&s.settingService), &s.settingService)
+	}
 
 	return engine, nil
 }
