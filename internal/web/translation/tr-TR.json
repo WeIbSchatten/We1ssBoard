@@ -3085,7 +3085,10 @@
       "webProxyHost": "Sunucu: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}, istemci: {{ .Clients }}",
       "webProxySyncError": "❗ Son bağlama eşitlemesi başarısız: <code>{{ .Error }}</code>",
-      "portalTempPassword": "🔑 {{ .Email }} için müşteri portalı parolası: <code>{{ .Password }}</code>\r\nGeçicidir: ilk girişte değiştirin."
+      "portalTempPassword": "🔑 {{ .Email }} için müşteri portalı parolası: <code>{{ .Password }}</code>\r\nGeçicidir: ilk girişte değiştirin.",
+      "portalResetConfirm": "{{ .Email }} için müşteri portalı parolası sıfırlansın mı? Geçici bir parola alırsınız ve eski parolayla oturum açmış tüm cihazların oturumu kapanır.",
+      "portalDisabled": "Müşteri portalı kapalı. Yöneticinizden açmasını isteyin.",
+      "portalLdapManaged": "Portal parolanız şirket dizini tarafından yönetiliyor. Orada değiştirin veya yöneticinize başvurun."
     },
     "buttons": {
       "closeKeyboard": "❌ Klavyeyi Kapat",
@@ -3131,7 +3134,9 @@
       "ResetAllTraffics": "Tüm Trafikleri Sıfırla",
       "SortedTrafficUsageReport": "Sıralı Trafik Kullanım Raporu",
       "nodes": "🖥 Düğümler",
-      "webProxy": "📡 Web proxy"
+      "webProxy": "📡 Web proxy",
+      "portalPassword": "🔑 Portal parolası",
+      "confirmPortalReset": "✅ Parolayı sıfırla"
     },
     "answers": {
       "broadcastStarted": "🚀 Toplu gönderim başladı.",

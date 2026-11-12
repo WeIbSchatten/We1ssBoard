@@ -3085,7 +3085,10 @@
       "webProxyHost": "المضيف: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}، العملاء: {{ .Clients }}",
       "webProxySyncError": "❗ فشلت آخر مزامنة للربط: <code>{{ .Error }}</code>",
-      "portalTempPassword": "🔑 كلمة مرور بوابة العميل لـ {{ .Email }}: <code>{{ .Password }}</code>\r\nإنها مؤقتة: غيّرها عند أول تسجيل دخول."
+      "portalTempPassword": "🔑 كلمة مرور بوابة العميل لـ {{ .Email }}: <code>{{ .Password }}</code>\r\nإنها مؤقتة: غيّرها عند أول تسجيل دخول.",
+      "portalResetConfirm": "إعادة تعيين كلمة مرور بوابة العميل لـ {{ .Email }}؟ ستحصل على كلمة مرور مؤقتة، وسيتم تسجيل خروج كل الأجهزة التي دخلت بالكلمة القديمة.",
+      "portalDisabled": "بوابة العملاء متوقفة. اطلب من المسؤول تفعيلها.",
+      "portalLdapManaged": "كلمة مرور البوابة لديك يديرها دليل الشركة. غيّرها هناك أو تواصل مع المسؤول."
     },
     "buttons": {
       "closeKeyboard": "❌ اقفل الكيبورد",
@@ -3131,7 +3134,9 @@
       "ResetAllTraffics": "إعادة ضبط جميع الترافيك",
       "SortedTrafficUsageReport": "تقرير استخدام الترافيك المرتب",
       "nodes": "🖥 العقد",
-      "webProxy": "📡 بروكسي الويب"
+      "webProxy": "📡 بروكسي الويب",
+      "portalPassword": "🔑 كلمة مرور البوابة",
+      "confirmPortalReset": "✅ إعادة تعيين كلمة المرور"
     },
     "answers": {
       "broadcastStarted": "🚀 بدأ البث.",

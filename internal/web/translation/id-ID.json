@@ -3085,7 +3085,10 @@
       "webProxyHost": "Host: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}, klien: {{ .Clients }}",
       "webProxySyncError": "❗ Sinkronisasi pengikatan terakhir gagal: <code>{{ .Error }}</code>",
-      "portalTempPassword": "🔑 Kata sandi portal klien untuk {{ .Email }}: <code>{{ .Password }}</code>\r\nIni sementara: ganti saat pertama masuk."
+      "portalTempPassword": "🔑 Kata sandi portal klien untuk {{ .Email }}: <code>{{ .Password }}</code>\r\nIni sementara: ganti saat pertama masuk.",
+      "portalResetConfirm": "Atur ulang kata sandi portal untuk {{ .Email }}? Anda menerima kata sandi sementara, dan semua perangkat yang masuk dengan kata sandi lama akan keluar.",
+      "portalDisabled": "Portal klien nonaktif. Minta admin untuk mengaktifkannya.",
+      "portalLdapManaged": "Kata sandi portal Anda dikelola oleh direktori perusahaan. Ubah di sana atau hubungi admin."
     },
     "buttons": {
       "closeKeyboard": "❌ Tutup Papan Ketik",
@@ -3131,7 +3134,9 @@
       "ResetAllTraffics": "Reset Semua Lalu Lintas",
       "SortedTrafficUsageReport": "Laporan Penggunaan Lalu Lintas yang Terurut",
       "nodes": "🖥 Node",
-      "webProxy": "📡 Web proxy"
+      "webProxy": "📡 Web proxy",
+      "portalPassword": "🔑 Kata sandi portal",
+      "confirmPortalReset": "✅ Atur ulang kata sandi"
     },
     "answers": {
       "broadcastStarted": "🚀 Siaran dimulai.",

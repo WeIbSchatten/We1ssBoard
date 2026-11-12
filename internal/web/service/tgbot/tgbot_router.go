@@ -1062,6 +1062,8 @@ func (t *Tgbot) answerCallback(callbackQuery *telego.CallbackQuery, isAdmin bool
 		}
 		keyboard2 := tu.InlineKeyboardGrid(tu.InlineKeyboardCols(cols2, buttons2...))
 		t.SendMsgToTgbot(chatId, t.I18nBot("tgbot.commands.pleaseChoose"), keyboard2)
+	case "client_portal_password":
+		t.listPortalClients(chatId, callbackQuery.From.ID)
 	case "client_qr_links":
 		// show user's clients to choose for QR codes
 		tgUserID := callbackQuery.From.ID
@@ -1399,6 +1401,10 @@ func (t *Tgbot) answerCallback(callbackQuery *telego.CallbackQuery, isAdmin bool
 			t.sendClientIndividualLinks(chatId, email)
 		case "client_qr_links":
 			t.sendClientQRLinks(chatId, email)
+		case "client_portal_password":
+			t.askPortalReset(chatId, email)
+		case "client_portal_password_c":
+			t.resetPortalPassword(chatId, email)
 		}
 	}
 }
@@ -1413,7 +1419,7 @@ func checkAdmin(tgId int64) bool {
 func isClientSelfCallback(data string) bool {
 	switch data {
 	case "client_traffic", "client_commands", "client_sub_links",
-		"client_individual_links", "client_qr_links":
+		"client_individual_links", "client_qr_links", "client_portal_password":
 		return true
 	}
 	_, _, ok := splitClientLinkCallback(data)
@@ -1423,7 +1429,7 @@ func isClientSelfCallback(data string) bool {
 // splitClientLinkCallback splits "<action> <email>" for the per-client link
 // callbacks; ok is false for every other data.
 func splitClientLinkCallback(data string) (action, email string, ok bool) {
-	for _, candidate := range []string{"client_sub_links", "client_individual_links", "client_qr_links"} {
+	for _, candidate := range []string{"client_sub_links", "client_individual_links", "client_qr_links", "client_portal_password", "client_portal_password_c"} {
 		if rest, found := strings.CutPrefix(data, candidate+" "); found && rest != "" {
 			return candidate, rest, true
 		}

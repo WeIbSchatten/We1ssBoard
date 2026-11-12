@@ -3085,7 +3085,10 @@
       "webProxyHost": "Хост: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}, клієнтів: {{ .Clients }}",
       "webProxySyncError": "❗ Остання синхронізація прив’язок не вдалася: <code>{{ .Error }}</code>",
-      "portalTempPassword": "🔑 Пароль особистого кабінету для {{ .Email }}: <code>{{ .Password }}</code>\r\nВін тимчасовий: змініть його під час першого входу."
+      "portalTempPassword": "🔑 Пароль особистого кабінету для {{ .Email }}: <code>{{ .Password }}</code>\r\nВін тимчасовий: змініть його під час першого входу.",
+      "portalResetConfirm": "Скинути пароль особистого кабінету для {{ .Email }}? Ви отримаєте тимчасовий пароль, а всі пристрої зі старим паролем вийдуть з акаунта.",
+      "portalDisabled": "Особистий кабінет вимкнено. Попросіть адміністратора його увімкнути.",
+      "portalLdapManaged": "Ваш пароль кабінету керується каталогом компанії. Змініть його там або зверніться до адміністратора."
     },
     "buttons": {
       "closeKeyboard": "❌ Закрити клавіатуру",
@@ -3131,7 +3134,9 @@
       "ResetAllTraffics": "Скинути весь трафік",
       "SortedTrafficUsageReport": "Відсортований звіт про використання трафіку",
       "nodes": "🖥 Вузли",
-      "webProxy": "📡 Web-proxy"
+      "webProxy": "📡 Web-proxy",
+      "portalPassword": "🔑 Пароль кабінету",
+      "confirmPortalReset": "✅ Скинути пароль"
     },
     "answers": {
       "broadcastStarted": "🚀 Розсилку запущено.",

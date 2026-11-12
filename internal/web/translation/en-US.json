@@ -3085,7 +3085,10 @@
       "webProxyHost": "Host: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}, clients: {{ .Clients }}",
       "webProxySyncError": "❗ Last binding sync failed: <code>{{ .Error }}</code>",
-      "portalTempPassword": "🔑 Client portal password for {{ .Email }}: <code>{{ .Password }}</code>\r\nIt is temporary: change it at the first login."
+      "portalTempPassword": "🔑 Client portal password for {{ .Email }}: <code>{{ .Password }}</code>\r\nIt is temporary: change it at the first login.",
+      "portalResetConfirm": "Reset the client portal password for {{ .Email }}? You get a temporary password, and every device signed in with the old one is logged out.",
+      "portalDisabled": "The client portal is off. Ask your admin to turn it on.",
+      "portalLdapManaged": "Your portal password is managed by the company directory. Change it there or ask your admin."
     },
     "buttons": {
       "closeKeyboard": "❌ Close Keyboard",
@@ -3131,7 +3134,9 @@
       "ResetAllTraffics": "Reset All Traffic",
       "SortedTrafficUsageReport": "Sorted Traffic Usage Report",
       "nodes": "🖥 Nodes",
-      "webProxy": "📡 Web proxy"
+      "webProxy": "📡 Web proxy",
+      "portalPassword": "🔑 Portal password",
+      "confirmPortalReset": "✅ Reset password"
     },
     "answers": {
       "broadcastStarted": "🚀 Broadcast started.",

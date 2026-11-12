@@ -3085,7 +3085,10 @@
       "webProxyHost": "میزبان: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}، کاربران: {{ .Clients }}",
       "webProxySyncError": "❗ آخرین همگام‌سازی اتصال‌ها ناموفق بود: <code>{{ .Error }}</code>",
-      "portalTempPassword": "🔑 رمز عبور پرتال مشتری برای {{ .Email }}: <code>{{ .Password }}</code>\r\nموقت است: در اولین ورود آن را تغییر دهید."
+      "portalTempPassword": "🔑 رمز عبور پرتال مشتری برای {{ .Email }}: <code>{{ .Password }}</code>\r\nموقت است: در اولین ورود آن را تغییر دهید.",
+      "portalResetConfirm": "رمز پرتال مشتری برای {{ .Email }} بازنشانی شود؟ یک رمز موقت دریافت می‌کنید و همهٔ دستگاه‌هایی که با رمز قبلی وارد شده‌اند خارج می‌شوند.",
+      "portalDisabled": "پرتال مشتری خاموش است. از مدیر بخواهید آن را روشن کند.",
+      "portalLdapManaged": "رمز پرتال شما توسط دایرکتوری شرکت مدیریت می‌شود. آن را همان‌جا تغییر دهید یا با مدیر تماس بگیرید."
     },
     "buttons": {
       "closeKeyboard": "❌ بستن کیبورد",
@@ -3131,7 +3134,9 @@
       "ResetAllTraffics": "بازنشانی همه ترافیک‌ها",
       "SortedTrafficUsageReport": "گزارش استفاده از ترافیک مرتب‌شده",
       "nodes": "🖥 نودها",
-      "webProxy": "📡 وب‌پراکسی"
+      "webProxy": "📡 وب‌پراکسی",
+      "portalPassword": "🔑 رمز پرتال",
+      "confirmPortalReset": "✅ بازنشانی رمز"
     },
     "answers": {
       "broadcastStarted": "🚀 ارسال گروهی آغاز شد.",

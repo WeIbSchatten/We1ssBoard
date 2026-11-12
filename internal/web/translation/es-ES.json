@@ -3085,7 +3085,10 @@
       "webProxyHost": "Host: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}, clientes: {{ .Clients }}",
       "webProxySyncError": "❗ Falló la última sincronización de vínculos: <code>{{ .Error }}</code>",
-      "portalTempPassword": "🔑 Contraseña del portal para {{ .Email }}: <code>{{ .Password }}</code>\r\nEs temporal: cámbiala en el primer inicio de sesión."
+      "portalTempPassword": "🔑 Contraseña del portal para {{ .Email }}: <code>{{ .Password }}</code>\r\nEs temporal: cámbiala en el primer inicio de sesión.",
+      "portalResetConfirm": "¿Restablecer la contraseña del portal de {{ .Email }}? Recibirás una contraseña temporal y se cerrará la sesión en todos los dispositivos que usaban la anterior.",
+      "portalDisabled": "El portal de clientes está desactivado. Pide a tu administrador que lo active.",
+      "portalLdapManaged": "Tu contraseña del portal la gestiona el directorio de la empresa. Cámbiala allí o pregunta a tu administrador."
     },
     "buttons": {
       "closeKeyboard": "❌ Cerrar Teclado",
@@ -3131,7 +3134,9 @@
       "ResetAllTraffics": "Reiniciar todo el tráfico",
       "SortedTrafficUsageReport": "Informe de uso de tráfico ordenado",
       "nodes": "🖥 Nodos",
-      "webProxy": "📡 Web proxy"
+      "webProxy": "📡 Web proxy",
+      "portalPassword": "🔑 Contraseña del portal",
+      "confirmPortalReset": "✅ Restablecer contraseña"
     },
     "answers": {
       "broadcastStarted": "🚀 Difusión iniciada.",

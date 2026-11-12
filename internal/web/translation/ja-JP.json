@@ -3085,7 +3085,10 @@
       "webProxyHost": "ホスト: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}、クライアント: {{ .Clients }}",
       "webProxySyncError": "❗ 最後のバインド同期に失敗しました: <code>{{ .Error }}</code>",
-      "portalTempPassword": "🔑 {{ .Email }} のクライアントポータルのパスワード: <code>{{ .Password }}</code>\r\n仮パスワードです。初回ログイン時に変更してください。"
+      "portalTempPassword": "🔑 {{ .Email }} のクライアントポータルのパスワード: <code>{{ .Password }}</code>\r\n仮パスワードです。初回ログイン時に変更してください。",
+      "portalResetConfirm": "{{ .Email }} のクライアントポータルのパスワードをリセットしますか？仮パスワードが届き、古いパスワードでサインインしていたすべてのデバイスはログアウトされます。",
+      "portalDisabled": "クライアントポータルはオフです。管理者にオンにするよう依頼してください。",
+      "portalLdapManaged": "ポータルのパスワードは社内ディレクトリで管理されています。そちらで変更するか、管理者にお問い合わせください。"
     },
     "buttons": {
       "closeKeyboard": "❌ キーボードを閉じる",
@@ -3131,7 +3134,9 @@
       "ResetAllTraffics": "すべてのトラフィックをリセット",
       "SortedTrafficUsageReport": "ソートされたトラフィック使用レポート",
       "nodes": "🖥 ノード",
-      "webProxy": "📡 Web proxy"
+      "webProxy": "📡 Web proxy",
+      "portalPassword": "🔑 ポータルのパスワード",
+      "confirmPortalReset": "✅ パスワードをリセット"
     },
     "answers": {
       "broadcastStarted": "🚀 一括送信を開始しました。",

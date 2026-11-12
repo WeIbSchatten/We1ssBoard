@@ -3085,7 +3085,10 @@
       "webProxyHost": "主机：<code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}，客户端：{{ .Clients }}",
       "webProxySyncError": "❗ 上次绑定同步失败：<code>{{ .Error }}</code>",
-      "portalTempPassword": "🔑 {{ .Email }} 的客户门户密码：<code>{{ .Password }}</code>\r\n这是临时密码：首次登录时请修改。"
+      "portalTempPassword": "🔑 {{ .Email }} 的客户门户密码：<code>{{ .Password }}</code>\r\n这是临时密码：首次登录时请修改。",
+      "portalResetConfirm": "要重置 {{ .Email }} 的客户门户密码吗？您将收到一个临时密码，所有使用旧密码登录的设备都会退出。",
+      "portalDisabled": "客户门户已关闭。请联系管理员开启。",
+      "portalLdapManaged": "您的门户密码由公司目录管理。请在目录中修改或联系管理员。"
     },
     "buttons": {
       "closeKeyboard": "❌ 关闭键盘",
@@ -3131,7 +3134,9 @@
       "ResetAllTraffics": "重置所有流量",
       "SortedTrafficUsageReport": "排序的流量使用报告",
       "nodes": "🖥 节点",
-      "webProxy": "📡 Web 代理"
+      "webProxy": "📡 Web 代理",
+      "portalPassword": "🔑 门户密码",
+      "confirmPortalReset": "✅ 重置密码"
     },
     "answers": {
       "broadcastStarted": "🚀 群发已开始。",

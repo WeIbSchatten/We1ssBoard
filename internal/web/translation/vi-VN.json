@@ -3085,7 +3085,10 @@
       "webProxyHost": "Máy chủ: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}, khách hàng: {{ .Clients }}",
       "webProxySyncError": "❗ Lần đồng bộ liên kết gần nhất thất bại: <code>{{ .Error }}</code>",
-      "portalTempPassword": "🔑 Mật khẩu cổng khách hàng cho {{ .Email }}: <code>{{ .Password }}</code>\r\nĐây là mật khẩu tạm thời: hãy đổi khi đăng nhập lần đầu."
+      "portalTempPassword": "🔑 Mật khẩu cổng khách hàng cho {{ .Email }}: <code>{{ .Password }}</code>\r\nĐây là mật khẩu tạm thời: hãy đổi khi đăng nhập lần đầu.",
+      "portalResetConfirm": "Đặt lại mật khẩu cổng khách hàng cho {{ .Email }}? Bạn sẽ nhận mật khẩu tạm thời, mọi thiết bị đăng nhập bằng mật khẩu cũ sẽ bị đăng xuất.",
+      "portalDisabled": "Cổng khách hàng đang tắt. Hãy nhờ quản trị viên bật lên.",
+      "portalLdapManaged": "Mật khẩu cổng của bạn do thư mục công ty quản lý. Hãy đổi ở đó hoặc hỏi quản trị viên."
     },
     "buttons": {
       "closeKeyboard": "❌ Đóng Bàn Phím",
@@ -3131,7 +3134,9 @@
       "ResetAllTraffics": "Đặt lại tất cả lưu lượng",
       "SortedTrafficUsageReport": "Báo cáo sử dụng lưu lượng đã sắp xếp",
       "nodes": "🖥 Node",
-      "webProxy": "📡 Web proxy"
+      "webProxy": "📡 Web proxy",
+      "portalPassword": "🔑 Mật khẩu cổng",
+      "confirmPortalReset": "✅ Đặt lại mật khẩu"
     },
     "answers": {
       "broadcastStarted": "🚀 Đã bắt đầu phát tin.",
