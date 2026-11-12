@@ -10,9 +10,8 @@ const (
 	MaxFailures = 5
 	Window      = 5 * time.Minute
 	Cooldown    = 15 * time.Minute
-	// Hard ceiling on tracked (ip, username) records. The key includes the
-	// caller-supplied username, so an unauthenticated attacker rotating
-	// usernames would otherwise grow the map without bound.
+	// The key carries the caller-supplied username, so without a ceiling an attacker
+	// rotating usernames would grow the map without bound.
 	maxRecords = 10000
 )
 
@@ -89,11 +88,8 @@ func (l *Limiter) RegisterSuccess(ip, username string) {
 	delete(l.attempts, limitKey(ip, username))
 }
 
-// evictForRoom keeps the attempts map bounded before inserting a new record.
-// It first reclaims records that are no longer blocked and whose failures have
-// aged out of the window; if the map is still at the ceiling (a genuine
-// broad flood), it drops one arbitrary record so memory can never grow past the
-// cap. Callers hold l.mu.
+// evictForRoom reclaims expired records, then drops an arbitrary one if still at the
+// ceiling, so memory never grows past the cap. Callers hold l.mu.
 func (l *Limiter) evictForRoom(now time.Time) {
 	if len(l.attempts) < maxRecords {
 		return
