@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/database/model"
+	"github.com/WeIbSchatten/We1ssBoard/v3/internal/util/loginlimit"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/session"
 
 	"github.com/gin-contrib/sessions"
@@ -100,7 +101,7 @@ func redeem(r *gin.Engine, ticket string) *httptest.ResponseRecorder {
 
 func TestLoginWithTicketRefusesUnknownTicketWithoutSession(t *testing.T) {
 	prev := defaultLoginLimiter
-	defaultLoginLimiter = newLoginLimiter(loginLimitMaxFailures, loginLimitWindow, loginLimitCooldown)
+	defaultLoginLimiter = loginlimit.New(loginlimit.MaxFailures, loginlimit.Window, loginlimit.Cooldown)
 	t.Cleanup(func() { defaultLoginLimiter = prev })
 
 	rec := redeem(loginTicketRouter(&IndexController{}), "not-a-ticket")
@@ -119,11 +120,11 @@ func TestLoginWithTicketRefusesUnknownTicketWithoutSession(t *testing.T) {
 // Guessing tickets must hit the same lockout as guessing passwords.
 func TestLoginWithTicketLocksOutRepeatedFailures(t *testing.T) {
 	prev := defaultLoginLimiter
-	defaultLoginLimiter = newLoginLimiter(loginLimitMaxFailures, loginLimitWindow, loginLimitCooldown)
+	defaultLoginLimiter = loginlimit.New(loginlimit.MaxFailures, loginlimit.Window, loginlimit.Cooldown)
 	t.Cleanup(func() { defaultLoginLimiter = prev })
 
 	r := loginTicketRouter(&IndexController{})
-	for range loginLimitMaxFailures {
+	for range loginlimit.MaxFailures {
 		redeem(r, "guess")
 	}
 	genuine, err := session.IssueLoginTicket()
