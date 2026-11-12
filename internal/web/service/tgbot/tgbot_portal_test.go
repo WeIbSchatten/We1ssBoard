@@ -2,7 +2,6 @@ package tgbot
 
 import (
 	"encoding/json"
-	"errors"
 	"net/http"
 	"net/http/httptest"
 	"path/filepath"
@@ -109,6 +108,7 @@ func portalLocalizer(t *testing.T) {
 	_ = bundle.AddMessages(language.MustParse("en-US"),
 		&i18n.Message{ID: "tgbot.messages.portalDisabled", Other: "The client portal is off. Ask your admin to turn it on."},
 		&i18n.Message{ID: "tgbot.messages.portalLdapManaged", Other: "Your portal password is managed by the company directory."},
+		&i18n.Message{ID: "tgbot.messages.portalNoAccess", Other: "You have no portal access. Ask your admin to issue a password."},
 		&i18n.Message{ID: "tgbot.messages.portalTempPassword", Other: "Password for {{ .Email }}: <code>{{ .Password }}</code>"},
 	)
 	orig := locale.LocalizerBot
@@ -129,6 +129,7 @@ func TestResetPortalPassword(t *testing.T) {
 	}{
 		{name: "portal off", ldapOn: false, ownerPassword: "own-pass-1", wantText: "The client portal is off"},
 		{name: "directory-managed client", portalOn: true, ldapOn: true, wantText: "company directory"},
+		{name: "revoked or never granted", portalOn: true, wantText: "Ask your admin"},
 		{name: "own client", portalOn: true, ownerPassword: "own-pass-1", wantPassword: true},
 	}
 	for _, tc := range cases {
@@ -171,7 +172,7 @@ func TestPortalResetCallback_ForeignEmail(t *testing.T) {
 		t.Fatalf("a non-admin reset a foreign client's password: %q", texts)
 	}
 	svc := portal.New(&service.SettingService{})
-	if _, _, err := svc.Authenticate("someone-else@x", "foreign-pass-1"); errors.Is(err, portal.ErrInvalidCredentials) {
-		t.Fatal("the foreign client's password changed")
+	if _, _, err := svc.Authenticate("someone-else@x", "foreign-pass-1"); err != nil {
+		t.Fatalf("the foreign client's password no longer works: %v", err)
 	}
 }

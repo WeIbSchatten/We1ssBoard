@@ -1198,7 +1198,8 @@
         "saveFirst": "请先保存客户，再管理门户访问。",
         "disabled": "客户门户已关闭。请在订阅设置中开启。",
         "revoked": "已撤销门户访问",
-        "clientNotFound": "未找到客户"
+        "clientNotFound": "未找到客户",
+        "issueConfirm": "要发放新的临时密码吗？当前密码将失效，所有设备都会退出。"
       }
     },
     "groups": {
@@ -3088,7 +3089,8 @@
       "portalTempPassword": "🔑 {{ .Email }} 的客户门户密码：<code>{{ .Password }}</code>\r\n这是临时密码：首次登录时请修改。",
       "portalResetConfirm": "要重置 {{ .Email }} 的客户门户密码吗？您将收到一个临时密码，所有使用旧密码登录的设备都会退出。",
       "portalDisabled": "客户门户已关闭。请联系管理员开启。",
-      "portalLdapManaged": "您的门户密码由公司目录管理。请在目录中修改或联系管理员。"
+      "portalLdapManaged": "您的门户密码由公司目录管理。请在目录中修改或联系管理员。",
+      "portalNoAccess": "您没有门户访问权限。请联系管理员发放密码。"
     },
     "buttons": {
       "closeKeyboard": "❌ 关闭键盘",

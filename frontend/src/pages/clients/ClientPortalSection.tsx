@@ -61,13 +61,14 @@ function Manage({ email }: { email: string }) {
         />
       )}
       <Space wrap>
-        <Button
-          type="primary"
-          loading={pending}
-          onClick={async () => setIssued(await issuePassword())}
+        <Popconfirm
+          title={t('pages.clients.portal.issueConfirm')}
+          onConfirm={async () => setIssued(await issuePassword())}
         >
-          {t('pages.clients.portal.issuePassword')}
-        </Button>
+          <Button type="primary" loading={pending}>
+            {t('pages.clients.portal.issuePassword')}
+          </Button>
+        </Popconfirm>
         <Popconfirm
           title={t('pages.clients.portal.revokeConfirm')}
           onConfirm={async () => {

@@ -1198,7 +1198,8 @@
         "saveFirst": "Salve o cliente primeiro para gerenciar o acesso ao portal.",
         "disabled": "O portal do cliente está desativado. Ative-o nas configurações de assinatura.",
         "revoked": "Acesso ao portal revogado",
-        "clientNotFound": "Cliente não encontrado"
+        "clientNotFound": "Cliente não encontrado",
+        "issueConfirm": "Emitir uma nova senha temporária? A senha atual deixa de funcionar e todos os dispositivos são desconectados."
       }
     },
     "groups": {
@@ -3088,7 +3089,8 @@
       "portalTempPassword": "🔑 Senha do portal para {{ .Email }}: <code>{{ .Password }}</code>\r\nÉ temporária: troque-a no primeiro acesso.",
       "portalResetConfirm": "Redefinir a senha do portal de {{ .Email }}? Você recebe uma senha temporária, e todos os dispositivos conectados com a antiga são desconectados.",
       "portalDisabled": "O portal do cliente está desativado. Peça ao administrador para ativá-lo.",
-      "portalLdapManaged": "Sua senha do portal é gerenciada pelo diretório da empresa. Troque-a lá ou fale com o administrador."
+      "portalLdapManaged": "Sua senha do portal é gerenciada pelo diretório da empresa. Troque-a lá ou fale com o administrador.",
+      "portalNoAccess": "Você não tem acesso ao portal. Peça ao administrador para emitir uma senha."
     },
     "buttons": {
       "closeKeyboard": "❌ Fechar teclado",

@@ -1198,7 +1198,8 @@
         "saveFirst": "請先儲存客戶，再管理入口存取。",
         "disabled": "客戶入口已關閉。請在訂閱設定中開啟。",
         "revoked": "已撤銷入口存取",
-        "clientNotFound": "找不到客戶"
+        "clientNotFound": "找不到客戶",
+        "issueConfirm": "要發放新的臨時密碼嗎？目前的密碼將失效，所有裝置都會登出。"
       }
     },
     "groups": {
@@ -3088,7 +3089,8 @@
       "portalTempPassword": "🔑 {{ .Email }} 的客戶入口密碼：<code>{{ .Password }}</code>\r\n這是臨時密碼：首次登入時請變更。",
       "portalResetConfirm": "要重設 {{ .Email }} 的客戶入口密碼嗎？您會收到臨時密碼，所有以舊密碼登入的裝置都會登出。",
       "portalDisabled": "客戶入口已關閉。請聯絡管理員開啟。",
-      "portalLdapManaged": "您的入口密碼由公司目錄管理。請在目錄中變更或聯絡管理員。"
+      "portalLdapManaged": "您的入口密碼由公司目錄管理。請在目錄中變更或聯絡管理員。",
+      "portalNoAccess": "您沒有入口存取權限。請聯絡管理員發放密碼。"
     },
     "buttons": {
       "closeKeyboard": "❌ 關閉鍵盤",

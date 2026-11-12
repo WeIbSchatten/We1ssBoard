@@ -31,7 +31,13 @@ func TestIssueTemporaryPassword(t *testing.T) {
 	if _, _, err := svc.ClientByToken(oldToken); !errors.Is(err, ErrInvalidToken) {
 		t.Fatalf("device token survived a password reset: %v", err)
 	}
-	second, _ := svc.IssueTemporaryPassword(rec.Id)
+	second, err := svc.IssueTemporaryPassword(rec.Id)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, _, err := svc.Authenticate("a.smirnova", second); err != nil {
+		t.Fatalf("the re-issued password does not work: %v", err)
+	}
 	if _, _, err := svc.Authenticate("a.smirnova", first); first != second && !errors.Is(err, ErrInvalidCredentials) {
 		t.Fatalf("the previous temporary password still works: %v", err)
 	}

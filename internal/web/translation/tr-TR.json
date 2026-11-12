@@ -1198,7 +1198,8 @@
         "saveFirst": "Portal erişimini yönetmek için önce müşteriyi kaydedin.",
         "disabled": "Müşteri portalı kapalı. Abonelik ayarlarından açın.",
         "revoked": "Portal erişimi iptal edildi",
-        "clientNotFound": "Müşteri bulunamadı"
+        "clientNotFound": "Müşteri bulunamadı",
+        "issueConfirm": "Yeni bir geçici parola verilsin mi? Mevcut parola çalışmaz hale gelir ve tüm cihazların oturumu kapanır."
       }
     },
     "groups": {
@@ -3088,7 +3089,8 @@
       "portalTempPassword": "🔑 {{ .Email }} için müşteri portalı parolası: <code>{{ .Password }}</code>\r\nGeçicidir: ilk girişte değiştirin.",
       "portalResetConfirm": "{{ .Email }} için müşteri portalı parolası sıfırlansın mı? Geçici bir parola alırsınız ve eski parolayla oturum açmış tüm cihazların oturumu kapanır.",
       "portalDisabled": "Müşteri portalı kapalı. Yöneticinizden açmasını isteyin.",
-      "portalLdapManaged": "Portal parolanız şirket dizini tarafından yönetiliyor. Orada değiştirin veya yöneticinize başvurun."
+      "portalLdapManaged": "Portal parolanız şirket dizini tarafından yönetiliyor. Orada değiştirin veya yöneticinize başvurun.",
+      "portalNoAccess": "Portal erişiminiz yok. Yöneticinizden parola vermesini isteyin."
     },
     "buttons": {
       "closeKeyboard": "❌ Klavyeyi Kapat",

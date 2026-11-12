@@ -59,11 +59,14 @@ func (t *Tgbot) resetPortalPassword(chatID int64, email string) {
 		t.SendMsgToTgbot(chatID, t.I18nBot("tgbot.answers.errorOperation"))
 		return
 	}
+	// Only an admin grants first access, so a revoked client cannot let itself back in.
 	if rec.PortalPasswordHash == "" {
+		msg := "tgbot.messages.portalNoAccess"
 		if _, ldapOn, err := t.settingService.GetLdapConfig(); err == nil && ldapOn {
-			t.SendMsgToTgbot(chatID, t.I18nBot("tgbot.messages.portalLdapManaged"))
-			return
+			msg = "tgbot.messages.portalLdapManaged"
 		}
+		t.SendMsgToTgbot(chatID, t.I18nBot(msg))
+		return
 	}
 	password, err := svc.IssueTemporaryPassword(rec.Id)
 	if err != nil {

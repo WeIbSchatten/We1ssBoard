@@ -1198,7 +1198,8 @@
         "saveFirst": "Simpan klien terlebih dahulu untuk mengelola akses portal.",
         "disabled": "Portal klien nonaktif. Aktifkan di pengaturan langganan.",
         "revoked": "Akses portal dicabut",
-        "clientNotFound": "Klien tidak ditemukan"
+        "clientNotFound": "Klien tidak ditemukan",
+        "issueConfirm": "Terbitkan kata sandi sementara baru? Kata sandi saat ini berhenti berlaku dan semua perangkat dikeluarkan."
       }
     },
     "groups": {
@@ -3088,7 +3089,8 @@
       "portalTempPassword": "🔑 Kata sandi portal klien untuk {{ .Email }}: <code>{{ .Password }}</code>\r\nIni sementara: ganti saat pertama masuk.",
       "portalResetConfirm": "Atur ulang kata sandi portal untuk {{ .Email }}? Anda menerima kata sandi sementara, dan semua perangkat yang masuk dengan kata sandi lama akan keluar.",
       "portalDisabled": "Portal klien nonaktif. Minta admin untuk mengaktifkannya.",
-      "portalLdapManaged": "Kata sandi portal Anda dikelola oleh direktori perusahaan. Ubah di sana atau hubungi admin."
+      "portalLdapManaged": "Kata sandi portal Anda dikelola oleh direktori perusahaan. Ubah di sana atau hubungi admin.",
+      "portalNoAccess": "Anda tidak punya akses portal. Minta admin untuk menerbitkan kata sandi."
     },
     "buttons": {
       "closeKeyboard": "❌ Tutup Papan Ketik",

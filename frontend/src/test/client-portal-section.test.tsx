@@ -30,14 +30,19 @@ describe('ClientPortalSection', () => {
     mockHttp({});
     renderWithProviders(<ClientPortalSection email="alice" />);
     expect(await screen.findByText('Own password')).toBeTruthy();
-    expect(screen.getByText('2')).toBeTruthy();
-    expect(screen.getByText('1')).toBeTruthy();
+    const rowValue = (label: string) =>
+      screen.getByText(label).closest('tr')?.querySelector('.ant-descriptions-item-content')
+        ?.textContent;
+    expect(rowValue('Hidden keys')).toBe('2');
+    expect(rowValue('Signed-in devices')).toBe('1');
   });
 
-  it('issues a temporary password and shows it once with the Telegram note', async () => {
+  it('asks before issuing, then shows the password once with the Telegram note', async () => {
     const { post } = mockHttp({});
     renderWithProviders(<ClientPortalSection email="alice" />);
     fireEvent.click(await screen.findByRole('button', { name: /Issue temporary password/ }));
+    expect(post).not.toHaveBeenCalled();
+    fireEvent.click(await screen.findByRole('button', { name: 'OK' }));
     await waitFor(() =>
       expect(post.mock.calls[0]?.[0]).toBe('/panel/api/clients/portalPassword/alice'),
     );

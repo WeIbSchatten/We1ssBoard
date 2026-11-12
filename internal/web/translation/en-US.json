@@ -1198,7 +1198,8 @@
         "saveFirst": "Save the client first to manage portal access.",
         "disabled": "The client portal is off. Turn it on in Subscription settings.",
         "revoked": "Portal access revoked",
-        "clientNotFound": "Client not found"
+        "clientNotFound": "Client not found",
+        "issueConfirm": "Issue a new temporary password? The current password stops working and every device is signed out."
       }
     },
     "groups": {
@@ -3088,7 +3089,8 @@
       "portalTempPassword": "🔑 Client portal password for {{ .Email }}: <code>{{ .Password }}</code>\r\nIt is temporary: change it at the first login.",
       "portalResetConfirm": "Reset the client portal password for {{ .Email }}? You get a temporary password, and every device signed in with the old one is logged out.",
       "portalDisabled": "The client portal is off. Ask your admin to turn it on.",
-      "portalLdapManaged": "Your portal password is managed by the company directory. Change it there or ask your admin."
+      "portalLdapManaged": "Your portal password is managed by the company directory. Change it there or ask your admin.",
+      "portalNoAccess": "You have no portal access. Ask your admin to issue a password."
     },
     "buttons": {
       "closeKeyboard": "❌ Close Keyboard",
