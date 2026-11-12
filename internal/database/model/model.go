@@ -1008,9 +1008,36 @@ type ClientRecord struct {
 	// Owned solely by the node-snapshot sweep, which soft-orphans instead of
 	// deleting; orphans from any other cause stay at zero and are never reaped.
 	SyncOrphanedAt int64 `json:"-" gorm:"column:sync_orphaned_at;default:0"`
+	// Client portal login; an empty hash means no own password (LDAP or no access).
+	PortalPasswordHash string `json:"-" gorm:"column:portal_password_hash;default:''"`
+	PortalMustChange   bool   `json:"portalMustChange" gorm:"column:portal_must_change;default:false"`
+	// Bumped on every password change so older portal web sessions stop validating.
+	PortalSessionEpoch int64 `json:"-" gorm:"column:portal_session_epoch;default:0"`
 }
 
 func (ClientRecord) TableName() string { return "clients" }
+
+// ClientPortalToken is a We1ssConnect device login; only the SHA-256 of the token is stored.
+type ClientPortalToken struct {
+	Id         int    `json:"id" gorm:"primaryKey;autoIncrement"`
+	ClientId   int    `json:"clientId" gorm:"column:client_id;index;not null"`
+	TokenHash  string `json:"-" gorm:"column:token_hash;size:64;uniqueIndex;not null"`
+	DeviceName string `json:"deviceName" gorm:"column:device_name"`
+	CreatedAt  int64  `json:"createdAt" gorm:"autoCreateTime:milli"`
+	LastUsedAt int64  `json:"lastUsedAt" gorm:"column:last_used_at;default:0"`
+}
+
+func (ClientPortalToken) TableName() string { return "client_portal_tokens" }
+
+// ClientSubHidden is one subscription key (inbound + host, 0 = no host) a client hid from itself.
+type ClientSubHidden struct {
+	ClientId  int   `json:"clientId" gorm:"primaryKey;column:client_id;autoIncrement:false"`
+	InboundId int   `json:"inboundId" gorm:"primaryKey;column:inbound_id;autoIncrement:false"`
+	HostId    int   `json:"hostId" gorm:"primaryKey;column:host_id;autoIncrement:false"`
+	CreatedAt int64 `json:"createdAt" gorm:"autoCreateTime:milli"`
+}
+
+func (ClientSubHidden) TableName() string { return "client_sub_hidden" }
 
 type ClientGroup struct {
 	Id        int    `json:"id" gorm:"primaryKey;autoIncrement"`
