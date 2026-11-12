@@ -11,6 +11,11 @@ and the version that fixes them).
 
 ## [Unreleased]
 
+### Added
+- Client portal (first part): clients log in on the subscription server with their own password or the company directory (LDAP), hide subscription keys they do not use and get device tokens for We1ssConnect. Turn it on under **Subscription settings → Client portal**; turning it off logs everyone out. The portal web page and the We1ssConnect login come in the next releases.
+- Client card → **Client portal** tab: access state, hidden keys and signed-in devices, a one-time temporary password (also sent through the Telegram bot when the client has a Telegram ID) and **Revoke access**.
+- Telegram bot: clients reset their portal password themselves with the **Portal password** button.
+
 ### Changed
 - The panel is built with Go 1.27.4 and updated compression libraries (klauspost/compress 1.20.2, brotli 1.2.7), which fix the security advisories GO-2026-6859 (`net/http`), GO-2026-6865 and GO-2026-6888.
 
