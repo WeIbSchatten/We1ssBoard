@@ -2049,7 +2049,9 @@
       "unsavedChanges": "有未儲存的變更",
       "allSaved": "所有變更已儲存",
       "exactActiveConnection": "精確的目前連線",
-      "exactActiveConnectionDesc": "保持 Xray 存取日誌開啟，讓「用戶端」頁面準確顯示每個用戶端使用的入站。Xray 會把每個連線寫入日誌，包括造訪的位址。日誌保存在面板日誌目錄中，超過 64 MB 時截斷，並每天清除。變更此項會重新啟動 Xray。"
+      "exactActiveConnectionDesc": "保持 Xray 存取日誌開啟，讓「用戶端」頁面準確顯示每個用戶端使用的入站。Xray 會把每個連線寫入日誌，包括造訪的位址。日誌保存在面板日誌目錄中，超過 64 MB 時截斷，並每天清除。變更此項會重新啟動 Xray。",
+      "portalEnabled": "客戶入口",
+      "portalEnabledDesc": "客戶可在訂閱伺服器上以密碼或 LDAP 登入、隱藏不用的金鑰，並登入 We1ssConnect。關閉後所有工作階段都會登出。"
     },
     "xray": {
       "save": "儲存",

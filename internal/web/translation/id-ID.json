@@ -2049,7 +2049,9 @@
       "unsavedChanges": "Ada perubahan belum disimpan",
       "allSaved": "Semua perubahan tersimpan",
       "exactActiveConnection": "Koneksi aktif yang tepat",
-      "exactActiveConnectionDesc": "Menjaga log akses Xray tetap aktif agar halaman Klien menunjukkan dengan tepat inbound yang dipakai tiap klien. Xray mencatat setiap koneksi di sana, termasuk alamat yang dikunjungi. Log disimpan di folder log panel, dipotong pada 64 MB dan dibersihkan setiap hari. Mengubahnya akan memulai ulang Xray."
+      "exactActiveConnectionDesc": "Menjaga log akses Xray tetap aktif agar halaman Klien menunjukkan dengan tepat inbound yang dipakai tiap klien. Xray mencatat setiap koneksi di sana, termasuk alamat yang dikunjungi. Log disimpan di folder log panel, dipotong pada 64 MB dan dibersihkan setiap hari. Mengubahnya akan memulai ulang Xray.",
+      "portalEnabled": "Portal klien",
+      "portalEnabledDesc": "Klien masuk di server langganan dengan kata sandi atau LDAP, menyembunyikan kunci yang tidak dipakai, dan masuk ke We1ssConnect. Mematikannya mengeluarkan semua sesi."
     },
     "xray": {
       "save": "Simpan",

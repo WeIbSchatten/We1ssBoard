@@ -181,6 +181,9 @@
           "panelOutbound": {
             "type": "string"
           },
+          "portalEnabled": {
+            "type": "boolean"
+          },
           "realityScanCandidates": {
             "type": "string"
           },
@@ -660,6 +663,7 @@
           "outboundDownThreshold",
           "pageSize",
           "panelOutbound",
+          "portalEnabled",
           "realityScanCandidates",
           "remarkTemplate",
           "restartXrayOnClientDisable",
@@ -977,6 +981,9 @@
           },
           "panelOutbound": {
             "type": "string"
+          },
+          "portalEnabled": {
+            "type": "boolean"
           },
           "realityScanCandidates": {
             "type": "string"
@@ -1465,6 +1472,7 @@
           "outboundDownThreshold",
           "pageSize",
           "panelOutbound",
+          "portalEnabled",
           "realityScanCandidates",
           "remarkTemplate",
           "restartXrayOnClientDisable",

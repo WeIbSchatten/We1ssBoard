@@ -2049,7 +2049,9 @@
       "unsavedChanges": "有未保存的更改",
       "allSaved": "所有更改已保存",
       "exactActiveConnection": "精确的当前连接",
-      "exactActiveConnectionDesc": "保持 Xray 访问日志开启，使“客户端”页面准确显示每个客户端使用的入站。Xray 会把每个连接写入日志，包括访问的地址。日志保存在面板日志目录中，超过 64 MB 时截断，并每天清空。更改此项会重启 Xray。"
+      "exactActiveConnectionDesc": "保持 Xray 访问日志开启，使“客户端”页面准确显示每个客户端使用的入站。Xray 会把每个连接写入日志，包括访问的地址。日志保存在面板日志目录中，超过 64 MB 时截断，并每天清空。更改此项会重启 Xray。",
+      "portalEnabled": "客户门户",
+      "portalEnabledDesc": "客户可在订阅服务器上用密码或 LDAP 登录，隐藏不用的密钥，并登录 We1ssConnect。关闭后所有会话都会退出。"
     },
     "xray": {
       "importRules": "导入规则",

@@ -2372,7 +2372,9 @@
       "unsavedChanges": "Unsaved changes",
       "allSaved": "All changes saved",
       "exactActiveConnection": "Exact active connection",
-      "exactActiveConnectionDesc": "Keeps Xray's access log on so the Clients page shows exactly which inbound each client uses. Xray writes every connection there, including the address visited. The log stays in the panel's log folder, is cut at 64 MB and cleared daily. Changing this restarts Xray."
+      "exactActiveConnectionDesc": "Keeps Xray's access log on so the Clients page shows exactly which inbound each client uses. Xray writes every connection there, including the address visited. The log stays in the panel's log folder, is cut at 64 MB and cleared daily. Changing this restarts Xray.",
+      "portalEnabled": "Client portal",
+      "portalEnabledDesc": "Clients log in on the subscription server with a password or LDAP, hide keys they do not use and sign in to We1ssConnect. Turning it off logs everyone out."
     },
     "xray": {
       "save": "Save",

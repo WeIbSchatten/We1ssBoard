@@ -50,6 +50,7 @@ export const AllSettingSchema = z
     xrayTemplateConfig: z.string().optional(),
     happLinkEnable: z.boolean().optional(),
     subEnable: z.boolean().optional(),
+    portalEnabled: z.boolean().optional(),
     subJsonEnable: z.boolean().optional(),
     subJsonAutoDetect: z.boolean().optional(),
     subJsonAlwaysArray: z.boolean().optional(),

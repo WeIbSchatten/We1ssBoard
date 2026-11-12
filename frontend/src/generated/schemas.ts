@@ -155,6 +155,9 @@ export const SCHEMAS: Record<string, unknown> = {
       "panelOutbound": {
         "type": "string"
       },
+      "portalEnabled": {
+        "type": "boolean"
+      },
       "realityScanCandidates": {
         "type": "string"
       },
@@ -634,6 +637,7 @@ export const SCHEMAS: Record<string, unknown> = {
       "outboundDownThreshold",
       "pageSize",
       "panelOutbound",
+      "portalEnabled",
       "realityScanCandidates",
       "remarkTemplate",
       "restartXrayOnClientDisable",
@@ -951,6 +955,9 @@ export const SCHEMAS: Record<string, unknown> = {
       },
       "panelOutbound": {
         "type": "string"
+      },
+      "portalEnabled": {
+        "type": "boolean"
       },
       "realityScanCandidates": {
         "type": "string"
@@ -1439,6 +1446,7 @@ export const SCHEMAS: Record<string, unknown> = {
       "outboundDownThreshold",
       "pageSize",
       "panelOutbound",
+      "portalEnabled",
       "realityScanCandidates",
       "remarkTemplate",
       "restartXrayOnClientDisable",

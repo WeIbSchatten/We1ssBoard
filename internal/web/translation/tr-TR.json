@@ -2049,7 +2049,9 @@
       "unsavedChanges": "Kaydedilmemiş değişiklikler",
       "allSaved": "Tüm değişiklikler kaydedildi",
       "exactActiveConnection": "Kesin etkin bağlantı",
-      "exactActiveConnectionDesc": "İstemciler sayfasının her istemcinin hangi gelen bağlantıyı kullandığını kesin göstermesi için Xray erişim günlüğünü açık tutar. Xray her bağlantıyı, ziyaret edilen adres dahil oraya yazar. Günlük panelin günlük klasöründe tutulur, 64 MB'ta kesilir ve günlük temizlenir. Değiştirmek Xray'i yeniden başlatır."
+      "exactActiveConnectionDesc": "İstemciler sayfasının her istemcinin hangi gelen bağlantıyı kullandığını kesin göstermesi için Xray erişim günlüğünü açık tutar. Xray her bağlantıyı, ziyaret edilen adres dahil oraya yazar. Günlük panelin günlük klasöründe tutulur, 64 MB'ta kesilir ve günlük temizlenir. Değiştirmek Xray'i yeniden başlatır.",
+      "portalEnabled": "Müşteri portalı",
+      "portalEnabledDesc": "Müşteriler abonelik sunucusunda parola veya LDAP ile giriş yapar, kullanmadıkları anahtarları gizler ve We1ssConnect'e giriş yapar. Kapatmak herkesin oturumunu kapatır."
     },
     "xray": {
       "save": "Kaydet",

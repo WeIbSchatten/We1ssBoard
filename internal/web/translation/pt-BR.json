@@ -2049,7 +2049,9 @@
       "unsavedChanges": "Alterações não salvas",
       "allSaved": "Todas as alterações salvas",
       "exactActiveConnection": "Conexão ativa exata",
-      "exactActiveConnectionDesc": "Mantém o log de acesso do Xray ligado para que a página Clientes mostre exatamente qual inbound cada cliente usa. O Xray registra ali cada conexão, incluindo o endereço visitado. O log fica na pasta de logs do painel, é cortado em 64 MB e limpo diariamente. Alterar isto reinicia o Xray."
+      "exactActiveConnectionDesc": "Mantém o log de acesso do Xray ligado para que a página Clientes mostre exatamente qual inbound cada cliente usa. O Xray registra ali cada conexão, incluindo o endereço visitado. O log fica na pasta de logs do painel, é cortado em 64 MB e limpo diariamente. Alterar isto reinicia o Xray.",
+      "portalEnabled": "Portal do cliente",
+      "portalEnabledDesc": "Os clientes entram no servidor de assinatura com senha ou LDAP, ocultam as chaves que não usam e entram no We1ssConnect. Desativar encerra todas as sessões."
     },
     "xray": {
       "importRules": "Importar regras",

@@ -94,6 +94,7 @@ type AllSetting struct {
 
 	HappLinkEnable              bool   `json:"happLinkEnable" form:"happLinkEnable"`
 	SubEnable                   bool   `json:"subEnable" form:"subEnable"`
+	PortalEnabled               bool   `json:"portalEnabled" form:"portalEnabled"`
 	SubJsonEnable               bool   `json:"subJsonEnable" form:"subJsonEnable"`
 	SubJsonAutoDetect           bool   `json:"subJsonAutoDetect" form:"subJsonAutoDetect"`
 	SubJsonAlwaysArray          bool   `json:"subJsonAlwaysArray" form:"subJsonAlwaysArray"`

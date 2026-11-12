@@ -2049,7 +2049,9 @@
       "unsavedChanges": "Có thay đổi chưa lưu",
       "allSaved": "Đã lưu mọi thay đổi",
       "exactActiveConnection": "Kết nối đang hoạt động chính xác",
-      "exactActiveConnectionDesc": "Giữ nhật ký truy cập của Xray luôn bật để trang Khách hàng hiển thị chính xác inbound mà mỗi khách hàng đang dùng. Xray ghi mọi kết nối vào đó, kể cả địa chỉ được truy cập. Nhật ký nằm trong thư mục log của bảng điều khiển, bị cắt ở 64 MB và xóa mỗi ngày. Thay đổi mục này sẽ khởi động lại Xray."
+      "exactActiveConnectionDesc": "Giữ nhật ký truy cập của Xray luôn bật để trang Khách hàng hiển thị chính xác inbound mà mỗi khách hàng đang dùng. Xray ghi mọi kết nối vào đó, kể cả địa chỉ được truy cập. Nhật ký nằm trong thư mục log của bảng điều khiển, bị cắt ở 64 MB và xóa mỗi ngày. Thay đổi mục này sẽ khởi động lại Xray.",
+      "portalEnabled": "Cổng khách hàng",
+      "portalEnabledDesc": "Khách hàng đăng nhập trên máy chủ đăng ký bằng mật khẩu hoặc LDAP, ẩn các khóa không dùng và đăng nhập vào We1ssConnect. Tắt sẽ đăng xuất mọi người."
     },
     "xray": {
       "importRules": "Nhập quy tắc",
