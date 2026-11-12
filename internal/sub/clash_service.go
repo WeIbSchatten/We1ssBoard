@@ -59,6 +59,7 @@ func (s *SubClashService) getClash(subId string, host string, legacy bool) (stri
 	var hasEnabledClient bool
 
 	seenEmails := make(map[string]struct{})
+	hidden := loadHiddenKeys(subId)
 	for _, inbound := range inbounds {
 		clients := subReq.matchingClients(inbound, subId)
 		if len(clients) == 0 {
@@ -71,14 +72,16 @@ func (s *SubClashService) getClash(subId string, host string, legacy bool) (stri
 			continue
 		}
 		subReq.projectThroughFallbackMaster(inbound)
-		if hostEps := subReq.hostEndpoints(inbound, "clash"); len(hostEps) > 0 {
-			injectExternalProxy(inbound, hostEps)
-		}
+		hostEps := subReq.hostEndpoints(inbound, "clash")
+		baseStream := inbound.StreamSettings
 		for _, client := range clients {
 			if client.Enable {
 				hasEnabledClient = true
 			}
 			seenEmails[client.Email] = struct{}{}
+			if !applyVisibleKeys(inbound, baseStream, hostEps, hidden, client.Email) {
+				continue
+			}
 			proxies = append(proxies, s.getProxies(subReq, inbound, client, host)...)
 		}
 	}

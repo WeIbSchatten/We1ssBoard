@@ -28,6 +28,7 @@ import (
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/util/random"
 	wgutil "github.com/WeIbSchatten/We1ssBoard/v3/internal/util/wireguard"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/service"
+	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/service/portal"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/xray"
 )
 
@@ -484,6 +485,7 @@ func (s *SubService) getSubs(subId string) ([]string, []string, int64, xray.Clie
 	}
 
 	seenEmails := make(map[string]struct{})
+	hidden := loadHiddenKeys(subId)
 	for _, inbound := range inbounds {
 		clients := s.matchingClients(inbound, subId)
 		if len(clients) == 0 {
@@ -505,8 +507,17 @@ func (s *SubService) getSubs(subId string) ([]string, []string, int64, xray.Clie
 			}
 			var link string
 			if len(hostEps) > 0 {
-				link = s.linkFromHosts(inbound, client, hostEps)
+				eps := visibleHostEps(hostEps, hidden, client.Email, inbound.Id)
+				if len(eps) == 0 {
+					seenEmails[client.Email] = struct{}{}
+					continue
+				}
+				link = s.linkFromHosts(inbound, client, eps)
 			} else {
+				if hidden.Has(client.Email, portal.Key{InboundID: inbound.Id}) {
+					seenEmails[client.Email] = struct{}{}
+					continue
+				}
 				link = s.GetLink(inbound, client.Email)
 			}
 			result = append(result, link)

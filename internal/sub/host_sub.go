@@ -60,6 +60,8 @@ func hostToExternalProxyMap(h *model.Host, defaultDest string, defaultPort int) 
 		// behaviors (e.g. reality SNI/fp override) apply without touching the
 		// legacy externalProxy path. Not emitted into output.
 		"isHost": true,
+		// Identifies the host for client-hidden keys; not emitted into output.
+		"hostId": h.Id,
 	}
 	sni := h.Sni
 	if h.OverrideSniFromAddress {

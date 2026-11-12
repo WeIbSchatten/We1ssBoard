@@ -15,6 +15,9 @@ var (
 	ErrNothingVisible = errors.New("at least one key must stay in the subscription")
 )
 
+// subscriptionProtocols mirrors the protocol filter of sub.getInboundsBySubId (internal/sub/service.go).
+var subscriptionProtocols = []string{"vmess", "vless", "trojan", "shadowsocks", "hysteria", "wireguard", "amneziawg", "mtproto", "tuic", "masque"}
+
 // Key is one subscription key: an inbound and one of its hosts, or HostID 0 for a host-less inbound.
 type Key struct {
 	InboundID int `json:"inboundId"`
@@ -41,7 +44,8 @@ func (s *Service) ClientKeys(clientID int) ([]KeyInfo, error) {
 	db := database.GetDB()
 	var inbounds []model.Inbound
 	err := db.Joins("JOIN client_inbounds ci ON ci.inbound_id = inbounds.id").
-		Where("ci.client_id = ? AND inbounds.enable = ? AND inbounds.exclude_from_sub = ?", clientID, true, false).
+		Where("ci.client_id = ? AND inbounds.enable = ? AND inbounds.exclude_from_sub = ? AND inbounds.protocol IN ?",
+			clientID, true, false, subscriptionProtocols).
 		Order("inbounds.sub_sort_index asc, inbounds.id asc").
 		Find(&inbounds).Error
 	if err != nil {
@@ -114,23 +118,45 @@ func (s *Service) ReplaceHidden(clientID int, keys []Key) error {
 }
 
 // HiddenBySubID loads the live hidden keys of every client sharing the subscription.
+// A client whose every remaining key is hidden (an admin removed the rest) gets none.
 func (s *Service) HiddenBySubID(subID string) (HiddenSet, error) {
 	rows, err := s.liveHidden(database.GetDB().Where("c.sub_id = ?", subID))
 	if err != nil {
 		return nil, err
 	}
-	set := HiddenSet{}
+	byClient := map[int][]hiddenRow{}
 	for _, r := range rows {
-		email := strings.ToLower(r.Email)
-		if set[email] == nil {
-			set[email] = map[Key]struct{}{}
+		byClient[r.ClientId] = append(byClient[r.ClientId], r)
+	}
+	set := HiddenSet{}
+	for clientID, own := range byClient {
+		keys, err := s.ClientKeys(clientID)
+		if err != nil {
+			return nil, err
 		}
-		set[email][Key{r.InboundId, r.HostId}] = struct{}{}
+		if !anyVisible(keys) {
+			continue
+		}
+		email := strings.ToLower(own[0].Email)
+		set[email] = map[Key]struct{}{}
+		for _, r := range own {
+			set[email][Key{r.InboundId, r.HostId}] = struct{}{}
+		}
 	}
 	return set, nil
 }
 
+func anyVisible(keys []KeyInfo) bool {
+	for _, k := range keys {
+		if !k.Hidden {
+			return true
+		}
+	}
+	return false
+}
+
 type hiddenRow struct {
+	ClientId  int
 	Email     string
 	InboundId int
 	HostId    int
@@ -141,7 +167,7 @@ type hiddenRow struct {
 func (s *Service) liveHidden(scope *gorm.DB) ([]hiddenRow, error) {
 	var rows []hiddenRow
 	err := scope.Table("client_sub_hidden h").
-		Select("c.email AS email, h.inbound_id AS inbound_id, h.host_id AS host_id").
+		Select("h.client_id AS client_id, c.email AS email, h.inbound_id AS inbound_id, h.host_id AS host_id").
 		Joins("JOIN clients c ON c.id = h.client_id").
 		Joins("JOIN client_inbounds ci ON ci.client_id = h.client_id AND ci.inbound_id = h.inbound_id AND ci.created_at <= h.created_at").
 		Joins("LEFT JOIN hosts ho ON ho.id = h.host_id AND ho.inbound_id = h.inbound_id").

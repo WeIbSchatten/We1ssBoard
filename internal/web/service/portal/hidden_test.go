@@ -64,6 +64,9 @@ func newKeysFixture(t *testing.T) keysFixture {
 
 func TestClientKeys(t *testing.T) {
 	f := newKeysFixture(t)
+	mixed := addInbound(t, "M", 10004, false)
+	database.GetDB().Model(mixed).Update("protocol", model.Mixed)
+	attach(t, f.client.Id, mixed.Id, 0)
 	got, err := f.svc.ClientKeys(f.client.Id)
 	if err != nil {
 		t.Fatal(err)
