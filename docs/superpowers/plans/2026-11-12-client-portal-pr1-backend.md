@@ -38,11 +38,13 @@
 ### Task 1: Вынести ограничитель перебора в общий пакет (refactor)
 
 **Files:**
+
 - Create: `internal/util/loginlimit/limiter.go` (перенос `internal/web/controller/login_limiter.go`)
 - Move test: `internal/web/controller/login_limiter_test.go` → `internal/util/loginlimit/limiter_test.go`
 - Modify: `internal/web/controller/index.go` (и другие пользователи `defaultLoginLimiter`)
 
 **Interfaces:**
+
 - Produces: `loginlimit.New(maxFailures int, window, cooldown time.Duration) *Limiter`; методы `Allow(ip, user string) (time.Time, bool)`, `RegisterFailure(ip, user string) (time.Time, bool)`, `RegisterSuccess(ip, user string)`; поле для тестов `SetClock(func() time.Time)`. Константы `MaxFailures = 5`, `Window = 5*time.Minute`, `Cooldown = 15*time.Minute`.
 
 - [ ] **Step 1:** Перенести тип и тесты в новый пакет, экспортировать методы; в контроллере `var defaultLoginLimiter = loginlimit.New(loginlimit.MaxFailures, loginlimit.Window, loginlimit.Cooldown)`.
@@ -52,6 +54,7 @@
 ### Task 2: Модель, миграция, настройка и вход по своему паролю
 
 **Files:**
+
 - Modify: `internal/database/model/model.go` — поля `ClientRecord`, модели `ClientPortalToken`, `ClientSubHidden`
 - Modify: `internal/database/db.go` (список AutoMigrate), `internal/database/migrate_data.go`
 - Modify: `internal/web/service/setting.go` — ключи `portalEnabled` (`"false"`), `portalSecret` (`random.Seq(32)`), геттеры
@@ -59,6 +62,7 @@
 - Test: `internal/web/service/portal/auth_test.go`
 
 **Interfaces:**
+
 - Produces (model): в `ClientRecord`: `PortalPasswordHash string` (`json:"-" gorm:"column:portal_password_hash;default:''"`), `PortalMustChange bool` (`json:"portalMustChange" gorm:"column:portal_must_change;default:false"`), `PortalSessionEpoch int64` (`json:"-" gorm:"column:portal_session_epoch;default:0"`).
   `ClientPortalToken{Id int; ClientId int (index); TokenHash string (size:64, uniqueIndex); DeviceName string; CreatedAt int64 (autoCreateTime:milli); LastUsedAt int64}` → таблица `client_portal_tokens`.
   `ClientSubHidden{ClientId, InboundId, HostId int (составной PK); CreatedAt int64 (autoCreateTime:milli)}` → таблица `client_sub_hidden`.
@@ -84,10 +88,12 @@
 ### Task 3: Токены приложения и смена пароля
 
 **Files:**
+
 - Create: `internal/web/service/portal/token.go`, `internal/web/service/portal/password.go`
 - Test: `internal/web/service/portal/token_test.go`, `password_test.go`
 
 **Interfaces:**
+
 - Consumes: модели и `Service` из Task 2.
 - Produces: `var ErrInvalidToken, ErrLDAPManaged, ErrWeakPassword`; `type Device struct{ ID int; Name string; CreatedAt, LastUsedAt int64 }`;
   `IssueToken(clientID int, device string) (string, error)`; `ClientByToken(token string) (*model.ClientRecord, int /*tokenID*/, error)` — обновляет `LastUsedAt`;
@@ -108,10 +114,12 @@
 ### Task 4: Ключи клиента и набор скрытых
 
 **Files:**
+
 - Create: `internal/web/service/portal/hidden.go`
 - Test: `internal/web/service/portal/hidden_test.go`
 
 **Interfaces:**
+
 - Produces: `type Key struct{ InboundID, HostID int }` (`json:"inboundId"`, `json:"hostId"`);
   `type KeyInfo struct{ Key; Remark, Protocol string; Hidden bool }`;
   `type HiddenSet map[string]map[Key]struct{}` (ключ — `strings.ToLower(email)`), метод `(h HiddenSet) Has(email string, k Key) bool`;
@@ -132,11 +140,13 @@
 ### Task 5: Фильтр скрытых ключей в подписке
 
 **Files:**
+
 - Modify: `internal/sub/host_sub.go` — в `hostToExternalProxyMap` добавить `"hostId": h.Id`; функция `filterHostEps`
 - Modify: `internal/sub/service.go` (`getSubs`, цикл с 486), `internal/sub/json_service.go` (цикл с 140), `internal/sub/clash_service.go` (цикл с 62)
 - Test: `internal/sub/portal_hidden_test.go`
 
 **Interfaces:**
+
 - Consumes: `portal.HiddenSet`, `portal.Key`, `(*portal.Service).HiddenBySubID` (Task 4).
 - Produces: `func filterHostEps(eps []map[string]any, hidden portal.HiddenSet, email string, inboundID int) []map[string]any`; `func visibleForClient(...)` по выбору исполнителя. `SubService` получает поле `portal *portal.Service` (инициализация там же, где `inboundService`).
 
@@ -156,17 +166,20 @@
 ### Task 6: API кабинета на подписочном сервере
 
 **Files:**
+
 - Modify: `internal/sub/controller.go` — сначала вынести тело raw-ветки `subs` (строки ~486–520) в `serveRawBody(c *gin.Context) bool` (отдельный refactor-коммит)
 - Create: `internal/sub/portal_controller.go`
 - Modify: `internal/sub/sub.go` — регистрация группы `/portal` после `NewSUBController`
 - Test: `internal/sub/portal_controller_test.go`
 
 **Interfaces:**
+
 - Consumes: всё из Task 1–5; `session.EnsureCSRFToken` / `session.ValidateCSRFToken` (`internal/web/session/csrf.go`).
 - Produces: `func NewPortalController(g *gin.RouterGroup, sub *SUBController, svc *portal.Service, settings *service.SettingService) *PortalController`; JSON-тип ответа `/me`:
   `PortalProfile{Email string; Enable bool; ExpiryTime int64; TotalGB int64; Up, Down int64; Group string; SubURL string; MustChange bool; LDAP bool; Keys []portal.KeyInfo; Devices []portal.Device; CSRFToken string}` (теги camelCase).
 
 Маршруты и поведение — спека, раздел 5 (без `GET /portal`: страница — PR 3). Детали, которые решены здесь:
+
 - Группа `/portal` получает `sessions.Sessions("We1ssBoardPortal", cookie.NewStore(GetPortalSecret()))` с `HttpOnly`, `SameSite=Strict`, `Secure` при HTTPS — только на этой группе.
 - Middleware по порядку: `portalEnabled` иначе 404 (читается на каждый запрос) → аутентификация: `Authorization: Bearer <t>` → `ClientByToken`; иначе сессия `{clientId, epoch}`, эпоха сверяется с `PortalSessionEpoch` → `must_change` пропускает только `password`/`logout` → для `PUT hidden` и `DELETE devices` клиент с `Enable=false` или истёкшим `ExpiryTime` → 403 `client_disabled` → CSRF для изменяющих запросов с cookie-сессией (не для Bearer).
 - `login`: `loginlimit` на «IP + логин» с теми же константами; `client:"app"` → `{token}`, `device` обязателен (≤ 64 символов); `client:"web"` → сессия + `{mustChange, csrfToken}`.
@@ -195,6 +208,7 @@
 ### Task 7: Документация и проверка ветки
 
 **Files:**
+
 - Modify: `docs/architecture.md` — в таблице серверов и §5.6 строка про `/portal/api/*` и фильтр скрытых ключей; в индексе «симптом → файл»: «ключ пропал из подписки клиента» → `internal/web/service/portal/hidden.go`, `internal/sub/host_sub.go`.
 
 - [ ] **Step 1:** Правка `docs/architecture.md`.
