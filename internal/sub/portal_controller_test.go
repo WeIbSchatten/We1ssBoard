@@ -164,6 +164,21 @@ func TestPortal_LoginRateLimited(t *testing.T) {
 	}
 }
 
+func TestPortal_LoginLimitIgnoresSpoofedForwardedFor(t *testing.T) {
+	e := newPortalEnv(t, true)
+	attempt := func(i int, password string) *httptest.ResponseRecorder {
+		r := portalReq{method: "POST", path: "/portal/api/login", body: map[string]string{"login": "a.smirnova", "password": password, "client": "web"}}
+		r.header = map[string]string{"X-Forwarded-For": fmt.Sprintf("198.51.100.%d", i), "X-Real-IP": fmt.Sprintf("198.51.100.%d", i)}
+		return e.do(r)
+	}
+	for i := range 5 {
+		attempt(i+1, "nope")
+	}
+	if w := attempt(99, portalPassword); w.Code != http.StatusTooManyRequests {
+		t.Fatalf("a fresh X-Forwarded-For from an untrusted peer reset the limiter: code %d, want 429", w.Code)
+	}
+}
+
 func TestPortal_MustChangeGate(t *testing.T) {
 	e := newPortalEnv(t, true)
 	database.GetDB().Model(e.client).Update("portal_must_change", true)

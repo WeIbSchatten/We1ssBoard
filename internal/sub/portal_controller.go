@@ -16,6 +16,7 @@ import (
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/database/model"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/logger"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/util/loginlimit"
+	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/clientip"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/service"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/service/portal"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/session"
@@ -109,7 +110,7 @@ func (a *PortalController) login(c *gin.Context) {
 		portalError(c, http.StatusBadRequest, "bad_device")
 		return
 	}
-	ip := c.ClientIP()
+	ip := clientip.RemoteIP(c)
 	if until, ok := a.limiter.Allow(ip, req.Login); !ok {
 		c.Header("Retry-After", strconv.Itoa(int(math.Ceil(time.Until(until).Seconds()))))
 		portalError(c, http.StatusTooManyRequests, "too_many_attempts")
