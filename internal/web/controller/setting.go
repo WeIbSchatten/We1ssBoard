@@ -10,6 +10,7 @@ import (
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/database/model"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/logger"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/util/crypto"
+	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/clientip"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/entity"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/middleware"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/service"
@@ -255,7 +256,7 @@ func (a *SettingController) issueLoginTicket(c *gin.Context) {
 		jsonMsg(c, I18nWeb(c, "somethingWentWrong"), err)
 		return
 	}
-	logger.Infof("login ticket issued to an admin API token from IP=%q", getRemoteIp(c))
+	logger.Infof("login ticket issued to an admin API token from IP=%q", clientip.RemoteIP(c))
 	c.Header("Cache-Control", "no-store")
 	jsonObj(c, service.LoginTicketResponse{Ticket: ticket, ExpiresIn: int(session.LoginTicketTTL.Seconds())}, nil)
 }

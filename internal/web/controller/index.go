@@ -10,6 +10,7 @@ import (
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/database/model"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/logger"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/util/loginlimit"
+	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/clientip"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/middleware"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/service"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/service/panel"
@@ -90,7 +91,7 @@ func (a *IndexController) login(c *gin.Context) {
 		return
 	}
 
-	remoteIP := getRemoteIp(c)
+	remoteIP := clientip.RemoteIP(c)
 	safeUser := template.HTMLEscapeString(form.Username)
 	timeStr := time.Now().Format("2006-01-02 15:04:05")
 	if blockedUntil, ok := defaultLoginLimiter.Allow(remoteIP, form.Username); !ok {
@@ -163,7 +164,7 @@ func (a *IndexController) loginWithTicket(c *gin.Context) {
 		pureJsonMsg(c, http.StatusOK, false, I18nWeb(c, "pages.login.toasts.invalidFormData"))
 		return
 	}
-	remoteIP := getRemoteIp(c)
+	remoteIP := clientip.RemoteIP(c)
 	invalid := func(reason string) {
 		logger.Warningf("failed ticket login: IP=%q, reason=%q", remoteIP, reason)
 		pureJsonMsg(c, http.StatusOK, false, I18nWeb(c, "pages.login.toasts.invalidLoginTicket"))
@@ -217,20 +218,20 @@ func (a *IndexController) enrollConsume(c *gin.Context) {
 	}
 	preferredBase, err := a.settingService.ConsumeEnrollInviteCode(form.Code)
 	if err != nil {
-		logger.Warningf("enroll consume failed: IP=%q err=%v", getRemoteIp(c), err)
+		logger.Warningf("enroll consume failed: IP=%q err=%v", clientip.RemoteIP(c), err)
 		pureJsonMsg(c, http.StatusOK, false, err.Error())
 		return
 	}
 	tokSvc := &panel.ApiTokenService{}
 	view, err := tokSvc.Create(fmt.Sprintf("enroll-%d", time.Now().Unix()), model.ApiScopeAdmin, 0)
 	if err != nil {
-		logger.Warningf("enroll token mint failed: IP=%q err=%v", getRemoteIp(c), err)
+		logger.Warningf("enroll token mint failed: IP=%q err=%v", clientip.RemoteIP(c), err)
 		pureJsonMsg(c, http.StatusOK, false, err.Error())
 		return
 	}
 	res, err := a.settingService.EnrollConnectionDetails(view.Token, preferredBase)
 	if err != nil {
-		logger.Warningf("enroll details failed: IP=%q err=%v", getRemoteIp(c), err)
+		logger.Warningf("enroll details failed: IP=%q err=%v", clientip.RemoteIP(c), err)
 		pureJsonMsg(c, http.StatusOK, false, err.Error())
 		return
 	}

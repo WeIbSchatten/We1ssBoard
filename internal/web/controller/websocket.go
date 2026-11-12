@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/logger"
+	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/clientip"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/service/panel"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/session"
 
@@ -64,7 +65,7 @@ func NewWebSocketController(svc *panel.WebSocketService) *WebSocketController {
 // hands ownership of the connection off to the service.
 func (w *WebSocketController) HandleWebSocket(c *gin.Context) {
 	if !session.IsLogin(c) {
-		logger.Warningf("Unauthorized WebSocket connection attempt from %s", getRemoteIp(c))
+		logger.Warningf("Unauthorized WebSocket connection attempt from %s", clientip.RemoteIP(c))
 		c.AbortWithStatus(http.StatusUnauthorized)
 		return
 	}
@@ -75,5 +76,5 @@ func (w *WebSocketController) HandleWebSocket(c *gin.Context) {
 		return
 	}
 
-	w.service.HandleConnection(conn, getRemoteIp(c))
+	w.service.HandleConnection(conn, clientip.RemoteIP(c))
 }
