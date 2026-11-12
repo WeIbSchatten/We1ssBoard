@@ -135,6 +135,7 @@ func (s *SubJsonService) GetJson(subId string, host string, alwaysReturnArray bo
 	var hasEnabledClient bool
 
 	seenEmails := make(map[string]struct{})
+	hidden := subReq.hiddenForFormat(loadHiddenKeys(subId), inbounds, subId, "json")
 	entries := make([]subConfigEntry, 0, len(inbounds))
 	// Prepare Inbounds
 	for _, inbound := range inbounds {
@@ -149,9 +150,8 @@ func (s *SubJsonService) GetJson(subId string, host string, alwaysReturnArray bo
 			continue
 		}
 		subReq.projectThroughFallbackMaster(inbound)
-		if hostEps := subReq.hostEndpoints(inbound, "json"); len(hostEps) > 0 {
-			injectExternalProxy(inbound, hostEps)
-		}
+		hostEps := subReq.hostEndpoints(inbound, "json")
+		baseStream := inbound.StreamSettings
 
 		var inboundConfigs []json_util.RawMessage
 		for _, client := range clients {
@@ -159,6 +159,9 @@ func (s *SubJsonService) GetJson(subId string, host string, alwaysReturnArray bo
 				hasEnabledClient = true
 			}
 			seenEmails[client.Email] = struct{}{}
+			if !applyVisibleKeys(inbound, baseStream, hostEps, hidden, client.Email) {
+				continue
+			}
 			inboundConfigs = append(inboundConfigs, s.getConfig(subReq, inbound, client, host)...)
 		}
 		if len(inboundConfigs) > 0 {

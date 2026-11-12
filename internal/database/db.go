@@ -93,6 +93,8 @@ func allModels() []any {
 		&model.TrafficMonth{},
 		&model.InboundTrafficTotal{},
 		&model.ClientTrafficTotal{},
+		&model.ClientPortalToken{},
+		&model.ClientSubHidden{},
 	}
 }
 

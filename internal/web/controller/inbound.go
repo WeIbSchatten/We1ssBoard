@@ -8,6 +8,7 @@ import (
 
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/database/model"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/util/wirecodec"
+	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/clientip"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/middleware"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/service"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/session"
@@ -449,7 +450,7 @@ func (a *InboundController) importInbound(c *gin.Context) {
 // resolveHost mirrors SubService.ResolveRequest's host: trusted X-Forwarded-Host,
 // else the dialed request Host. X-Real-IP names the visitor, not the panel (#6589).
 func resolveHost(c *gin.Context) string {
-	if isTrustedForwardedRequest(c) {
+	if clientip.IsTrustedForwarded(c) {
 		if h := strings.TrimSpace(c.GetHeader("X-Forwarded-Host")); h != "" {
 			if i := strings.Index(h, ","); i >= 0 {
 				h = strings.TrimSpace(h[:i])

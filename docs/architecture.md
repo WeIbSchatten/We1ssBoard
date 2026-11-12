@@ -35,12 +35,12 @@ Xray-core via loopback SOCKS5 relays.
 
 Servers and processes, all launched from `main.go`:
 
-| Server / process | Package                           | Purpose                                                            | Default port      |
-| ---------------- | --------------------------------- | ------------------------------------------------------------------ | ----------------- |
-| **Panel**        | `internal/web`                    | Admin REST/WS API + serves the embedded SPA                        | 2053              |
-| **Subscription** | `internal/sub`                    | Public endpoint that hands out client configs (raw / JSON / Clash) | `subPort` setting |
-| **Xray-core**    | supervised via `internal/xray`    | The actual proxy engine; a child process, not Go code              | `inbounds[].port` |
-| **mtg-multi**    | supervised via `internal/mtproto` | MTProto proxy child process for MTProto inbounds (multi-secret)    | per inbound       |
+| Server / process | Package                           | Purpose                                                                                                        | Default port      |
+| ---------------- | --------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------- |
+| **Panel**        | `internal/web`                    | Admin REST/WS API + serves the embedded SPA                                                                    | 2053              |
+| **Subscription** | `internal/sub`                    | Public endpoint that hands out client configs (raw / JSON / Clash) and the client portal API (`/portal/api/*`) | `subPort` setting |
+| **Xray-core**    | supervised via `internal/xray`    | The actual proxy engine; a child process, not Go code                                                          | `inbounds[].port` |
+| **mtg-multi**    | supervised via `internal/mtproto` | MTProto proxy child process for MTProto inbounds (multi-secret)                                                | per inbound       |
 
 Two key ideas that explain most of the complexity:
 
@@ -449,6 +449,12 @@ Both paths must agree per protocol. A malformed link for a specific protocol/tra
 its tests `service_test.go` / golden fixtures), or in `util/link/outbound.go`. The frontend
 also has protocol schemas under `frontend/src/schemas/protocols/` and `frontend/src/lib/xray/`.
 
+**Client portal** (`internal/web/service/portal`, HTTP in `sub/portal_controller.go`): clients log in
+with their own password or LDAP and hide keys (inbound + host) from their own subscription. Every
+subscription request loads those per client (`sub/portal_hidden.go`) and skips them in raw, JSON and
+Clash; panel links stay complete. Stale hidden rows (after a re-attach or host delete) are ignored by
+creation time, so delete sites need no cleanup.
+
 ### 5.7 Event bus (in-process pub/sub)
 
 `internal/eventbus/` is a minimal buffered-channel pub/sub. Producers call a non-blocking
@@ -519,6 +525,7 @@ for AutoMigrate in `internal/database/db.go`.
 | **Share link / QR** malformed (per protocol)                                      | `service/client_link.go`, `util/link/outbound.go`                            | `frontend/src/lib/xray/`, `frontend/src/schemas/protocols/`                                         |
 | **Subscription** output wrong (raw/JSON/Clash)                                    | `internal/sub/service.go`                                                    | `sub/json_service.go`, `sub/clash_service.go`, sub golden tests                                     |
 | Subscription **host overrides** not applied                                       | `service/host.go`, `sub/host_sub.go`                                         | model `Host`, `frontend/src/pages/hosts/`                                                           |
+| A key is **missing from one client's subscription** only                          | `service/portal/hidden.go` (`HiddenBySubID`)                                 | `sub/portal_hidden.go`, table `client_sub_hidden`                                                   |
 | **External subscription** import/aggregation                                      | `sub/external_subscription.go`, `sub/external_config.go`                     | `sub/clash_external.go`                                                                             |
 | **Settings** not saving / defaults                                                | `service/setting.go`, `controller/setting.go`                                | model `Setting`                                                                                     |
 | **Login / 2FA / sessions / CSRF**                                                 | `controller/index.go`, `service/panel/user.go`, `middleware/`                | `session/`                                                                                          |

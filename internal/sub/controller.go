@@ -485,6 +485,12 @@ func (a *SUBController) subs(c *gin.Context) {
 		return
 	}
 	logSubscriptionRoute(userAgent, "raw")
+	a.serveRawBody(c)
+}
+
+// serveRawBody writes the raw subscription for the request's :subid and records the fetch.
+func (a *SUBController) serveRawBody(c *gin.Context) {
+	userAgent := c.GetHeader("User-Agent")
 	subId := c.Param("subid")
 	scheme, host, hostWithPort, _ := a.subService.ResolveRequest(c)
 	subReq := a.subService.ForRequest(host)

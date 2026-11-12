@@ -22,6 +22,7 @@ import (
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/database/model"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/logger"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/util/common"
+	ldaputil "github.com/WeIbSchatten/We1ssBoard/v3/internal/util/ldap"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/util/netproxy"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/util/random"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/util/reflect_util"
@@ -60,6 +61,8 @@ var defaultValueMap = map[string]string{
 	"webCertFile":        "",
 	"webKeyFile":         "",
 	"secret":             random.Seq(32),
+	"portalSecret":       random.Seq(32),
+	"portalEnabled":      "false",
 	"panelGuid":          uuid.NewString(),
 	"apiToken":           "",
 	// Node mTLS material (opt-in). All default empty: the CA + master client
@@ -1445,6 +1448,51 @@ func (s *SettingService) GetLdapDefaultExpiryDays() (int, error) {
 
 func (s *SettingService) GetLdapDefaultLimitIP() (int, error) {
 	return s.getInt("ldapDefaultLimitIP")
+}
+
+// GetLdapConfig returns the directory connection settings and whether LDAP is enabled.
+func (s *SettingService) GetLdapConfig() (ldaputil.Config, bool, error) {
+	enabled, err := s.GetLdapEnable()
+	if err != nil {
+		return ldaputil.Config{}, false, err
+	}
+	var cfg ldaputil.Config
+	readers := []func() error{
+		func() (e error) { cfg.Host, e = s.GetLdapHost(); return },
+		func() (e error) { cfg.Port, e = s.GetLdapPort(); return },
+		func() (e error) { cfg.UseTLS, e = s.GetLdapUseTLS(); return },
+		func() (e error) { cfg.InsecureSkipVerify, e = s.GetLdapInsecureSkipVerify(); return },
+		func() (e error) { cfg.BindDN, e = s.GetLdapBindDN(); return },
+		func() (e error) { cfg.Password, e = s.GetLdapPassword(); return },
+		func() (e error) { cfg.BaseDN, e = s.GetLdapBaseDN(); return },
+		func() (e error) { cfg.UserFilter, e = s.GetLdapUserFilter(); return },
+		func() (e error) { cfg.UserAttr, e = s.GetLdapUserAttr(); return },
+	}
+	for _, read := range readers {
+		if err := read(); err != nil {
+			return ldaputil.Config{}, false, err
+		}
+	}
+	return cfg, enabled, nil
+}
+
+// GetPortalEnabled reports whether the client portal is served on the subscription server.
+func (s *SettingService) GetPortalEnabled() (bool, error) {
+	return s.getBool("portalEnabled")
+}
+
+// GetPortalSecret signs portal web sessions; it is separate from the panel's session secret.
+func (s *SettingService) GetPortalSecret() ([]byte, error) {
+	secret, err := s.getString("portalSecret")
+	if secret == "" || secret == defaultValueMap["portalSecret"] {
+		if secret == "" {
+			secret = defaultValueMap["portalSecret"]
+		}
+		if saveErr := s.saveSetting("portalSecret", secret); saveErr != nil {
+			logger.Warning("save portal secret failed:", saveErr)
+		}
+	}
+	return []byte(secret), err
 }
 
 // Event bus — per-subscriber event filtering

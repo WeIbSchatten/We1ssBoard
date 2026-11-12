@@ -581,6 +581,7 @@ export const EXAMPLES: Record<string, unknown> = {
     "limitHwid": 0,
     "limitIp": 0,
     "password": "",
+    "portalMustChange": false,
     "preSharedKey": "",
     "privateKey": "",
     "publicKey": "",
