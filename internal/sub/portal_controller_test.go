@@ -24,6 +24,7 @@ type portalEnv struct {
 	hiddenFixture
 	router *gin.Engine
 	svc    *portal.Service
+	ctrl   *PortalController
 }
 
 func newPortalEnv(t *testing.T, enabled bool) portalEnv {
@@ -42,8 +43,8 @@ func newPortalEnv(t *testing.T, enabled bool) portalEnv {
 	sub := NewSUBController(router.Group("/"), WithSUBJsonEnabled(true), WithSUBClashEnabled(true))
 	settings := &service.SettingService{}
 	svc := portal.New(settings)
-	NewPortalController(router.Group("/portal"), sub, svc, settings)
-	return portalEnv{hiddenFixture: f, router: router, svc: svc}
+	ctrl := NewPortalController(router.Group("/portal"), sub, svc, settings)
+	return portalEnv{hiddenFixture: f, router: router, svc: svc, ctrl: ctrl}
 }
 
 type portalReq struct {
@@ -342,4 +343,31 @@ func TestPortal_Logout(t *testing.T) {
 			t.Fatalf("token after logout = %d, want 401", w.Code)
 		}
 	})
+}
+
+func TestPortal_PageServed(t *testing.T) {
+	e := newPortalEnv(t, true)
+	if err := database.GetDB().Create(&model.Setting{Key: "subTitle", Value: "Acme </script> VPN"}).Error; err != nil {
+		t.Fatal(err)
+	}
+	e.ctrl.readPage = func() ([]byte, error) { return []byte("<html><head></head><body></body></html>"), nil }
+
+	w := e.do(portalReq{method: "GET", path: "/portal"})
+	body := w.Body.String()
+	if w.Code != http.StatusOK || !strings.HasPrefix(w.Header().Get("Content-Type"), "text/html") {
+		t.Fatalf("GET /portal = %d %q", w.Code, w.Header().Get("Content-Type"))
+	}
+	wantTitle, _ := json.Marshal("Acme </script> VPN")
+	if !strings.Contains(body, "window.__PORTAL__=") || !strings.Contains(body, `"subTitle":`+string(wantTitle)) {
+		t.Fatalf("page does not carry the escaped portal config:\n%s", body)
+	}
+	if strings.Contains(body, "</script> VPN") {
+		t.Fatal("the subscription title can close the inline script")
+	}
+
+	off := newPortalEnv(t, false)
+	off.ctrl.readPage = e.ctrl.readPage
+	if w := off.do(portalReq{method: "GET", path: "/portal"}); w.Code != http.StatusNotFound {
+		t.Fatalf("GET /portal with the portal off = %d, want 404", w.Code)
+	}
 }
