@@ -5,12 +5,13 @@ Frontend agent guide. Full detail: `frontend/README.md` and the root
 
 ## What this is
 React 19 + Ant Design 6 + Vite 8 + TypeScript. The Vite config is
-`vite.config.js` (plain JS). Three bundles, each emitted into
+`vite.config.js` (plain JS). Four bundles, each emitted into
 `internal/web/dist/` and embedded into the Go binary:
 - `index.html` — admin panel SPA (entry `src/main.tsx`; react-router under
   `/panel`, lazy routes).
 - `login.html` — login + 2FA (`src/entries/login.tsx`).
 - `subpage.html` — public subscription viewer (`src/entries/subpage.tsx`).
+- `portal.html` — client portal on the subscription server at `/portal` (`src/entries/portal.tsx`).
 The `@` import alias maps to `src/`.
 
 ## Data flow
