@@ -1199,7 +1199,13 @@
         "disabled": "El portal de clientes está desactivado. Actívalo en los ajustes de suscripción.",
         "revoked": "Acceso al portal revocado",
         "clientNotFound": "Cliente no encontrado",
-        "issueConfirm": "¿Emitir una nueva contraseña temporal? La contraseña actual dejará de funcionar y se cerrará la sesión en todos los dispositivos."
+        "issueConfirm": "¿Emitir una nueva contraseña temporal? La contraseña actual dejará de funcionar y se cerrará la sesión en todos los dispositivos.",
+        "portalUrl": "Dirección del portal",
+        "appliesNow": "Estas acciones se aplican al instante, no hace falta guardar.",
+        "loginLabel": "Usuario",
+        "passwordLabel": "Contraseña",
+        "copyForClient": "Copiar para el cliente",
+        "credentials": "Portal del cliente: {url}\nUsuario: {login}\nContraseña temporal: {password}"
       }
     },
     "groups": {
@@ -3330,6 +3336,7 @@
     "title": "Portal del cliente",
     "login": {
       "title": "Inicia sesión en tu cuenta",
+      "hint": "Introduce el usuario y la contraseña que te dio el administrador.",
       "login": "Usuario",
       "password": "Contraseña",
       "submit": "Entrar",

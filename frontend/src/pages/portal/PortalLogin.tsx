@@ -34,6 +34,7 @@ export default function PortalLogin({ onLoggedIn }: { onLoggedIn: () => void }) 
   return (
     <div className="portal-form">
       <Typography.Title level={4}>{t('portal.login.title')}</Typography.Title>
+      <Typography.Paragraph type="secondary">{t('portal.login.hint')}</Typography.Paragraph>
       <FormProvider {...methods}>
         <Form layout="vertical" onFinish={methods.handleSubmit(onSubmit)}>
           <FormField name="login" label={t('portal.login.login')}>

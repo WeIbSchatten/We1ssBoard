@@ -1199,7 +1199,13 @@
         "disabled": "Cổng khách hàng đang tắt. Hãy bật trong cài đặt đăng ký.",
         "revoked": "Đã thu hồi quyền truy cập cổng",
         "clientNotFound": "Không tìm thấy khách hàng",
-        "issueConfirm": "Cấp mật khẩu tạm thời mới? Mật khẩu hiện tại sẽ ngừng hoạt động và mọi thiết bị bị đăng xuất."
+        "issueConfirm": "Cấp mật khẩu tạm thời mới? Mật khẩu hiện tại sẽ ngừng hoạt động và mọi thiết bị bị đăng xuất.",
+        "portalUrl": "Địa chỉ cổng",
+        "appliesNow": "Các thao tác này áp dụng ngay, không cần lưu.",
+        "loginLabel": "Tên đăng nhập",
+        "passwordLabel": "Mật khẩu",
+        "copyForClient": "Sao chép cho khách hàng",
+        "credentials": "Cổng khách hàng: {url}\nTên đăng nhập: {login}\nMật khẩu tạm thời: {password}"
       }
     },
     "groups": {
@@ -3330,6 +3336,7 @@
     "title": "Cổng khách hàng",
     "login": {
       "title": "Đăng nhập vào tài khoản",
+      "hint": "Nhập tên đăng nhập và mật khẩu do quản trị viên cung cấp.",
       "login": "Tên đăng nhập",
       "password": "Mật khẩu",
       "submit": "Đăng nhập",

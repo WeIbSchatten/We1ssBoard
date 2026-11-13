@@ -1199,7 +1199,13 @@
         "disabled": "Müşteri portalı kapalı. Abonelik ayarlarından açın.",
         "revoked": "Portal erişimi iptal edildi",
         "clientNotFound": "Müşteri bulunamadı",
-        "issueConfirm": "Yeni bir geçici parola verilsin mi? Mevcut parola çalışmaz hale gelir ve tüm cihazların oturumu kapanır."
+        "issueConfirm": "Yeni bir geçici parola verilsin mi? Mevcut parola çalışmaz hale gelir ve tüm cihazların oturumu kapanır.",
+        "portalUrl": "Portal adresi",
+        "appliesNow": "Bu işlemler hemen uygulanır, kaydetmek gerekmez.",
+        "loginLabel": "Kullanıcı adı",
+        "passwordLabel": "Parola",
+        "copyForClient": "Müşteri için kopyala",
+        "credentials": "Müşteri portalı: {url}\nKullanıcı adı: {login}\nGeçici parola: {password}"
       }
     },
     "groups": {
@@ -3330,6 +3336,7 @@
     "title": "Müşteri portalı",
     "login": {
       "title": "Hesabınıza giriş yapın",
+      "hint": "Yöneticinizin verdiği kullanıcı adı ve parolayı girin.",
       "login": "Kullanıcı adı",
       "password": "Parola",
       "submit": "Giriş yap",

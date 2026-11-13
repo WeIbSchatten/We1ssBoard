@@ -45,8 +45,15 @@ func TestClientPortalEndpoints(t *testing.T) {
 	NewClientController(router.Group("/panel/api/clients"))
 
 	status := callPortal[entity.ClientPortalAccess](t, router, http.MethodGet, "/panel/api/clients/portal/alice")
-	if !status.Success || status.Obj.Status != "none" || !status.Obj.PortalEnabled {
+	if !status.Success || status.Obj.Status != "none" || !status.Obj.PortalEnabled || status.Obj.PortalURL != "http://example.com:2096/portal" {
 		t.Fatalf("status before access = %+v", status)
+	}
+
+	if err := db.Create(&model.Setting{Key: "subURI", Value: "https://vpn.example.com/sub/"}).Error; err != nil {
+		t.Fatal(err)
+	}
+	if got := callPortal[entity.ClientPortalAccess](t, router, http.MethodGet, "/panel/api/clients/portal/alice"); got.Obj.PortalURL != "https://vpn.example.com/portal" {
+		t.Fatalf("portalUrl behind a configured subURI = %q, want https://vpn.example.com/portal", got.Obj.PortalURL)
 	}
 
 	issued := callPortal[entity.ClientPortalPassword](t, router, http.MethodPost, "/panel/api/clients/portalPassword/alice")

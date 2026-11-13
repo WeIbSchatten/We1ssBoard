@@ -16,6 +16,7 @@ import (
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/util/crypto"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/service"
 	"github.com/WeIbSchatten/We1ssBoard/v3/internal/web/service/portal"
+	"github.com/WeIbSchatten/We1ssBoard/v3/internal/xray"
 )
 
 const portalPassword = "correct-horse"
@@ -139,6 +140,22 @@ func TestPortal_LoginWebAndMe(t *testing.T) {
 	keys, _ := e.svc.ClientKeys(e.client.Id)
 	if me.Email != "a.smirnova" || len(me.Keys) != len(keys) || len(keys) != 3 || me.SubURL == "" {
 		t.Fatalf("me = %+v, want email a.smirnova, 3 keys and a subscription URL", me)
+	}
+}
+
+func TestPortal_MeReportsTraffic(t *testing.T) {
+	e := newPortalEnv(t, true)
+	traffic := &xray.ClientTraffic{Email: "a.smirnova", Enable: true, Up: 7, Down: 11, LastOnline: 1_700_000_000_000}
+	if err := database.GetDB().Create(traffic).Error; err != nil {
+		t.Fatal(err)
+	}
+	w := e.do(e.loginWeb(t, portalPassword).req("GET", "/portal/api/me", nil))
+	var me PortalProfile
+	if err := json.Unmarshal(w.Body.Bytes(), &me); err != nil {
+		t.Fatalf("me = %d %s: %v", w.Code, w.Body, err)
+	}
+	if me.Up != 7 || me.Down != 11 || me.LastOnline != 1_700_000_000_000 {
+		t.Fatalf("me traffic = up %d down %d lastOnline %d, want 7, 11 and 1700000000000", me.Up, me.Down, me.LastOnline)
 	}
 }
 

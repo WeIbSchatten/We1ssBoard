@@ -18,6 +18,7 @@ export const PROFILE: PortalProfile = {
   subUrl: 'https://vpn.example.com/sub/s1',
   mustChange: false,
   ldap: false,
+  lastOnline: 0,
   keys: [
     { inboundId: 1, hostId: 0, remark: 'VLESS REALITY', protocol: 'vless', hidden: false },
     { inboundId: 2, hostId: 0, remark: 'Trojan', protocol: 'trojan', hidden: false },
@@ -107,5 +108,15 @@ describe('PortalPage', () => {
     renderWithProviders(<PortalPage />);
     await screen.findByText('Your password is temporary. Choose a new one to continue.');
     expect(screen.getByRole('button', { name: /Log out/ })).toBeTruthy();
+  });
+});
+
+describe('PortalPage document', () => {
+  it('names the browser tab and marks the language of the chosen locale', async () => {
+    vi.spyOn(portalApi, 'me').mockRejectedValue(unauthorized());
+    renderWithProviders(<PortalPage />);
+    await screen.findByText('Enter the login and password your administrator gave you.');
+    expect(document.title).toBe('Client portal');
+    expect(document.documentElement.lang).toBe('en-US');
   });
 });

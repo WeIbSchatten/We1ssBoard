@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Button, Card, ConfigProvider, Layout, Spin, message } from 'antd';
+import { Alert, Button, Card, ConfigProvider, Grid, Layout, Spin, message } from 'antd';
 import { LogoutOutlined } from '@ant-design/icons';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
@@ -23,6 +23,7 @@ export default function PortalPage() {
   const { t } = useTranslation();
   const { isDark, isUltra, antdThemeConfig } = useTheme();
   const queryClient = useQueryClient();
+  const screens = Grid.useBreakpoint();
   const [messageApi, messageContextHolder] = message.useMessage();
   useEffect(() => setMessageInstance(messageApi), [messageApi]);
   const [lang, setLang] = useState<string>(() => LanguageManager.getLanguage('subscription'));
@@ -54,6 +55,12 @@ export default function PortalPage() {
     );
 
   const direction = RTL_LANGUAGES.has(lang) ? 'rtl' : 'ltr';
+  const title = window.__PORTAL__?.subTitle || t('portal.title');
+  useEffect(() => {
+    document.title = title;
+    document.documentElement.lang = lang;
+  }, [title, lang]);
+  const signedOut = code === 'unauthorized' || code === 'must_change_password';
   const pageClass = ['subscription-page', 'portal-page', isDark && 'is-dark', isUltra && 'is-ultra']
     .filter(Boolean)
     .join(' ');
@@ -63,17 +70,22 @@ export default function PortalPage() {
       {messageContextHolder}
       <Layout className={pageClass} dir={direction}>
         <Layout.Content className="sub-content">
-          <Card className="sub-card">
+          <Card className={signedOut ? 'sub-card portal-card-narrow' : 'sub-card'}>
             <SubHeader
-              title={window.__PORTAL__?.subTitle || t('portal.title')}
+              title={title}
               sId=""
               email={me.data?.email ?? ''}
               lang={lang}
               onLangChange={onLangChange}
               actions={
                 (me.data || code === 'must_change_password') && (
-                  <Button className="toolbar-btn" icon={<LogoutOutlined />} onClick={logout}>
-                    {t('portal.logout')}
+                  <Button
+                    className="toolbar-btn portal-logout"
+                    icon={<LogoutOutlined />}
+                    aria-label={t('portal.logout')}
+                    onClick={logout}
+                  >
+                    {screens.sm && t('portal.logout')}
                   </Button>
                 )
               }

@@ -3,3 +3,8 @@
 .client-form-modal .ant-tabs-content > .ant-form-item:last-child {
   margin-bottom: 0;
 }
+
+.client-portal-password {
+  font-size: 16px;
+  letter-spacing: 0.05em;
+}

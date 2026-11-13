@@ -26,6 +26,7 @@ export const PortalProfileSchema = z.object({
   subUrl: z.string(),
   mustChange: z.boolean(),
   ldap: z.boolean(),
+  lastOnline: z.number(),
   keys: z
     .array(PortalKeySchema)
     .nullable()

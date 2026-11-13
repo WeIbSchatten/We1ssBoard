@@ -24,6 +24,7 @@ const PROFILE: PortalProfile = {
   subUrl: 'https://vpn.example.com/sub/s1',
   mustChange: false,
   ldap: false,
+  lastOnline: 0,
   keys: [
     { inboundId: 1, hostId: 0, remark: 'VLESS REALITY', protocol: 'vless', hidden: false },
     { inboundId: 2, hostId: 5, remark: 'Trojan CDN', protocol: 'trojan', hidden: false },
@@ -53,6 +54,12 @@ function openTab(name: RegExp) {
 afterEach(() => vi.restoreAllMocks());
 
 describe('PortalProfileView', () => {
+  it('shows when the client was last online instead of a dash', () => {
+    render({ lastOnline: Date.UTC(2026, 10, 1, 9, 30) });
+    const tile = screen.getByText('Last Online').parentElement;
+    expect(tile?.textContent).toMatch(/2026/);
+  });
+
   it('hides a key by sending the whole hidden set', async () => {
     const put = vi.spyOn(portalApi, 'replaceHidden').mockResolvedValue();
     const { onChanged } = render();
@@ -95,7 +102,7 @@ describe('PortalProfileView', () => {
     openTab(/Devices/);
     expect(screen.getByText('Pixel 8')).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: /Sign out/ }));
-    fireEvent.click(await screen.findByRole('button', { name: 'OK' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Confirm' }));
     await waitFor(() => expect(del).toHaveBeenCalledWith(7));
   });
 

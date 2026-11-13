@@ -1199,7 +1199,13 @@
         "disabled": "The client portal is off. Turn it on in Subscription settings.",
         "revoked": "Portal access revoked",
         "clientNotFound": "Client not found",
-        "issueConfirm": "Issue a new temporary password? The current password stops working and every device is signed out."
+        "issueConfirm": "Issue a new temporary password? The current password stops working and every device is signed out.",
+        "portalUrl": "Portal address",
+        "appliesNow": "These actions apply right away, Save is not needed.",
+        "loginLabel": "Login",
+        "passwordLabel": "Password",
+        "copyForClient": "Copy for the client",
+        "credentials": "Client portal: {url}\nLogin: {login}\nTemporary password: {password}"
       }
     },
     "groups": {
@@ -3330,6 +3336,7 @@
     "title": "Client portal",
     "login": {
       "title": "Sign in to your account",
+      "hint": "Enter the login and password your administrator gave you.",
       "login": "Login",
       "password": "Password",
       "submit": "Sign in",

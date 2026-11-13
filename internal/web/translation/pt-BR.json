@@ -1199,7 +1199,13 @@
         "disabled": "O portal do cliente está desativado. Ative-o nas configurações de assinatura.",
         "revoked": "Acesso ao portal revogado",
         "clientNotFound": "Cliente não encontrado",
-        "issueConfirm": "Emitir uma nova senha temporária? A senha atual deixa de funcionar e todos os dispositivos são desconectados."
+        "issueConfirm": "Emitir uma nova senha temporária? A senha atual deixa de funcionar e todos os dispositivos são desconectados.",
+        "portalUrl": "Endereço do portal",
+        "appliesNow": "Estas ações valem na hora, não é preciso salvar.",
+        "loginLabel": "Login",
+        "passwordLabel": "Senha",
+        "copyForClient": "Copiar para o cliente",
+        "credentials": "Portal do cliente: {url}\nLogin: {login}\nSenha temporária: {password}"
       }
     },
     "groups": {
@@ -3330,6 +3336,7 @@
     "title": "Portal do cliente",
     "login": {
       "title": "Entre na sua conta",
+      "hint": "Informe o login e a senha que o administrador forneceu.",
       "login": "Login",
       "password": "Senha",
       "submit": "Entrar",

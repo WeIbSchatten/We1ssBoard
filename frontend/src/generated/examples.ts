@@ -570,6 +570,7 @@ export const EXAMPLES: Record<string, unknown> = {
     "devices": 1,
     "hiddenKeys": 2,
     "portalEnabled": true,
+    "portalUrl": "https://vpn.example.com:2096/portal",
     "status": "temporary"
   },
   "ClientPortalPassword": {

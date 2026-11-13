@@ -6,6 +6,7 @@ type ClientPortalAccess struct {
 	HiddenKeys    int    `json:"hiddenKeys" example:"2"`
 	Devices       int    `json:"devices" example:"1"`
 	PortalEnabled bool   `json:"portalEnabled" example:"true"`
+	PortalURL     string `json:"portalUrl" example:"https://vpn.example.com:2096/portal"`
 }
 
 // ClientPortalPassword is a freshly issued temporary portal password, shown to the admin once.

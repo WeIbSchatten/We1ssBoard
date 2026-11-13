@@ -58,6 +58,7 @@ type PortalProfile struct {
 	Group      string           `json:"group"`
 	SubURL     string           `json:"subUrl"`
 	MustChange bool             `json:"mustChange"`
+	LastOnline int64            `json:"lastOnline"`
 	LDAP       bool             `json:"ldap"`
 	Keys       []portal.KeyInfo `json:"keys"`
 	Devices    []portal.Device  `json:"devices"`
@@ -312,7 +313,7 @@ func (a *PortalController) me(c *gin.Context) {
 	subURL, _, _ := a.sub.subService.ForRequest(host).BuildURLs(a.sub.subPath, a.sub.subJsonPath, a.sub.subClashPath, rec.SubID)
 	profile := PortalProfile{
 		Email: rec.Email, Enable: rec.Enable, ExpiryTime: rec.ExpiryTime, TotalGB: rec.TotalGB,
-		Up: traffic.Up, Down: traffic.Down, Group: rec.Group, SubURL: subURL,
+		Up: traffic.Up, Down: traffic.Down, LastOnline: traffic.LastOnline, Group: rec.Group, SubURL: subURL,
 		MustChange: rec.PortalMustChange, LDAP: rec.PortalPasswordHash == "", Keys: keys, Devices: devices,
 	}
 	if !isBearer(c) {

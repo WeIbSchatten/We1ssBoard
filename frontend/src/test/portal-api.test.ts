@@ -21,6 +21,7 @@ const PROFILE = {
   subUrl: 'https://vpn.example.com/sub/s1',
   mustChange: false,
   ldap: false,
+  lastOnline: 0,
   keys: [{ inboundId: 1, hostId: 0, remark: 'VLESS', protocol: 'vless', hidden: false }],
   devices: null,
   csrfToken: 'csrf-from-me',

@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import ClientPortalSection from '@/pages/clients/ClientPortalSection';
-import { HttpUtil, Msg } from '@/utils';
+import { ClipboardManager, HttpUtil, Msg } from '@/utils';
 
 import { renderWithProviders } from './test-utils';
 
@@ -16,6 +16,7 @@ function mockHttp(
       hiddenKeys: 2,
       devices: 1,
       portalEnabled: true,
+      portalUrl: 'https://vpn.example.com/portal',
       ...access,
     }),
   );
@@ -42,12 +43,27 @@ describe('ClientPortalSection', () => {
     renderWithProviders(<ClientPortalSection email="alice" />);
     fireEvent.click(await screen.findByRole('button', { name: /Issue temporary password/ }));
     expect(post).not.toHaveBeenCalled();
-    fireEvent.click(await screen.findByRole('button', { name: 'OK' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Confirm' }));
     await waitFor(() =>
       expect(post.mock.calls[0]?.[0]).toBe('/panel/api/clients/portalPassword/alice'),
     );
     expect(await screen.findByText('k7QmN2pXa9Rz')).toBeTruthy();
     expect(screen.getByText('Also sent to the client in Telegram.')).toBeTruthy();
+  });
+
+  it('shows the portal address and copies a ready message for the client', async () => {
+    mockHttp({});
+    const copy = vi.spyOn(ClipboardManager, 'copyText').mockResolvedValue(true);
+    renderWithProviders(<ClientPortalSection email="alice" />);
+    expect(await screen.findByText('https://vpn.example.com/portal')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: /Issue temporary password/ }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Confirm' }));
+    fireEvent.click(await screen.findByRole('button', { name: /Copy for the client/ }));
+    await waitFor(() =>
+      expect(copy).toHaveBeenCalledWith(
+        'Client portal: https://vpn.example.com/portal\nLogin: alice\nTemporary password: k7QmN2pXa9Rz',
+      ),
+    );
   });
 
   it('asks to save a new client first', () => {

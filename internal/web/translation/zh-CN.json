@@ -1199,7 +1199,13 @@
         "disabled": "客户门户已关闭。请在订阅设置中开启。",
         "revoked": "已撤销门户访问",
         "clientNotFound": "未找到客户",
-        "issueConfirm": "要发放新的临时密码吗？当前密码将失效，所有设备都会退出。"
+        "issueConfirm": "要发放新的临时密码吗？当前密码将失效，所有设备都会退出。",
+        "portalUrl": "门户地址",
+        "appliesNow": "这些操作立即生效，无需保存。",
+        "loginLabel": "登录名",
+        "passwordLabel": "密码",
+        "copyForClient": "复制给客户",
+        "credentials": "客户门户：{url}\n登录名：{login}\n临时密码：{password}"
       }
     },
     "groups": {
@@ -3330,6 +3336,7 @@
     "title": "客户门户",
     "login": {
       "title": "登录您的账户",
+      "hint": "请输入管理员提供的登录名和密码。",
       "login": "登录名",
       "password": "密码",
       "submit": "登录",
