@@ -24,6 +24,7 @@ type portalEnv struct {
 	hiddenFixture
 	router *gin.Engine
 	svc    *portal.Service
+	ctrl   *PortalController
 }
 
 func newPortalEnv(t *testing.T, enabled bool) portalEnv {
@@ -42,8 +43,8 @@ func newPortalEnv(t *testing.T, enabled bool) portalEnv {
 	sub := NewSUBController(router.Group("/"), WithSUBJsonEnabled(true), WithSUBClashEnabled(true))
 	settings := &service.SettingService{}
 	svc := portal.New(settings)
-	NewPortalController(router.Group("/portal"), sub, svc, settings)
-	return portalEnv{hiddenFixture: f, router: router, svc: svc}
+	ctrl := NewPortalController(router.Group("/portal"), sub, svc, settings)
+	return portalEnv{hiddenFixture: f, router: router, svc: svc, ctrl: ctrl}
 }
 
 type portalReq struct {
@@ -342,4 +343,52 @@ func TestPortal_Logout(t *testing.T) {
 			t.Fatalf("token after logout = %d, want 401", w.Code)
 		}
 	})
+}
+
+func TestPortal_PageServed(t *testing.T) {
+	e := newPortalEnv(t, true)
+	if err := database.GetDB().Create(&model.Setting{Key: "subTitle", Value: "Acme </script> VPN"}).Error; err != nil {
+		t.Fatal(err)
+	}
+	e.ctrl.readPage = func() ([]byte, error) { return []byte("<html><head></head><body></body></html>"), nil }
+
+	w := e.do(portalReq{method: "GET", path: "/portal"})
+	body := w.Body.String()
+	if w.Code != http.StatusOK || !strings.HasPrefix(w.Header().Get("Content-Type"), "text/html") {
+		t.Fatalf("GET /portal = %d %q", w.Code, w.Header().Get("Content-Type"))
+	}
+	wantTitle, _ := json.Marshal("Acme </script> VPN")
+	if !strings.Contains(body, "window.__PORTAL__=") || !strings.Contains(body, `"subTitle":`+string(wantTitle)) {
+		t.Fatalf("page does not carry the escaped portal config:\n%s", body)
+	}
+	if strings.Contains(body, "</script> VPN") {
+		t.Fatal("the subscription title can close the inline script")
+	}
+
+	off := newPortalEnv(t, false)
+	off.ctrl.readPage = e.ctrl.readPage
+	if w := off.do(portalReq{method: "GET", path: "/portal"}); w.Code != http.StatusNotFound {
+		t.Fatalf("GET /portal with the portal off = %d, want 404", w.Code)
+	}
+}
+
+// A reloaded page has lost its CSRF token; the must-change answer must hand it back or the change can never be sent.
+func TestPortal_MustChangeReturnsCSRFTokenAfterReload(t *testing.T) {
+	e := newPortalEnv(t, true)
+	database.GetDB().Model(e.client).Update("portal_must_change", true)
+	s := e.loginWeb(t, portalPassword)
+
+	w := e.do(portalReq{method: "GET", path: "/portal/api/me", cookies: s.cookies})
+	var body struct {
+		Error     string `json:"error"`
+		CSRFToken string `json:"csrfToken"`
+	}
+	_ = json.Unmarshal(w.Body.Bytes(), &body)
+	if w.Code != http.StatusForbidden || body.Error != "must_change_password" || body.CSRFToken != s.csrf {
+		t.Fatalf("me after reload = %d %s; want 403 must_change_password carrying the session's CSRF token", w.Code, w.Body)
+	}
+	reloaded := webSession{cookies: s.cookies, csrf: body.CSRFToken}
+	if w := e.do(reloaded.req("POST", "/portal/api/password", map[string]string{"current": portalPassword, "new": "long-enough-1"})); w.Code != http.StatusNoContent {
+		t.Fatalf("password change after reload = %d %s", w.Code, w.Body)
+	}
 }

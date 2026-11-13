@@ -73,8 +73,8 @@ Two key ideas that explain most of the complexity:
 - Data layer: **TanStack Query** (`@tanstack/react-query`) over the native **Fetch API**; **Zod 4** schemas.
 - Router: **react-router 8**. Charts: **uPlot** (`frontend/src/components/viz/Sparkline.tsx`). Editor: **CodeMirror 6**.
 - **Build output goes to `internal/web/dist/`** (see `vite.config.js` → `outDir`) and is
-  embedded into the Go binary with `go:embed`. Three HTML entries: `index.html` (panel SPA),
-  `login.html`, `subpage.html`. The Go server serves the SPA; there is no separate frontend
+  embedded into the Go binary with `go:embed`. Four HTML entries: `index.html` (panel SPA),
+  `login.html`, `subpage.html`, `portal.html` (client portal, served at `/portal` by the subscription server). The Go server serves the SPA; there is no separate frontend
   deployment.
 
 **Important:** the legacy Go-template UI and `web/assets/` are **gone**. All HTML/JS comes

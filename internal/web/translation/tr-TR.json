@@ -3325,5 +3325,50 @@
       "unlock": "Kilidi aç",
       "unavailable": "Bu cihazda parmak izi veya yüz ile kilit açma ayarlanmamış."
     }
+  },
+  "portal": {
+    "title": "Müşteri portalı",
+    "login": {
+      "title": "Hesabınıza giriş yapın",
+      "login": "Kullanıcı adı",
+      "password": "Parola",
+      "submit": "Giriş yap",
+      "required": "Zorunlu",
+      "invalid": "Kullanıcı adı veya parola hatalı",
+      "tooMany": "Çok fazla deneme. {seconds} sn sonra tekrar deneyin."
+    },
+    "password": {
+      "title": "Parolayı değiştir",
+      "tempHint": "Parolanız geçici. Devam etmek için yeni bir parola belirleyin.",
+      "current": "Mevcut parola",
+      "next": "Yeni parola",
+      "repeat": "Yeni parolayı tekrarlayın",
+      "submit": "Parolayı değiştir",
+      "weak": "En az 8 karakter",
+      "mismatch": "Parolalar eşleşmiyor",
+      "wrong": "Mevcut parola hatalı",
+      "changed": "Parola değiştirildi"
+    },
+    "logout": "Çıkış yap",
+    "error": "Bir şeyler ters gitti. Daha sonra tekrar deneyin.",
+    "keys": {
+      "title": "Anahtarlarım",
+      "hint": "Kapatılan anahtarlar aboneliğinizden kaybolur. Onlara erişiminiz devam eder.",
+      "lastVisible": "Aboneliğinizde en az bir anahtar kalmalıdır."
+    },
+    "readOnly": "Hesabınız devre dışı, bu yüzden değişiklik yapılamaz.",
+    "devices": {
+      "title": "Cihazlar",
+      "empty": "We1ssConnect'e giriş yapmış cihaz yok.",
+      "lastUsed": "Son kullanım",
+      "never": "hiç",
+      "signOut": "Oturumu kapat",
+      "confirm": "Bu cihazın We1ssConnect oturumu kapatılsın mı?"
+    },
+    "security": {
+      "title": "Güvenlik",
+      "ldap": "Parolanız şirket dizini tarafından yönetiliyor."
+    },
+    "csrf": "Sayfa güncel değildi ve yenilendi. Tekrar deneyin."
   }
 }

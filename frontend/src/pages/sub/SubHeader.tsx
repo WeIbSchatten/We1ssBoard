@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Grid, Menu, Popover, Space } from 'antd';
 import { TranslationOutlined } from '@ant-design/icons';
@@ -15,9 +16,17 @@ interface SubHeaderProps {
   email: string;
   lang: string;
   onLangChange: (lang: string) => void;
+  actions?: ReactNode;
 }
 
-export default function SubHeader({ title, sId, email, lang, onLangChange }: SubHeaderProps) {
+export default function SubHeader({
+  title,
+  sId,
+  email,
+  lang,
+  onLangChange,
+  actions,
+}: SubHeaderProps) {
   const { t } = useTranslation();
   const { isDark } = useTheme();
   const screens = Grid.useBreakpoint();
@@ -47,11 +56,12 @@ export default function SubHeader({ title, sId, email, lang, onLangChange }: Sub
             {title || t('subscription.title')}
           </div>
           <div className="sub-brand-id">
-            <bdi>{email ? `${sId} - ${email}` : sId}</bdi>
+            <bdi>{sId && email ? `${sId} - ${email}` : sId || email}</bdi>
           </div>
         </div>
       </div>
       <div className="sub-toolbar">
+        {actions}
         <ThemeSwitch compact={!screens.sm} />
         <AppearanceButton placement="bottomRight" />
         <Popover

@@ -1,9 +1,13 @@
 package sub
 
 import (
+	"bytes"
+	"encoding/json"
 	"errors"
+	"io/fs"
 	"math"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -40,6 +44,7 @@ type PortalController struct {
 	svc      *portal.Service
 	settings *service.SettingService
 	limiter  *loginlimit.Limiter
+	readPage func() ([]byte, error)
 }
 
 // PortalProfile is what GET /portal/api/me returns.
@@ -68,6 +73,9 @@ func NewPortalController(g *gin.RouterGroup, sub *SUBController, svc *portal.Ser
 	store := cookie.NewStore(secret)
 	store.Options(sessions.Options{Path: "/portal", MaxAge: portalSessionMaxAge, HttpOnly: true, SameSite: http.SameSiteStrictMode})
 	g.Use(a.requireEnabled, sessions.Sessions(portalSessionName, store))
+	a.readPage = readPortalPage
+	g.GET("", a.page)
+	g.GET("/", a.page)
 
 	api := g.Group("/api")
 	api.POST("/login", a.login)
@@ -212,7 +220,14 @@ func (a *PortalController) requireCSRF(c *gin.Context) {
 
 func (a *PortalController) requirePasswordChanged(c *gin.Context) {
 	if portalClient(c).PortalMustChange {
-		portalError(c, http.StatusForbidden, "must_change_password")
+		// A reloaded page lost its CSRF token and /me is the only call it makes, so hand it back here.
+		body := gin.H{"error": "must_change_password"}
+		if !isBearer(c) {
+			if token, err := session.EnsureCSRFToken(c); err == nil {
+				body["csrfToken"] = token
+			}
+		}
+		c.AbortWithStatusJSON(http.StatusForbidden, body)
 		return
 	}
 	c.Next()
@@ -378,4 +393,29 @@ func (a *PortalController) subscription(c *gin.Context) {
 		}
 		a.sub.recordSubscriptionFetch(c)
 	}
+}
+
+// readPortalPage prefers the on-disk build so XUI_DEBUG serves a fresh bundle, like the sub page.
+func readPortalPage() ([]byte, error) {
+	if body, err := os.ReadFile("internal/web/dist/portal.html"); err == nil {
+		return body, nil
+	}
+	return fs.ReadFile(distFS, "dist/portal.html")
+}
+
+// page serves the portal SPA with its config inlined; json.Marshal escapes "<", so no setting closes the script.
+func (a *PortalController) page(c *gin.Context) {
+	body, err := a.readPage()
+	if err != nil {
+		c.String(http.StatusInternalServerError, "missing embedded portal page")
+		return
+	}
+	title, _ := a.settings.GetSubTitle()
+	cfg, err := json.Marshal(map[string]string{"basePath": portalPath, "subTitle": title})
+	if err != nil {
+		cfg = []byte("{}")
+	}
+	inject := append(append([]byte("<script>window.__PORTAL__="), cfg...), []byte(";</script></head>")...)
+	setNoCacheHeaders(c)
+	c.Data(http.StatusOK, "text/html; charset=utf-8", bytes.Replace(body, []byte("</head>"), inject, 1))
 }

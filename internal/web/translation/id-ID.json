@@ -3325,5 +3325,50 @@
       "unlock": "Buka kunci",
       "unavailable": "Perangkat ini belum mengatur buka kunci dengan sidik jari atau wajah."
     }
+  },
+  "portal": {
+    "title": "Portal klien",
+    "login": {
+      "title": "Masuk ke akun Anda",
+      "login": "Login",
+      "password": "Kata sandi",
+      "submit": "Masuk",
+      "required": "Wajib diisi",
+      "invalid": "Login atau kata sandi salah",
+      "tooMany": "Terlalu banyak percobaan. Coba lagi dalam {seconds} dtk."
+    },
+    "password": {
+      "title": "Ganti kata sandi",
+      "tempHint": "Kata sandi Anda sementara. Pilih yang baru untuk melanjutkan.",
+      "current": "Kata sandi saat ini",
+      "next": "Kata sandi baru",
+      "repeat": "Ulangi kata sandi baru",
+      "submit": "Ganti kata sandi",
+      "weak": "Minimal 8 karakter",
+      "mismatch": "Kata sandi tidak cocok",
+      "wrong": "Kata sandi saat ini salah",
+      "changed": "Kata sandi diganti"
+    },
+    "logout": "Keluar",
+    "error": "Terjadi kesalahan. Coba lagi nanti.",
+    "keys": {
+      "title": "Kunci saya",
+      "hint": "Kunci yang dimatikan hilang dari langganan Anda. Akses Anda tetap ada.",
+      "lastVisible": "Minimal satu kunci harus tetap ada di langganan Anda."
+    },
+    "readOnly": "Akun Anda dinonaktifkan, jadi perubahan tidak tersedia.",
+    "devices": {
+      "title": "Perangkat",
+      "empty": "Tidak ada perangkat yang masuk ke We1ssConnect.",
+      "lastUsed": "Terakhir dipakai",
+      "never": "belum pernah",
+      "signOut": "Keluar",
+      "confirm": "Keluarkan perangkat ini dari We1ssConnect?"
+    },
+    "security": {
+      "title": "Keamanan",
+      "ldap": "Kata sandi Anda dikelola oleh direktori perusahaan."
+    },
+    "csrf": "Halaman sudah usang dan telah dimuat ulang. Coba lagi."
   }
 }

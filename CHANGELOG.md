@@ -12,7 +12,7 @@ and the version that fixes them).
 ## [Unreleased]
 
 ### Added
-- Client portal (first part): clients log in on the subscription server with their own password or the company directory (LDAP), hide subscription keys they do not use and get device tokens for We1ssConnect. Turn it on under **Subscription settings → Client portal**; turning it off logs everyone out. The portal web page and the We1ssConnect login come in the next releases.
+- Client portal (first part): clients log in on the subscription server with their own password or the company directory (LDAP), hide subscription keys they do not use and get device tokens for We1ssConnect. Turn it on under **Subscription settings → Client portal**; turning it off logs everyone out. Clients open it at `/portal` on the subscription server: sign in, set their own password after a temporary one, see their status and subscription link, turn keys off and sign devices out. The We1ssConnect login comes in a later release.
 - Client card → **Client portal** tab: access state, hidden keys and signed-in devices, a one-time temporary password (also sent through the Telegram bot when the client has a Telegram ID) and **Revoke access**.
 - Telegram bot: clients reset their portal password themselves with the **Portal password** button.
 

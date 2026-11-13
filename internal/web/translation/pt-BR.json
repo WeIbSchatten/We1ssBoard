@@ -3325,5 +3325,50 @@
       "unlock": "Desbloquear",
       "unavailable": "Este dispositivo não tem desbloqueio por digital ou rosto configurado."
     }
+  },
+  "portal": {
+    "title": "Portal do cliente",
+    "login": {
+      "title": "Entre na sua conta",
+      "login": "Login",
+      "password": "Senha",
+      "submit": "Entrar",
+      "required": "Obrigatório",
+      "invalid": "Login ou senha incorretos",
+      "tooMany": "Muitas tentativas. Tente novamente em {seconds} s."
+    },
+    "password": {
+      "title": "Alterar senha",
+      "tempHint": "Sua senha é temporária. Escolha uma nova para continuar.",
+      "current": "Senha atual",
+      "next": "Nova senha",
+      "repeat": "Repita a nova senha",
+      "submit": "Alterar senha",
+      "weak": "Pelo menos 8 caracteres",
+      "mismatch": "As senhas não coincidem",
+      "wrong": "A senha atual está incorreta",
+      "changed": "Senha alterada"
+    },
+    "logout": "Sair",
+    "error": "Algo deu errado. Tente mais tarde.",
+    "keys": {
+      "title": "Minhas chaves",
+      "hint": "As chaves desativadas somem da sua assinatura. Seu acesso a elas continua.",
+      "lastVisible": "Pelo menos uma chave deve ficar na sua assinatura."
+    },
+    "readOnly": "Sua conta está desativada, então não é possível fazer alterações.",
+    "devices": {
+      "title": "Dispositivos",
+      "empty": "Nenhum dispositivo está conectado ao We1ssConnect.",
+      "lastUsed": "Último uso",
+      "never": "nunca",
+      "signOut": "Desconectar",
+      "confirm": "Desconectar este dispositivo do We1ssConnect?"
+    },
+    "security": {
+      "title": "Segurança",
+      "ldap": "Sua senha é gerenciada pelo diretório da empresa."
+    },
+    "csrf": "A página estava desatualizada e foi atualizada. Tente novamente."
   }
 }

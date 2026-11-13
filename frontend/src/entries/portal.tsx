@@ -1,0 +1,28 @@
+import { createRoot } from 'react-dom/client';
+import { message } from 'antd';
+import 'antd/dist/reset.css';
+import '@/styles/theme.css';
+import '@/styles/presets.css';
+
+import { readyI18n } from '@/i18n/react';
+import { ThemeProvider } from '@/hooks/useTheme';
+import { QueryProvider } from '@/api/QueryProvider';
+import PortalPage from '@/pages/portal/PortalPage';
+
+const messageContainer = document.getElementById('message');
+if (messageContainer) {
+  message.config({ getContainer: () => messageContainer });
+}
+
+readyI18n('subscription').then(() => {
+  const root = document.getElementById('app');
+  if (root) {
+    createRoot(root).render(
+      <ThemeProvider>
+        <QueryProvider>
+          <PortalPage />
+        </QueryProvider>
+      </ThemeProvider>,
+    );
+  }
+});
