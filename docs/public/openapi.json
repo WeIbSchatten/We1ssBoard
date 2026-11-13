@@ -2123,6 +2123,10 @@
             "example": true,
             "type": "boolean"
           },
+          "portalUrl": {
+            "example": "https://vpn.example.com:2096/portal",
+            "type": "string"
+          },
           "status": {
             "example": "temporary",
             "type": "string"
@@ -2132,6 +2136,7 @@
           "devices",
           "hiddenKeys",
           "portalEnabled",
+          "portalUrl",
           "status"
         ],
         "type": "object"
@@ -12561,6 +12566,7 @@
                     "devices": 1,
                     "hiddenKeys": 2,
                     "portalEnabled": true,
+                    "portalUrl": "https://vpn.example.com:2096/portal",
                     "status": "temporary"
                   }
                 }

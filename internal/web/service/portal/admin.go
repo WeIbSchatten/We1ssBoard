@@ -3,6 +3,7 @@ package portal
 import (
 	"crypto/rand"
 	"math/big"
+	"net/url"
 
 	"gorm.io/gorm"
 
@@ -131,4 +132,15 @@ func (s *Service) ClientByEmail(email string) (*model.ClientRecord, error) {
 		return nil, err
 	}
 	return &rec, nil
+}
+
+// PageURL is where a client opens the portal: the subscription server's root, which a
+// configured subURI (a reverse proxy) overrides; the portal never lives under a sub path.
+func (s *Service) PageURL(host string) string {
+	if subURI, _ := s.Settings.GetSubURI(); subURI != "" {
+		if u, err := url.Parse(subURI); err == nil && u.Scheme != "" && u.Host != "" {
+			return u.Scheme + "://" + u.Host + "/portal"
+		}
+	}
+	return s.Settings.BuildSubURIBase(host) + "/portal"
 }

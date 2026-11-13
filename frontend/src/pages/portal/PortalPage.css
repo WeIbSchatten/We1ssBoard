@@ -15,3 +15,20 @@
 .portal-section {
   margin-top: 24px;
 }
+
+.subscription-page .sub-card.portal-card-narrow {
+  max-width: 560px;
+}
+
+.portal-card-narrow .portal-form {
+  margin-top: 28px;
+}
+
+.portal-form-inline {
+  max-width: 420px;
+}
+
+.subscription-page .toolbar-btn.ant-btn.portal-logout:not(.ant-btn-icon-only) {
+  width: auto;
+  padding-inline: 12px;
+}

@@ -538,6 +538,7 @@ export const ClientPortalAccessSchema = z.object({
   devices: z.number().int(),
   hiddenKeys: z.number().int(),
   portalEnabled: z.boolean(),
+  portalUrl: z.string(),
   status: z.string(),
 });
 export type ClientPortalAccess = z.infer<typeof ClientPortalAccessSchema>;

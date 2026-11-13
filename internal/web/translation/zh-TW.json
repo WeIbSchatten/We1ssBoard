@@ -1199,7 +1199,13 @@
         "disabled": "客戶入口已關閉。請在訂閱設定中開啟。",
         "revoked": "已撤銷入口存取",
         "clientNotFound": "找不到客戶",
-        "issueConfirm": "要發放新的臨時密碼嗎？目前的密碼將失效，所有裝置都會登出。"
+        "issueConfirm": "要發放新的臨時密碼嗎？目前的密碼將失效，所有裝置都會登出。",
+        "portalUrl": "入口網站位址",
+        "appliesNow": "這些操作會立即生效，無需儲存。",
+        "loginLabel": "登入名稱",
+        "passwordLabel": "密碼",
+        "copyForClient": "複製給客戶",
+        "credentials": "客戶入口網站：{url}\n登入名稱：{login}\n臨時密碼：{password}"
       }
     },
     "groups": {
@@ -3330,6 +3336,7 @@
     "title": "客戶入口",
     "login": {
       "title": "登入您的帳戶",
+      "hint": "請輸入管理員提供的登入名稱和密碼。",
       "login": "登入名稱",
       "password": "密碼",
       "submit": "登入",

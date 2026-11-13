@@ -41,7 +41,7 @@ export default function PortalChangePassword({ temporary, onDone, onUnauthorized
   };
 
   return (
-    <div className="portal-form">
+    <div className={temporary ? 'portal-form' : 'portal-section portal-form-inline'}>
       <Typography.Title level={temporary ? 4 : 5}>{t('portal.password.title')}</Typography.Title>
       {temporary && (
         <Alert

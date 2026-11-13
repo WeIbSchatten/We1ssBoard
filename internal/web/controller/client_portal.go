@@ -32,6 +32,7 @@ func (a *ClientController) portalAccess(c *gin.Context) {
 	}
 	jsonObj(c, entity.ClientPortalAccess{
 		Status: string(access.Status), HiddenKeys: access.HiddenKeys, Devices: access.Devices, PortalEnabled: enabled,
+		PortalURL: svc.PageURL(c.Request.Host),
 	}, nil)
 }
 

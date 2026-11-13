@@ -129,6 +129,8 @@ function PortalDevices({
             <Popconfirm
               key="out"
               title={t('portal.devices.confirm')}
+              okText={t('confirm')}
+              cancelText={t('cancel')}
               onConfirm={() => signOut(d.id)}
             >
               <Button danger size="small" disabled={readOnly}>
@@ -177,7 +179,7 @@ export default function PortalProfileView({ profile, onChanged, onUnauthorized }
         usedByte={usedByte}
         totalByte={profile.totalGB}
         expireMs={profile.expiryTime}
-        lastOnlineMs={0}
+        lastOnlineMs={profile.lastOnline}
         download={SizeFormatter.sizeFormat(profile.down)}
         upload={SizeFormatter.sizeFormat(profile.up)}
         used={SizeFormatter.sizeFormat(usedByte)}

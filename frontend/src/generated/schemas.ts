@@ -2097,6 +2097,10 @@ export const SCHEMAS: Record<string, unknown> = {
         "example": true,
         "type": "boolean"
       },
+      "portalUrl": {
+        "example": "https://vpn.example.com:2096/portal",
+        "type": "string"
+      },
       "status": {
         "example": "temporary",
         "type": "string"
@@ -2106,6 +2110,7 @@ export const SCHEMAS: Record<string, unknown> = {
       "devices",
       "hiddenKeys",
       "portalEnabled",
+      "portalUrl",
       "status"
     ],
     "type": "object"

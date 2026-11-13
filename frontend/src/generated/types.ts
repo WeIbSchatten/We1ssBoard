@@ -506,6 +506,7 @@ export interface ClientPortalAccess {
   devices: number;
   hiddenKeys: number;
   portalEnabled: boolean;
+  portalUrl: string;
   status: string;
 }
 

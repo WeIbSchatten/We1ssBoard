@@ -1199,7 +1199,13 @@
         "disabled": "Portal klien nonaktif. Aktifkan di pengaturan langganan.",
         "revoked": "Akses portal dicabut",
         "clientNotFound": "Klien tidak ditemukan",
-        "issueConfirm": "Terbitkan kata sandi sementara baru? Kata sandi saat ini berhenti berlaku dan semua perangkat dikeluarkan."
+        "issueConfirm": "Terbitkan kata sandi sementara baru? Kata sandi saat ini berhenti berlaku dan semua perangkat dikeluarkan.",
+        "portalUrl": "Alamat portal",
+        "appliesNow": "Tindakan ini langsung berlaku, tidak perlu menyimpan.",
+        "loginLabel": "Login",
+        "passwordLabel": "Kata sandi",
+        "copyForClient": "Salin untuk klien",
+        "credentials": "Portal klien: {url}\nLogin: {login}\nKata sandi sementara: {password}"
       }
     },
     "groups": {
@@ -3330,6 +3336,7 @@
     "title": "Portal klien",
     "login": {
       "title": "Masuk ke akun Anda",
+      "hint": "Masukkan login dan kata sandi dari administrator Anda.",
       "login": "Login",
       "password": "Kata sandi",
       "submit": "Masuk",
