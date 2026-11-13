@@ -3350,6 +3350,24 @@
       "changed": "Parola değiştirildi"
     },
     "logout": "Çıkış yap",
-    "error": "Bir şeyler ters gitti. Daha sonra tekrar deneyin."
+    "error": "Bir şeyler ters gitti. Daha sonra tekrar deneyin.",
+    "keys": {
+      "title": "Anahtarlarım",
+      "hint": "Kapatılan anahtarlar aboneliğinizden kaybolur. Onlara erişiminiz devam eder.",
+      "lastVisible": "Aboneliğinizde en az bir anahtar kalmalıdır."
+    },
+    "readOnly": "Hesabınız devre dışı, bu yüzden değişiklik yapılamaz.",
+    "devices": {
+      "title": "Cihazlar",
+      "empty": "We1ssConnect'e giriş yapmış cihaz yok.",
+      "lastUsed": "Son kullanım",
+      "never": "hiç",
+      "signOut": "Oturumu kapat",
+      "confirm": "Bu cihazın We1ssConnect oturumu kapatılsın mı?"
+    },
+    "security": {
+      "title": "Güvenlik",
+      "ldap": "Parolanız şirket dizini tarafından yönetiliyor."
+    }
   }
 }

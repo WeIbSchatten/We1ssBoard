@@ -3350,6 +3350,24 @@
       "changed": "Senha alterada"
     },
     "logout": "Sair",
-    "error": "Algo deu errado. Tente mais tarde."
+    "error": "Algo deu errado. Tente mais tarde.",
+    "keys": {
+      "title": "Minhas chaves",
+      "hint": "As chaves desativadas somem da sua assinatura. Seu acesso a elas continua.",
+      "lastVisible": "Pelo menos uma chave deve ficar na sua assinatura."
+    },
+    "readOnly": "Sua conta está desativada, então não é possível fazer alterações.",
+    "devices": {
+      "title": "Dispositivos",
+      "empty": "Nenhum dispositivo está conectado ao We1ssConnect.",
+      "lastUsed": "Último uso",
+      "never": "nunca",
+      "signOut": "Desconectar",
+      "confirm": "Desconectar este dispositivo do We1ssConnect?"
+    },
+    "security": {
+      "title": "Segurança",
+      "ldap": "Sua senha é gerenciada pelo diretório da empresa."
+    }
   }
 }

@@ -3350,6 +3350,24 @@
       "changed": "密码已修改"
     },
     "logout": "退出",
-    "error": "出现问题，请稍后再试。"
+    "error": "出现问题，请稍后再试。",
+    "keys": {
+      "title": "我的密钥",
+      "hint": "关闭的密钥会从您的订阅中消失，但访问权限仍会保留。",
+      "lastVisible": "订阅中至少要保留一个密钥。"
+    },
+    "readOnly": "您的账户已停用，因此无法进行更改。",
+    "devices": {
+      "title": "设备",
+      "empty": "没有设备登录 We1ssConnect。",
+      "lastUsed": "最近使用",
+      "never": "从未",
+      "signOut": "退出",
+      "confirm": "让此设备退出 We1ssConnect？"
+    },
+    "security": {
+      "title": "安全",
+      "ldap": "您的密码由公司目录管理。"
+    }
   }
 }

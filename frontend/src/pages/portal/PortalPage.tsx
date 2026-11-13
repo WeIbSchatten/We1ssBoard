@@ -11,6 +11,7 @@ import SubHeader from '@/pages/sub/SubHeader';
 import '@/pages/sub/SubPage.css';
 import PortalChangePassword from './PortalChangePassword';
 import PortalLogin from './PortalLogin';
+import PortalProfileView from './PortalProfile';
 import { PortalApiError, portalApi } from './portalApi';
 import { portalErrorText } from './portalErrors';
 import './PortalPage.css';
@@ -47,6 +48,10 @@ export default function PortalPage() {
   else if (code === 'must_change_password')
     body = <PortalChangePassword temporary onDone={reload} onUnauthorized={reload} />;
   else if (me.error) body = <Alert type="error" showIcon title={portalErrorText(t, me.error)} />;
+  else if (me.data)
+    body = (
+      <PortalProfileView profile={me.data} onChanged={() => me.refetch()} onUnauthorized={reload} />
+    );
 
   const direction = RTL_LANGUAGES.has(lang) ? 'rtl' : 'ltr';
   const pageClass = ['subscription-page', 'portal-page', isDark && 'is-dark', isUltra && 'is-ultra']

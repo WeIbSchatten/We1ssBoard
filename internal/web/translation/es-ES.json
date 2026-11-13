@@ -3350,6 +3350,24 @@
       "changed": "Contraseña cambiada"
     },
     "logout": "Cerrar sesión",
-    "error": "Algo salió mal. Inténtalo más tarde."
+    "error": "Algo salió mal. Inténtalo más tarde.",
+    "keys": {
+      "title": "Mis claves",
+      "hint": "Las claves desactivadas desaparecen de tu suscripción. El acceso a ellas se mantiene.",
+      "lastVisible": "Al menos una clave debe quedar en tu suscripción."
+    },
+    "readOnly": "Tu cuenta está desactivada, así que no se pueden hacer cambios.",
+    "devices": {
+      "title": "Dispositivos",
+      "empty": "Ningún dispositivo ha iniciado sesión en We1ssConnect.",
+      "lastUsed": "Último uso",
+      "never": "nunca",
+      "signOut": "Cerrar sesión",
+      "confirm": "¿Cerrar la sesión de We1ssConnect en este dispositivo?"
+    },
+    "security": {
+      "title": "Seguridad",
+      "ldap": "Tu contraseña la gestiona el directorio de la empresa."
+    }
   }
 }

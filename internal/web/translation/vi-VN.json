@@ -3350,6 +3350,24 @@
       "changed": "Đã đổi mật khẩu"
     },
     "logout": "Đăng xuất",
-    "error": "Đã xảy ra lỗi. Vui lòng thử lại sau."
+    "error": "Đã xảy ra lỗi. Vui lòng thử lại sau.",
+    "keys": {
+      "title": "Khóa của tôi",
+      "hint": "Các khóa đã tắt sẽ biến mất khỏi gói đăng ký. Quyền truy cập vẫn được giữ.",
+      "lastVisible": "Phải giữ lại ít nhất một khóa trong gói đăng ký."
+    },
+    "readOnly": "Tài khoản của bạn đã bị vô hiệu hóa nên không thể thay đổi.",
+    "devices": {
+      "title": "Thiết bị",
+      "empty": "Chưa có thiết bị nào đăng nhập We1ssConnect.",
+      "lastUsed": "Lần dùng gần nhất",
+      "never": "chưa bao giờ",
+      "signOut": "Đăng xuất",
+      "confirm": "Đăng xuất thiết bị này khỏi We1ssConnect?"
+    },
+    "security": {
+      "title": "Bảo mật",
+      "ldap": "Mật khẩu của bạn do thư mục công ty quản lý."
+    }
   }
 }

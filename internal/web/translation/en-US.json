@@ -3350,6 +3350,24 @@
       "changed": "Password changed"
     },
     "logout": "Log out",
-    "error": "Something went wrong. Try again later."
+    "error": "Something went wrong. Try again later.",
+    "keys": {
+      "title": "My keys",
+      "hint": "Turned-off keys disappear from your subscription. Your access to them stays.",
+      "lastVisible": "At least one key must stay in your subscription."
+    },
+    "readOnly": "Your account is disabled, so changes are not available.",
+    "devices": {
+      "title": "Devices",
+      "empty": "No device is signed in to We1ssConnect.",
+      "lastUsed": "Last used",
+      "never": "never",
+      "signOut": "Sign out",
+      "confirm": "Sign this device out of We1ssConnect?"
+    },
+    "security": {
+      "title": "Security",
+      "ldap": "Your password is managed by the company directory."
+    }
   }
 }

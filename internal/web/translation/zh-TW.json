@@ -3350,6 +3350,24 @@
       "changed": "密碼已變更"
     },
     "logout": "登出",
-    "error": "發生問題，請稍後再試。"
+    "error": "發生問題，請稍後再試。",
+    "keys": {
+      "title": "我的金鑰",
+      "hint": "關閉的金鑰會從您的訂閱中消失，但存取權限仍會保留。",
+      "lastVisible": "訂閱中至少要保留一個金鑰。"
+    },
+    "readOnly": "您的帳戶已停用，因此無法進行變更。",
+    "devices": {
+      "title": "裝置",
+      "empty": "沒有裝置登入 We1ssConnect。",
+      "lastUsed": "最近使用",
+      "never": "從未",
+      "signOut": "登出",
+      "confirm": "讓此裝置登出 We1ssConnect？"
+    },
+    "security": {
+      "title": "安全性",
+      "ldap": "您的密碼由公司目錄管理。"
+    }
   }
 }
