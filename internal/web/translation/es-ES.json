@@ -1177,7 +1177,30 @@
       "renewsUsed": "Renovaciones usadas",
       "bulkAdTagHint": "Introduce una etiqueta hexadecimal de 32 caracteres para asignar, o 'none' para borrarla en MTProto.",
       "renewIntervalDesc": "Tras expirar, añade el número configurado de días de 24 horas al vencimiento anterior y reinicia el tráfico del cliente. Mantén desactivados los reinicios de tráfico independientes salvo que quieras un reinicio adicional.",
-      "renewWeeklyDesc": "La renovación por calendario se realiza a medianoche en la zona horaria del panel y también reinicia el tráfico del cliente. Mantén desactivados los reinicios de tráfico independientes salvo que quieras un reinicio adicional."
+      "renewWeeklyDesc": "La renovación por calendario se realiza a medianoche en la zona horaria del panel y también reinicia el tráfico del cliente. Mantén desactivados los reinicios de tráfico independientes salvo que quieras un reinicio adicional.",
+      "tabPortal": "Portal del cliente",
+      "portal": {
+        "statusLabel": "Acceso",
+        "status": {
+          "none": "Sin acceso",
+          "temporary": "Contraseña temporal",
+          "own": "Contraseña propia",
+          "ldap": "Directorio de la empresa (LDAP)"
+        },
+        "hiddenKeys": "Claves ocultas",
+        "devices": "Dispositivos con sesión",
+        "issuePassword": "Emitir contraseña temporal",
+        "revoke": "Revocar acceso",
+        "revokeConfirm": "¿Eliminar la contraseña del cliente y cerrar la sesión en todos los dispositivos?",
+        "passwordIssued": "Contraseña temporal emitida",
+        "passwordOnce": "Se muestra solo una vez. El cliente debe cambiarla en el primer inicio de sesión.",
+        "sentToTelegram": "También se envió al cliente por Telegram.",
+        "saveFirst": "Guarda primero el cliente para gestionar el acceso al portal.",
+        "disabled": "El portal de clientes está desactivado. Actívalo en los ajustes de suscripción.",
+        "revoked": "Acceso al portal revocado",
+        "clientNotFound": "Cliente no encontrado",
+        "issueConfirm": "¿Emitir una nueva contraseña temporal? La contraseña actual dejará de funcionar y se cerrará la sesión en todos los dispositivos."
+      }
     },
     "groups": {
       "name": "Nombre",
@@ -2049,7 +2072,9 @@
       "unsavedChanges": "Cambios sin guardar",
       "allSaved": "Todos los cambios guardados",
       "exactActiveConnection": "Conexión activa exacta",
-      "exactActiveConnectionDesc": "Mantiene activo el registro de acceso de Xray para que la página Clientes muestre con exactitud qué inbound usa cada cliente. Xray anota allí cada conexión, incluida la dirección visitada. El registro queda en la carpeta de logs del panel, se recorta a 64 MB y se borra a diario. Cambiarlo reinicia Xray."
+      "exactActiveConnectionDesc": "Mantiene activo el registro de acceso de Xray para que la página Clientes muestre con exactitud qué inbound usa cada cliente. Xray anota allí cada conexión, incluida la dirección visitada. El registro queda en la carpeta de logs del panel, se recorta a 64 MB y se borra a diario. Cambiarlo reinicia Xray.",
+      "portalEnabled": "Portal de clientes",
+      "portalEnabledDesc": "Los clientes inician sesión en el servidor de suscripción con contraseña o LDAP, ocultan las claves que no usan e inician sesión en We1ssConnect. Al desactivarlo se cierran todas las sesiones."
     },
     "xray": {
       "save": "Guardar configuración",
@@ -3060,7 +3085,12 @@
       "webProxyNotInstalled": "No instalado o sin configurar. Configúralo en el panel: Conexiones → TG Web Proxy.",
       "webProxyHost": "Host: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}, clientes: {{ .Clients }}",
-      "webProxySyncError": "❗ Falló la última sincronización de vínculos: <code>{{ .Error }}</code>"
+      "webProxySyncError": "❗ Falló la última sincronización de vínculos: <code>{{ .Error }}</code>",
+      "portalTempPassword": "🔑 Contraseña del portal para {{ .Email }}: <code>{{ .Password }}</code>\r\nEs temporal: cámbiala en el primer inicio de sesión.",
+      "portalResetConfirm": "¿Restablecer la contraseña del portal de {{ .Email }}? Recibirás una contraseña temporal y se cerrará la sesión en todos los dispositivos que usaban la anterior.",
+      "portalDisabled": "El portal de clientes está desactivado. Pide a tu administrador que lo active.",
+      "portalLdapManaged": "Tu contraseña del portal la gestiona el directorio de la empresa. Cámbiala allí o pregunta a tu administrador.",
+      "portalNoAccess": "No tienes acceso al portal. Pide a tu administrador que emita una contraseña."
     },
     "buttons": {
       "closeKeyboard": "❌ Cerrar Teclado",
@@ -3106,7 +3136,9 @@
       "ResetAllTraffics": "Reiniciar todo el tráfico",
       "SortedTrafficUsageReport": "Informe de uso de tráfico ordenado",
       "nodes": "🖥 Nodos",
-      "webProxy": "📡 Web proxy"
+      "webProxy": "📡 Web proxy",
+      "portalPassword": "🔑 Contraseña del portal",
+      "confirmPortalReset": "✅ Restablecer contraseña"
     },
     "answers": {
       "broadcastStarted": "🚀 Difusión iniciada.",

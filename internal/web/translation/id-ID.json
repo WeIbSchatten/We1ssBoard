@@ -1177,7 +1177,30 @@
       "renewsUsed": "Perpanjangan terpakai",
       "bulkAdTagHint": "Masukkan tag heksadesimal 32 karakter untuk mengatur, atau 'none' untuk menghapus pada MTProto.",
       "renewIntervalDesc": "Setelah kedaluwarsa, menambahkan jumlah hari yang ditentukan (24 jam per hari) ke batas waktu sebelumnya dan mereset trafik klien. Nonaktifkan reset trafik terpisah kecuali Anda menginginkan reset tambahan.",
-      "renewWeeklyDesc": "Perpanjangan kalender dilakukan pada tengah malam menurut zona waktu panel dan juga mereset trafik klien. Nonaktifkan reset trafik terpisah kecuali Anda menginginkan reset tambahan."
+      "renewWeeklyDesc": "Perpanjangan kalender dilakukan pada tengah malam menurut zona waktu panel dan juga mereset trafik klien. Nonaktifkan reset trafik terpisah kecuali Anda menginginkan reset tambahan.",
+      "tabPortal": "Portal klien",
+      "portal": {
+        "statusLabel": "Akses",
+        "status": {
+          "none": "Tanpa akses",
+          "temporary": "Kata sandi sementara",
+          "own": "Kata sandi sendiri",
+          "ldap": "Direktori perusahaan (LDAP)"
+        },
+        "hiddenKeys": "Kunci tersembunyi",
+        "devices": "Perangkat yang masuk",
+        "issuePassword": "Terbitkan kata sandi sementara",
+        "revoke": "Cabut akses",
+        "revokeConfirm": "Hapus kata sandi klien dan keluarkan semua perangkat?",
+        "passwordIssued": "Kata sandi sementara diterbitkan",
+        "passwordOnce": "Hanya ditampilkan sekali. Klien wajib menggantinya saat pertama masuk.",
+        "sentToTelegram": "Juga dikirim ke klien lewat Telegram.",
+        "saveFirst": "Simpan klien terlebih dahulu untuk mengelola akses portal.",
+        "disabled": "Portal klien nonaktif. Aktifkan di pengaturan langganan.",
+        "revoked": "Akses portal dicabut",
+        "clientNotFound": "Klien tidak ditemukan",
+        "issueConfirm": "Terbitkan kata sandi sementara baru? Kata sandi saat ini berhenti berlaku dan semua perangkat dikeluarkan."
+      }
     },
     "groups": {
       "name": "Nama",
@@ -2049,7 +2072,9 @@
       "unsavedChanges": "Ada perubahan belum disimpan",
       "allSaved": "Semua perubahan tersimpan",
       "exactActiveConnection": "Koneksi aktif yang tepat",
-      "exactActiveConnectionDesc": "Menjaga log akses Xray tetap aktif agar halaman Klien menunjukkan dengan tepat inbound yang dipakai tiap klien. Xray mencatat setiap koneksi di sana, termasuk alamat yang dikunjungi. Log disimpan di folder log panel, dipotong pada 64 MB dan dibersihkan setiap hari. Mengubahnya akan memulai ulang Xray."
+      "exactActiveConnectionDesc": "Menjaga log akses Xray tetap aktif agar halaman Klien menunjukkan dengan tepat inbound yang dipakai tiap klien. Xray mencatat setiap koneksi di sana, termasuk alamat yang dikunjungi. Log disimpan di folder log panel, dipotong pada 64 MB dan dibersihkan setiap hari. Mengubahnya akan memulai ulang Xray.",
+      "portalEnabled": "Portal klien",
+      "portalEnabledDesc": "Klien masuk di server langganan dengan kata sandi atau LDAP, menyembunyikan kunci yang tidak dipakai, dan masuk ke We1ssConnect. Mematikannya mengeluarkan semua sesi."
     },
     "xray": {
       "save": "Simpan",
@@ -3060,7 +3085,12 @@
       "webProxyNotInstalled": "Belum terpasang atau belum dikonfigurasi. Atur di panel: Koneksi → TG Web Proxy.",
       "webProxyHost": "Host: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}, klien: {{ .Clients }}",
-      "webProxySyncError": "❗ Sinkronisasi pengikatan terakhir gagal: <code>{{ .Error }}</code>"
+      "webProxySyncError": "❗ Sinkronisasi pengikatan terakhir gagal: <code>{{ .Error }}</code>",
+      "portalTempPassword": "🔑 Kata sandi portal klien untuk {{ .Email }}: <code>{{ .Password }}</code>\r\nIni sementara: ganti saat pertama masuk.",
+      "portalResetConfirm": "Atur ulang kata sandi portal untuk {{ .Email }}? Anda menerima kata sandi sementara, dan semua perangkat yang masuk dengan kata sandi lama akan keluar.",
+      "portalDisabled": "Portal klien nonaktif. Minta admin untuk mengaktifkannya.",
+      "portalLdapManaged": "Kata sandi portal Anda dikelola oleh direktori perusahaan. Ubah di sana atau hubungi admin.",
+      "portalNoAccess": "Anda tidak punya akses portal. Minta admin untuk menerbitkan kata sandi."
     },
     "buttons": {
       "closeKeyboard": "❌ Tutup Papan Ketik",
@@ -3106,7 +3136,9 @@
       "ResetAllTraffics": "Reset Semua Lalu Lintas",
       "SortedTrafficUsageReport": "Laporan Penggunaan Lalu Lintas yang Terurut",
       "nodes": "🖥 Node",
-      "webProxy": "📡 Web proxy"
+      "webProxy": "📡 Web proxy",
+      "portalPassword": "🔑 Kata sandi portal",
+      "confirmPortalReset": "✅ Atur ulang kata sandi"
     },
     "answers": {
       "broadcastStarted": "🚀 Siaran dimulai.",

@@ -1177,7 +1177,30 @@
       "renewsUsed": "Renewals used",
       "bulkAdTagHint": "Enter a 32-character hex tag to set, or 'none' to clear sponsor channel on MTProto inbounds.",
       "renewIntervalDesc": "Adds the configured number of 24-hour days to the previous cutoff after expiry and resets the client's traffic. Keep independent traffic resets disabled unless an additional reset is intended.",
-      "renewWeeklyDesc": "Calendar renewal uses midnight in the panel timezone and also resets the client's traffic. Keep independent traffic resets disabled unless an additional reset is intended."
+      "renewWeeklyDesc": "Calendar renewal uses midnight in the panel timezone and also resets the client's traffic. Keep independent traffic resets disabled unless an additional reset is intended.",
+      "tabPortal": "Client portal",
+      "portal": {
+        "statusLabel": "Access",
+        "status": {
+          "none": "No access",
+          "temporary": "Temporary password",
+          "own": "Own password",
+          "ldap": "Company directory (LDAP)"
+        },
+        "hiddenKeys": "Hidden keys",
+        "devices": "Signed-in devices",
+        "issuePassword": "Issue temporary password",
+        "revoke": "Revoke access",
+        "revokeConfirm": "Remove the client's password and sign out every device?",
+        "passwordIssued": "Temporary password issued",
+        "passwordOnce": "Shown only once. The client must change it at the first login.",
+        "sentToTelegram": "Also sent to the client in Telegram.",
+        "saveFirst": "Save the client first to manage portal access.",
+        "disabled": "The client portal is off. Turn it on in Subscription settings.",
+        "revoked": "Portal access revoked",
+        "clientNotFound": "Client not found",
+        "issueConfirm": "Issue a new temporary password? The current password stops working and every device is signed out."
+      }
     },
     "groups": {
       "name": "Name",
@@ -2372,7 +2395,9 @@
       "unsavedChanges": "Unsaved changes",
       "allSaved": "All changes saved",
       "exactActiveConnection": "Exact active connection",
-      "exactActiveConnectionDesc": "Keeps Xray's access log on so the Clients page shows exactly which inbound each client uses. Xray writes every connection there, including the address visited. The log stays in the panel's log folder, is cut at 64 MB and cleared daily. Changing this restarts Xray."
+      "exactActiveConnectionDesc": "Keeps Xray's access log on so the Clients page shows exactly which inbound each client uses. Xray writes every connection there, including the address visited. The log stays in the panel's log folder, is cut at 64 MB and cleared daily. Changing this restarts Xray.",
+      "portalEnabled": "Client portal",
+      "portalEnabledDesc": "Clients log in on the subscription server with a password or LDAP, hide keys they do not use and sign in to We1ssConnect. Turning it off logs everyone out."
     },
     "xray": {
       "save": "Save",
@@ -3060,7 +3085,12 @@
       "webProxyNotInstalled": "Not installed or not configured yet. Set it up in the panel: Connections → TG Web Proxy.",
       "webProxyHost": "Host: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}, clients: {{ .Clients }}",
-      "webProxySyncError": "❗ Last binding sync failed: <code>{{ .Error }}</code>"
+      "webProxySyncError": "❗ Last binding sync failed: <code>{{ .Error }}</code>",
+      "portalTempPassword": "🔑 Client portal password for {{ .Email }}: <code>{{ .Password }}</code>\r\nIt is temporary: change it at the first login.",
+      "portalResetConfirm": "Reset the client portal password for {{ .Email }}? You get a temporary password, and every device signed in with the old one is logged out.",
+      "portalDisabled": "The client portal is off. Ask your admin to turn it on.",
+      "portalLdapManaged": "Your portal password is managed by the company directory. Change it there or ask your admin.",
+      "portalNoAccess": "You have no portal access. Ask your admin to issue a password."
     },
     "buttons": {
       "closeKeyboard": "❌ Close Keyboard",
@@ -3106,7 +3136,9 @@
       "ResetAllTraffics": "Reset All Traffic",
       "SortedTrafficUsageReport": "Sorted Traffic Usage Report",
       "nodes": "🖥 Nodes",
-      "webProxy": "📡 Web proxy"
+      "webProxy": "📡 Web proxy",
+      "portalPassword": "🔑 Portal password",
+      "confirmPortalReset": "✅ Reset password"
     },
     "answers": {
       "broadcastStarted": "🚀 Broadcast started.",

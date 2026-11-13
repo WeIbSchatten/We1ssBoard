@@ -181,6 +181,9 @@
           "panelOutbound": {
             "type": "string"
           },
+          "portalEnabled": {
+            "type": "boolean"
+          },
           "realityScanCandidates": {
             "type": "string"
           },
@@ -660,6 +663,7 @@
           "outboundDownThreshold",
           "pageSize",
           "panelOutbound",
+          "portalEnabled",
           "realityScanCandidates",
           "remarkTemplate",
           "restartXrayOnClientDisable",
@@ -977,6 +981,9 @@
           },
           "panelOutbound": {
             "type": "string"
+          },
+          "portalEnabled": {
+            "type": "boolean"
           },
           "realityScanCandidates": {
             "type": "string"
@@ -1465,6 +1472,7 @@
           "outboundDownThreshold",
           "pageSize",
           "panelOutbound",
+          "portalEnabled",
           "realityScanCandidates",
           "remarkTemplate",
           "restartXrayOnClientDisable",
@@ -2097,6 +2105,52 @@
           "pageSize",
           "summary",
           "total"
+        ],
+        "type": "object"
+      },
+      "ClientPortalAccess": {
+        "description": "ClientPortalAccess is a client's portal login state as the admin client card shows it.",
+        "properties": {
+          "devices": {
+            "example": 1,
+            "type": "integer"
+          },
+          "hiddenKeys": {
+            "example": 2,
+            "type": "integer"
+          },
+          "portalEnabled": {
+            "example": true,
+            "type": "boolean"
+          },
+          "status": {
+            "example": "temporary",
+            "type": "string"
+          }
+        },
+        "required": [
+          "devices",
+          "hiddenKeys",
+          "portalEnabled",
+          "status"
+        ],
+        "type": "object"
+      },
+      "ClientPortalPassword": {
+        "description": "ClientPortalPassword is a freshly issued temporary portal password, shown to the admin once.",
+        "properties": {
+          "password": {
+            "example": "k7QmN2pXa9Rz",
+            "type": "string"
+          },
+          "sentToTelegram": {
+            "example": true,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "password",
+          "sentToTelegram"
         ],
         "type": "object"
       },
@@ -12430,6 +12484,149 @@
         ],
         "summary": "Reset the recorded IP list for a client.",
         "operationId": "post_panel_api_clients_clearIps_email",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "description": "Client email.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "msg": {
+                      "type": "string"
+                    },
+                    "obj": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/panel/api/clients/portal/{email}": {
+      "get": {
+        "tags": [
+          "Clients"
+        ],
+        "summary": "Client portal access of a client: none, temporary, own or ldap, plus hidden keys, signed-in devices and whether the portal is on.",
+        "operationId": "get_panel_api_clients_portal_email",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "description": "Client email.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "msg": {
+                      "type": "string"
+                    },
+                    "obj": {
+                      "$ref": "#/components/schemas/ClientPortalAccess"
+                    }
+                  }
+                },
+                "example": {
+                  "success": true,
+                  "obj": {
+                    "devices": 1,
+                    "hiddenKeys": 2,
+                    "portalEnabled": true,
+                    "status": "temporary"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/panel/api/clients/portalPassword/{email}": {
+      "post": {
+        "tags": [
+          "Clients"
+        ],
+        "summary": "Issue a temporary portal password the client must change at the next login. Logs out every device and session; sent to the client in Telegram when possible.",
+        "operationId": "post_panel_api_clients_portalPassword_email",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "description": "Client email.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "msg": {
+                      "type": "string"
+                    },
+                    "obj": {
+                      "$ref": "#/components/schemas/ClientPortalPassword"
+                    }
+                  }
+                },
+                "example": {
+                  "success": true,
+                  "obj": {
+                    "password": "k7QmN2pXa9Rz",
+                    "sentToTelegram": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/panel/api/clients/portalRevoke/{email}": {
+      "post": {
+        "tags": [
+          "Clients"
+        ],
+        "summary": "Remove the client's own portal password and log out every device and session. An LDAP client can still log in with the directory password.",
+        "operationId": "post_panel_api_clients_portalRevoke_email",
         "parameters": [
           {
             "name": "email",

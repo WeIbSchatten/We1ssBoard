@@ -1177,7 +1177,30 @@
       "renewsUsed": "Renovações usadas",
       "bulkAdTagHint": "Insira uma tag hexadecimal de 32 caracteres para definir ou 'none' para limpar no MTProto.",
       "renewIntervalDesc": "Após a expiração, adiciona o número configurado de dias de 24 horas ao prazo anterior e redefine o tráfego do cliente. Mantenha as redefinições independentes de tráfego desativadas, a menos que queira uma redefinição adicional.",
-      "renewWeeklyDesc": "A renovação por calendário ocorre à meia-noite no fuso horário do painel e também redefine o tráfego do cliente. Mantenha as redefinições independentes de tráfego desativadas, a menos que queira uma redefinição adicional."
+      "renewWeeklyDesc": "A renovação por calendário ocorre à meia-noite no fuso horário do painel e também redefine o tráfego do cliente. Mantenha as redefinições independentes de tráfego desativadas, a menos que queira uma redefinição adicional.",
+      "tabPortal": "Portal do cliente",
+      "portal": {
+        "statusLabel": "Acesso",
+        "status": {
+          "none": "Sem acesso",
+          "temporary": "Senha temporária",
+          "own": "Senha própria",
+          "ldap": "Diretório da empresa (LDAP)"
+        },
+        "hiddenKeys": "Chaves ocultas",
+        "devices": "Dispositivos conectados",
+        "issuePassword": "Emitir senha temporária",
+        "revoke": "Revogar acesso",
+        "revokeConfirm": "Remover a senha do cliente e desconectar todos os dispositivos?",
+        "passwordIssued": "Senha temporária emitida",
+        "passwordOnce": "Exibida apenas uma vez. O cliente deve trocá-la no primeiro acesso.",
+        "sentToTelegram": "Também enviada ao cliente pelo Telegram.",
+        "saveFirst": "Salve o cliente primeiro para gerenciar o acesso ao portal.",
+        "disabled": "O portal do cliente está desativado. Ative-o nas configurações de assinatura.",
+        "revoked": "Acesso ao portal revogado",
+        "clientNotFound": "Cliente não encontrado",
+        "issueConfirm": "Emitir uma nova senha temporária? A senha atual deixa de funcionar e todos os dispositivos são desconectados."
+      }
     },
     "groups": {
       "name": "Nome",
@@ -2049,7 +2072,9 @@
       "unsavedChanges": "Alterações não salvas",
       "allSaved": "Todas as alterações salvas",
       "exactActiveConnection": "Conexão ativa exata",
-      "exactActiveConnectionDesc": "Mantém o log de acesso do Xray ligado para que a página Clientes mostre exatamente qual inbound cada cliente usa. O Xray registra ali cada conexão, incluindo o endereço visitado. O log fica na pasta de logs do painel, é cortado em 64 MB e limpo diariamente. Alterar isto reinicia o Xray."
+      "exactActiveConnectionDesc": "Mantém o log de acesso do Xray ligado para que a página Clientes mostre exatamente qual inbound cada cliente usa. O Xray registra ali cada conexão, incluindo o endereço visitado. O log fica na pasta de logs do painel, é cortado em 64 MB e limpo diariamente. Alterar isto reinicia o Xray.",
+      "portalEnabled": "Portal do cliente",
+      "portalEnabledDesc": "Os clientes entram no servidor de assinatura com senha ou LDAP, ocultam as chaves que não usam e entram no We1ssConnect. Desativar encerra todas as sessões."
     },
     "xray": {
       "importRules": "Importar regras",
@@ -3060,7 +3085,12 @@
       "webProxyNotInstalled": "Não instalado ou ainda não configurado. Configure no painel: Conexões → TG Web Proxy.",
       "webProxyHost": "Host: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}, clientes: {{ .Clients }}",
-      "webProxySyncError": "❗ A última sincronização de vínculos falhou: <code>{{ .Error }}</code>"
+      "webProxySyncError": "❗ A última sincronização de vínculos falhou: <code>{{ .Error }}</code>",
+      "portalTempPassword": "🔑 Senha do portal para {{ .Email }}: <code>{{ .Password }}</code>\r\nÉ temporária: troque-a no primeiro acesso.",
+      "portalResetConfirm": "Redefinir a senha do portal de {{ .Email }}? Você recebe uma senha temporária, e todos os dispositivos conectados com a antiga são desconectados.",
+      "portalDisabled": "O portal do cliente está desativado. Peça ao administrador para ativá-lo.",
+      "portalLdapManaged": "Sua senha do portal é gerenciada pelo diretório da empresa. Troque-a lá ou fale com o administrador.",
+      "portalNoAccess": "Você não tem acesso ao portal. Peça ao administrador para emitir uma senha."
     },
     "buttons": {
       "closeKeyboard": "❌ Fechar teclado",
@@ -3106,7 +3136,9 @@
       "ResetAllTraffics": "Redefinir Todo o Tráfego",
       "SortedTrafficUsageReport": "Relatório de Uso de Tráfego Ordenado",
       "nodes": "🖥 Nós",
-      "webProxy": "📡 Web proxy"
+      "webProxy": "📡 Web proxy",
+      "portalPassword": "🔑 Senha do portal",
+      "confirmPortalReset": "✅ Redefinir senha"
     },
     "answers": {
       "broadcastStarted": "🚀 Transmissão iniciada.",

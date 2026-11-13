@@ -1177,7 +1177,30 @@
       "renewsUsed": "使用済み更新回数",
       "bulkAdTagHint": "設定するには 32 文字の 16 進数タグを入力し、クリアするには 'none' を入力します (MTProto 用)。",
       "renewIntervalDesc": "期限切れ後、前回の期限に指定日数（1 日 24 時間）を加算し、クライアントの通信量をリセットします。追加のリセットが不要なら、独立した通信量リセットは無効にしてください。",
-      "renewWeeklyDesc": "カレンダー更新はパネルのタイムゾーンの午前 0 時に行われ、クライアントの通信量もリセットします。追加のリセットが不要なら、独立した通信量リセットは無効にしてください。"
+      "renewWeeklyDesc": "カレンダー更新はパネルのタイムゾーンの午前 0 時に行われ、クライアントの通信量もリセットします。追加のリセットが不要なら、独立した通信量リセットは無効にしてください。",
+      "tabPortal": "クライアントポータル",
+      "portal": {
+        "statusLabel": "アクセス",
+        "status": {
+          "none": "アクセスなし",
+          "temporary": "仮パスワード",
+          "own": "本人のパスワード",
+          "ldap": "社内ディレクトリ（LDAP）"
+        },
+        "hiddenKeys": "非表示のキー",
+        "devices": "サインイン中のデバイス",
+        "issuePassword": "仮パスワードを発行",
+        "revoke": "アクセスを取り消す",
+        "revokeConfirm": "クライアントのパスワードを削除し、すべてのデバイスからサインアウトしますか？",
+        "passwordIssued": "仮パスワードを発行しました",
+        "passwordOnce": "表示は一度だけです。クライアントは初回ログイン時に変更する必要があります。",
+        "sentToTelegram": "Telegram でもクライアントに送信しました。",
+        "saveFirst": "ポータルのアクセスを管理するには、先にクライアントを保存してください。",
+        "disabled": "クライアントポータルはオフです。サブスクリプション設定でオンにしてください。",
+        "revoked": "ポータルへのアクセスを取り消しました",
+        "clientNotFound": "クライアントが見つかりません",
+        "issueConfirm": "新しい仮パスワードを発行しますか？現在のパスワードは使えなくなり、すべてのデバイスがサインアウトされます。"
+      }
     },
     "groups": {
       "name": "名前",
@@ -2049,7 +2072,9 @@
       "unsavedChanges": "未保存の変更があります",
       "allSaved": "すべての変更を保存済み",
       "exactActiveConnection": "正確なアクティブ接続",
-      "exactActiveConnectionDesc": "Xray のアクセスログを有効のままにし、「クライアント」ページで各クライアントが使っているインバウンドを正確に表示します。Xray はすべての接続を訪問先アドレスを含めて記録します。ログはパネルのログフォルダーに置かれ、64 MB で切り詰められ、毎日消去されます。変更すると Xray が再起動します。"
+      "exactActiveConnectionDesc": "Xray のアクセスログを有効のままにし、「クライアント」ページで各クライアントが使っているインバウンドを正確に表示します。Xray はすべての接続を訪問先アドレスを含めて記録します。ログはパネルのログフォルダーに置かれ、64 MB で切り詰められ、毎日消去されます。変更すると Xray が再起動します。",
+      "portalEnabled": "クライアントポータル",
+      "portalEnabledDesc": "クライアントはサブスクリプションサーバーでパスワードまたは LDAP でログインし、使わないキーを非表示にし、We1ssConnect にサインインできます。オフにすると全員がログアウトします。"
     },
     "xray": {
       "importRules": "ルールをインポート",
@@ -3060,7 +3085,12 @@
       "webProxyNotInstalled": "未インストールまたは未設定です。パネルの「接続 → TG Web Proxy」で設定してください。",
       "webProxyHost": "ホスト: <code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}、クライアント: {{ .Clients }}",
-      "webProxySyncError": "❗ 最後のバインド同期に失敗しました: <code>{{ .Error }}</code>"
+      "webProxySyncError": "❗ 最後のバインド同期に失敗しました: <code>{{ .Error }}</code>",
+      "portalTempPassword": "🔑 {{ .Email }} のクライアントポータルのパスワード: <code>{{ .Password }}</code>\r\n仮パスワードです。初回ログイン時に変更してください。",
+      "portalResetConfirm": "{{ .Email }} のクライアントポータルのパスワードをリセットしますか？仮パスワードが届き、古いパスワードでサインインしていたすべてのデバイスはログアウトされます。",
+      "portalDisabled": "クライアントポータルはオフです。管理者にオンにするよう依頼してください。",
+      "portalLdapManaged": "ポータルのパスワードは社内ディレクトリで管理されています。そちらで変更するか、管理者にお問い合わせください。",
+      "portalNoAccess": "ポータルへのアクセス権がありません。管理者にパスワードの発行を依頼してください。"
     },
     "buttons": {
       "closeKeyboard": "❌ キーボードを閉じる",
@@ -3106,7 +3136,9 @@
       "ResetAllTraffics": "すべてのトラフィックをリセット",
       "SortedTrafficUsageReport": "ソートされたトラフィック使用レポート",
       "nodes": "🖥 ノード",
-      "webProxy": "📡 Web proxy"
+      "webProxy": "📡 Web proxy",
+      "portalPassword": "🔑 ポータルのパスワード",
+      "confirmPortalReset": "✅ パスワードをリセット"
     },
     "answers": {
       "broadcastStarted": "🚀 一括送信を開始しました。",

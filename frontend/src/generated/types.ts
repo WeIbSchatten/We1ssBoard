@@ -56,6 +56,7 @@ export interface AllSetting {
   outboundDownThreshold: number;
   pageSize: number;
   panelOutbound: string;
+  portalEnabled: boolean;
   realityScanCandidates: string;
   remarkTemplate: string;
   restartXrayOnClientDisable: boolean;
@@ -249,6 +250,7 @@ export interface AllSettingView {
   outboundDownThreshold: number;
   pageSize: number;
   panelOutbound: string;
+  portalEnabled: boolean;
   realityScanCandidates: string;
   remarkTemplate: string;
   restartXrayOnClientDisable: boolean;
@@ -498,6 +500,18 @@ export interface ClientPageResponse {
   pageSize: number;
   summary: ClientsSummary;
   total: number;
+}
+
+export interface ClientPortalAccess {
+  devices: number;
+  hiddenKeys: number;
+  portalEnabled: boolean;
+  status: string;
+}
+
+export interface ClientPortalPassword {
+  password: string;
+  sentToTelegram: boolean;
 }
 
 export interface ClientRecord {

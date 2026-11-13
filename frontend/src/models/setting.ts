@@ -44,6 +44,7 @@ export class AllSetting {
   xrayTemplateConfig = '';
   happLinkEnable = false;
   subEnable = true;
+  portalEnabled = false;
   subJsonEnable = false;
   subJsonAutoDetect = false;
   subJsonAlwaysArray = false;

@@ -1662,6 +1662,29 @@ export const sections: readonly Section[] = [
         params: [{ name: 'email', in: 'path', type: 'string', desc: 'Client email.' }],
       },
       {
+        method: 'GET',
+        path: '/panel/api/clients/portal/:email',
+        summary:
+          'Client portal access of a client: none, temporary, own or ldap, plus hidden keys, signed-in devices and whether the portal is on.',
+        params: [{ name: 'email', in: 'path', type: 'string', desc: 'Client email.' }],
+        responseSchema: 'ClientPortalAccess',
+      },
+      {
+        method: 'POST',
+        path: '/panel/api/clients/portalPassword/:email',
+        summary:
+          'Issue a temporary portal password the client must change at the next login. Logs out every device and session; sent to the client in Telegram when possible.',
+        params: [{ name: 'email', in: 'path', type: 'string', desc: 'Client email.' }],
+        responseSchema: 'ClientPortalPassword',
+      },
+      {
+        method: 'POST',
+        path: '/panel/api/clients/portalRevoke/:email',
+        summary:
+          "Remove the client's own portal password and log out every device and session. An LDAP client can still log in with the directory password.",
+        params: [{ name: 'email', in: 'path', type: 'string', desc: 'Client email.' }],
+      },
+      {
         method: 'POST',
         path: '/panel/api/clients/hwids/:email',
         summary:

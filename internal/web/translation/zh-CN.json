@@ -1177,7 +1177,30 @@
       "renewsUsed": "已用续期次数",
       "bulkAdTagHint": "输入 32 位十六进制标签以设置，或输入 'none' 清除 MTProto 赞助频道。",
       "renewIntervalDesc": "到期后从上次截止时间增加指定天数（每天 24 小时），并重置客户端流量。若不需要额外重置，请关闭独立的流量重置。",
-      "renewWeeklyDesc": "日历续期按面板时区的午夜执行，并重置客户端流量。若不需要额外重置，请关闭独立的流量重置。"
+      "renewWeeklyDesc": "日历续期按面板时区的午夜执行，并重置客户端流量。若不需要额外重置，请关闭独立的流量重置。",
+      "tabPortal": "客户门户",
+      "portal": {
+        "statusLabel": "访问",
+        "status": {
+          "none": "无访问权限",
+          "temporary": "临时密码",
+          "own": "自设密码",
+          "ldap": "公司目录（LDAP）"
+        },
+        "hiddenKeys": "隐藏的密钥",
+        "devices": "已登录设备",
+        "issuePassword": "发放临时密码",
+        "revoke": "撤销访问",
+        "revokeConfirm": "删除客户密码并退出所有设备？",
+        "passwordIssued": "已发放临时密码",
+        "passwordOnce": "仅显示一次。客户首次登录时必须修改。",
+        "sentToTelegram": "也已通过 Telegram 发送给客户。",
+        "saveFirst": "请先保存客户，再管理门户访问。",
+        "disabled": "客户门户已关闭。请在订阅设置中开启。",
+        "revoked": "已撤销门户访问",
+        "clientNotFound": "未找到客户",
+        "issueConfirm": "要发放新的临时密码吗？当前密码将失效，所有设备都会退出。"
+      }
     },
     "groups": {
       "name": "名称",
@@ -2049,7 +2072,9 @@
       "unsavedChanges": "有未保存的更改",
       "allSaved": "所有更改已保存",
       "exactActiveConnection": "精确的当前连接",
-      "exactActiveConnectionDesc": "保持 Xray 访问日志开启，使“客户端”页面准确显示每个客户端使用的入站。Xray 会把每个连接写入日志，包括访问的地址。日志保存在面板日志目录中，超过 64 MB 时截断，并每天清空。更改此项会重启 Xray。"
+      "exactActiveConnectionDesc": "保持 Xray 访问日志开启，使“客户端”页面准确显示每个客户端使用的入站。Xray 会把每个连接写入日志，包括访问的地址。日志保存在面板日志目录中，超过 64 MB 时截断，并每天清空。更改此项会重启 Xray。",
+      "portalEnabled": "客户门户",
+      "portalEnabledDesc": "客户可在订阅服务器上用密码或 LDAP 登录，隐藏不用的密钥，并登录 We1ssConnect。关闭后所有会话都会退出。"
     },
     "xray": {
       "importRules": "导入规则",
@@ -3060,7 +3085,12 @@
       "webProxyNotInstalled": "尚未安装或配置。请在面板中设置：连接 → TG Web Proxy。",
       "webProxyHost": "主机：<code>{{ .Host }}</code>",
       "webProxyProfile": "• <b>{{ .Name }}</b> — {{ .Mode }}，客户端：{{ .Clients }}",
-      "webProxySyncError": "❗ 上次绑定同步失败：<code>{{ .Error }}</code>"
+      "webProxySyncError": "❗ 上次绑定同步失败：<code>{{ .Error }}</code>",
+      "portalTempPassword": "🔑 {{ .Email }} 的客户门户密码：<code>{{ .Password }}</code>\r\n这是临时密码：首次登录时请修改。",
+      "portalResetConfirm": "要重置 {{ .Email }} 的客户门户密码吗？您将收到一个临时密码，所有使用旧密码登录的设备都会退出。",
+      "portalDisabled": "客户门户已关闭。请联系管理员开启。",
+      "portalLdapManaged": "您的门户密码由公司目录管理。请在目录中修改或联系管理员。",
+      "portalNoAccess": "您没有门户访问权限。请联系管理员发放密码。"
     },
     "buttons": {
       "closeKeyboard": "❌ 关闭键盘",
@@ -3106,7 +3136,9 @@
       "ResetAllTraffics": "重置所有流量",
       "SortedTrafficUsageReport": "排序的流量使用报告",
       "nodes": "🖥 节点",
-      "webProxy": "📡 Web 代理"
+      "webProxy": "📡 Web 代理",
+      "portalPassword": "🔑 门户密码",
+      "confirmPortalReset": "✅ 重置密码"
     },
     "answers": {
       "broadcastStarted": "🚀 群发已开始。",

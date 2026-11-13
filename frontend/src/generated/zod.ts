@@ -74,6 +74,7 @@ export const AllSettingSchema = z.object({
   outboundDownThreshold: z.number().int().min(1).max(100),
   pageSize: z.number().int().min(0).max(1000),
   panelOutbound: z.string(),
+  portalEnabled: z.boolean(),
   realityScanCandidates: z.string(),
   remarkTemplate: z.string(),
   restartXrayOnClientDisable: z.boolean(),
@@ -268,6 +269,7 @@ export const AllSettingViewSchema = z.object({
   outboundDownThreshold: z.number().int().min(1).max(100),
   pageSize: z.number().int().min(0).max(1000),
   panelOutbound: z.string(),
+  portalEnabled: z.boolean(),
   realityScanCandidates: z.string(),
   remarkTemplate: z.string(),
   restartXrayOnClientDisable: z.boolean(),
@@ -531,6 +533,20 @@ export const ClientPageResponseSchema = z.object({
   total: z.number().int(),
 });
 export type ClientPageResponse = z.infer<typeof ClientPageResponseSchema>;
+
+export const ClientPortalAccessSchema = z.object({
+  devices: z.number().int(),
+  hiddenKeys: z.number().int(),
+  portalEnabled: z.boolean(),
+  status: z.string(),
+});
+export type ClientPortalAccess = z.infer<typeof ClientPortalAccessSchema>;
+
+export const ClientPortalPasswordSchema = z.object({
+  password: z.string(),
+  sentToTelegram: z.boolean(),
+});
+export type ClientPortalPassword = z.infer<typeof ClientPortalPasswordSchema>;
 
 export const ClientRecordSchema = z.object({
   adTag: z.string(),

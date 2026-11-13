@@ -47,6 +47,7 @@ export const EXAMPLES: Record<string, unknown> = {
     "outboundDownThreshold": 1,
     "pageSize": 0,
     "panelOutbound": "",
+    "portalEnabled": false,
     "realityScanCandidates": "",
     "remarkTemplate": "",
     "restartXrayOnClientDisable": false,
@@ -239,6 +240,7 @@ export const EXAMPLES: Record<string, unknown> = {
     "outboundDownThreshold": 1,
     "pageSize": 0,
     "panelOutbound": "",
+    "portalEnabled": false,
     "realityScanCandidates": "",
     "remarkTemplate": "",
     "restartXrayOnClientDisable": false,
@@ -563,6 +565,16 @@ export const EXAMPLES: Record<string, unknown> = {
       "total": 2000
     },
     "total": 2000
+  },
+  "ClientPortalAccess": {
+    "devices": 1,
+    "hiddenKeys": 2,
+    "portalEnabled": true,
+    "status": "temporary"
+  },
+  "ClientPortalPassword": {
+    "password": "k7QmN2pXa9Rz",
+    "sentToTelegram": true
   },
   "ClientRecord": {
     "adTag": "",

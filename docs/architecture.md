@@ -453,7 +453,10 @@ also has protocol schemas under `frontend/src/schemas/protocols/` and `frontend/
 with their own password or LDAP and hide keys (inbound + host) from their own subscription. Every
 subscription request loads those per client (`sub/portal_hidden.go`) and skips them in raw, JSON and
 Clash; panel links stay complete. Stale hidden rows (after a re-attach or host delete) are ignored by
-creation time, so delete sites need no cleanup.
+creation time, so delete sites need no cleanup. Admins issue temporary passwords and revoke access from the client card
+(`controller/client_portal.go`); clients reset theirs in the Telegram bot (`tgbot/tgbot_portal.go`).
+Turning the `portalEnabled` setting off drops every device token and bumps every session epoch
+(`SettingService.UpdateAllSetting`).
 
 ### 5.7 Event bus (in-process pub/sub)
 

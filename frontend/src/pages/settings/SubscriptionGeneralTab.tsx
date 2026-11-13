@@ -64,6 +64,16 @@ export default function SubscriptionGeneralTab({
               </SettingListItem>
               <SettingListItem
                 paddings="small"
+                title={t('pages.settings.portalEnabled')}
+                description={t('pages.settings.portalEnabledDesc')}
+              >
+                <Switch
+                  checked={allSetting.portalEnabled}
+                  onChange={(v) => updateSetting({ portalEnabled: v })}
+                />
+              </SettingListItem>
+              <SettingListItem
+                paddings="small"
                 title={t('pages.settings.subJsonEnableTitle')}
                 description={t('pages.settings.subJsonEnable')}
               >

@@ -1757,6 +1757,7 @@ func (s *SettingService) UpdateAllSetting(allSetting *entity.AllSetting, clears 
 		for _, st := range existing {
 			byKey[st.Key] = st
 		}
+		portalWasOn := byKey["portalEnabled"] != nil && byKey["portalEnabled"].Value == "true"
 		for _, field := range fields {
 			key := field.Tag.Get("json")
 			fieldV := v.FieldByName(field.Name)
@@ -1775,8 +1776,21 @@ func (s *SettingService) UpdateAllSetting(allSetting *entity.AllSetting, clears 
 				return err
 			}
 		}
+		if portalWasOn && !allSetting.PortalEnabled {
+			return revokeAllPortalAccess(tx)
+		}
 		return nil
 	})
+}
+
+// revokeAllPortalAccess logs every client out of the portal, so turning it back on later
+// does not revive old devices or browser sessions.
+func revokeAllPortalAccess(tx *gorm.DB) error {
+	if err := tx.Where("1 = 1").Delete(&model.ClientPortalToken{}).Error; err != nil {
+		return err
+	}
+	return tx.Model(&model.ClientRecord{}).Where("1 = 1").
+		Update("portal_session_epoch", gorm.Expr("portal_session_epoch + 1")).Error
 }
 
 func validateSubUserAgentRegexes(allSetting *entity.AllSetting) error {
