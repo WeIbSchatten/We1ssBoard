@@ -3368,6 +3368,7 @@
     "security": {
       "title": "Keamanan",
       "ldap": "Kata sandi Anda dikelola oleh direktori perusahaan."
-    }
+    },
+    "csrf": "Halaman sudah usang dan telah dimuat ulang. Coba lagi."
   }
 }

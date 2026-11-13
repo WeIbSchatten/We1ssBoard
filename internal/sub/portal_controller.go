@@ -220,7 +220,14 @@ func (a *PortalController) requireCSRF(c *gin.Context) {
 
 func (a *PortalController) requirePasswordChanged(c *gin.Context) {
 	if portalClient(c).PortalMustChange {
-		portalError(c, http.StatusForbidden, "must_change_password")
+		// A reloaded page lost its CSRF token and /me is the only call it makes, so hand it back here.
+		body := gin.H{"error": "must_change_password"}
+		if !isBearer(c) {
+			if token, err := session.EnsureCSRFToken(c); err == nil {
+				body["csrfToken"] = token
+			}
+		}
+		c.AbortWithStatusJSON(http.StatusForbidden, body)
 		return
 	}
 	c.Next()

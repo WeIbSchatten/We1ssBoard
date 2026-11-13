@@ -71,7 +71,7 @@ export default function PortalPage() {
               lang={lang}
               onLangChange={onLangChange}
               actions={
-                me.data && (
+                (me.data || code === 'must_change_password') && (
                   <Button className="toolbar-btn" icon={<LogoutOutlined />} onClick={logout}>
                     {t('portal.logout')}
                   </Button>

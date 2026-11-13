@@ -3368,6 +3368,7 @@
     "security": {
       "title": "Seguridad",
       "ldap": "Tu contraseña la gestiona el directorio de la empresa."
-    }
+    },
+    "csrf": "La página estaba desactualizada y se ha actualizado. Inténtalo de nuevo."
   }
 }

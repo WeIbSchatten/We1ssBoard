@@ -3368,6 +3368,7 @@
     "security": {
       "title": "Security",
       "ldap": "Your password is managed by the company directory."
-    }
+    },
+    "csrf": "The page was out of date and has been refreshed. Try again."
   }
 }

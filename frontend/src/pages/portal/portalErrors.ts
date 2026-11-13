@@ -24,6 +24,8 @@ export function portalErrorText(t: TFunction, err: unknown): string {
       return t('portal.keys.lastVisible');
     case 'client_disabled':
       return t('portal.readOnly');
+    case 'csrf':
+      return t('portal.csrf');
     default:
       return t('portal.error');
   }

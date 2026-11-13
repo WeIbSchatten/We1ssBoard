@@ -371,3 +371,24 @@ func TestPortal_PageServed(t *testing.T) {
 		t.Fatalf("GET /portal with the portal off = %d, want 404", w.Code)
 	}
 }
+
+// A reloaded page has lost its CSRF token; the must-change answer must hand it back or the change can never be sent.
+func TestPortal_MustChangeReturnsCSRFTokenAfterReload(t *testing.T) {
+	e := newPortalEnv(t, true)
+	database.GetDB().Model(e.client).Update("portal_must_change", true)
+	s := e.loginWeb(t, portalPassword)
+
+	w := e.do(portalReq{method: "GET", path: "/portal/api/me", cookies: s.cookies})
+	var body struct {
+		Error     string `json:"error"`
+		CSRFToken string `json:"csrfToken"`
+	}
+	_ = json.Unmarshal(w.Body.Bytes(), &body)
+	if w.Code != http.StatusForbidden || body.Error != "must_change_password" || body.CSRFToken != s.csrf {
+		t.Fatalf("me after reload = %d %s; want 403 must_change_password carrying the session's CSRF token", w.Code, w.Body)
+	}
+	reloaded := webSession{cookies: s.cookies, csrf: body.CSRFToken}
+	if w := e.do(reloaded.req("POST", "/portal/api/password", map[string]string{"current": portalPassword, "new": "long-enough-1"})); w.Code != http.StatusNoContent {
+		t.Fatalf("password change after reload = %d %s", w.Code, w.Body)
+	}
+}

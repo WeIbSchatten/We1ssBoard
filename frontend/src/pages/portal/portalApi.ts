@@ -18,7 +18,7 @@ export class PortalApiError extends Error {
 
 const base = () => `${window.__PORTAL__?.basePath ?? '/portal'}/api`;
 
-// The cookie session pairs with a CSRF token the login and profile responses hand out.
+// The cookie session pairs with a CSRF token that login, profile and must-change answers hand out.
 let csrfToken = '';
 
 async function call(method: string, path: string, body?: unknown): Promise<unknown> {
@@ -31,6 +31,8 @@ async function call(method: string, path: string, body?: unknown): Promise<unkno
     body: body === undefined ? undefined : JSON.stringify(body),
   });
   const data: unknown = res.status === 204 ? undefined : await res.json().catch(() => undefined);
+  const token = (data as { csrfToken?: unknown } | undefined)?.csrfToken;
+  if (typeof token === 'string' && token) csrfToken = token;
   if (!res.ok) {
     const code = (data as { error?: string } | undefined)?.error ?? 'internal';
     const retry = Number(res.headers.get('Retry-After'));
@@ -49,7 +51,6 @@ export const portalApi = {
       mustChange?: boolean;
       csrfToken?: string;
     };
-    csrfToken = data?.csrfToken ?? '';
     return { mustChange: !!data?.mustChange };
   },
   async logout(): Promise<void> {
@@ -57,9 +58,7 @@ export const portalApi = {
     csrfToken = '';
   },
   async me(): Promise<PortalProfile> {
-    const profile = PortalProfileSchema.parse(await call('GET', '/me'));
-    if (profile.csrfToken) csrfToken = profile.csrfToken;
-    return profile;
+    return PortalProfileSchema.parse(await call('GET', '/me'));
   },
   async changePassword(current: string, next: string): Promise<void> {
     await call('POST', '/password', { current, new: next });

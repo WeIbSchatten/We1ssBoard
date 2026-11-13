@@ -3368,6 +3368,7 @@
     "security": {
       "title": "Segurança",
       "ldap": "Sua senha é gerenciada pelo diretório da empresa."
-    }
+    },
+    "csrf": "A página estava desatualizada e foi atualizada. Tente novamente."
   }
 }

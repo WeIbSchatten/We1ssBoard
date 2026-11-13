@@ -3368,6 +3368,7 @@
     "security": {
       "title": "Bảo mật",
       "ldap": "Mật khẩu của bạn do thư mục công ty quản lý."
-    }
+    },
+    "csrf": "Trang đã cũ và vừa được làm mới. Hãy thử lại."
   }
 }

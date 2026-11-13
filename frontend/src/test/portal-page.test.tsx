@@ -101,4 +101,11 @@ describe('PortalPage', () => {
     fireEvent.click(await screen.findByRole('button', { name: /Log out/ }));
     expect(await screen.findByRole('button', { name: 'Sign in' })).toBeTruthy();
   });
+
+  it('offers Log out on the must-change screen', async () => {
+    vi.spyOn(portalApi, 'me').mockRejectedValue(new PortalApiError('must_change_password', 403));
+    renderWithProviders(<PortalPage />);
+    await screen.findByText('Your password is temporary. Choose a new one to continue.');
+    expect(screen.getByRole('button', { name: /Log out/ })).toBeTruthy();
+  });
 });

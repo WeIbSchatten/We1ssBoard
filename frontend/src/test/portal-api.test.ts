@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { ZodError } from 'zod';
 
 import { PortalApiError, portalApi } from '@/pages/portal/portalApi';
 
@@ -78,6 +79,22 @@ describe('portalApi', () => {
     expect(new Headers(fetchMock.mock.calls[1][1]?.headers).get('X-CSRF-Token')).toBe(
       'csrf-from-me',
     );
-    await expect(portalApi.me()).rejects.toBeInstanceOf(Error);
+    await expect(portalApi.me()).rejects.toBeInstanceOf(ZodError);
+  });
+
+  it('takes the CSRF token from a must-change answer so a reloaded page can change the password', async () => {
+    const fetchMock = vi
+      .spyOn(globalThis, 'fetch')
+      .mockResolvedValueOnce(
+        reply(403, { error: 'must_change_password', csrfToken: 'csrf-after-reload' }),
+      )
+      .mockResolvedValueOnce(reply(204, undefined));
+
+    await expect(portalApi.me()).rejects.toMatchObject({ code: 'must_change_password' });
+    await portalApi.changePassword('temp-pass-1', 'my-own-pass');
+
+    const [url, init] = fetchMock.mock.calls[1];
+    expect(url).toBe('/portal/api/password');
+    expect(new Headers(init?.headers).get('X-CSRF-Token')).toBe('csrf-after-reload');
   });
 });

@@ -3368,6 +3368,7 @@
     "security": {
       "title": "Güvenlik",
       "ldap": "Parolanız şirket dizini tarafından yönetiliyor."
-    }
+    },
+    "csrf": "Sayfa güncel değildi ve yenilendi. Tekrar deneyin."
   }
 }

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Button, Empty, List, Popconfirm, Switch, Tabs, Tag, Typography } from 'antd';
 import { KeyOutlined, LaptopOutlined, LinkOutlined, LockOutlined } from '@ant-design/icons';
@@ -15,7 +15,7 @@ import { isUnauthorized, portalErrorText } from './portalErrors';
 
 interface Props {
   profile: PortalProfile;
-  onChanged: () => void;
+  onChanged: () => Promise<unknown> | void;
   onUnauthorized: () => void;
 }
 
@@ -28,37 +28,38 @@ function PortalKeys({
   readOnly,
 }: Props & { readOnly: boolean }) {
   const { t } = useTranslation();
-  const [hidden, setHidden] = useState(
+  const serverHidden = useMemo(
     () => new Set(profile.keys.filter((k) => k.hidden).map(keyId)),
+    [profile.keys],
   );
-  const visible = profile.keys.length - hidden.size;
+  // The server copy wins once a write settles; pending only covers the request in flight.
+  const [pending, setPending] = useState<Set<string> | null>(null);
+  const hidden = pending ?? serverHidden;
+  const visible = profile.keys.filter((k) => !hidden.has(keyId(k))).length;
 
   const toggle = async (id: string, on: boolean) => {
-    const before = hidden;
     const next = new Set(hidden);
     if (on) next.delete(id);
     else next.add(id);
-    setHidden(next);
+    setPending(next);
     try {
       await portalApi.replaceHidden(
         profile.keys
           .filter((k) => next.has(keyId(k)))
           .map(({ inboundId, hostId }) => ({ inboundId, hostId })),
       );
-      onChanged();
     } catch (err) {
-      setHidden(before);
-      if (isUnauthorized(err)) onUnauthorized();
-      else getMessage().error(portalErrorText(t, err));
+      if (isUnauthorized(err)) return onUnauthorized();
+      getMessage().error(portalErrorText(t, err));
+    } finally {
+      await onChanged();
+      setPending(null);
     }
   };
 
   return (
     <div className="portal-section">
       <Typography.Paragraph type="secondary">{t('portal.keys.hint')}</Typography.Paragraph>
-      {readOnly && (
-        <Alert type="warning" showIcon title={t('portal.readOnly')} className="portal-form-error" />
-      )}
       {visible <= 1 && !readOnly && (
         <Alert
           type="info"
@@ -77,6 +78,7 @@ function PortalKeys({
               actions={[
                 <Switch
                   key="on"
+                  aria-label={k.remark}
                   checked={on}
                   disabled={readOnly || (on && visible <= 1)}
                   onChange={(value) => toggle(keyId(k), value)}
@@ -107,11 +109,11 @@ function PortalDevices({
   const signOut = async (id: number) => {
     try {
       await portalApi.revokeDevice(id);
-      onChanged();
     } catch (err) {
-      if (isUnauthorized(err)) onUnauthorized();
-      else getMessage().error(portalErrorText(t, err));
+      if (isUnauthorized(err)) return onUnauthorized();
+      getMessage().error(portalErrorText(t, err));
     }
+    await onChanged();
   };
 
   if (profile.devices.length === 0) {
@@ -188,6 +190,9 @@ export default function PortalProfileView({ profile, onChanged, onUnauthorized }
         datepicker="gregorian"
         lang={lang}
       />
+      {readOnly && (
+        <Alert type="warning" showIcon title={t('portal.readOnly')} className="portal-section" />
+      )}
       <Tabs
         className="sub-tabs"
         tabBarGutter={24}
