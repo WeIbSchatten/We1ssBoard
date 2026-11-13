@@ -1,0 +1,17 @@
+.portal-form {
+  max-width: 420px;
+  margin: 24px auto 8px;
+}
+
+.portal-form-error {
+  margin-bottom: 16px;
+}
+
+.portal-spin {
+  display: block;
+  margin: 48px auto;
+}
+
+.portal-section {
+  margin-top: 24px;
+}

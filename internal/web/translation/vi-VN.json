@@ -3325,5 +3325,31 @@
       "unlock": "Mở khóa",
       "unavailable": "Thiết bị này chưa cài đặt mở khóa bằng vân tay hoặc khuôn mặt."
     }
+  },
+  "portal": {
+    "title": "Cổng khách hàng",
+    "login": {
+      "title": "Đăng nhập vào tài khoản",
+      "login": "Tên đăng nhập",
+      "password": "Mật khẩu",
+      "submit": "Đăng nhập",
+      "required": "Bắt buộc",
+      "invalid": "Sai tên đăng nhập hoặc mật khẩu",
+      "tooMany": "Quá nhiều lần thử. Thử lại sau {seconds} giây."
+    },
+    "password": {
+      "title": "Đổi mật khẩu",
+      "tempHint": "Mật khẩu của bạn là tạm thời. Hãy đặt mật khẩu mới để tiếp tục.",
+      "current": "Mật khẩu hiện tại",
+      "next": "Mật khẩu mới",
+      "repeat": "Nhập lại mật khẩu mới",
+      "submit": "Đổi mật khẩu",
+      "weak": "Ít nhất 8 ký tự",
+      "mismatch": "Mật khẩu không khớp",
+      "wrong": "Mật khẩu hiện tại không đúng",
+      "changed": "Đã đổi mật khẩu"
+    },
+    "logout": "Đăng xuất",
+    "error": "Đã xảy ra lỗi. Vui lòng thử lại sau."
   }
 }

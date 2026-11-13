@@ -3325,5 +3325,31 @@
       "unlock": "Desbloquear",
       "unavailable": "Este dispositivo não tem desbloqueio por digital ou rosto configurado."
     }
+  },
+  "portal": {
+    "title": "Portal do cliente",
+    "login": {
+      "title": "Entre na sua conta",
+      "login": "Login",
+      "password": "Senha",
+      "submit": "Entrar",
+      "required": "Obrigatório",
+      "invalid": "Login ou senha incorretos",
+      "tooMany": "Muitas tentativas. Tente novamente em {seconds} s."
+    },
+    "password": {
+      "title": "Alterar senha",
+      "tempHint": "Sua senha é temporária. Escolha uma nova para continuar.",
+      "current": "Senha atual",
+      "next": "Nova senha",
+      "repeat": "Repita a nova senha",
+      "submit": "Alterar senha",
+      "weak": "Pelo menos 8 caracteres",
+      "mismatch": "As senhas não coincidem",
+      "wrong": "A senha atual está incorreta",
+      "changed": "Senha alterada"
+    },
+    "logout": "Sair",
+    "error": "Algo deu errado. Tente mais tarde."
   }
 }

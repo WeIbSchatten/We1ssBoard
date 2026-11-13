@@ -3325,5 +3325,31 @@
       "unlock": "Unlock",
       "unavailable": "No fingerprint or face unlock is set up on this device."
     }
+  },
+  "portal": {
+    "title": "Client portal",
+    "login": {
+      "title": "Sign in to your account",
+      "login": "Login",
+      "password": "Password",
+      "submit": "Sign in",
+      "required": "Required",
+      "invalid": "Wrong login or password",
+      "tooMany": "Too many attempts. Try again in {seconds} s."
+    },
+    "password": {
+      "title": "Change password",
+      "tempHint": "Your password is temporary. Choose a new one to continue.",
+      "current": "Current password",
+      "next": "New password",
+      "repeat": "Repeat the new password",
+      "submit": "Change password",
+      "weak": "At least 8 characters",
+      "mismatch": "Passwords do not match",
+      "wrong": "The current password is wrong",
+      "changed": "Password changed"
+    },
+    "logout": "Log out",
+    "error": "Something went wrong. Try again later."
   }
 }

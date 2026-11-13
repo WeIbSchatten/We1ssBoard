@@ -3325,5 +3325,31 @@
       "unlock": "Desbloquear",
       "unavailable": "Este dispositivo no tiene configurado el desbloqueo con huella o rostro."
     }
+  },
+  "portal": {
+    "title": "Portal del cliente",
+    "login": {
+      "title": "Inicia sesión en tu cuenta",
+      "login": "Usuario",
+      "password": "Contraseña",
+      "submit": "Entrar",
+      "required": "Obligatorio",
+      "invalid": "Usuario o contraseña incorrectos",
+      "tooMany": "Demasiados intentos. Vuelve a intentarlo en {seconds} s."
+    },
+    "password": {
+      "title": "Cambiar contraseña",
+      "tempHint": "Tu contraseña es temporal. Elige una nueva para continuar.",
+      "current": "Contraseña actual",
+      "next": "Nueva contraseña",
+      "repeat": "Repite la nueva contraseña",
+      "submit": "Cambiar contraseña",
+      "weak": "Al menos 8 caracteres",
+      "mismatch": "Las contraseñas no coinciden",
+      "wrong": "La contraseña actual es incorrecta",
+      "changed": "Contraseña cambiada"
+    },
+    "logout": "Cerrar sesión",
+    "error": "Algo salió mal. Inténtalo más tarde."
   }
 }
