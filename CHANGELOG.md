@@ -9,7 +9,7 @@ differently now), **Fixed** (bugs), **Removed**, **Breaking** (needs action from
 you or breaks an old setup), **Known issues** (problems found after the release
 and the version that fixes them).
 
-## [Unreleased]
+## [1.11.0] - 2026-11-14
 
 ### Added
 - Client portal (first part): clients log in on the subscription server with their own password or the company directory (LDAP), hide subscription keys they do not use and get device tokens for We1ssConnect. Turn it on under **Subscription settings → Client portal**; turning it off logs everyone out. Clients open it at `/portal` on the subscription server: sign in, set their own password after a temporary one, see their status and subscription link, turn keys off and sign devices out. The We1ssConnect login comes in a later release.
